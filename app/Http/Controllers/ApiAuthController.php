@@ -22,6 +22,8 @@ use App\Mail\EmailVerification;
 
 use Illuminate\Support\Facades\Auth;
 
+use App\Models\Role;
+
 class ApiAuthController extends Controller
 {
     //
@@ -45,6 +47,7 @@ class ApiAuthController extends Controller
 
 
             $regCode = "PLA" . rand(11100, 999999);
+            $admin_role = Role::where('name', 'admin')->first();
 
             $user = User::create([
                 'name' => $validatedData['name'],
@@ -56,7 +59,8 @@ class ApiAuthController extends Controller
                 // 'sponsors_id' => $validatedData['referrer_code'],
                 'password' => Hash::make($validatedData['password']),
             ]);
-
+            
+            $user->roles()->attach($admin_role);
 
             $user->update([
                 'otp' => rand(111111, 999999)

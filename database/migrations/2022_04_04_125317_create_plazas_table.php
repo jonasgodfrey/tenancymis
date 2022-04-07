@@ -15,6 +15,15 @@ return new class extends Migration
     {
         Schema::create('plazas', function (Blueprint $table) {
             $table->id();
+            $table->string('name');
+            $table->string('address');
+            $table->string('owners_id');
+            $table->string('gps_longitude');
+            $table->string('gps_latitude');
+            $table->string('no_managers');
+            $table->string('no_shops');
+            
+            $table->foreign('owners_id')->references('id')->on('users');
             $table->timestamps();
         });
     }

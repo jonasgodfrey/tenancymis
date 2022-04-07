@@ -5,6 +5,7 @@ namespace App\Providers;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
 use Illuminate\Support\Facades\Gate;
 
+
 class AuthServiceProvider extends ServiceProvider
 {
     /**
@@ -25,6 +26,27 @@ class AuthServiceProvider extends ServiceProvider
     {
         $this->registerPolicies();
 
-        //
+        //full access rules
+        Gate::define('admin', function ($user) {
+            return $user->hasRole('admin');
+        });
+
+        //full access rules
+        Gate::define('manager', function ($user) {
+            return $user->hasRole('manager');
+        });
+
+        //Cbo role
+        Gate::define('tenant', function ($user) {
+            return $user->hasRole('tenant');
+        });
+
+        //admin spo access
+        Gate::define('admin_manager', function ($user) {
+            return $user->hasAnyRoles([
+                'admin',
+                'manager'
+            ]);
+        });
     }
 }
