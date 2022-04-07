@@ -18,7 +18,6 @@ class UserTableSeeder extends Seeder
      */
     public function run()
     {
-        User::truncate();
         DB::table('role_user')->truncate();
 
         $adminRole = Role::where('name', 'admin')->first();
@@ -67,8 +66,14 @@ class UserTableSeeder extends Seeder
 
 
         $admin->roles()->attach($adminRole);
+        $admin->createToken('auth_token')->plainTextToken;
+
         $manager->roles()->attach($managerRole);
+        $manager->createToken('auth_token')->plainTextToken;
+
         $tenant->roles()->attach($tenantRole);
+        $tenant->createToken('auth_token')->plainTextToken;
+
     }
-    
+
 }

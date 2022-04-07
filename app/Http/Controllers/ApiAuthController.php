@@ -59,7 +59,7 @@ class ApiAuthController extends Controller
                 // 'sponsors_id' => $validatedData['referrer_code'],
                 'password' => Hash::make($validatedData['password']),
             ]);
-            
+
             $user->roles()->attach($admin_role);
 
             $user->update([

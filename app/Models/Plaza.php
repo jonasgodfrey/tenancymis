@@ -8,4 +8,11 @@ use Illuminate\Database\Eloquent\Model;
 class Plaza extends Model
 {
     use HasFactory;
+    protected $fillable = [
+        'name',
+        'address',
+        'owner_id',
+        'gps_latitude',
+        'gps_longitude',
+    ];
 }

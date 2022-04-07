@@ -15,16 +15,15 @@ return new class extends Migration
     {
         Schema::create('plazas', function (Blueprint $table) {
             $table->id();
+            $table->bigInteger('owner_id')->unsigned();
             $table->string('name');
             $table->string('address');
-            $table->string('owners_id');
-            $table->string('gps_longitude');
-            $table->string('gps_latitude');
-            $table->string('no_managers');
-            $table->string('no_shops');
-            
-            $table->foreign('owners_id')->references('id')->on('users');
+            $table->string('gps_longitude')->nullable();
+            $table->string('gps_latitude')->nullable();
             $table->timestamps();
+
+            $table->foreign('owner_id')->references('id')->on('users');
+
         });
     }
 
