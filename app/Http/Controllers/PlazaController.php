@@ -12,15 +12,23 @@ class PlazaController extends Controller
 
     public function fetch(Request $request)
     {
+
+        // checks if query is for multiple or single plaza
         $data = [];
+        
+        if ($request->plaza_id == '') {
 
-        if ($request->user_id != '') {
-
-            $data = Plaza::where('owner_id', $request->user_id)->get();
+            $data = Plaza::where('owner_id', $request->user()->id)->get();
         }
-        if ($request->user_id == '') {
 
-            $data = Plaza::all();
+        if ($request->plaza_id != '') {
+
+            $whereCondition = [
+                ['id', '=', $request->plaza_id],
+                ['owner_id', '=', $request->user()->id],
+            ];
+
+            $data = Plaza::where($whereCondition)->get();
         }
 
         if (count($data) == 0) {
@@ -127,7 +135,5 @@ class PlazaController extends Controller
             'title' => "Plaza Deleted",
             'message' => 'plaza record deleted on Tenancymis'
         ]);
-
-
     }
 }

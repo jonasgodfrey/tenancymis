@@ -53,7 +53,7 @@ class ApiAuthController extends Controller
                 'name' => $validatedData['name'],
                 'email' => $validatedData['email'],
                 'role' => $validatedData['role'],
-
+                'owner_id' => null,
                 // 'username' => $validatedData['username'],
                 'usercode' => $regCode,
                 // 'sponsors_id' => $validatedData['referrer_code'],
