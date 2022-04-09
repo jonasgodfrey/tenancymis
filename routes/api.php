@@ -5,6 +5,8 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\NotificationController;
 use App\Http\Controllers\ApiAuthController;
 use App\Http\Controllers\PlazaController;
+use App\Http\Controllers\UserController;
+use App\Http\Controllers\ShopController;
 
 /*
 |--------------------------------------------------------------------------
@@ -35,7 +37,19 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
     Route::get('/plaza', [PlazaController::class, 'fetch']);
     Route::post('/plaza/create', [PlazaController::class, 'create']);
     Route::put('/plaza/update', [PlazaController::class, 'update']);
-    Route::post('/plaza/delete', [PlazaController::class, 'delete']);
+    Route::delete('/plaza/delete', [PlazaController::class, 'delete']);
+
+    //Shop Routes
+    Route::get('/shop', [ShopController::class, 'fetch']);
+    Route::post('/shop/create', [ShopController::class, 'create']);
+    Route::put('/shop/update', [ShopController::class, 'update']);
+    Route::delete('/shop/delete', [ShopController::class, 'delete']);
+
+    //User Routes
+    Route::get('/users', [UserController::class, 'fetch']);
+    Route::post('/user/create', [UserController::class, 'create']);
+    Route::put('/user/update', [UserController::class, 'update']);
+    Route::delete('/user/delete', [UserController::class, 'delete']);
 
 });
 

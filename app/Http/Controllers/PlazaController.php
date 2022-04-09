@@ -64,7 +64,7 @@ class PlazaController extends Controller
 
         if ($plaza) {
             return response()->json([
-                'message' => 'plaza added successfully',
+                'result' => 'plaza added successfully',
             ]);
         } else {
             return response()->json([
@@ -109,7 +109,7 @@ class PlazaController extends Controller
 
         $plaza = Plaza::find($request->id);
 
-        
+
         $result = $plaza->delete();
 
         if ($result) {
