@@ -50,7 +50,7 @@
 
             <div class="row mt-3">
                 <div class="col-12 text-center">
-                    <p> <a href="auth-recoverpw.html" class="ms-1"><i class="fa fa-lock me-1"></i>Forgot your password?</a></p>
+                    <p> <a href="/recover" class="ms-1"><i class="fa fa-lock me-1"></i>Forgot your password?</a></p>
                     <p class="">Don't have an account? <a href="/register" class="text-dark ms-1"><b>Sign Up</b></a></p>
                 </div> <!-- end col -->
             </div>
