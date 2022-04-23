@@ -5,7 +5,7 @@
                 <div class="col-md-6">
                     <script>
                         document.write(new Date().getFullYear())
-                    </script> &copy; MyTenants MIS <a href="">Squad</a>
+                    </script> &copy; Tenancy Plus <a href="">Squad</a>
                 </div>
                 <div class="col-md-6">
                     <div class="text-md-end footer-links d-none d-sm-block">

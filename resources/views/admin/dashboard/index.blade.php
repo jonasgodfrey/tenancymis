@@ -34,7 +34,7 @@
 
                         </div>
 
-                        <h4 class="header-title mt-0 mb-4">Total Plazas</h4>
+                        <h4 class="header-title mt-0 mb-4">Total Properties</h4>
 
                         <div class="widget-chart-1">
                             <div class="widget-chart-box-1 float-start" dir="ltr">
@@ -63,7 +63,7 @@
 
                         </div>
 
-                        <h4 class="header-title mt-0 mb-4">Total Shops</h4>
+                        <h4 class="header-title mt-0 mb-4">Total Residentials</h4>
 
                         <div class="widget-chart-1">
                             <div class="widget-chart-box-1 float-start" dir="ltr">
@@ -91,7 +91,7 @@
 
                         </div>
 
-                        <h4 class="header-title mt-0 mb-4">Total Tenants</h4>
+                        <h4 class="header-title mt-0 mb-4">Total Commercial</h4>
 
                         <div class="widget-chart-1">
                             <div class="widget-chart-box-1 float-start" dir="ltr">

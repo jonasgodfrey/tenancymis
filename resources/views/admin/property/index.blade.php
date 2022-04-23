@@ -35,17 +35,53 @@
                                     </div>
 
                                     <div class="mb-3">
-                                        <label for="example-select" class="form-label">Property Ctegory</label>
+                                        <label for="example-select" class="form-label">Property Category</label>
                                         <select class="form-select" id="example-select" name="propcat" required>
-                                            <option>Housing Estate</option>
+                                            <option>Select Category</option>
+                                            <option>Commercial Property</option>
+                                            <option>Residential Property</option>
+                                        </select>
+                                    </div>
+
+                                    <div class="mb-3">
+                                        <label for="example-select" class="form-label">Property Class</label>
+                                        <select class="form-select" id="example-select" name="propcat" required>
+                                            <option>Select Class</option>
                                             <option>Plaza</option>
                                             <option>Mall</option>
                                             <option>Shopping Centre</option>
-                                            <option>Market Square</option>
-                                            <option>Recreational Park</option>
+                                            <option>Market Square</option><br>
+                                            <option>Row Houses</option>
+                                            <option>Self Contain</option>
+                                            <option>Appartments or Flats</option>
+                                            <option>Penthouse</option>
+                                            <option>Mansion</option>
+                                            <option>Bungalo</option>
+                                            <option>Duplex</option>
+                                            <option>Terraced</option>
+                                            <option>Semi-Detached Duplex</option>
+                                            <option>Semi-Detached Bungalo</option>
+                                            <option>Semi-Detatched Terrace</option>
+                                            <option>Detached Duplex</option>
+                                            <option>Detached Bungalo</option>
+                                            <option>Detatched Terrace</option>
                                             <option>Others</option>
+
+
                                         </select>
                                     </div>
+
+                                    <div class="mb-3">
+                                        <label for="simpleinput" class="form-label">Description</label>
+                                        <textarea maxlength="" class="form-control" rows="10"></textarea>
+                                    </div>
+
+
+
+
+                                </div> <!-- end col -->
+
+                                <div class="col-lg-6">
 
                                     <div class="mb-3">
                                         <label for="simpleinput" class="form-label">Address</label>
@@ -55,11 +91,6 @@
                                         <label for="example-email" class="form-label">Email</label>
                                         <input type="email" id="example-email" name="example-email" class="form-control" placeholder="Email" required>
                                     </div>
-
-
-                                </div> <!-- end col -->
-
-                                <div class="col-lg-6">
 
                                     <div class="mb-3">
                                         <label for="example-tel" class="form-label">Mobile No</label>
@@ -138,6 +169,16 @@
                                 <td>Nigeria</td>
                                 <td>Abuja</td>
                                 <td>shop@gmail.com</td>
+                                <td>08162445607</td>
+                                <td><a href="#"><i class="fas fa-eye"></i></a><span><a href="#"><i class="fas fa-pen"></i></a></span></td>
+                            </tr>
+
+                            <tr>
+                                <td>EFAB Sunshine Estate</td>
+                                <td>Apo Abuja</td>
+                                <td>Nigeria</td>
+                                <td>Abuja</td>
+                                <td>tenant@gmail.com</td>
                                 <td>08162445607</td>
                                 <td><a href="#"><i class="fas fa-eye"></i></a><span><a href="#"><i class="fas fa-pen"></i></a></span></td>
                             </tr>

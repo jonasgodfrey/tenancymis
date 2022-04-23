@@ -114,4 +114,9 @@ class UserController extends Controller
     {
         # code...
     }
+
+    public function index()
+    {
+        return view('admin.users.index')->with([]);
+    }
 }

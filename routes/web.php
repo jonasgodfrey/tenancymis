@@ -25,4 +25,10 @@ Route::get('/confirm', [App\Http\Controllers\Auth\OtpAuthController::class, 'con
 // In App Section
 Route::get('/dashboard', [App\Http\Controllers\DashboardController::class, 'index'])->name('dashboard.index');
 Route::get('/property', [App\Http\Controllers\PropertyController::class, 'index'])->name('property.index');
-
+Route::get('/units', [App\Http\Controllers\PropertyUnitsController::class, 'index'])->name('units.index');
+Route::get('/tenants', [App\Http\Controllers\TenantsController::class, 'index'])->name('tenants.index');
+Route::get('/tenancypayments', [App\Http\Controllers\TenancyPaymentsController::class, 'index'])->name('payments.index');
+Route::get('/artisans', [App\Http\Controllers\ArtisansController::class, 'index'])->name('artisans.index');
+Route::get('/users', [App\Http\Controllers\UserController::class, 'index'])->name('users.index');
+Route::get('/chatbox', [App\Http\Controllers\ChatBoxController::class, 'index'])->name('chats.index');
+Route::get('/settings', [App\Http\Controllers\SettingsController::class, 'index'])->name('settings.index');
