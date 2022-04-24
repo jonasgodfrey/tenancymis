@@ -32,3 +32,4 @@ Route::get('/artisans', [App\Http\Controllers\ArtisansController::class, 'index'
 Route::get('/users', [App\Http\Controllers\UserController::class, 'index'])->name('users.index');
 Route::get('/chatbox', [App\Http\Controllers\ChatBoxController::class, 'index'])->name('chats.index');
 Route::get('/settings', [App\Http\Controllers\SettingsController::class, 'index'])->name('settings.index');
+Route::get('/invoice', [App\Http\Controllers\TenancyPaymentsController::class, 'invoicegenerate'])->name('payments.invoice');

@@ -7,15 +7,15 @@
     <div class="container-fluid">
 
         <!-- start page title -->
-<div class="row">
-<div class="col-12">
-<div class="page-title-box page-title-box-alt">
+    <div class="row">
+    <div class="col-12">
+    <div class="page-title-box page-title-box-alt">
 
-<h4 class="page-title">Users</h4>
-</div>
-</div>
-</div>
-<!-- end page title -->
+    <h4 class="page-title">Users</h4>
+    </div>
+    </div>
+    </div>
+    <!-- end page title -->
 
         <div class="row">
             <div class="col-12">
@@ -312,7 +312,59 @@
         <!-- end row -->
 
     </div> <!-- container -->
+    <div class="modal fade" id="custom-modal" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header bg-light">
+                    <h4 class="modal-title" id="myCenterModalLabel">Add User</h4>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-hidden="true"></button>
+                </div>
+                <div class="modal-body">
+                    <form>
+                        <div class="mb-3">
+                            <label for="name" class="form-label">Name</label>
+                            <input type="text" class="form-control" id="name" placeholder="Enter name" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="position" class="form-label">Position</label>
+                            <select class="form-select" id="example-select" name="bizcat" required>
+                                <option>Admin</option>
+                                <option>Manager</option>
+                                <option>Accountant</option>
+                                <option>Artisans</option>
+                            </select>
+                        </div>
+                        <div class="mb-3">
+                            <label for="company" class="form-label">Company</label>
+                            <input type="text" class="form-control" id="company" placeholder="Enter company">
+                        </div>
+                        <div class="mb-3">
+                            <label for="exampleInputEmail1" class="form-label">Email address</label>
+                            <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Enter email" required>
+                        </div>
 
+                        <div class="mb-3">
+                            <label for="exampleInputEmail1" class="form-label">Phone Number</label>
+                            <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Phone Number" required>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="exampleInputEmail1" class="form-label"> (If Vendor) Vendor Category</label>
+                            <select class="form-select" id="example-select" name="bizcat" required>
+                                <option>Electrical</option>
+                                <option>Plumbing</option>
+                                <option>Janitor</option>
+                                <option>Others</option>
+                               </select>
+                            </div>
+
+                            <button type="submit" class="btn btn-success waves-effect waves-light">Save</button>
+                            <button type="button" class="btn btn-danger waves-effect waves-light" data-bs-dismiss="modal">Cancel</button>
+                    </form>
+                </div>
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal-dialog -->
+    </div><!-- /.modal -->
 </div>
 @endsection
 @section('js')

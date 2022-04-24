@@ -168,7 +168,62 @@
         <!-- end row -->
 
     </div> <!-- container-fluid -->
+    <div class="modal fade" id="custom-modal" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header bg-light">
+                    <h4 class="modal-title" id="myCenterModalLabel">Assign Task</h4>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-hidden="true"></button>
+                </div>
+                <div class="modal-body">
+                    <form>
+                        <div class="mb-3">
+                            <label for="name" class="form-label">Vendor</label>
+                            <select class="form-select" id="example-select" name="bizcat" required>
+                                <option>Vendor elect</option>
+                                <option>Vendor plumbing</option>
+                                <option>Vendor Janitor</option>
+                            </select>
+                        </div>
+                        <div class="mb-3">
+                            <label for="position" class="form-label">Task Title</label>
+                            <select class="form-select" id="example-select" name="bizcat" required>
+                                <option>Electrical Repairs</option>
+                                <option>Cleaning Services</option>
+                                <option>Plumbing Repairs</option>
+                                <option>Sanitation</option>
+                                <option>Fumigation</option>
+                            </select>
+                        </div>
 
+                        <div class="mb-3">
+                            <label for="company" class="form-label">Task Description</label>
+                            <textarea name="" class="form-control"></textarea>
+                        </div>
+                        <div class="mb-3">
+                            <label for="position" class="form-label">Property</label>
+                            <select class="form-select" id="example-select" name="bizcat" required>
+                                <option>Axion Plaza</option>
+                                <option>EFAB Sunshine Estate Apo</option>
+                            </select>
+                        </div>
+                        <div class="mb-3">
+                            <label for="position" class="form-label">Unit</label>
+                            <select class="form-select" id="example-select" name="bizcat" required>
+                                <option>Shop 1</option>
+                                <option>Shop A</option>
+                                <option>House 9</option>
+                                <option>Flat 17</option>
+                            </select>
+                        </div>
+
+                            <button type="submit" class="btn btn-success waves-effect waves-light">Assign</button>
+                            <button type="button" class="btn btn-danger waves-effect waves-light" data-bs-dismiss="modal">Cancel</button>
+                    </form>
+                </div>
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal-dialog -->
+    </div><!-- /.modal -->
 </div> <!-- content -->
 @endsection
 @section('js')

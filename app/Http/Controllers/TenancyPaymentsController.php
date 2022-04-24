@@ -10,4 +10,10 @@ class TenancyPaymentsController extends Controller
     {
         return view('admin.payments.index')->with([]);
     }
+
+    public function invoicegenerate()
+    {
+        return view('admin.payments.invoice')->with([]);
+
+    }
 }

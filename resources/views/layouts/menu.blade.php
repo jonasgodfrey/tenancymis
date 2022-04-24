@@ -41,6 +41,13 @@
 
                     </li>
                     <li class="nav-item dropdown">
+                        <a class="nav-link arrow-none" href="/invoice" id="topnav-dashboard" role="button"
+                            aria-haspopup="true" aria-expanded="false">
+                            <i class="mdi mdi-view-dashboard me-1"></i> Invoices
+                        </a>
+
+                    </li>
+                    <li class="nav-item dropdown">
                         <a class="nav-link arrow-none" href="/users" id="topnav-dashboard" role="button"
                             aria-haspopup="true" aria-expanded="false">
                             <i class="mdi mdi-view-dashboard me-1"></i> Users

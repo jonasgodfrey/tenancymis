@@ -172,7 +172,7 @@
                                         <td>₦150,000</td>
                                         <td>Shop 22</td>
                                         <td><span class="badge bg-info">Partialy Paid</span></td>
-                                        <td><a href="#"><i class="fas fa-eye"></i></a>      <span><a href="#">  <i class="fas fa-pen"></i></a></span></td>
+                                        <td><a href="#"><i class="fas fa-eye"></i></a>      <span><a href="#">  <i class="fas fa-pen"></i></a></span> </td>
                                     </tr>
 
                                     <tr>
@@ -181,7 +181,7 @@
                                         <td>₦150,000</td>
                                         <td>Shop 3</td>
                                         <td><span class="badge bg-danger">Overdue</span></td>
-                                        <td><a href="#"><i class="fas fa-eye"></i></a>      <span><a href="#">  <i class="fas fa-pen"></i></a></span></td>
+                                        <td><a href="#"><i class="fas fa-eye"></i></a>      <span><a href="#">  <i class="fas fa-pen"></i></a></span> <span><a href="/invoice">  <i class="fas fa-file"></i></a></span></td>
                                     </tr>
 
 
