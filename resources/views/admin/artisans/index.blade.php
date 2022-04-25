@@ -10,7 +10,7 @@
 <div class="col-12">
 <div class="page-title-box page-title-box-alt">
 
-<h4 class="page-title">Vendors Task</h4>
+<h4 class="page-title">Artisans Task</h4>
 </div>
 </div>
 </div>

@@ -44,36 +44,37 @@
                                     </div>
 
                                     <div class="mb-3">
-                                        <label for="example-select" class="form-label">Property Class</label>
+                                        <label for="example-select" class="form-label">Property Type</label>
                                         <select class="form-select" id="example-select" name="propcat" required>
-                                            <option>Select Class</option>
+                                            <option>Select Type</option>
                                             <option>Plaza</option>
                                             <option>Mall</option>
                                             <option>Shopping Centre</option>
                                             <option>Market Square</option><br>
                                             <option>Row Houses</option>
                                             <option>Self Contain</option>
-                                            <option>Appartments or Flats</option>
-                                            <option>Penthouse</option>
+                                            <option>Block of Flats</option>
+                                            <option>Penthouses</option>
                                             <option>Mansion</option>
-                                            <option>Bungalo</option>
-                                            <option>Duplex</option>
-                                            <option>Terraced</option>
-                                            <option>Semi-Detached Duplex</option>
+                                            <option>Duplexes</option>
+                                            <option>Bungalow</option>
+                                            <option>Bungalo with Penthouse</option>
+                                            <option>Fully Detatched Bungalo</option>
+                                            <option>Terrace Bungalo</option>
                                             <option>Semi-Detached Bungalo</option>
-                                            <option>Semi-Detatched Terrace</option>
-                                            <option>Detached Duplex</option>
-                                            <option>Detached Bungalo</option>
-                                            <option>Detatched Terrace</option>
+                                           <option>Detached Bungalo</option>
+                                           <option>Terrace Duplexes</option>
+                                           <option>Penthouse Duplexes</option>
+                                           <option>Low Rise Building</option>
+                                           <option>High Rise Building</option>
                                             <option>Others</option>
-
 
                                         </select>
                                     </div>
 
                                     <div class="mb-3">
                                         <label for="simpleinput" class="form-label">Description</label>
-                                        <textarea maxlength="" class="form-control" rows="10"></textarea>
+                                        <textarea maxlength="" class="form-control" rows="10" placeholder="Kindly describe your property"></textarea>
                                     </div>
 
 
