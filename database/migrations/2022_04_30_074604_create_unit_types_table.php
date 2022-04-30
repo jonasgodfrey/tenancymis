@@ -13,17 +13,9 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('plazas', function (Blueprint $table) {
+        Schema::create('unit_types', function (Blueprint $table) {
             $table->id();
-            $table->bigInteger('owner_id')->unsigned();
-            $table->string('name');
-            $table->string('address');
-            $table->string('gps_longitude')->nullable();
-            $table->string('gps_latitude')->nullable();
             $table->timestamps();
-
-            $table->foreign('owner_id')->references('id')->on('users');
-
         });
     }
 
@@ -34,6 +26,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('plazas');
+        Schema::dropIfExists('unit_types');
     }
 };

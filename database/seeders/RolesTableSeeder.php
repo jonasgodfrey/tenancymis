@@ -27,13 +27,25 @@ class RolesTableSeeder extends Seeder
         Role::create([
             'name' => 'manager',
             'description' =>
-            'A user that manages the plazas created by the admin.',
+            'A user that manages the property.',
+        ]);
+
+        Role::create([
+            'name' => 'accountant',
+            'description' =>
+            'A user that manages the financial assets of the property.',
+        ]);
+
+        Role::create([
+            'name' => 'artisan',
+            'description' =>
+            'A user that carries out maintainance/repairs of property infastructure.',
         ]);
 
         Role::create([
             'name' => 'tenant',
             'description' =>
-            'A user that rents a shop in a plaza.',
+            'A user that rents out a unit in a property.',
         ]);
 
     }

@@ -15,17 +15,19 @@
             <div class="card">
 
                 <div class="card-body p-4">
-
+                    <div>
+                        @include('partials.flash')
+                    </div>
                     <div class="text-center mb-4">
                         <h4 class="text-uppercase mt-0 mb-3">Reset Password</h4>
                         <p class="text-muted mb-0 font-13">Enter your email address and we'll send you an email with instructions to reset your password.  </p>
                     </div>
 
-                    <form action="#">
+                    <form action="{{ route('password.email') }}">
 
                         <div class="mb-3">
                             <label for="emailaddress" class="form-label">Email address</label>
-                            <input class="form-control" type="email" id="emailaddress" required="" placeholder="Enter your email">
+                            <input class="form-control"  name="email" type="email" id="emailaddress" required="" placeholder="Enter your email">
                         </div>
 
                         <div class="mb-3 text-center d-grid">

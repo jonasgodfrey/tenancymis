@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\DashboardController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -14,16 +15,10 @@ use Illuminate\Support\Facades\Route;
 */
 
 // New and Existing User Section
-Route::get('/', [App\Http\Controllers\Auth\LoginController::class, 'index'])->name('auth.index');
-Route::get('/register', [App\Http\Controllers\Auth\RegisterController::class, 'index'])->name('auth.index');
-
-// Sign in Authentication Route
-Route::get('/recover', [App\Http\Controllers\Auth\RecoverpwdController::class, 'index'])->name('auth.index');
-Route::get('/otp', [App\Http\Controllers\Auth\OtpAuthController::class, 'index'])->name('auth.index');
-Route::get('/confirm', [App\Http\Controllers\Auth\OtpAuthController::class, 'confirm'])->name('auth.confirm');
+Route::get('/', [DashboardController::class, 'index']);
 
 // In App Section
-Route::get('/dashboard', [App\Http\Controllers\DashboardController::class, 'index'])->name('dashboard.index');
+Route::get('/dashboard', [App\Http\Controllers\DashboardController::class, 'index'])->name('dashboard');
 Route::get('/property', [App\Http\Controllers\PropertyController::class, 'index'])->name('property.index');
 Route::get('/units', [App\Http\Controllers\PropertyUnitsController::class, 'index'])->name('units.index');
 Route::get('/tenants', [App\Http\Controllers\TenantsController::class, 'index'])->name('tenants.index');
@@ -33,3 +28,5 @@ Route::get('/users', [App\Http\Controllers\UserController::class, 'index'])->nam
 Route::get('/chatbox', [App\Http\Controllers\ChatBoxController::class, 'index'])->name('chats.index');
 Route::get('/settings', [App\Http\Controllers\SettingsController::class, 'index'])->name('settings.index');
 Route::get('/invoice', [App\Http\Controllers\TenancyPaymentsController::class, 'invoicegenerate'])->name('payments.invoice');
+
+require __DIR__.'/auth.php';

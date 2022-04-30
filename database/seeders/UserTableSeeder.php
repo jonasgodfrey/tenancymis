@@ -28,6 +28,7 @@ class UserTableSeeder extends Seeder
         $admin = User::create([
             'name' => 'admin',
             'email' => 'admin@tenancymis.com',
+            'phone' => '11111111111',
             'password' => Hash::make('secret'),
             'email_verified_at' => now(),
             'owner_id' => null,
@@ -42,6 +43,7 @@ class UserTableSeeder extends Seeder
         $manager = User::create([
             'name' => 'manager',
             'email' => 'manager@tenancymis.com',
+            'phone' => '11111111111',
             'password' => Hash::make('secret'),
             'email_verified_at' => now(),
             'owner_id' => 1,
@@ -56,6 +58,7 @@ class UserTableSeeder extends Seeder
         $tenant = User::create([
             'name' => 'tenant',
             'email' => 'tenant@tenancymis.com',
+            'phone' => '11111111111',
             'password' => Hash::make('secret'),
             'email_verified_at' => now(),
             'owner_id' => 1,

@@ -10,7 +10,7 @@ Role
 Fields:
 propcatid
 catname
-
+ 
 3. PropertyType Table
 Fields:
 proptypeId
