@@ -15,6 +15,9 @@ return new class extends Migration
     {
         Schema::create('states', function (Blueprint $table) {
             $table->id();
+            $table->bigInteger('countryId')->unsigned();
+            $table->string('name');
+
             $table->timestamps();
         });
     }

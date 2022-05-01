@@ -15,6 +15,8 @@ return new class extends Migration
     {
         Schema::create('unit_types', function (Blueprint $table) {
             $table->id();
+            $table->string('propcatId');
+            $table->string('name');
             $table->timestamps();
         });
     }

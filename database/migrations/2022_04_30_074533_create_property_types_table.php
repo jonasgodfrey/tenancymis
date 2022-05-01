@@ -15,6 +15,10 @@ return new class extends Migration
     {
         Schema::create('property_types', function (Blueprint $table) {
             $table->id();
+            $table->bigInteger('propcatId')->unsigned();
+            $table->string('typename');
+
+            $table->foreign('propcatId')->references('id')->on('property_categories');
             $table->timestamps();
         });
     }
