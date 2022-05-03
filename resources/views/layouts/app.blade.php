@@ -173,6 +173,7 @@
      <script src="assets/libs/datatables.net-select/js/dataTables.select.min.js"></script>
      <script src="assets/libs/pdfmake/build/pdfmake.min.js"></script>
      <script src="assets/libs/pdfmake/build/vfs_fonts.js"></script>
+     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
      <!-- third party js ends -->
      <!-- Datatables init -->
      <script src="assets/js/pages/datatables.init.js"></script>
