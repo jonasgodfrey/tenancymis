@@ -45,7 +45,7 @@
 
                                     <div class="mb-3">
                                         <label for="example-select" class="form-label">Property Type</label>
-                                        <select class="form-select" id="example-select" name="propcat" required>
+                                        <select class="form-select" id="example-select" name="proptype" required>
                                             <option>Select Type</option>
                                             <option>Plaza</option>
                                             <option>Mall</option>

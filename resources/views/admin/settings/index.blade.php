@@ -119,15 +119,14 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-hidden="true"></button>
                 </div>
                 <div class="modal-body">
-                    <form>
+                    <form action="{{ route('settings.addpropertycat') }}" id="catform"  method="POST">
+                        @csrf
                         <div class="mb-3">
                             <label for="name" class="form-label">Category Name</label>
-                            <input type="" class="form-control" value="" placeholder="">
+                            <input type="" id="catname" name="catname" class="form-control" value="" placeholder="">
                         </div>
-                        
 
-
-                            <button type="submit" class="btn btn-success waves-effect waves-light">Add</button>
+                            <button type="submit" class="btn btn-success waves-effect waves-light propcat">Add</button>
                             <button type="button" class="btn btn-danger waves-effect waves-light" data-bs-dismiss="modal">Cancel</button>
                     </form>
                 </div>
@@ -144,21 +143,22 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-hidden="true"></button>
                 </div>
                 <div class="modal-body">
-                    <form>
+                    <form action="{{ route('settings.addpropertytype') }}" id="typeform" method="POST">
+                        @csrf
                         <div class="mb-3">
                             <label for="name" class="form-label">Name</label>
-                            <input type="" class="form-control" value="" placeholder="Property Type name">
+                            <input type="" id="typename" class="form-control" name="typename" value="" placeholder="Property Type name">
                         </div>
                         <div class="mb-3">
                             <label for="name" class="form-label">Category</label>
-                            <select class="form-select" id="example-select" name="bizcat" required>
-                                <option>Residential</option>
-                                <option>Commercial</option>
+                            <select class="form-select" id="catname" name="catname" id="example-select" name="bizcat" required>
+                                <option value="1">Residential</option>
+                                <option value="2">Commercial</option>
                             </select>
                         </div>
 
 
-                            <button type="submit" class="btn btn-success waves-effect waves-light">Add</button>
+                            <button type="submit" class="btn btn-success waves-effect waves-light proptype">Add</button>
                             <button type="button" class="btn btn-danger waves-effect waves-light" data-bs-dismiss="modal">Cancel</button>
                     </form>
                 </div>
@@ -176,21 +176,22 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-hidden="true"></button>
                 </div>
                 <div class="modal-body">
-                    <form>
+                    <form action="{{ route('settings.addunitname') }}" id="unitform" method="POST">
+                        @csrf
                         <div class="mb-3">
                             <label for="name" class="form-label">Name</label>
-                            <input type="" class="form-control" value="" placeholder="Unit name">
+                            <input type="" id="unitname" name="unitname" class="form-control" value="" placeholder="Unit name">
                         </div>
                         <div class="mb-3">
                             <label for="name" class="form-label">Property Category</label>
-                            <select class="form-select" id="example-select" name="bizcat" required>
-                                <option>Residential</option>
-                                <option>Commercial</option>
+                            <select class="form-select" id="catname" name="catname" id="example-select" name="bizcat" required>
+                                <option value="1">Residential</option>
+                                <option value="2">Commercial</option>
                             </select>
                         </div>
 
 
-                            <button type="submit" class="btn btn-success waves-effect waves-light">Add</button>
+                            <button type="submit" class="btn btn-success waves-effect waves-light unitname">Add</button>
                             <button type="button" class="btn btn-danger waves-effect waves-light" data-bs-dismiss="modal">Cancel</button>
                     </form>
                 </div>
@@ -203,5 +204,5 @@
 <!-- content -->
 @endsection
 @section('js')
-    <script src="dist/js/selectField.js"></script>
+    <script src="assets/js/settingspage.js"></script>
 @endsection

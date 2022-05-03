@@ -2,7 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\PropertyCategory;
+use App\Models\PropertyType;
+use App\Models\Unit;
+use App\Models\UnitType;
 use Illuminate\Http\Request;
+use UnitEnum;
 
 class SettingsController extends Controller
 {
@@ -20,4 +25,67 @@ class SettingsController extends Controller
     {
         return view('admin.settings.index')->with([]);
     }
+
+    public function addpropertycat(Request $request)
+    {
+        $cat = $request->catname;
+
+        $propcat = PropertyCategory::create([
+            'category_name' => $cat,
+        ]);
+
+        if ($propcat) {
+            return response()->json([
+               'New property category created',
+            ]);
+        }else{
+            return response()->json([
+               'An error occured',
+            ]);
+        }
+    }
+
+    public function addpropertytype(Request $request)
+    {
+        $type = $request->typename;
+        $cat = $request->catname;
+
+        $proptype = PropertyType::create([
+            'propcatId' => $cat,
+            'typename' => $type,
+        ]);
+
+        if ($proptype) {
+            return response()->json([
+               'New property type created',
+            ]);
+        }else{
+            return response()->json([
+               'An error occured',
+            ]);
+        }
+    }
+
+    public function addunitname(Request $request)
+    {
+        $name = $request->unitname;
+        $cat = $request->catname;
+
+        $unit = UnitType::create([
+            'propcatId' => $cat,
+            'name' => $name,
+        ]);
+
+        if ($unit) {
+            return response()->json([
+               'New property category created',
+            ]);
+        }else{
+            return response()->json([
+               'An error occured',
+            ]);
+        }
+    }
+
+
 }

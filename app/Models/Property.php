@@ -21,4 +21,8 @@ class Property extends Model
         'stateId',
         'uploadsDir',
     ];
+
+    public function users(){
+        return $this->belongsToMany('App\Models\User');
+    }
 }
