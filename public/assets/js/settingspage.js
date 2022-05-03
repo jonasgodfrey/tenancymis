@@ -15,6 +15,7 @@ $('#catform').on('submit', function(e) {
                 result,
                 'success'
             )
+            $('#catname').val('');
         },
         error: function(err) {
             Swal.fire(
@@ -55,6 +56,8 @@ $('#typeform').on('submit', function(e) {
                 err,
                 'error'
             )
+            $('#typename').val('');
+            $('#catname').val('');
         },
         headers: {
             "X-CSRF-Token": $('meta[name="csrf-token"]').attr("content")
@@ -81,6 +84,9 @@ $('#unitform').on('submit', function(e) {
                 result,
                 'success'
             )
+            $('#unitname').val('');
+            $('#catname').val('');
+            e.clear()
         },
         error: function(err) {
             Swal.fire(
