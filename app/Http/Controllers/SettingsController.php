@@ -23,7 +23,11 @@ class SettingsController extends Controller
     
     public function index()
     {
-        return view('admin.settings.index')->with([]);
+        $cat = PropertyCategory::all();
+        
+        return view('admin.settings.index')->with([
+            'category' => $cat,
+        ]);
     }
 
     public function addpropertycat(Request $request)
