@@ -74,7 +74,7 @@
 
                                     <div class="mb-3">
                                         <label for="simpleinput" class="form-label">Description</label>
-                                        <textarea maxlength="" class="form-control" rows="10" placeholder="Kindly describe your property"></textarea>
+                                        <textarea maxlength="" name="propdesc" class="form-control" rows="10" placeholder="Kindly describe your property" required></textarea>
                                     </div>
 
 
@@ -86,21 +86,21 @@
 
                                     <div class="mb-3">
                                         <label for="simpleinput" class="form-label">Address</label>
-                                        <input type="text" name="" id="simpleinput" class="form-control" placeholder="property address" required>
+                                        <input type="text" name="address" id="simpleinput" class="form-control" placeholder="property address" required>
                                     </div>
                                     <div class="mb-3">
                                         <label for="example-email" class="form-label">Email</label>
-                                        <input type="email" id="example-email" name="example-email" class="form-control" placeholder="Email" required>
+                                        <input type="email" id="example-email" name="email" class="form-control" placeholder="Email" required>
                                     </div>
 
                                     <div class="mb-3">
                                         <label for="example-tel" class="form-label">Mobile No</label>
-                                        <input type="tel" name="mobile" id="example-tel" class="form-control" placeholder="contact no" required>
+                                        <input type="tel" name="tel" id="example-tel" class="form-control" placeholder="contact no" required>
                                     </div>
 
                                     <div class="mb-3">
                                         <label for="example-select" class="form-label">Country</label>
-                                        <select class="form-select" id="example-select" name="country">
+                                        <select class="form-select" id="example-select" name="country" required>
                                             <option>Nigeria</option>
                                             <option>Kenya</option>
                                             <option>Rwanda</option>
@@ -111,7 +111,7 @@
 
                                     <div class="mb-3">
                                         <label for="example-select" class="form-label">State</label>
-                                        <select class="form-select" id="example-select" name="state">
+                                        <select class="form-select" id="example-select" name="state" required>
                                             <option>Abuja</option>
                                             <option>Lagos</option>
                                             <option>Nassarawa</option>
@@ -122,7 +122,7 @@
 
                                     <div class="mb-3">
                                         <label for="example-fileinput" class="form-label">Upload Logo</label>
-                                        <input type="file" name="logo" id="example-fileinput" class="form-control">
+                                        <input type="file" name="proplogo" id="example-fileinput" class="form-control">
                                     </div>
 
 
@@ -130,7 +130,7 @@
                              </div> <!-- end col -->
 
                              <div class="col-12">
-                                <a href="pricing.html" type="submit" name="submit" class="btn btn-primary btn-lg">Create</a href="pricing.html">
+                                <a href="pricing.html" type="submit" name="submit" class="btn btn-primary btn-lg">Create</a href="#">
                             </div>
 
                     </div>

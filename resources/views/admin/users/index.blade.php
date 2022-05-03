@@ -348,16 +348,6 @@
                             <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Phone Number" required>
                         </div>
 
-                        <div class="mb-3">
-                            <label for="exampleInputEmail1" class="form-label"> (If Vendor) Vendor Category</label>
-                            <select class="form-select" id="example-select" name="bizcat" required>
-                                <option>Electrical</option>
-                                <option>Plumbing</option>
-                                <option>Janitor</option>
-                                <option>Others</option>
-                               </select>
-                            </div>
-
                             <button type="submit" class="btn btn-success waves-effect waves-light">Save</button>
                             <button type="button" class="btn btn-danger waves-effect waves-light" data-bs-dismiss="modal">Cancel</button>
                     </form>
