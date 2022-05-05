@@ -17,6 +17,7 @@ class Property extends Model
         'propaddress',
         'propdesc',
         'phone',
+        'email',
         'countryId',
         'stateId',
         'uploadsDir',
