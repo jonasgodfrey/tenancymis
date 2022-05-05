@@ -152,8 +152,9 @@
                         <div class="mb-3">
                             <label for="name" class="form-label">Category</label>
                             <select class="form-select" id="catname" name="catname" id="example-select" name="bizcat" required>
-                                <option value="1">Residential</option>
-                                <option value="2">Commercial</option>
+                                @foreach ($category as $cat)
+                                <option value="{{ $cat->id }}">{{ $cat->category_name }}</option>
+=                               @endforeach
                             </select>
                         </div>
 
@@ -185,8 +186,9 @@
                         <div class="mb-3">
                             <label for="name" class="form-label">Property Category</label>
                             <select class="form-select" id="catname" name="catname" id="example-select" name="bizcat" required>
-                                <option value="1">Residential</option>
-                                <option value="2">Commercial</option>
+                                @foreach ($category as $cat)
+                                <option value="{{ $cat->id }}">{{ $cat->category_name }}</option>
+=                               @endforeach
                             </select>
                         </div>
 

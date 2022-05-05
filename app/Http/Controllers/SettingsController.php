@@ -20,11 +20,11 @@ class SettingsController extends Controller
     {
         $this->middleware('auth');
     }
-    
+
     public function index()
     {
         $cat = PropertyCategory::all();
-        
+
         return view('admin.settings.index')->with([
             'category' => $cat,
         ]);
