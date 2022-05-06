@@ -15,9 +15,14 @@ class ArtisansController extends Controller
     {
         $this->middleware('auth');
     }
-    
+
     public function index()
     {
         return view('admin.artisans.index')->with([]);
+    }
+
+    public function artisansdash()
+    {
+       return view('artisans.index')->with([]);
     }
 }

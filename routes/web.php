@@ -35,8 +35,8 @@ Route::get('/users', [App\Http\Controllers\UserController::class, 'index'])->nam
 
 Route::get('/chatbox', [App\Http\Controllers\ChatBoxController::class, 'index'])->name('chats.index');
 
-
-Route::group(['middleware' => ['auth']], function (){  
+// Admin Settings
+Route::group(['middleware' => ['auth']], function (){
 Route::get('/settings', [App\Http\Controllers\SettingsController::class, 'index'])->name('settings.index');
 
 Route::post('/settings/addpropertycat', [App\Http\Controllers\SettingsController::class, 'addpropertycat'])->name('settings.addpropertycat');
@@ -44,6 +44,19 @@ Route::post('/settings/addpropertytype', [App\Http\Controllers\SettingsControlle
 Route::post('/settings/addunitname', [App\Http\Controllers\SettingsController::class, 'addunitname'])->name('settings.addunitname');
 
 });
+
+//Manager
+Route::get('/manager', [App\Http\Controllers\ManagerController::class, 'index'])->name('manager.index');
+
+// Tenants
+Route::get('/tenantsdash', [App\Http\Controllers\TenantsController::class, 'tenantsdashboard'])->name('tenants.index');
+
+// Accountants
+Route::get('/accountant', [App\Http\Controllers\AccountantsController::class, 'index'])->name('accountant.index');
+
+// Artisans
+Route::get('/artisandash', [App\Http\Controllers\ArtisansController::class, 'artisansdash'])->name('artisans.index');
+
 
 Route::get('/invoice', [App\Http\Controllers\TenancyPaymentsController::class, 'invoicegenerate'])->name('payments.invoice');
 
