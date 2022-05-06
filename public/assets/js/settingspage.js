@@ -34,8 +34,9 @@ $('#typeform').on('submit', function(e) {
     e.preventDefault();
 
     let name = $('#typename').val();
-    let category = $('#catname').val();
+    let category = $('#pt_catname').val();
 
+    console.log(name, category)
     $.ajax({
         url: '/settings/addpropertytype',
         method: "POST",
@@ -48,7 +49,9 @@ $('#typeform').on('submit', function(e) {
                 'success',
                 result,
                 'success'
-            )
+            );
+            $('#typename').val('');
+            $('#pt_catname').val('');
         },
         error: function(err) {
             Swal.fire(
@@ -56,8 +59,7 @@ $('#typeform').on('submit', function(e) {
                 err,
                 'error'
             )
-            $('#typename').val('');
-            $('#catname').val('');
+
         },
         headers: {
             "X-CSRF-Token": $('meta[name="csrf-token"]').attr("content")
@@ -69,7 +71,7 @@ $('#unitform').on('submit', function(e) {
     e.preventDefault();
 
     let name = $('#unitname').val();
-    let category = $('#catname').val();
+    let category = $('#ut_catname').val();
 
     $.ajax({
         url: '/settings/addunitname',
@@ -85,7 +87,7 @@ $('#unitform').on('submit', function(e) {
                 'success'
             )
             $('#unitname').val('');
-            $('#catname').val('');
+            $('#ut_catname').val('');
             e.clear()
         },
         error: function(err) {

@@ -21,8 +21,6 @@ Route::get('/', [DashboardController::class, 'index']);
 
 Route::get('/dashboard', [App\Http\Controllers\DashboardController::class, 'index'])->name('dashboard');
 
-Route::get('/property', [App\Http\Controllers\PropertyController::class, 'index'])->name('property.index');
-
 Route::get('/units', [App\Http\Controllers\PropertyUnitsController::class, 'index'])->name('units.index');
 
 Route::get('/tenants', [App\Http\Controllers\TenantsController::class, 'index'])->name('tenants.index');
@@ -35,16 +33,24 @@ Route::get('/users', [App\Http\Controllers\UserController::class, 'index'])->nam
 
 Route::get('/chatbox', [App\Http\Controllers\ChatBoxController::class, 'index'])->name('chats.index');
 
-// Admin Settings
-Route::group(['middleware' => ['auth']], function (){
-Route::get('/settings', [App\Http\Controllers\SettingsController::class, 'index'])->name('settings.index');
 
-Route::post('/settings/addpropertycat', [App\Http\Controllers\SettingsController::class, 'addpropertycat'])->name('settings.addpropertycat');
-Route::post('/settings/addpropertytype', [App\Http\Controllers\SettingsController::class, 'addpropertytype'])->name('settings.addpropertytype');
-Route::post('/settings/addunitname', [App\Http\Controllers\SettingsController::class, 'addunitname'])->name('settings.addunitname');
+Route::group(['middleware' => ['auth']], function () {
+    // Get Routes
+    Route::get('/settings', [App\Http\Controllers\SettingsController::class, 'index'])->name('settings.index');
 
+    // Post Routes
+    Route::post('/settings/addpropertycat', [App\Http\Controllers\SettingsController::class, 'addpropertycat'])->name('settings.addpropertycat');
+    Route::post('/settings/addpropertytype', [App\Http\Controllers\SettingsController::class, 'addpropertytype'])->name('settings.addpropertytype');
+    Route::post('/settings/addunitname', [App\Http\Controllers\SettingsController::class, 'addunitname'])->name('settings.addunitname');
 });
 
+Route::group(['middleware' => ['auth']], function () {
+    // Get Routes
+    Route::get('/property', [App\Http\Controllers\PropertyController::class, 'index'])->name('property.index');
+
+    // Post Routes
+    Route::post('/property/add', [App\Http\Controllers\PropertyController::class, 'store'])->name('property.store');
+});
 //Manager
 Route::get('/manager', [App\Http\Controllers\ManagerController::class, 'index'])->name('manager.index');
 
@@ -60,4 +66,4 @@ Route::get('/artisandash', [App\Http\Controllers\ArtisansController::class, 'art
 
 Route::get('/invoice', [App\Http\Controllers\TenancyPaymentsController::class, 'invoicegenerate'])->name('payments.invoice');
 
-require __DIR__.'/auth.php';
+require __DIR__ . '/auth.php';

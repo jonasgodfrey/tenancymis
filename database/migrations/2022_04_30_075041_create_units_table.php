@@ -25,7 +25,6 @@ return new class extends Migration
             $table->string('image');
 
             $table->foreign('propId')->references('id')->on('properties');
-            $table->foreign('typeId')->references('id')->on('unit_types');
             $table->timestamps();
         });
     }

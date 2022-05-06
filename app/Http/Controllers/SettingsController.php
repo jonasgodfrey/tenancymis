@@ -39,13 +39,9 @@ class SettingsController extends Controller
         ]);
 
         if ($propcat) {
-            return response()->json([
-               'New property category created',
-            ]);
+            return('New property category created');
         }else{
-            return response()->json([
-               'An error occured',
-            ]);
+            return('An error occured');
         }
     }
 
@@ -60,13 +56,9 @@ class SettingsController extends Controller
         ]);
 
         if ($proptype) {
-            return response()->json([
-               'New property type created',
-            ]);
+            return('New property type created');
         }else{
-            return response()->json([
-               'An error occured',
-            ]);
+            return response('An error occured');
         }
     }
 
@@ -81,15 +73,10 @@ class SettingsController extends Controller
         ]);
 
         if ($unit) {
-            return response()->json([
-               'New property category created',
-            ]);
+            return('New unit type created');
         }else{
-            return response()->json([
-               'An error occured',
-            ]);
+            return response('An error occured');
         }
     }
-
 
 }
