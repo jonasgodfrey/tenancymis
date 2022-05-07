@@ -23,11 +23,15 @@ class Property extends Model
         'uploadsDir',
     ];
 
-    public function users(){
-        return $this->belongsToMany('App\Models\User');
+    public function units(){
+        return $this->hasMany(Unit::class, 'propId');
+    }
+    
+    public function country(){
+        return $this->hasOne(Country::class, 'countryId');
     }
 
-    public function units(){
-        return $this->belongsToMany('App\Models\Unit');
+    public function state(){
+        return $this->hasOne(State::class, 'stateId');
     }
 }

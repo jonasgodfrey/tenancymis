@@ -28,8 +28,8 @@
                         @include('partials.flash')
                         @include('partials.modal')
                     </div>
-                    <form role="form" action="{{ route('property.store') }}" enctype="multipart/form-data"
-                    method="POST">
+
+                    <form role="form" action="{{ route('units.store') }}" enctype="multipart/form-data" method="POST">
                     @csrf
                     <div class="row">
                         <div class="col-lg-6">
@@ -39,9 +39,9 @@
                                     <label for="example-select" class="form-label">Select Property</label>
                                     <select class="form-select" name="propname" id="example-select"
                                         name="propcat" required>
-                                        <option>Plaza name</option>
+                                        <option style="display: none">Select Property</option>
                                         @foreach ($properties as $property)
-                                            <option value="{{ $property->id }}">{{ $property->name }}</option>
+                                            <option value="{{ $property->id }}">{{ $property->propname }}</option>
                                         @endforeach
                                     </select>
                                 </div>
@@ -50,8 +50,9 @@
                                     <label for="example-select" class="form-label">Unit Type</label>
                                     <select class="form-select" name="unittype" id="example-select"
                                         name="propcat" required>
-                                        @foreach ($units as $unit)
-                                            <option value="{{ $unit->name }}">{{ $unit->name }}</option>
+                                        <option style="display: none">Select Unit Type</option>
+                                        @foreach ($unitstype as $unit)
+                                            <option value="{{ $unit->id }}">{{ $unit->name }}</option>
                                         @endforeach
 
                                     </select>
@@ -65,7 +66,7 @@
 
                                 <div class="mb-3">
                                     <label for="example-password" class="form-label">Unit Name</label>
-                                    <input type="number" name="unitname" id="example-password" class="form-control"
+                                    <input type="text" name="unitname" id="example-password" class="form-control"
                                         value="" required>
                                 </div>
 
@@ -94,14 +95,15 @@
 
 
 
-                            </form>
+                          
                         </div> <!-- end col -->
                         <div class="col-12">
-                            <a href="tenants.html" type="submit" name="submit" class="btn btn-success btn-lg">Add
-                                Unit</a href="pricing.html">
+                            <button type="submit" name="submit" class="btn btn-success btn-md">Add
+                                Unit</button>
                         </div>
                     </div>
                     <!-- end row-->
+                </form>
 
                 </div> <!-- end card-body -->
             </div> <!-- end card -->

@@ -7,7 +7,7 @@ use App\Models\PropertyType;
 use App\Models\Unit;
 use App\Models\UnitType;
 use Illuminate\Http\Request;
-use UnitEnum;
+use Illuminate\Support\Facades\Auth;
 
 class SettingsController extends Controller
 {

@@ -21,8 +21,6 @@ Route::get('/', [DashboardController::class, 'index']);
 
 Route::get('/dashboard', [App\Http\Controllers\DashboardController::class, 'index'])->name('dashboard');
 
-Route::get('/units', [App\Http\Controllers\PropertyUnitsController::class, 'index'])->name('units.index');
-
 Route::get('/tenants', [App\Http\Controllers\TenantsController::class, 'index'])->name('tenants.index');
 
 Route::get('/tenancypayments', [App\Http\Controllers\TenancyPaymentsController::class, 'index'])->name('payments.index');
@@ -35,22 +33,29 @@ Route::get('/chatbox', [App\Http\Controllers\ChatBoxController::class, 'index'])
 
 
 Route::group(['middleware' => ['auth']], function () {
-    // Get Routes
-    Route::get('/settings', [App\Http\Controllers\SettingsController::class, 'index'])->name('settings.index');
 
-    // Post Routes
+    //Settings Page Get Routes
+    Route::get('/settings', [App\Http\Controllers\SettingsController::class, 'index'])->name('settings.index');
+    //Settings Page Post Routes
     Route::post('/settings/addpropertycat', [App\Http\Controllers\SettingsController::class, 'addpropertycat'])->name('settings.addpropertycat');
     Route::post('/settings/addpropertytype', [App\Http\Controllers\SettingsController::class, 'addpropertytype'])->name('settings.addpropertytype');
     Route::post('/settings/addunitname', [App\Http\Controllers\SettingsController::class, 'addunitname'])->name('settings.addunitname');
-});
 
-Route::group(['middleware' => ['auth']], function () {
-    // Get Routes
+    //Property Page Get Routes
     Route::get('/property', [App\Http\Controllers\PropertyController::class, 'index'])->name('property.index');
+    //Property Page Post Routes
+    Route::post('/property/add', [App\Http\Controllers\PropertyController::class, 'store'])->name('property.store');
+    Route::put('/property/update', [App\Http\Controllers\PropertyController::class, 'update'])->name('property.update');
+    Route::post('/property/delete', [App\Http\Controllers\PropertyController::class, 'delete'])->name('property.delete');
 
-    // Post Routes
-    Route::post('/property/add', [App\Http\Controllers\PropertyController::class, 'index'])->name('property.store');
+    //Units Page Get Routes
+    Route::get('/units', [App\Http\Controllers\PropertyUnitsController::class, 'index'])->name('units.index');
+    //Units Page post Routes
+    Route::post('/units/add', [App\Http\Controllers\PropertyUnitsController::class, 'store'])->name('units.store');
+    Route::post('/units/add', [App\Http\Controllers\PropertyUnitsController::class, 'store'])->name('units.store');
+
 });
+
 //Manager
 Route::get('/manager', [App\Http\Controllers\ManagerController::class, 'index'])->name('manager.index');
 

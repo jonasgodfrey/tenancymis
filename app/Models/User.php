@@ -57,9 +57,9 @@ class User extends Authenticatable
         return $this->belongsTo('App\Models\Status');
     }
 
-    public function property()
+    public function properties()
     {
-        return $this->belongsTo('App\Models\Property');
+        return $this->hasMany(Property::class, 'ownerId');
     }
 
     public function hasAnyRoles($roles)

@@ -11,4 +11,10 @@ class PropertyCategory extends Model
     protected $fillable = [
         'category_name',
     ];
+
+    public function property_types()
+    {
+        # code...
+        return $this->hasMany(PropertyType::class, 'propcatId');
+    }
 }
