@@ -51,6 +51,19 @@ Route::group(['middleware' => ['auth']], function () {
     // Post Routes
     Route::post('/property/add', [App\Http\Controllers\PropertyController::class, 'index'])->name('property.store');
 });
+//Manager
+Route::get('/manager', [App\Http\Controllers\ManagerController::class, 'index'])->name('manager.index');
+
+// Tenants
+Route::get('/tenantsdash', [App\Http\Controllers\TenantsController::class, 'tenantsdashboard'])->name('tenants.index');
+
+// Accountants
+Route::get('/accountant', [App\Http\Controllers\AccountantsController::class, 'index'])->name('accountant.index');
+
+// Artisans
+Route::get('/artisandash', [App\Http\Controllers\ArtisansController::class, 'artisansdash'])->name('artisans.index');
+
+
 Route::get('/invoice', [App\Http\Controllers\TenancyPaymentsController::class, 'invoicegenerate'])->name('payments.invoice');
 
 require __DIR__ . '/auth.php';

@@ -15,9 +15,14 @@ class TenantsController extends Controller
     {
         $this->middleware('auth');
     }
-    
+
     public function index()
     {
         return view('admin.tenants.index')->with([]);
+    }
+
+    public function tenantsdashboard()
+    {
+       return view('tenants.index')->with([]);
     }
 }
