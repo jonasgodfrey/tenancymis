@@ -26,4 +26,8 @@ class Property extends Model
     public function users(){
         return $this->belongsToMany('App\Models\User');
     }
+
+    public function units(){
+        return $this->belongsToMany('App\Models\Unit');
+    }
 }

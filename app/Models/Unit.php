@@ -18,4 +18,8 @@ class Unit extends Model
         'status',
         'image',
     ];
+
+    public function properties(){
+        return $this->belongsToMany('App\Models\Property');
+    }
 }

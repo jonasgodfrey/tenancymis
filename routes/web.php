@@ -49,7 +49,7 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('/property', [App\Http\Controllers\PropertyController::class, 'index'])->name('property.index');
 
     // Post Routes
-    Route::post('/property/add', [App\Http\Controllers\PropertyController::class, 'store'])->name('property.store');
+    Route::post('/property/add', [App\Http\Controllers\PropertyController::class, 'index'])->name('property.store');
 });
 Route::get('/invoice', [App\Http\Controllers\TenancyPaymentsController::class, 'invoicegenerate'])->name('payments.invoice');
 
