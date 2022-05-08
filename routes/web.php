@@ -21,13 +21,9 @@ Route::get('/', [DashboardController::class, 'index']);
 
 Route::get('/dashboard', [App\Http\Controllers\DashboardController::class, 'index'])->name('dashboard');
 
-Route::get('/tenants', [App\Http\Controllers\TenantsController::class, 'index'])->name('tenants.index');
-
 Route::get('/tenancypayments', [App\Http\Controllers\TenancyPaymentsController::class, 'index'])->name('payments.index');
 
 Route::get('/artisans', [App\Http\Controllers\ArtisansController::class, 'index'])->name('artisans.index');
-
-Route::get('/users', [App\Http\Controllers\UserController::class, 'index'])->name('users.index');
 
 Route::get('/chatbox', [App\Http\Controllers\ChatBoxController::class, 'index'])->name('chats.index');
 
@@ -52,8 +48,21 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('/units', [App\Http\Controllers\PropertyUnitsController::class, 'index'])->name('units.index');
     //Units Page post Routes
     Route::post('/units/add', [App\Http\Controllers\PropertyUnitsController::class, 'store'])->name('units.store');
-    Route::post('/units/add', [App\Http\Controllers\PropertyUnitsController::class, 'store'])->name('units.store');
+    Route::post('/units/update', [App\Http\Controllers\PropertyUnitsController::class, 'update'])->name('units.update');
+    Route::post('/units/delete', [App\Http\Controllers\PropertyUnitsController::class, 'delete'])->name('units.delete');
 
+    //tenants Page Get Routes
+    Route::get('/tenants', [App\Http\Controllers\TenantsController::class, 'index'])->name('tenants.index');
+    Route::get('/tenants/fetch-units', [App\Http\Controllers\TenantsController::class, 'fetch_units'])->name('tenants.fetch_units');
+    //tenants Page Post Routes
+    Route::post('/tenants/add', [App\Http\Controllers\TenantsController::class, 'store'])->name('tenants.store');
+    Route::post('/tenants/update', [App\Http\Controllers\TenantsController::class, 'update'])->name('tenants.update');
+    Route::post('/tenants/delete', [App\Http\Controllers\TenantsController::class, 'delete'])->name('tenants.delete');
+
+    //Users Page Get Routes
+    Route::get('/users', [App\Http\Controllers\UserController::class, 'index'])->name('users.index');
+    //Users Page Post Routes
+    Route::post('/users/add', [App\Http\Controllers\UserController::class, 'store'])->name('users.store');
 });
 
 //Manager

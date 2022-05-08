@@ -15,6 +15,7 @@ class Tenant extends Model
         'phone',
         'bizname',
         'bizcat',
+        'propId',
         'unitId',
         'payId',
     ];

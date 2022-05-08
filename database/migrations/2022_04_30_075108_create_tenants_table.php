@@ -20,7 +20,7 @@ return new class extends Migration
             $table->string('email');
             $table->string('bizname');
             $table->string('bizcat');
-
+            $table->string('propId');
             $table->string('unitId');
             $table->string('payId')->nullable();
             $table->timestamps();

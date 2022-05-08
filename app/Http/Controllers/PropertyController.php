@@ -62,7 +62,7 @@ class PropertyController extends Controller
                 'propcatId' => $request->propcat,
                 'proptypeId' => $request->proptype,
                 'ownerId' => $user->id,
-                'propname' => $request->propdesc,
+                'propname' => $request->propname,
                 'propaddress' => $request->address,
                 'propdesc' => $request->propdesc,
                 'email' => $request->email,

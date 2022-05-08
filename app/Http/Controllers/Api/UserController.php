@@ -21,12 +21,42 @@ class UserController extends Controller
         $this->middleware('auth');
     }
 
-    public function index()
-    {
-        return view('admin.users.index')->with([]);
-    }
 
-    public function store(Request $request)
+    public function fetch(Request $request)
+    {
+        # Get the role of the auth user
+        $user_role = $request->user()->role;
+
+        // checks if user has admin role and query based on access
+        // returns users under a certain admin
+        if ($user_role == 'admin') {
+            $data = User::where('owner_id', $request->user()->id);
+        }
+
+        // checks if user is a manager and query based on access
+        // returns all data under a certain owner
+        if ($user_role == 'manager') {
+
+            $whereCondition = [
+                ['role', '=', 'tenant'],
+                ['owner_id', '=', $request->user()->owner_id],
+            ];
+
+            $data = User::where($whereCondition)->get();
+        }
+
+        // get the total count of the queried records
+        if (count($data) == 0) {
+
+            $data = "no users found";
+        }
+
+        // return final Json data response to the client
+        return response()->json([
+            'result' => $data,
+        ]);
+    }
+    public function create(Request $request)
     {
         # Get the role of the auth user
         $user_role = $request->user()->role;
@@ -35,6 +65,7 @@ class UserController extends Controller
         $validatedData = $request->validate([
             'name' => 'required|string|max:255',
             'email' => 'required|string|email|max:255|unique:users',
+            'password' => 'required|string|min:8',
             'role' => 'required|string'
         ]);
 

@@ -37,8 +37,7 @@
 
                                 <div class="mb-3">
                                     <label for="example-select" class="form-label">Select Property</label>
-                                    <select class="form-select" name="propname" id="example-select"
-                                        name="propcat" required>
+                                    <select class="form-select" name="propname" id="example-select required>
                                         <option style="display: none">Select Property</option>
                                         @foreach ($properties as $property)
                                             <option value="{{ $property->id }}">{{ $property->propname }}</option>
@@ -48,8 +47,7 @@
 
                                 <div class="mb-3">
                                     <label for="example-select" class="form-label">Unit Type</label>
-                                    <select class="form-select" name="unittype" id="example-select"
-                                        name="propcat" required>
+                                    <select class="form-select" name="unittype" id="example-select" required>
                                         <option style="display: none">Select Unit Type</option>
                                         @foreach ($unitstype as $unit)
                                             <option value="{{ $unit->id }}">{{ $unit->name }}</option>
