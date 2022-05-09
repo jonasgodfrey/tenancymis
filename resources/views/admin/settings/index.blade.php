@@ -17,12 +17,12 @@
             </div>
             <!-- end page title -->
 
-
+            {{-- Settings for Properties and Units --}}
             <div class="row">
                 <div class="col-12">
                     <div class="card">
                         <div class="card-body">
-                            <h4 class="header-title">Add</h4>
+                            <h4 class="header-title">Property & Unit Settings</h4>
                             <br>
 
                             <div class="row">
@@ -37,7 +37,7 @@
 
                                 <div class="col-lg-4">
                                     <div class="mb-3">
-                                        <button class="btn btn-lg btn-success" data-bs-toggle="modal"
+                                        <button class="btn btn-lg btn-primary" data-bs-toggle="modal"
                                             data-bs-target="#type-modal">Add New Property Type</button>
                                     </div>
                                 </div>
@@ -45,7 +45,7 @@
 
                                 <div class="col-lg-4">
                                     <div class="mb-3">
-                                        <button class="btn btn-lg btn-warning" data-bs-toggle="modal"
+                                        <button class="btn btn-lg btn-primary" data-bs-toggle="modal"
                                             data-bs-target="#unit-modal">Add New Unit Name</button>
                                     </div>
                                 </div>
@@ -61,6 +61,50 @@
                 </div><!-- end col -->
             </div>
             <!-- end row -->
+
+            {{-- Settings for Payment Records --}}
+            <div class="row">
+                <div class="col-12">
+                    <div class="card">
+                        <div class="card-body">
+                            <h4 class="header-title">Payment Settings</h4>
+                            <br>
+
+                            <div class="row">
+                                <div class="col-lg-4">
+
+                                    <div class="mb-3">
+                                        <button class="btn btn-lg btn-success" data-bs-toggle="modal"
+                                            data-bs-target="#pay-cat">Add New Payment Category</button>
+                                    </div>
+                                </div>
+                                <!-- end col -->
+
+                                <div class="col-lg-4">
+                                    <div class="mb-3">
+                                        <button class="btn btn-lg btn-success" data-bs-toggle="modal"
+                                            data-bs-target="#pay-duration">Add New Payment Duration</button>
+                                    </div>
+                                </div>
+                                <!-- end col -->
+
+                                <div class="col-lg-4">
+                                    <div class="mb-3">
+                                        <button class="btn btn-lg btn-success" data-bs-toggle="modal"
+                                            data-bs-target="#pay-method">Add New Payment Method</button>
+                                    </div>
+                                </div>
+                                <!-- end col -->
+
+
+
+                            </div>
+                            <!-- end row-->
+
+                        </div> <!-- end card-body -->
+                    </div> <!-- end card -->
+                </div><!-- end col -->
+            </div>
 
 
             <div class="row">
@@ -213,6 +257,79 @@
             </div><!-- /.modal-dialog -->
         </div>
         <!-- /.modal -->
+
+        {{-- Payment Category Modal --}}
+        <div class="modal fade" id="pay-cat" tabindex="-1" role="dialog" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-header bg-light">
+                        <h4 class="modal-title" id="myCenterModalLabel">Add Payment Category</h4>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-hidden="true"></button>
+                    </div>
+                    <div class="modal-body">
+                        <form action="{{ route('settings.addpropertycat') }}" id="catform" method="POST">
+                            @csrf
+                            <div class="mb-3">
+                                <label for="name" class="form-label">Category Name</label>
+                                <input type="" id="catname" name="paycat" class="form-control" value="" placeholder="Rent or Taxes, Facility/Maintenance Fees">
+                            </div>
+
+                            <button type="submit" class="btn btn-success waves-effect waves-light propcat">Add</button>
+                            <button type="button" class="btn btn-danger waves-effect waves-light"
+                                data-bs-dismiss="modal">Cancel</button>
+                        </form>
+                    </div>
+                </div><!-- /.modal-content -->
+            </div><!-- /.modal-dialog -->
+        </div><!-- /.modal -->
+        {{-- Payment Duration Modal --}}
+        <div class="modal fade" id="pay-duration" tabindex="-1" role="dialog" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-header bg-light">
+                        <h4 class="modal-title" id="myCenterModalLabel">Add Payment Duration</h4>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-hidden="true"></button>
+                    </div>
+                    <div class="modal-body">
+                        <form action="{{ route('settings.addpropertycat') }}" id="catform" method="POST">
+                            @csrf
+                            <div class="mb-3">
+                                <label for="name" class="form-label">Payment Duration</label>
+                                <input type="" id="catname" name="payduration" class="form-control" value="" placeholder="6 Months or 1 Year or 3 year plus">
+                            </div>
+
+                            <button type="submit" class="btn btn-success waves-effect waves-light propcat">Add</button>
+                            <button type="button" class="btn btn-danger waves-effect waves-light"
+                                data-bs-dismiss="modal">Cancel</button>
+                        </form>
+                    </div>
+                </div><!-- /.modal-content -->
+            </div><!-- /.modal-dialog -->
+        </div><!-- /.modal -->
+         {{-- Payment Method Modal --}}
+         <div class="modal fade" id="pay-method" tabindex="-1" role="dialog" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-header bg-light">
+                        <h4 class="modal-title" id="myCenterModalLabel">Add Payment Method</h4>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-hidden="true"></button>
+                    </div>
+                    <div class="modal-body">
+                        <form action="{{ route('settings.addpropertycat') }}" id="catform" method="POST">
+                            @csrf
+                            <div class="mb-3">
+                                <label for="name" class="form-label">Method Name</label>
+                                <input type="" id="catname" name="paymethod" class="form-control" value="" placeholder="Cash or Bank Transfer or Online or Gift or Crypto">
+                            </div>
+
+                            <button type="submit" class="btn btn-success waves-effect waves-light propcat">Add</button>
+                            <button type="button" class="btn btn-danger waves-effect waves-light"
+                                data-bs-dismiss="modal">Cancel</button>
+                        </form>
+                    </div>
+                </div><!-- /.modal-content -->
+            </div><!-- /.modal-dialog -->
+        </div><!-- /.modal -->
 
     </div>
     <!-- content -->
