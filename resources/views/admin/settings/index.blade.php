@@ -271,7 +271,7 @@
                             @csrf
                             <div class="mb-3">
                                 <label for="name" class="form-label">Category Name</label>
-                                <input type="" id="catname" name="paycat" class="form-control" value="" placeholder="Rent or Taxes, Facility/Maintenance Fees">
+                                <input type="" id="catname" name="paycat" class="form-control" value="" placeholder="Rent or Lease or Taxes, Facility/Maintenance Fees">
                             </div>
 
                             <button type="submit" class="btn btn-success waves-effect waves-light propcat">Add</button>

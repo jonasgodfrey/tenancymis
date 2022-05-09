@@ -31,7 +31,7 @@
                                         <form>
 
                                             <div class="mb-3">
-                                                <label for="example-select" class="form-label">Property Unit</label>
+                                                <label for="example-select" class="form-label">Property Name</label>
                                                 <select class="form-select" name="" id="example-select">
                                                     <option>Shop 1</option>
                                                     <option>House 2</option>
@@ -41,7 +41,17 @@
                                             </div>
 
                                             <div class="mb-3">
-                                                <label for="example-select" class="form-label">Tenant</label>
+                                                <label for="example-select" class="form-label">Unit Name</label>
+                                                <select class="form-select" name="" id="example-select">
+                                                    <option>Shop 1</option>
+                                                    <option>House 2</option>
+                                                    <option>Flat 3</option>
+                                                    <option>Room 4</option>
+                                                </select>
+                                            </div>
+
+                                            <div class="mb-3">
+                                                <label for="example-select" class="form-label">Occupant/Business Name</label>
                                                 <select class="form-select" name="" id="example-select">
                                                     <option>Tenant 1</option>
                                                     <option>Tenant 2</option>
@@ -52,7 +62,7 @@
                                             </div>
 
                                             <div class="mb-3">
-                                                <label for="example-select" class="form-label">Paid For</label>
+                                                <label for="example-select" class="form-label">Payment Category</label>
                                                 <select class="form-select" name="" id="example-select">
                                                     <option>Rent</option>
                                                     <option>Facility Fee</option>
@@ -68,8 +78,14 @@
                                             </div>
 
                                             <div class="mb-3">
-                                                <label for="example-email" class="form-label">Payment Date</label>
-                                                <input type="date" id="example-email" name="example-email" class="form-control" placeholder="">
+                                                <label for="example-select" class="form-label">Payment Method</label>
+                                                <select class="form-select" name="" id="example-select">
+                                                    <option>Cash</option>
+                                                    <option>Bank Transfer</option>
+                                                    <option>Online</option>
+                                                    <option>Cryptos</option>
+                                                    <option>Others</option>
+                                                </select>
                                             </div>
 
 
@@ -77,6 +93,11 @@
 
                                     <div class="col-lg-6">
                                         <form>
+
+                                            <div class="mb-3">
+                                                <label for="example-email" class="form-label">Payment Date</label>
+                                                <input type="date" id="example-email" name="example-email" class="form-control" placeholder="">
+                                            </div>
 
                                             <div class="mb-3">
                                                 <label for="example-password" class="form-label">Start Date</label>
@@ -135,7 +156,7 @@
                     </div><!-- end col -->
                 </div>
                 <!-- end row -->
-                
+
 
                 <div class="row">
                     <div class="col-12">
@@ -172,7 +193,7 @@
                                         <td>₦150,000</td>
                                         <td>Shop 22</td>
                                         <td><span class="badge bg-info">Partialy Paid</span></td>
-                                        <td><a href="#"><i class="fas fa-eye"></i></a>      <span><a href="#">  <i class="fas fa-pen"></i></a></span> </td>
+                                        <td><a href="/invoice"><i class="fas fa-eye"></i></a>      <span><a href="#">  <i class="fas fa-pen"></i></a></span> </td>
                                     </tr>
 
                                     <tr>
@@ -181,7 +202,7 @@
                                         <td>₦150,000</td>
                                         <td>Shop 3</td>
                                         <td><span class="badge bg-danger">Overdue</span></td>
-                                        <td><a href="#"><i class="fas fa-eye"></i></a>      <span><a href="#">  <i class="fas fa-pen"></i></a></span> <span><a href="/invoice">  <i class="fas fa-file"></i></a></span></td>
+                                        <td><a href="/invoice"><i class="fas fa-eye"></i></a>      <span><a href="#">  <i class="fas fa-pen"></i></a></span> <span><a href="/invoice">  <i class="fas fa-file"></i></a></span></td>
                                     </tr>
 
 
