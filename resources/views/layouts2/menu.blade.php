@@ -135,7 +135,14 @@
                 </li>
 
                 <li>
-                    <a href="auth-logout.html">
+                    <a href="#">
+                        <i class="mdi mdi-login"></i>
+                        <span>Profile</span>
+                    </a>
+                </li>
+
+                <li>
+                    <a href="/login">
                         <i class="mdi mdi-logout"></i>
                         <span>Logout</span>
                     </a>
