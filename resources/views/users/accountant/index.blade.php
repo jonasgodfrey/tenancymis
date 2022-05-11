@@ -1,4 +1,4 @@
-@extends('layouts2.app')
+@extends('layouts.user_layouts.app')
 
 @section('content')
 
@@ -29,7 +29,7 @@
                             </div>
                         </div>
 
-                        <h4 class="header-title mt-0 mb-4">Total YeaR</h4>
+                        <h4 class="header-title mt-0 mb-4">Property</h4>
 
                         <div class="widget-chart-1">
                             <div class="widget-chart-box-1 float-start" dir="ltr">
@@ -40,8 +40,8 @@
                             </div>
 
                             <div class="widget-detail-1 text-end">
-                                <h2 class="fw-normal pt-2 mb-1"> 0 </h2>
-                                <p class="text-muted mb-1">Year Spent</p>
+                                <h2 class="fw-normal pt-2 mb-1"> 256 </h2>
+                                <p class="text-muted mb-1">Property</p>
                             </div>
                         </div>
                     </div>
@@ -67,13 +67,13 @@
                             </div>
                         </div>
 
-                        <h4 class="header-title mt-0 mb-3">Complaint Resolved</h4>
+                        <h4 class="header-title mt-0 mb-3">Units</h4>
 
                         <div class="widget-box-2">
                             <div class="widget-detail-2 text-end">
                                 <span class="badge bg-success rounded-pill float-start mt-3">32% <i class="mdi mdi-trending-up"></i> </span>
-                                <h2 class="fw-normal mb-1"> 0 </h2>
-                                <p class="text-muted mb-3">Complaint Resolved</p>
+                                <h2 class="fw-normal mb-1"> 8451 </h2>
+                                <p class="text-muted mb-3">Units</p>
                             </div>
                             <div class="progress progress-bar-alt-success progress-sm">
                                 <div class="progress-bar bg-success" role="progressbar"
@@ -106,7 +106,7 @@
                             </div>
                         </div>
 
-                        <h4 class="header-title mt-0 mb-4">Complaints Pending</h4>
+                        <h4 class="header-title mt-0 mb-4">Tenants</h4>
 
                         <div class="widget-chart-1">
                             <div class="widget-chart-box-1 float-start" dir="ltr">
@@ -116,8 +116,8 @@
                                         data-thickness=".15"/>
                             </div>
                             <div class="widget-detail-1 text-end">
-                                <h2 class="fw-normal pt-2 mb-1"> 0 </h2>
-                                <p class="text-muted mb-1">Complaints Pending</p>
+                                <h2 class="fw-normal pt-2 mb-1"> 4569 </h2>
+                                <p class="text-muted mb-1">Tenants</p>
                             </div>
                         </div>
                     </div>
@@ -143,13 +143,13 @@
                             </div>
                         </div>
 
-                        <h4 class="header-title mt-0 mb-3">Units Leased</h4>
+                        <h4 class="header-title mt-0 mb-3">Managers</h4>
 
                         <div class="widget-box-2">
                             <div class="widget-detail-2 text-end">
                                 <span class="badge bg-pink rounded-pill float-start mt-3">32% <i class="mdi mdi-trending-up"></i> </span>
                                 <h2 class="fw-normal mb-1"> 158 </h2>
-                                <p class="text-muted mb-3">Leased</p>
+                                <p class="text-muted mb-3">Mangers</p>
                             </div>
                             <div class="progress progress-bar-alt-pink progress-sm">
                                 <div class="progress-bar bg-pink" role="progressbar"
@@ -167,10 +167,94 @@
         </div>
         <!-- end row -->
 
+        <div class="row">
+            <div class="col-xl-4">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="dropdown float-end">
+                            <a href="#" class="dropdown-toggle arrow-none card-drop" data-bs-toggle="dropdown" aria-expanded="false">
+                                <i class="mdi mdi-dots-vertical"></i>
+                            </a>
+                            <div class="dropdown-menu dropdown-menu-end">
+                                <!-- item-->
+                                <a href="javascript:void(0);" class="dropdown-item">Action</a>
+                                <!-- item-->
+                                <a href="javascript:void(0);" class="dropdown-item">Another action</a>
+                                <!-- item-->
+                                <a href="javascript:void(0);" class="dropdown-item">Something else</a>
+                                <!-- item-->
+                                <a href="javascript:void(0);" class="dropdown-item">Separated link</a>
+                            </div>
+                        </div>
 
+                        <h4 class="header-title mt-0">Daily Sales</h4>
+
+                        <div class="widget-chart text-center">
+                            <div id="morris-donut-example" dir="ltr" style="height: 245px;" class="morris-chart"></div>
+                            <ul class="list-inline chart-detail-list mb-0">
+                                <li class="list-inline-item">
+                                    <h5 style="color: #ff8acc;"><i class="fa fa-circle me-1"></i>Series A</h5>
+                                </li>
+                                <li class="list-inline-item">
+                                    <h5 style="color: #5b69bc;"><i class="fa fa-circle me-1"></i>Series B</h5>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div><!-- end col -->
+
+            <div class="col-xl-4">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="dropdown float-end">
+                            <a href="#" class="dropdown-toggle arrow-none card-drop" data-bs-toggle="dropdown" aria-expanded="false">
+                                <i class="mdi mdi-dots-vertical"></i>
+                            </a>
+                            <div class="dropdown-menu dropdown-menu-end">
+                                <!-- item-->
+                                <a href="javascript:void(0);" class="dropdown-item">Action</a>
+                                <!-- item-->
+                                <a href="javascript:void(0);" class="dropdown-item">Another action</a>
+                                <!-- item-->
+                                <a href="javascript:void(0);" class="dropdown-item">Something else</a>
+                                <!-- item-->
+                                <a href="javascript:void(0);" class="dropdown-item">Separated link</a>
+                            </div>
+                        </div>
+                        <h4 class="header-title mt-0">Statistics</h4>
+                        <div id="morris-bar-example" dir="ltr" style="height: 280px;" class="morris-chart"></div>
+                    </div>
+                </div>
+            </div><!-- end col -->
+
+            <div class="col-xl-4">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="dropdown float-end">
+                            <a href="#" class="dropdown-toggle arrow-none card-drop" data-bs-toggle="dropdown" aria-expanded="false">
+                                <i class="mdi mdi-dots-vertical"></i>
+                            </a>
+                            <div class="dropdown-menu dropdown-menu-end">
+                                <!-- item-->
+                                <a href="javascript:void(0);" class="dropdown-item">Action</a>
+                                <!-- item-->
+                                <a href="javascript:void(0);" class="dropdown-item">Another action</a>
+                                <!-- item-->
+                                <a href="javascript:void(0);" class="dropdown-item">Something else</a>
+                                <!-- item-->
+                                <a href="javascript:void(0);" class="dropdown-item">Separated link</a>
+                            </div>
+                        </div>
+                        <h4 class="header-title mt-0">Total Revenue</h4>
+                        <div id="morris-line-example" dir="ltr" style="height: 280px;" class="morris-chart"></div>
+                    </div>
+                </div>
+            </div><!-- end col -->
+        </div>
+        <!-- end row -->
 
         <div class="row">
-
 
             <div class="col-xl-12">
                 <div class="card">
@@ -191,7 +275,7 @@
                             </div>
                         </div>
 
-                        <h4 class="header-title mt-0 mb-3">Tenancy History</h4>
+                        <h4 class="header-title mt-0 mb-3">Payment Records</h4>
 
                         <div class="table-responsive">
                             <table class="table table-hover mb-0">

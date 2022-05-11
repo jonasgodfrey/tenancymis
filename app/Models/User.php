@@ -26,6 +26,7 @@ class User extends Authenticatable
         'otp',
         'owner_id',
         'usercode',
+        'status_id',
     ];
 
     /**
@@ -61,6 +62,8 @@ class User extends Authenticatable
     {
         return $this->hasMany(Property::class, 'ownerId');
     }
+
+    
 
     public function hasAnyRoles($roles)
     {

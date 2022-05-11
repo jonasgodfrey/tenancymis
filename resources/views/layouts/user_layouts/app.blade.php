@@ -10,17 +10,17 @@
                 <meta content="Coderthemes" name="author" />
                 <meta http-equiv="X-UA-Compatible" content="IE=edge" />
                 <!-- App favicon -->
-                <link rel="shortcut icon" href="assets/images/favicon.ico">
+                <link rel="shortcut icon" href="/assets/images/favicon.ico">
 
                         <!-- App css -->
-                <link href="assets/css/config/default/bootstrap.min.css" rel="stylesheet" type="text/css" id="bs-default-stylesheet" />
-                <link href="assets/css/config/default/app.min.css" rel="stylesheet" type="text/css" id="app-default-stylesheet" />
+                <link href="/assets/css/config/default/bootstrap.min.css" rel="stylesheet" type="text/css" id="bs-default-stylesheet" />
+                <link href="/assets/css/config/default/app.min.css" rel="stylesheet" type="text/css" id="app-default-stylesheet" />
 
-                <link href="assets/css/config/default/bootstrap-dark.min.css" rel="stylesheet" type="text/css" id="bs-dark-stylesheet" enabled="enabled" />
-                <link href="assets/css/config/default/app-dark.min.css" rel="stylesheet" type="text/css" id="app-dark-stylesheet" enabled="enabled" />
+                <link href="/assets/css/config/default/bootstrap-dark.min.css" rel="stylesheet" type="text/css" id="bs-dark-stylesheet" enabled="enabled" />
+                <link href="/assets/css/config/default/app-dark.min.css" rel="stylesheet" type="text/css" id="app-dark-stylesheet" enabled="enabled" />
 
                 <!-- icons -->
-                <link href="assets/css/icons.min.css" rel="stylesheet" type="text/css" />
+                <link href="/assets/css/icons.min.css" rel="stylesheet" type="text/css" />
 
         </head>
 
@@ -28,14 +28,14 @@
         <!-- Begin page -->
         <div id="wrapper">
 
-        @include('layouts2.nav')
-        @include('layouts2.menu')
+        @include('layouts.user_layouts.nav')
+        @include('layouts.user_layouts.menu')
 
         <div class="content-page">
             <!-- content -->
             @yield('content')
 
-            @include('layouts2.footer')
+            @include('layouts.user_layouts.footer')
         </div>
         <!-- End Page content -->
     </div>
@@ -130,20 +130,20 @@
 <div class="rightbar-overlay"></div>
 
         <!-- Vendor js -->
-        <script src="assets/js/vendor.min.js"></script>
+        <script src="/assets/js/vendor.min.js"></script>
 
           <!-- knob plugin -->
-        <script src="assets/libs/jquery-knob/jquery.knob.min.js"></script>
+        <script src="/assets/libs/jquery-knob/jquery.knob.min.js"></script>
 
           <!--Morris Chart-->
-        <script src="assets/libs/morris.js06/morris.min.js"></script>
-        <script src="assets/libs/raphael/raphael.min.js"></script>
+        <script src="/assets/libs/morris.js06/morris.min.js"></script>
+        <script src="/assets/libs/raphael/raphael.min.js"></script>
 
         <!-- Dashboar init js-->
-        <script src="assets/js/pages/dashboard.init.js"></script>
+        <script src="/assets/js/pages/dashboard.init.js"></script>
 
         <!-- App js-->
-        <script src="assets/js/app.min.js"></script>
+        <script src="/assets/js/app.min.js"></script>
 
     @yield('js');
 

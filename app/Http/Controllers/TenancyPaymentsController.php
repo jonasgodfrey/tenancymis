@@ -26,4 +26,13 @@ class TenancyPaymentsController extends Controller
         return view('admin.payments.invoice')->with([]);
 
     }
+
+    public function update(Request $request)
+    {
+        # code...
+    }
+    public function delete(Request $request)
+    {
+        # code...
+    }
 }

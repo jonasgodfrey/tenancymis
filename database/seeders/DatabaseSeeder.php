@@ -20,6 +20,9 @@ class DatabaseSeeder extends Seeder
             UserTableSeeder::class,
             StateTableSeeder::class,
             CountrySeeder::class,
+            PropertyCategorySeeder::class,
+            PropertyTypeSeeder::class,
+            StatusSeeder::class
         ]);
     }
 }

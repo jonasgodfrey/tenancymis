@@ -44,12 +44,7 @@ class TenantsController extends Controller
     public function fetch_units(Request $request)
     {
         if (Gate::allows('admin')) {
-            # code...
-            $whereCondition = [
-                ['state', '=', $request->state],
-                ['propId', '=', $request->propid],
-    
-            ];
+
             $units = Unit::where('propId', $request->propid)->whereNot('status', 'occupied')->get();
 
             return  response()->json($units);
@@ -108,5 +103,14 @@ class TenantsController extends Controller
     public function tenantsdashboard()
     {
         return view('tenants.index')->with([]);
+    }
+
+    public function update(Request $request)
+    {
+        # code...
+    }
+    public function delete(Request $request)
+    {
+        # code...
     }
 }

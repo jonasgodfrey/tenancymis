@@ -78,4 +78,14 @@ class PropertyController extends Controller
             }
         }
     }
+
+    public function update(Request $request)
+    {
+        # code...
+    }
+    
+    public function delete(Request $request)
+    {
+        # code...
+    }
 }

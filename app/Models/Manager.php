@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Artisan extends Model
+class Manager extends Model
 {
     use HasFactory;
 
@@ -13,9 +13,7 @@ class Artisan extends Model
         'name',
         'email',
         'phone',
-        'bizname',
         'propId',
-        'vendorcatId',
         'salary',
     ];
 }

@@ -72,5 +72,15 @@ class PropertyUnitsController extends Controller
                 return redirect()->back();
             }
         }
+
+    }
+
+    public function update(Request $request)
+    {
+        # code...
+    }
+    public function delete(Request $request)
+    {
+        # code...
     }
 }

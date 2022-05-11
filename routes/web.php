@@ -19,7 +19,6 @@ Route::get('/', [DashboardController::class, 'index']);
 
 // In App Section
 
-Route::get('/dashboard', [App\Http\Controllers\DashboardController::class, 'index'])->name('dashboard');
 
 Route::get('/tenancypayments', [App\Http\Controllers\TenancyPaymentsController::class, 'index'])->name('payments.index');
 
@@ -27,8 +26,13 @@ Route::get('/artisans', [App\Http\Controllers\ArtisansController::class, 'index'
 
 Route::get('/chatbox', [App\Http\Controllers\ChatBoxController::class, 'index'])->name('chats.index');
 
+Route::get('/invoice', [App\Http\Controllers\TenancyPaymentsController::class, 'invoicegenerate'])->name('payments.invoice');
+
 
 Route::group(['middleware' => ['auth']], function () {
+
+    //Dashboard Route
+    Route::get('/dashboard', [App\Http\Controllers\DashboardController::class, 'index'])->name('dashboard');
 
     //Settings Page Get Routes
     Route::get('/settings', [App\Http\Controllers\SettingsController::class, 'index'])->name('settings.index');
@@ -65,19 +69,5 @@ Route::group(['middleware' => ['auth']], function () {
     Route::post('/users/add', [App\Http\Controllers\UserController::class, 'store'])->name('users.store');
 });
 
-//Manager
-Route::get('/manager', [App\Http\Controllers\ManagerController::class, 'index'])->name('manager.index');
-
-// Tenants
-Route::get('/tenantsdash', [App\Http\Controllers\TenantsController::class, 'tenantsdashboard'])->name('tenants.index');
-
-// Accountants
-Route::get('/accountant', [App\Http\Controllers\AccountantsController::class, 'index'])->name('accountant.index');
-
-// Artisans
-Route::get('/artisandash', [App\Http\Controllers\ArtisansController::class, 'artisansdash'])->name('artisans.index');
-
-
-Route::get('/invoice', [App\Http\Controllers\TenancyPaymentsController::class, 'invoicegenerate'])->name('payments.invoice');
 
 require __DIR__ . '/auth.php';

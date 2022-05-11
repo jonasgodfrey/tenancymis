@@ -26,4 +26,13 @@ class ArtisansController extends Controller
     {
        return view('artisans.index')->with([]);
     }
+
+    public function update(Request $request)
+    {
+        # code...
+    }
+    public function delete(Request $request)
+    {
+        # code...
+    }
 }

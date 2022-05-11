@@ -23,11 +23,23 @@ class DashboardController extends Controller
         $user = Auth::user();
 
         if (Gate::allows('admin')) {
-
-        return view('admin.dashboard.index')->with([]);
-
+            return view('admin.dashboard.index')->with([]);
         }
-        
 
+        if (Gate::allows('manager')) {
+            return view('users.manager.index')->with([]);
+        }
+
+        if (Gate::allows('accountant')) {
+            return view('users.accountant.index')->with([]);
+        }
+
+        if (Gate::allows('artisan')) {
+            return view('users.artisan.index')->with([]);
+        }
+
+        if (Gate::allows('tenant')) {
+            return view('users.tenant.index')->with([]);
+        }
     }
 }
