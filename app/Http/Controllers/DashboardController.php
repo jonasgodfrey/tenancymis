@@ -39,7 +39,7 @@ class DashboardController extends Controller
         }
 
         if (Gate::allows('tenant')) {
-            return view('users.tenant.index')->with([]);
+            return view('users.tenants.index')->with([]);
         }
     }
 }
