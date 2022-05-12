@@ -382,7 +382,7 @@
                                 <input type="text" class="form-control" name="name" id="name" placeholder="Enter name"
                                     required>
                             </div>
-                            <div class="mb-3">
+                            <div class="mb-3" id="role">
                                 <label for="position" class="form-label">Position</label>
                                 <select class="form-select" id="example-select" name="role" required>
                                     @foreach ($roles as $role)
@@ -409,7 +409,19 @@
                                 <input type="tel" name="phone" class="form-control" id="exampleInputEmail1"
                                     placeholder="Phone Number" required>
                             </div>
-
+                            <div class="mb-3 bizname">
+                                <label for="name" class="form-label">Business Name</label>
+                                <input type="text" class="form-control" name="bizname" id="bizname"
+                                    placeholder="Enter name" >
+                            </div>
+                            <div class="mb-3 vencat">
+                                <label for="company" class="form-label">Vendor Category</label>
+                                <select class="form-select " id="example-select" name="vencat" >
+                                    <option value="1">Electrical</option>
+                                    <option value="2">Furniture</option>
+                                    <option value="3">Carpenter</option>
+                                </select>
+                            </div>
                             <button type="submit" class="btn btn-success waves-effect waves-light">Save</button>
                             <button type="button" class="btn btn-danger waves-effect waves-light"
                                 data-bs-dismiss="modal">Cancel</button>
@@ -421,5 +433,5 @@
     </div>
 @endsection
 @section('js')
-    <script src="dist/js/selectField.js"></script>
+    <script src="/assets/js/users.js"></script>
 @endsection
