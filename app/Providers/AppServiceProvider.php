@@ -25,7 +25,8 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        View::composer('layouts.app', function ($view) {
+        $views = ['layouts.app', 'layouts.user_layouts.app'];
+        View::composer($views, function ($view) {
             $user = Auth::user();
             $data = ['username' => $user->name, 'url' => 'myapp.com'];
             $view->with('username', $data);

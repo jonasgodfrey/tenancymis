@@ -34,4 +34,38 @@ class Property extends Model
     public function state(){
         return $this->hasOne(State::class, 'stateId');
     }
+
+    public function manager()
+    {
+        return $this->hasOne(Manager::class, 'propId');
+    }
+
+    public function accountant()
+    {
+        return $this->hasOne(Accountant::class, 'propId');
+    }
+
+    public function hasManager($id)
+    {
+        if (
+            $this->manager()
+            ->where('propId', $id)
+            ->first()
+        ) {
+            return true;
+        }
+        return false;
+    }
+
+    public function hasAccountant($id)
+    {
+        if (
+            $this->accountant()
+            ->where('propId', $id)
+            ->first()
+        ) {
+            return true;
+        }
+        return false;
+    }
 }
