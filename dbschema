@@ -84,6 +84,7 @@ PayID
 
 13. Payment_Records Table
 Fields:
+propId
 UnitId
 TenantId
 PayStatusId

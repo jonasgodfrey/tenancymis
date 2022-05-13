@@ -15,7 +15,19 @@ return new class extends Migration
     {
         Schema::create('payment_records', function (Blueprint $table) {
             $table->id();
+            $table->bigInteger('property_id');
+            $table->bigInteger('unit_id');
+            $table->bigInteger('tenant_id');
+            $table->bigInteger('paystatus_id');
+            $table->string('amount');
+            $table->string('paydate');
+            $table->string('startdate');
+            $table->string('duedate');
+            $table->string('duration');
+            $table->bigInteger('duration_status');
+            $table->string('evidence_image');
             $table->timestamps();
+
         });
     }
 

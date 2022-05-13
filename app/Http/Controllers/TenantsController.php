@@ -41,15 +41,6 @@ class TenantsController extends Controller
         }
     }
 
-    public function fetch_units(Request $request)
-    {
-        if (Gate::allows('admin')) {
-
-            $units = Unit::where('propId', $request->propid)->whereNot('status', 'occupied')->get();
-
-            return  response()->json($units);
-        }
-    }
 
     public function store(Request $request)
     {
