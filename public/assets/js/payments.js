@@ -11,6 +11,7 @@ $(".propname").change(function() {
                 if (result == "") {
                     $(".units").html('<option style="display:none" value="">No Data Found</option>');
                 } else {
+
                     $(".units").removeAttr('disabled');
                     $(".units").html('<option style="display:none" value="">Select units</option>');
                     $.each(result, function(key, value) {
@@ -38,8 +39,9 @@ $(".units").change(function() {
             },
             success: function(result) {
                 if (result == "") {
-                    $(".tenant").html('<option style="display:none" value="">No Data Found</option>');
+                    $(".tenant").html('<option style="display:none" value="">No Tenant Found</option>');
                 } else {
+                    $(".tenant").removeAttr('disabled');
                     $(".tenant").html('<option value="' + result.id + '">' + result.name + '</option>');
                 }
             },

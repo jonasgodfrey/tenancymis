@@ -24,11 +24,14 @@
                         <div class="card-body">
                             <h4 class="header-title">Record Payments</h4>
                             <br>
-
+                            <div id="alert">
+                                @include('partials.flash')
+                                @include('partials.modal')
+                            </div>
                             <div class="row">
                                 <div class="col-lg-6">
-                                    <form>
-
+                                    <form role="form" action="{{ route('payments.store') }}" enctype="multipart/form-data" method="POST">
+                                        @csrf
                                         <div class="mb-3">
                                             <label for="example-select" class="form-label">Property Name</label>
                                              <select class="form-select propname" name="propname" id="example-select" required>
@@ -47,9 +50,9 @@
                                             </select>
                                         </div>
 
+                                        
                                         <div class="mb-3">
-                                            <label for="example-select" class="form-label">Occupant/Business
-                                                Name</label>
+                                            <label for="example-select" class="form-label">Occupant/Business Name</label>
                                                 <select class="form-select tenant" name="tenant" id="example-select tenant"
                                                 disabled required>
                                                 <option style="display: none">loading..</option>
@@ -59,11 +62,11 @@
                                         <div class="mb-3">
                                             <label for="example-select" class="form-label">Payment Category</label>
                                             <select class="form-select" name="paycat" id="example-select">
-                                                <option>Rent</option>
-                                                <option>Facility Fee</option>
-                                                <option>Taxes</option>
-                                                <option>Rent Balance</option>
-                                                <option>Others</option>
+                                                <option value="1">Rent</option>
+                                                <option value="2">Facility Fee</option>
+                                                <option value="3">Taxes</option>
+                                                <option value="4">Rent Balance</option>
+                                                <option value="5">Others</option>
                                             </select>
                                         </div>
 
@@ -76,11 +79,11 @@
                                         <div class="mb-3">
                                             <label for="example-select" class="form-label">Payment Method</label>
                                             <select class="form-select" name="paymethod" id="example-select">
-                                                <option>Cash</option>
-                                                <option>Bank Transfer</option>
-                                                <option>Online</option>
-                                                <option>Cryptos</option>
-                                                <option>Others</option>
+                                                <option value="Cash">Cash</option>
+                                                <option value=">Bank Transfer">Bank Transfer</option>
+                                                <option value="Online">Online</option>
+                                                <option value="Cryptos">Cryptos</option>
+                                                <option value="Others">Others</option>
                                             </select>
                                         </div>
 
@@ -122,11 +125,11 @@
                                         <div class="mb-3">
                                             <label for="example-select" class="form-label">Payment Status</label>
                                             <select class="form-select" name="paystatus" id="example-select">
-                                                <option>Fully Paid</option>
-                                                <option>Partly Paid</option>
-                                                <option>Partly Renewed</option>
-                                                <option>Fully Renewed</option>
-                                                <option>Not Paid</option>
+                                                <option value="1">Fully Paid</option>
+                                                <option value="2">Partly Paid</option>
+                                                <option value="3">Partly Renewed</option>
+                                                <option value="4">Fully Renewed</option>
+                                                <option value="5">Not Paid</option>
                                             </select>
                                         </div>
 
@@ -140,8 +143,7 @@
                                 </div> <!-- end col -->
 
                                 <div class="col-12">
-                                    <a href="#" type="submit" name="submit" class="btn btn-primary btn-lg">Submit Payment</a
-                                        href="pricing.html">
+                                    <button type="submit" name="submit" class="btn btn-primary btn-md">Add Payment</button>
                                 </div>
 
                             </div>

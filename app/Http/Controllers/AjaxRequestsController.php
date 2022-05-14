@@ -34,7 +34,11 @@ class AjaxRequestsController extends Controller
             $unit = Unit::where('id', $request->unitid)->first();
             $tenant = $unit->tenant;
 
-            return  response()->json($tenant);
+            if($tenant){
+                return  response()->json($tenant);
+            }else{
+                return  response('');
+            }
         }
     }
 
