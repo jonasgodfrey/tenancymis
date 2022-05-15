@@ -50,7 +50,7 @@
                                             </select>
                                         </div>
 
-                                        
+
                                         <div class="mb-3">
                                             <label for="example-select" class="form-label">Occupant/Business Name</label>
                                                 <select class="form-select tenant" name="tenant" id="example-select tenant"
@@ -112,13 +112,13 @@
                                         <div class="mb-3">
                                             <label for="example-select" class="form-label">Duration</label>
                                             <select class="form-select" name="duration" id="example-select">
-                                                <option>6 Months</option>
-                                                <option>1 Year</option>
-                                                <option>2 Years</option>
-                                                <option>3 Years</option>
-                                                <option>4 Years</option>
-                                                <option>5 Years</option>
-                                                <option>10 Years</option>
+                                                <option value="6 Months">6 Months</option>
+                                                <option value="1 Year">1 Year</option>
+                                                <option value="2 Years">2 Years</option>
+                                                <option value="3 Years">3 Years</option>
+                                                <option value="4 Years">4 Years</option>
+                                                <option value="5 Years">5 Years</option>
+                                                <option value="10 Years">10 Years</option>
                                             </select>
                                         </div>
 
@@ -139,7 +139,7 @@
                                             <input name="file" type="file" id="example-fileinput" class="form-control">
                                         </div>
 
-                                    
+
                                 </div> <!-- end col -->
 
                                 <div class="col-12">
