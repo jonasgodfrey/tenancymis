@@ -19,8 +19,5 @@ class Unit extends Model
         'image',
     ];
 
-    public function tenant()
-    {
-        return $this->hasOne(Tenant::class, 'unitId');
-    }
+
 }

@@ -61,6 +61,7 @@ class UserController extends Controller
 
         if (Gate::allows('admin')) {
 
+
             // checks for user role and adds user
             if ($role == 'manager') {
                 if ($property->hasManager($prop_id)) {

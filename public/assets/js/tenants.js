@@ -2,7 +2,7 @@ $(".propname").change(function() {
     let propid = $(".propname option:selected").attr("value");
     if (propid != "") {
         $.ajax({
-            url: "/fetch-free-units",
+            url: "/tenants/fetch-units",
             method: "get",
             data: {
                 propid: propid
@@ -11,6 +11,7 @@ $(".propname").change(function() {
                 if (result == "") {
                     $(".units").html('<option style="display:none" value="">No Data Found</option>');
                 } else {
+                    console.log(result);
                     $(".units").removeAttr('disabled');
                     $(".units").html('<option style="display:none" value="">Select units</option>');
                     $.each(result, function(key, value) {

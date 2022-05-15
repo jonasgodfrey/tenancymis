@@ -21,6 +21,9 @@ class UserTableSeeder extends Seeder
         DB::table('role_user')->truncate();
 
         $adminRole = Role::where('name', 'admin')->first();
+        $managerRole = Role::where('name', 'manager')->first();
+        $tenantRole = Role::where('name', 'tenant')->first();
+
 
         $admin = User::create([
             'name' => 'admin',
@@ -35,11 +38,47 @@ class UserTableSeeder extends Seeder
             'usercode' =>  "PLA" . rand(11100, 999999),
             'created_at' => now(),
             'updated_at' => now(),
-            'status_id' => '1',
         ]);
+
+        $manager = User::create([
+            'name' => 'manager',
+            'email' => 'manager@tenancymis.com',
+            'phone' => '11111111111',
+            'password' => Hash::make('secret'),
+            'email_verified_at' => now(),
+            'owner_id' => 1,
+            'remember_token' => null,
+            'role' => 'manager',
+            'otp' => rand(111111, 999999),
+            'usercode' =>  "PLA" . rand(11100, 999999),
+            'created_at' => now(),
+            'updated_at' => now(),
+        ]);
+
+        $tenant = User::create([
+            'name' => 'tenant',
+            'email' => 'tenant@tenancymis.com',
+            'phone' => '11111111111',
+            'password' => Hash::make('secret'),
+            'email_verified_at' => now(),
+            'owner_id' => 1,
+            'remember_token' => null,
+            'role' => 'tenant',
+            'otp' => rand(111111, 999999),
+            'usercode' =>  "PLA" . rand(11100, 999999),
+            'created_at' => now(),
+            'updated_at' => now(),
+        ]);
+
 
         $admin->roles()->attach($adminRole);
         $admin->createToken('auth_token')->plainTextToken;
+
+        $manager->roles()->attach($managerRole);
+        $manager->createToken('auth_token')->plainTextToken;
+
+        $tenant->roles()->attach($tenantRole);
+        $tenant->createToken('auth_token')->plainTextToken;
 
     }
 
