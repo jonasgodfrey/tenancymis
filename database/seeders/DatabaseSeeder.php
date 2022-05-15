@@ -22,7 +22,8 @@ class DatabaseSeeder extends Seeder
             CountrySeeder::class,
             PropertyCategorySeeder::class,
             PropertyTypeSeeder::class,
-            StatusSeeder::class
+            StatusSeeder::class,
+            UnitTypeSeeder::class,
         ]);
     }
 }

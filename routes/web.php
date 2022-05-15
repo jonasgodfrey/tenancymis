@@ -19,9 +19,6 @@ Route::get('/', [DashboardController::class, 'index']);
 
 // In App Section
 
-
-Route::get('/tenancypayments', [App\Http\Controllers\TenancyPaymentsController::class, 'index'])->name('payments.index');
-
 Route::get('/artisans', [App\Http\Controllers\ArtisansController::class, 'index'])->name('artisans.index');
 
 Route::get('/chatbox', [App\Http\Controllers\ChatBoxController::class, 'index'])->name('chats.index');
@@ -57,7 +54,6 @@ Route::group(['middleware' => ['auth']], function () {
 
     //tenants Page Get Routes
     Route::get('/tenants', [App\Http\Controllers\TenantsController::class, 'index'])->name('tenants.index');
-    Route::get('/tenants/fetch-units', [App\Http\Controllers\TenantsController::class, 'fetch_units'])->name('tenants.fetch_units');
     //tenants Page Post Routes
     Route::post('/tenants/add', [App\Http\Controllers\TenantsController::class, 'store'])->name('tenants.store');
     Route::post('/tenants/update', [App\Http\Controllers\TenantsController::class, 'update'])->name('tenants.update');
@@ -67,6 +63,15 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('/users', [App\Http\Controllers\UserController::class, 'index'])->name('users.index');
     //Users Page Post Routes
     Route::post('/users/add', [App\Http\Controllers\UserController::class, 'store'])->name('users.store');
+
+    //Payments Page get Routes
+    Route::get('/tenancypayments', [App\Http\Controllers\TenancyPaymentsController::class, 'index'])->name('payments.index');
+    //Payments Page Post Routes
+    Route::post('/tenancypayments/add', [App\Http\Controllers\TenancyPaymentsController::class, 'store'])->name('payments.store');
+
+    Route::get('/fetch-free-units', [App\Http\Controllers\AjaxRequestsController::class, 'fetch_free_units'])->name('fetch_free_units');
+    Route::get('/fetch-unit', [App\Http\Controllers\AjaxRequestsController::class, 'fetch_unit'])->name('fetch_unit');
+    Route::get('/fetch-tenant', [App\Http\Controllers\AjaxRequestsController::class, 'fetch_tenant'])->name('fetch_tenant');
 });
 
 

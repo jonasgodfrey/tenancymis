@@ -19,4 +19,8 @@ class Tenant extends Model
         'unitId',
         'payId',
     ];
+
+    public function payments(){
+        return $this->hasMany(PaymentRecord::class);
+    }
 }
