@@ -20,7 +20,7 @@
     <tr>
         <td>Due Date: </td>
         <td> </td>
-        <td>{{'due_date'}}</td>
+        <td>{{$data['due_date']}}</td>
     </tr>  
 </table>
 
