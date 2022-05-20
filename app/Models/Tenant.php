@@ -23,4 +23,14 @@ class Tenant extends Model
     public function payments(){
         return $this->hasMany(PaymentRecord::class);
     }
+
+    public function property()
+    {
+        return $this->belongsTo(Property::class, 'propId');
+    }
+
+    public function unit()
+    {
+        return $this->belongsTo(Unit::class, 'unitId');
+    }
 }

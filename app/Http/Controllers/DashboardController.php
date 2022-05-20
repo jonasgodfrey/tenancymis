@@ -22,8 +22,18 @@ class DashboardController extends Controller
     {
         $user = Auth::user();
 
+        $properties_num = $user->properties->count();
+        $units_num = $user->units->count();
+        $tenants_num = $user->tenants->count();
+        $tenants = $user->tenants;
+
         if (Gate::allows('admin')) {
-            return view('admin.dashboard.index')->with([]);
+            return view('admin.dashboard.index')->with([
+                'properties' => $properties_num,
+                'units' => $units_num,
+                'tenants_num' => $tenants_num,
+                'tenants' => $tenants
+            ]);
         }
 
         if (Gate::allows('manager')) {

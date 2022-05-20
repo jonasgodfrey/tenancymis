@@ -52,4 +52,4 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
     Route::delete('/user/delete', [UserController::class, 'delete']);
 });
 
-Route::get('/sendreminder-email', [NotificationController::class, 'sendreminderemail']);
+Route::get('/send_reminder_email', [NotificationController::class, 'sendreminderemail']);

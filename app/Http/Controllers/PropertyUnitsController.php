@@ -30,16 +30,19 @@ class PropertyUnitsController extends Controller
 
             $unitstype = UnitType::all();
             $properties = $user->properties;
+            $units = $user->units;
 
             return view('admin.units.index')->with([
                 'unitstype' => $unitstype,
                 'properties' => $properties,
+                'units' => $units
             ]);
         }
     }
 
     public function store(Request $request)
     {
+        $user = Auth::user();
         # code...
         if (Gate::allows('admin')) {
 
@@ -65,6 +68,7 @@ class PropertyUnitsController extends Controller
                 'name' => $request->unitname,
                 'status' => 'empty',
                 'image' => $filename,
+                'owner_id' => $user->id
             ]);
 
             if ($unit) {

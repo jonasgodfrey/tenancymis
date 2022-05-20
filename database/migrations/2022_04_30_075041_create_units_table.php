@@ -15,6 +15,7 @@ return new class extends Migration
     {
         Schema::create('units', function (Blueprint $table) {
             $table->id();
+            $table->bigInteger('owner_id')->unsigned();
             $table->bigInteger('propId')->unsigned();
             $table->bigInteger('typeId')->unsigned();
             $table->string('name');

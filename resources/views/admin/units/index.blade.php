@@ -130,15 +130,32 @@
 
 
                         <tbody>
+                            @forelse ($units as $unit)
                             <tr>
-                                <td>EFAB Sunshine Estate</td>
-                                <td>House 9</td>
-                                <td>₦100,000</td>
-                                <td>hello@gmail.com</td>
-                                <td><span class="badge bg-success">Occupied</span></td>
-                                <td><a href="#"><i class="fas fa-eye"></i></a> <span><a href="#"> <i
-                                                class="fas fa-pen"></i></a></span></td>
+                                <td>{{ $unit->property->propname }}</td>
+                                <td>{{ $unit->name }}</td>
+                                <td>{{ $unit->leaseAmount }}</td>
+                                <td>{{ $unit->property->email }}</td>
+                                @if ($unit->status == 'occupied')
+                                 <td><span class="badge bg-warning">{{ $unit->status }}</span></td>
+                                @endif
+                                @else
+                                <td><span class="badge bg-danger">Vacant</span></td>
+                                <td></td>
+                                <td>
+                                    <div class="row">
+                                        <div class="col-6">
+                                            <a href="#"><i class="fas fa-eye"></i></a>
+                                        </div>
+                                        <div class="col-6">
+                                            <span><a href="#"><i class="fas fa-pen"></i></a></span>
+                                        </div>
+                                    </div>                                              
+                                </td>
                             </tr>
+                        @empty
+                            <h6 class="text-center">no property yet</h6>
+                        @endforelse
 
                             <tr>
                                 <td>Axion Plaza</td>

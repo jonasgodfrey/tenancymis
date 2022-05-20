@@ -17,10 +17,16 @@ class Unit extends Model
         'leaseAmount',
         'status',
         'image',
+        'owner_id',
     ];
 
     public function tenant()
     {
         return $this->hasOne(Tenant::class, 'unitId');
+    }
+
+    public function property()
+    {
+        return $this->belongsTo(Property::class, 'propId');
     }
 }

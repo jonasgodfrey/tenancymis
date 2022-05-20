@@ -11,38 +11,51 @@ use Carbon\Carbon;
 
 class NotificationController extends Controller
 {
-        /**
+    /**
      * Create a new controller instance.
      *
      * @return void
      */
 
-     public function sendreminderemail()
-     {
+    public function sendreminderemail()
+    {
 
-         # code...
-         $payments_records = PaymentRecord::all();
-         $now = Carbon::now();
+        $schedules1 = PaymentRecord::whereBetween('duedate', [now()->addDays(1), now()->addDays(2)])->get();
+        $schedules3 = PaymentRecord::whereBetween('duedate', [now()->addDays(3), now()->addDays(4)])->get();
+        $schedules7 = PaymentRecord::whereBetween('duedate', [now()->addDays(7), now()->addDays(8)])->get();
+        $schedules14 = PaymentRecord::whereBetween('duedate', [now()->addDays(14), now()->addDays(15)])->get();
+        $schedules30 = PaymentRecord::whereBetween('duedate', [now()->addDays(30), now()->addDays(31)])->get();
 
-         $schedules1 = PaymentRecord::whereBetween('created_at', [now()->addDays(1), now()->addDays(2) ])->get();
-         dd($schedules1);
+        // One Day Due
+        $schedules = [$schedules1, $schedules3, $schedules7, $schedules14, $schedules30];
 
-         // One Day Due
-        //  $payments_records->where();
-         $datax = [
-            // 'description' => $request->description,
+        foreach ($schedules as $schedule) {
+            # code...
+            $this->sendSchedule($schedule);
+        }
 
-            // 'project_title' => $project->title,
+    }
 
-            // 'name' => $user->name,
+    public function sendSchedule($scheduleData)
+    {
+        # code...
 
-            
+        foreach ($scheduleData as $row) {
 
-        ];
+            try {
+                $payment_date = Carbon::parse($row->paydate);
+                $due_date = Carbon::parse($row->duedate);
+                $datax = [
+                    'name' => $row->tenant->name,
+                    'total_amount' => $row->amount,
+                    'payment_date' => $payment_date->format('M d Y'),
+                    'due_date' =>  $due_date->diffForHumans() . ' (' .$due_date->format('M d Y').')'
+                ];
 
-        // Mail::to($user->email)
-        // ->send(new ReminderEmail($datax));
-        
-
-     }
+                Mail::to($row->tenant->email)->send(new ReminderEmail($datax));
+            } catch (\Throwable $th) {
+                return $th;
+            }
+        }
+    }
 }

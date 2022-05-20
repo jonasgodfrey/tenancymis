@@ -63,7 +63,15 @@ class User extends Authenticatable
         return $this->hasMany(Property::class, 'ownerId');
     }
 
-    
+    public function units()
+    {
+        return $this->hasMany(Unit::class, 'owner_id');
+    }
+
+    public function tenants()
+    {
+        return $this->hasManyThrough(Tenant::class, Unit::class, 'owner_id', 'unitId');
+    }
 
     public function hasAnyRoles($roles)
     {

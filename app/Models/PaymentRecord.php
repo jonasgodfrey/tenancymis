@@ -24,4 +24,8 @@ class PaymentRecord extends Model
         'duration_status',
         'evidence_image',
     ];
+
+    public function tenant(){
+        return $this->belongsTo(Tenant::class);
+    }
 }

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\PaymentRecord;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Gate;
@@ -69,9 +70,9 @@ class TenancyPaymentsController extends Controller
                     'tenant_id' => $request->tenant,
                     'paystatus_id' => $request->paystatus,
                     'amount' => $request->payamount,
-                    'paydate' => $request->paydate,
-                    'startdate' => $request->startdate,
-                    'duedate' => $request->duedate,
+                    'paydate' => Carbon::parse($request->paydate),
+                    'startdate' => Carbon::parse($request->startdate),
+                    'duedate' =>  Carbon::parse($request->duedate),
                     'duration' => $request->duration,
                     'duration_status' => 'active',
                     'paymethod' => $request->paymethod,

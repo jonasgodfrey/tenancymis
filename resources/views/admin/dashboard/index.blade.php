@@ -39,14 +39,14 @@
                         <div class="widget-chart-1">
                             <div class="widget-chart-box-1 float-start" dir="ltr">
                                 <input data-plugin="knob" data-width="70" data-height="70" data-fgColor="#f05050 "
-                                       data-bgColor="#F9B9B9" value="0"
+                                       data-bgColor="#F9B9B9" value="{{$properties}}"
                                        data-skin="tron" data-angleOffset="180" data-readOnly=true
                                        data-thickness=".15"/>
                             </div>
 
 
                             <div class="widget-detail-1 text-end">
-                                <h2 class="fw-normal pt-2 mb-1"> 0 </h2>
+                                <h2 class="fw-normal pt-2 mb-1"> {{$properties}} </h2>
                             </div>
                         </div>
                     </div>
@@ -68,14 +68,14 @@
                         <div class="widget-chart-1">
                             <div class="widget-chart-box-1 float-start" dir="ltr">
                                 <input data-plugin="knob" data-width="70" data-height="70" data-fgColor="#f05050 "
-                                       data-bgColor="#FF00CC" value="0"
+                                       data-bgColor="#FF00CC" value=" {{$units}}"
                                        data-skin="tron" data-angleOffset="180" data-readOnly=true
                                        data-thickness=".15"/>
                             </div>
 
 
                             <div class="widget-detail-1 text-end">
-                                <h2 class="fw-normal pt-2 mb-1"> 0 </h2>
+                                <h2 class="fw-normal pt-2 mb-1"> {{$units}} </h2>
                             </div>
                         </div>
                     </div>
@@ -96,14 +96,14 @@
                         <div class="widget-chart-1">
                             <div class="widget-chart-box-1 float-start" dir="ltr">
                                 <input data-plugin="knob" data-width="70" data-height="70" data-fgColor="#f05050 "
-                                       data-bgColor="#4300A3" value="0"
+                                       data-bgColor="#4300A3" value=" {{$tenants_num}}"
                                        data-skin="tron" data-angleOffset="180" data-readOnly=true
                                        data-thickness=".15"/>
                             </div>
 
 
                             <div class="widget-detail-1 text-end">
-                                <h2 class="fw-normal pt-2 mb-1"> 0 </h2>
+                                <h2 class="fw-normal pt-2 mb-1"> {{$tenants_num}} </h2>
                             </div>
                         </div>
                     </div>
@@ -124,14 +124,14 @@
                         <div class="widget-chart-1">
                             <div class="widget-chart-box-1 float-start" dir="ltr">
                                 <input data-plugin="knob" data-width="70" data-height="70" data-fgColor="#f05050 "
-                                       data-bgColor="#00FF12" value="0"
+                                       data-bgColor="#00FF12" value="{{$properties}}"
                                        data-skin="tron" data-angleOffset="180" data-readOnly=true
                                        data-thickness=".15"/>
                             </div>
 
 
                             <div class="widget-detail-1 text-end">
-                                <h2 class="fw-normal pt-2 mb-1"> 0 </h2>
+                                <h2 class="fw-normal pt-2 mb-1"> {{$properties}} </h2>
                             </div>
                         </div>
                     </div>
@@ -385,56 +385,22 @@
                                 </tr>
                                 </thead>
                                 <tbody>
+                                    @forelse ($tenants as $tenant)
                                     <tr>
-                                        <td>1</td>
-                                        <td>Shop 1</td>
-                                        <td>01/01/2017</td>
-                                        <td>01/01/2018</td>
-                                        <td><span class="badge bg-warning">Unpaid</span></td>
+                                        <td>{{$tenant->id}}</td>
+                                        <td>{{$tenant->unit->name}}</td>
+                                        @php
+                                            $paydates = $tenant->payments->where('duration_status', 'active')->first();
+                                        @endphp
+                                        <td>{{$paydates->startdate}}</td>
+                                        <td>{{$paydates->duedate}}</td>
+                                        <td><span class="badge bg-success">paid</span></td>
                                         <td>08162445607</td>
                                     </tr>
-                                    <tr>
-                                        <td>2</td>
-                                        <td>Shop 1</td>
-                                        <td>01/01/2017</td>
-                                        <td>01/01/2018</td>
-                                        <td><span class="badge bg-success">Paid</span></td>
-                                        <td>08162445607</td>
-                                    </tr>
-                                    <tr>
-                                        <td>3</td>
-                                        <td>Shop 1</td>
-                                        <td>01/01/2017</td>
-                                        <td>01/01/2018</td>
-                                        <td><span class="badge bg-danger">Overdue</span></td>
-                                        <td>08162445607</td>
-                                    </tr>
-                                    <tr>
-                                        <td>4</td>
-                                        <td>Shop 1</td>
-                                        <td>01/01/2017</td>
-                                        <td>01/01/2018</td>
-                                        <td><span class="badge bg-success">Paid</span></td>
-                                        <td>08162445607</td>
-                                    </tr>
-                                    <tr>
-                                        <td>5</td>
-                                        <td>Shop 1</td>
-                                        <td>01/01/2017</td>
-                                        <td>01/01/2018</td>
-                                        <td><span class="badge bg-danger">Unpaid</span></td>
-                                        <td>08162445607</td>
-                                    </tr>
-
-                                    <tr>
-                                        <td>6</td>
-                                        <td>Shop 1</td>
-                                        <td>01/01/2017</td>
-                                        <td>01/01/2018</td>
-                                        <td><span class="badge bg-danger">Unpaid</span></td>
-                                        <td>08162445607</td>
-                                    </tr>
-
+                                    @empty
+                                    <h6 class="text-center">no tenants yet</h6>
+                                    @endforelse
+                                  
                                 </tbody>
                             </table>
                         </div>
