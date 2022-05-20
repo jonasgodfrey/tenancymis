@@ -129,9 +129,20 @@
                                         <th>Action</th>
                                     </tr>
                                 </thead>
-
-
                                 <tbody>
+                                    @forelse ($tenants as $tenant)
+                                    <tr>
+                                        <td>{{$tenant->name}}</td>
+                                        <td>{{$tenant->unit->name}}</td>
+                                        <td>{{$tenant->email}}</td>
+                                        <td>{{$tenant->phone}}</td>
+                                        <td>{{$tenant->bizname}}</td>
+                                       
+                                    </tr>
+                                    @empty
+                                    <h6 class="text-center">no tenants yet</h6>
+                                    @endforelse
+
                                     <tr>
                                         <td>Enangha Jonas</td>
                                         <td>Shop 4</td>

@@ -30,6 +30,7 @@ class TenantsController extends Controller
     public function index()
     {
         $user = Auth::user();
+        $tenants = $user->tenants;
 
         if (Gate::allows('admin')) {
 
@@ -37,6 +38,7 @@ class TenantsController extends Controller
 
             return view('admin.tenants.index')->with([
                 'properties' => $properties,
+                'tenants' => $tenants,
             ]);
         }
     }
