@@ -4,25 +4,6 @@
 
 <h3> Hello {{$data['name']}}, </h3>
 
-<p>Please find below an invoice for your next due payment</p>
-
-<table class="table">
-    <tr>
-        <td>Payment Date: </td>
-        <td></td>
-        <td>{{$data['payment_date']}}</td>
-    </tr>
-    <tr>
-        <td>Amount to be paid: </td>
-        <td> </td>
-        <td>N {{$data['total_amount']}} M</td>
-    </tr>
-    <tr>
-        <td>Due Date: </td>
-        <td> </td>
-        <td>{{$data['due_date']}}</td>
-    </tr>  
-</table>
 
 
 <p>Your rent is expiring {{$data['due_date']}},
