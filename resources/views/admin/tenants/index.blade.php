@@ -51,9 +51,6 @@
                                         </div>
 
 
-
-
-
                                 </div> <!-- end col -->
 
                                 <div class="col-lg-6">
@@ -129,6 +126,7 @@
                                         <th>Action</th>
                                     </tr>
                                 </thead>
+<<<<<<< Updated upstream
 
 
                                 <tbody>
@@ -142,6 +140,26 @@
                                         <td><a href="#"><i class="fas fa-eye"></i></a> <span><a href="#"><i
                                                         class="fas fa-pen"></i></a></span></td>
                                     </tr>
+=======
+                                <tbody>
+                                    @forelse ($tenants as $tenant)
+                                    <tr>
+                                        <td>{{$tenant->name}}</td>
+                                        <td>{{$tenant->unit->name}}</td>
+                                        <td>{{$tenant->email}}</td>
+                                        <td>{{$tenant->phone}}</td>
+                                        <td>{{$tenant->bizname}}</td>
+                                        <td><span class="badge bg-success">Fully Paid</span></td>
+                                        <td><a href="#"><i class="fas fa-eye"></i></a> <span><a href="#"><i
+                                                        class="fas fa-pen"></i></a></span></td>
+                                       
+                                    </tr>
+                                    @empty
+                                    <h6 class="text-center">no tenants yet</h6>
+                                    @endforelse
+
+                                   
+>>>>>>> Stashed changes
 
                                 </tbody>
                             </table>
