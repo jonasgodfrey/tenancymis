@@ -25,14 +25,12 @@ class PropertyController extends Controller
 
     public function index()
     {
-        $user = Auth::user();
-
         # code...
         $state = State::all();
         $prop_cat = PropertyCategory::all();
         $prop_types = PropertyType::all();
         $countries = Country::all();
-        $properties = $user->properties;
+        $properties = Property::all();
 
         return view('admin.property.index')->with([
             'states' => $state,

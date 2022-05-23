@@ -5,7 +5,6 @@ namespace App\Providers;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\View;
 use Illuminate\Support\ServiceProvider;
-use Illuminate\Support\Facades\Schema;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -26,6 +25,11 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        Schema::defaultStringLength(191);
+        $views = ['layouts.app', 'layouts.user_layouts.app'];
+        View::composer($views, function ($view) {
+            $user = Auth::user();
+            $data = ['username' => $user->name, 'url' => 'myapp.com'];
+            $view->with('username', $data);
+        });
     }
 }

@@ -50,6 +50,6 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
     Route::post('/user/create', [UserController::class, 'create']);
     Route::put('/user/update', [UserController::class, 'update']);
     Route::delete('/user/delete', [UserController::class, 'delete']);
+
 });
 
-Route::get('/sendreminder-email', [NotificationController::class, 'sendreminderemail']);
