@@ -60,20 +60,17 @@
 
 
                                     <div class="mb-3">
-                                        <label for="simpleinput" class="form-label">Tenant's Business Name</label>
+                                        <label for="simpleinput" class="form-label">Tenant's Occupation</label>
                                         <input type="text" name="bizname" id="simpleinput" class="form-control"
                                             placeholder="" required>
                                     </div>
 
                                     <div class="mb-3">
-                                        <label for="example-select" class="form-label">Business Category</label>
+                                        <label for="example-select" class="form-label">Occupancy Category</label>
                                         <select class="form-select" id="example-select" name="bizcat" required>
-                                            <option>Electronics</option>
-                                            <option>Fashion</option>
-                                            <option>Furnitures</option>
-                                            <option>IT Gadget Centres</option>
-                                            <option>Offices</option>
-                                            <option>Residential</option>
+                                            <option>Residential</option>    
+                                            <option>Business</option>                                           
+                                            
                                         </select>
                                     </div>
                                     <div class="mb-3">
@@ -121,38 +118,39 @@
                                 <thead>
                                     <tr>
                                         <th>Tenant</th>
-                                        <th>Shop</th>
                                         <th>Email</th>
-                                        <th>Phone</th>
-                                        <th>Business Name</th>
-                                        <th>Status</th>
+                                        <th>Phone</th>    
+                                        <th>Unit Assigned</th>
+                                        <th>Property</th>                                        
                                         <th>Action</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     @forelse ($tenants as $tenant)
                                     <tr>
+                                        
                                         <td>{{$tenant->name}}</td>
-                                        <td>{{$tenant->unit->name}}</td>
                                         <td>{{$tenant->email}}</td>
-                                        <td>{{$tenant->phone}}</td>
-                                        <td>{{$tenant->bizname}}</td>
+                                        <td>{{$tenant->phone}}</td>                                        
+                                        <td>{{$tenant->unit->name}}</td>
+                                        <td>{{$tenant->property->propname}}</td>
+                                        <td>
+                                                <div class="row">
+                                                    <div class="col-6">
+                                                        <a href="#"><i class="fas fa-eye"></i></a>
+                                                    </div>
+                                                    <div class="col-6">
+                                                        <span><a href="#"><i class="fas fa-pen"></i></a></span>
+                                                    </div>
+                                                </div>
+                                            </td>
                                        
                                     </tr>
                                     @empty
                                     <h6 class="text-center">no tenants yet</h6>
                                     @endforelse
 
-                                    <tr>
-                                        <td>Enangha Jonas</td>
-                                        <td>Shop 4</td>
-                                        <td>hello@gmail.com</td>
-                                        <td>08162445607</td>
-                                        <td>Axion Shop</td>
-                                        <td><span class="badge bg-success">Fully Paid</span></td>
-                                        <td><a href="#"><i class="fas fa-eye"></i></a> <span><a href="#"><i
-                                                        class="fas fa-pen"></i></a></span></td>
-                                    </tr>
+                                   
 
                                 </tbody>
                             </table>

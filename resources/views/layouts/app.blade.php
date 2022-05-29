@@ -8,12 +8,12 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'Dashboard | Tenancy Plus') }}</title>
+    <title>{{ config('app.name', 'Dashboard | MyTenancy Plus') }}</title>
 
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <!-- App favicon -->
-    <link rel="shortcut icon" href="/assets/images/favicon.ico">
+    <link rel="shortcut icon" href="/assets/images/fav.png">
 
     <!-- App css -->
     <link href="/assets/css/config/default/bootstrap.min.css" rel="stylesheet" type="text/css"

@@ -67,7 +67,7 @@
                                         <div class="mb-3">
                                             <label for="example-password" class="form-label">Unit Name</label>
                                             <input type="text" name="unitname" id="example-password" class="form-control"
-                                                value="" required>
+                                                value="" placeholder="" required>
                                         </div>
 
 
@@ -124,9 +124,9 @@
                                 <thead>
                                     <tr>
                                         <th>Property</th>
-                                        <th>Unit Name/No</th>
+                                        <th>Unit</th>
+                                        <th>Description</th>
                                         <th>Amount/Year</th>
-                                        <th>Email</th>
                                         <th>Status</th>
                                         <th>Action</th>
                                     </tr>
@@ -138,8 +138,8 @@
                                         <tr>
                                             <td>{{ $unit->property->propname }}</td>
                                             <td>{{ $unit->name }}</td>
-                                            <td>{{ $unit->leaseAmount }}</td>
-                                            <td>{{ $unit->property->email }}</td>
+                                            <td>{{ $unit->unitDesc }}</td>
+                                            <td>{{ $unit->leaseAmount }}</td>                                            
                                             @if ($unit->status == 'occupied')
                                                 <td><span class="badge bg-secondary">{{ $unit->status }}</span></td>
                                             @endif

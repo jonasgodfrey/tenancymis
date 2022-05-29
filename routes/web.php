@@ -31,6 +31,8 @@ Route::group(['middleware' => ['auth']], function () {
     //Dashboard Route
     Route::get('/dashboard', [App\Http\Controllers\DashboardController::class, 'index'])->name('dashboard');
 
+    Route::get('/subscription', [App\Http\Controllers\SubscriptionController::class, 'subscription'])->name('index');
+
     //Settings Page Get Routes
     Route::get('/settings', [App\Http\Controllers\SettingsController::class, 'index'])->name('settings.index');
     //Settings Page Post Routes

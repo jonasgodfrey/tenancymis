@@ -70,12 +70,7 @@
                     <div class="form-check form-switch mb-1">
                         <input type="checkbox" class="form-check-input" name="topbar-color" value="light" id="lighttopbar-check" />
                         <label class="form-check-label" for="lighttopbar-check">Light</label>
-                    </div>
-
-                    <div class="d-grid mt-4">
-                        <button class="btn btn-primary" id="resetBtn">Reset to Default</button>
-                        <a href="https://1.envato.market/admintoadmin" class="btn btn-danger mt-3" target="_blank"><i class="mdi mdi-basket me-1"></i> Purchase Now</a>
-                    </div>
+                    </div>                   
 
                 </div>
 

@@ -41,9 +41,9 @@
 
                     </li>
                     <li class="nav-item dropdown">
-                        <a class="nav-link arrow-none" href="/invoice" id="topnav-dashboard" role="button"
+                        <a class="nav-link arrow-none" href="/subscription" id="topnav-dashboard" role="button"
                             aria-haspopup="true" aria-expanded="false">
-                            <i class="mdi mdi-view-dashboard me-1"></i> Invoices
+                            <i class="mdi mdi-view-dashboard me-1"></i> Subscription
                         </a>
 
                     </li>
