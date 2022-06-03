@@ -1,6 +1,6 @@
 <div class="navbar-custom">
     <div class="container-fluid">
-        <ul class="list-unstyled topnav-menu float-end mb-0">
+         <ul class="list-unstyled topnav-menu float-end mb-0">
 
             <li class="d-none d-lg-block">
                 <form class="app-search">
@@ -31,7 +31,7 @@
                     <i class="fe-bell noti-icon"></i>
                     <span class="badge bg-danger rounded-circle noti-icon-badge">
                         @php
-                            $notifications = \App\Models\Notification::where('user_id', Auth::user()->id)->latest()->get();
+                        $notifications = \App\Models\Notification::where('user_id', Auth::user()->id)->latest()->get();
                         @endphp
 
                         {{$notifications->count()}}
@@ -52,19 +52,19 @@
 
                     <div class="noti-scroll" data-simplebar>
                         @forelse ($notifications->take(10) as $notification)
-                            <a href="javascript:void(0);" class="dropdown-item notify-item active">
-                                <div class="notify-icon">
-                                    <img src="/assets/images/users/user-1.jpg" class="img-fluid rounded-circle" alt="" /> </div>
-                                <p class="notify-details">Cristina Pride</p>
-                                <p class="text-muted mb-0 user-msg">
-                                    <small>Hi, How are you? What about our next meeting</small>
-                                </p>
-                            </a>
+                        <a href="javascript:void(0);" class="dropdown-item notify-item active">
+                            <div class="notify-icon">
+                                <img src="/assets/images/users/user-1.jpg" class="img-fluid rounded-circle" alt="" /> </div>
+                            <p class="notify-details">Cristina Pride</p>
+                            <p class="text-muted mb-0 user-msg">
+                                <small>Hi, How are you? What about our next meeting</small>
+                            </p>
+                        </a>
                         @empty
                             <h6 class="text-center">no notifications yet</h6>
-                    @endforelse
+                        @endforelse
 
-                    <!-- item-->
+                        <!-- item-->
 
 
 
@@ -110,9 +110,9 @@
                     <div class="dropdown-divider"></div>
 
                     <!-- item-->
-                    <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-                        @csrf
-                    </form>
+                       <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                         @csrf
+                     </form>
                     <a href="" onclick="event.preventDefault(); document.getElementById('logout-form').submit();" class="dropdown-item notify-item" >
                         <i class="fe-log-out"></i>
                         <span>Logout</span>

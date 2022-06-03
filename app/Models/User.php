@@ -48,32 +48,44 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
-    public function roles()
+
+    public function roles(): \Illuminate\Database\Eloquent\Relations\BelongsToMany
     {
         return $this->belongsToMany('App\Models\Role');
     }
 
-    public function status()
+    public function status(): \Illuminate\Database\Eloquent\Relations\BelongsTo
     {
         return $this->belongsTo('App\Models\Status');
     }
 
-    public function properties()
+    public function subscription(): \Illuminate\Database\Eloquent\Relations\BelongsTo
+    {
+        return $this->belongsTo(Subscription::class, 'owner_id');
+    }
+
+    public function properties(): \Illuminate\Database\Eloquent\Relations\HasMany
     {
         return $this->hasMany(Property::class, 'ownerId');
     }
 
-    public function units()
+
+    public function units(): \Illuminate\Database\Eloquent\Relations\HasMany
     {
         return $this->hasMany(Unit::class, 'owner_id');
     }
 
-    public function tenants()
+    public function tenants(): \Illuminate\Database\Eloquent\Relations\HasManyThrough
     {
         return $this->hasManyThrough(Tenant::class, Unit::class, 'owner_id', 'unitId');
     }
 
-    public function hasAnyRoles($roles)
+    public function tenant_payments(): \Illuminate\Database\Eloquent\Relations\HasManyThrough
+    {
+        return $this->hasManyThrough(PaymentRecord::class, Tenant::class, 'id', 'tenant_id');
+    }
+
+    public function hasAnyRoles($roles): bool
     {
         if (
             $this->roles()->whereIn('name', $roles)->first()
@@ -83,24 +95,34 @@ class User extends Authenticatable
         return false;
     }
 
-    public function hasRole($role)
+    public function hasRole($role): bool
     {
         if (
             $this->roles()
-            ->where('name', $role)
-            ->first()
+                ->where('name', $role)
+                ->first()
         ) {
             return true;
         }
         return false;
     }
 
-    public function isActive($status)
+    public function isActive($status): bool
     {
         if (
             $this->status()
-            ->where('name', $status)
-            ->first()
+                ->where('name', $status)
+                ->first()
+        ) {
+            return true;
+        }
+        return false;
+    }
+
+    public function subscriptionStatus($status): bool
+    {
+        if (
+            $this->subscription()->where('status', $status)->first()
         ) {
             return true;
         }

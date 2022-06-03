@@ -67,9 +67,9 @@ Route::group(['middleware' => ['auth']], function () {
     Route::post('/users/add', [App\Http\Controllers\UserController::class, 'store'])->name('users.store');
 
     //Payments Page get Routes
-    Route::get('/tenancypayments', [App\Http\Controllers\TenancyPaymentsController::class, 'index'])->name('payments.index');
+    Route::get('/tenancy-payments', [App\Http\Controllers\TenancyPaymentsController::class, 'index'])->name('payments.index');
     //Payments Page Post Routes
-    Route::post('/tenancypayments/add', [App\Http\Controllers\TenancyPaymentsController::class, 'store'])->name('payments.store');
+    Route::post('/tenancy-payments/add', [App\Http\Controllers\TenancyPaymentsController::class, 'store'])->name('payments.store');
 
     Route::get('/fetch-free-units', [App\Http\Controllers\AjaxRequestsController::class, 'fetch_free_units'])->name('fetch_free_units');
     Route::get('/fetch-unit', [App\Http\Controllers\AjaxRequestsController::class, 'fetch_unit'])->name('fetch_unit');

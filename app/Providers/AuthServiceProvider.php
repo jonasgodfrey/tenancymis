@@ -48,5 +48,12 @@ class AuthServiceProvider extends ServiceProvider
                 'manager'
             ]);
         });
+
+        //admin spo access
+        Gate::define('is_subscribed', function ($user) {
+            return $user->subscriptionStatus([
+                'active',
+            ]);
+        });
     }
 }

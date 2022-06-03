@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Models\PaymentRecord;
-use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Gate;
@@ -24,13 +23,16 @@ class TenancyPaymentsController extends Controller
     public function index()
     {
         $user = Auth::user();
+        $count = 0;
 
         if (Gate::allows('admin')) {
-
+            $payments = $user->tenant_payments->where('duration_status', 'active');
             $properties = $user->properties;
 
             return view('admin.payments.index')->with([
                 'properties' => $properties,
+                'payments' => $payments,
+                'count' => $count
             ]);
         }
     }
@@ -59,7 +61,7 @@ class TenancyPaymentsController extends Controller
 
                 if ($tenantrec != '') {
                     $tenantrec->update([
-                        'duration_status' => 'expired',
+                        'duration_status' => '1',
                     ]);
                 }
 
@@ -72,7 +74,7 @@ class TenancyPaymentsController extends Controller
                     'amount' => $request->payamount,
                     'paydate' => Carbon::parse($request->paydate),
                     'startdate' => Carbon::parse($request->startdate),
-                    'duedate' =>  Carbon::parse($request->duedate),
+                    'duedate' => Carbon::parse($request->duedate),
                     'duration' => $request->duration,
                     'duration_status' => 'active',
                     'paymethod' => $request->paymethod,
@@ -96,6 +98,7 @@ class TenancyPaymentsController extends Controller
     {
         # code...
     }
+
     public function delete(Request $request)
     {
         # code...

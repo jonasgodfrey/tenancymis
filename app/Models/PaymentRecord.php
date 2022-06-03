@@ -25,7 +25,23 @@ class PaymentRecord extends Model
         'evidence_image',
     ];
 
-    public function tenant(){
+    public function tenant(): \Illuminate\Database\Eloquent\Relations\BelongsTo
+    {
         return $this->belongsTo(Tenant::class);
+    }
+
+    public function property(): \Illuminate\Database\Eloquent\Relations\BelongsTo
+    {
+        return $this->belongsTo(Property::class);
+    }
+
+    public function unit(): \Illuminate\Database\Eloquent\Relations\BelongsTo
+    {
+        return $this->belongsTo(Unit::class);
+    }
+
+    public function duration_status(): \Illuminate\Database\Eloquent\Relations\BelongsTo
+    {
+        return $this->belongsTo(PaymentStatus::class, 'duration_status')->orderBy('created_at', 'desc');
     }
 }
