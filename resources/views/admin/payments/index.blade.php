@@ -30,17 +30,17 @@
                             </div>
                             <div class="row">
                                 <div class="col-lg-6">
-                                    <form role="form" action="{{ route('payments.store') }}"
-                                          enctype="multipart/form-data" method="POST">
+                                    <form role="form" action="{{ route('payments.store') }}" enctype="multipart/form-data"
+                                        method="POST">
                                         @csrf
                                         <div class="mb-3">
                                             <label for="example-select" class="form-label">Property Name</label>
                                             <select class="form-select propname" name="propname" id="example-select"
-                                                    required>
+                                                required>
                                                 <option style="display: none">Select Property</option>
                                                 @foreach ($properties as $property)
-                                                    <option
-                                                        value="{{ $property->id }}">{{ $property->propname }}</option>
+                                                    <option value="{{ $property->id }}">{{ $property->propname }}
+                                                    </option>
                                                 @endforeach
                                             </select>
                                         </div>
@@ -48,7 +48,7 @@
                                         <div class="mb-3">
                                             <label for="example-select" class="form-label">Unit Name</label>
                                             <select class="form-select units" name="unit" id="example-select units"
-                                                    name="units" disabled required>
+                                                name="units" disabled required>
                                                 <option style="display: none">loading..</option>
                                             </select>
                                         </div>
@@ -58,7 +58,7 @@
                                             <label for="example-select" class="form-label">Occupant/Business
                                                 Name</label>
                                             <select class="form-select tenant" name="tenant" id="example-select tenant"
-                                                    disabled required>
+                                                disabled required>
                                                 <option style="display: none">loading..</option>
                                             </select>
                                         </div>
@@ -76,8 +76,8 @@
 
                                         <div class="mb-3">
                                             <label for="example-email" class="form-label">Amount Paid</label>
-                                            <input type="text" id="example-email" name="payamount"
-                                                   class="form-control" placeholder="NGN">
+                                            <input type="text" id="example-email" name="payamount" class="form-control"
+                                                placeholder="NGN">
                                         </div>
 
                                         <div class="mb-3">
@@ -99,20 +99,20 @@
 
                                         <div class="mb-3">
                                             <label for="example-email" class="form-label">Payment Date</label>
-                                            <input type="date" id="example-email" name="paydate"
-                                                   class="form-control" placeholder="">
+                                            <input type="date" id="example-email" name="paydate" class="form-control"
+                                                placeholder="">
                                         </div>
 
                                         <div class="mb-3">
                                             <label for="example-password" class="form-label">Start Date</label>
-                                            <input type="date" id="example-password" name="startdate"
-                                                   class="form-control" value="">
+                                            <input type="date" id="example-password" name="startdate" class="form-control"
+                                                value="">
                                         </div>
 
                                         <div class="mb-3">
                                             <label for="example-date" class="form-label">Due Date</label>
                                             <input type="date" id="example-date" name="duedate" class="form-control"
-                                                   value="">
+                                                value="">
                                         </div>
 
                                         <div class="mb-3">
@@ -169,53 +169,62 @@
                         <div class="card-body">
                             <h4 class="mt-0 header-title">Payments</h4>
                             <br>
-                            <table id="datatable-buttons"
-                                   class="table table-striped table-bordered dt-responsive nowrap">
+                            <table id="datatable-buttons" class="table table-striped table-bordered dt-responsive nowrap">
                                 <thead>
-                                <tr>
-                                    <th>Id</th>
-                                    <th>Property</th>
-                                    <th>Tenants</th>
-                                    <th>Phone</th>
-                                    <th>Amount</th>
-                                    <th>Shop</th>
-                                    <th>End date</th>
-                                    <th>Status</th>
-                                    <th>Action</th>
-                                </tr>
+                                    <tr>
+                                        <th>Id</th>
+                                        <th>Property</th>
+                                        <th>Tenants</th>
+                                        <th>Phone</th>
+                                        <th>Amount</th>
+                                        <th>Shop</th>
+                                        <th>End date</th>
+                                        <th>Status</th>
+                                        <th>Action</th>
+                                    </tr>
                                 </thead>
                                 <tbody>
 
-                                @php
-                                    $count = 0;
-                                @endphp
-                                @forelse ($payments as $payment)
                                     @php
-                                        $count++;
-                                        $date = explode(' ', $payment->duedate);
+                                        $count = 0;
                                     @endphp
+                                    @forelse ($payments as $payment)
+                                        @php
+                                            $count++;
+                                            $date = explode(' ', $payment->duedate);
+                                        @endphp
 
-                                    <tr>
-                                        <td>{{$count}}</td>
-                                        <td>{{$payment->property->propname}}</td>
-                                        <td>{{$payment->tenant->name}}</td>
-                                        <td>{{$payment->tenant->phone}}</td>
-                                        <td>{{$payment->amount}}</td>
-                                        <td>{{$payment->unit->name}}</td>
-                                        <td>{{$date[0]}}</td>
-{{--                                        @if($payment->)--}}
-                                            <td><span class="badge bg-success">Fully Paid</span></td>
+                                        <tr>
+                                            <td>{{ $count }}</td>
+                                            <td>{{ $payment->property->propname }}</td>
+                                            <td>{{ $payment->tenant->name }}</td>
+                                            <td>{{ $payment->tenant->phone }}</td>
+                                            <td>{{ $payment->amount }}</td>
+                                            <td>{{ $payment->unit->name }}</td>
+                                            <td>{{ $date[0] }}</td>
+
+                                            @if ($payment->duration_status == 3)
+                                                <td><span class="badge bg-success">active</span>
+                                                </td>
+                                            @endif
+                                            @if ($payment->duration_status == 2)
+                                                <td><span class="badge bg-warning text-black">expiring soon</span>
+                                                </td>
+                                            @endif
+                                            @if ($payment->duration_status == 1)
+                                                <td><span class="badge bg-danger">expired</span>
+                                                </td>
+                                            @endif
                                             <td>
                                                 <span><a href="#"><i class="fas fa-eye"></i></a></span>
                                                 <span><a href="#"><i class="fas fa-pen"></i></a></span>
                                                 <span><a href="#"><i class="fas fa-file"></i></a></span>
                                             </td>
 
-                                    </tr>
-                                @empty
-
-                                @endforelse
-                                <tr>
+                                        </tr>
+                                    @empty
+                                    @endforelse
+                                    <tr>
 
                                 </tbody>
                             </table>

@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\PaymentRecord;
+use App\Models\Tenant;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Gate;
@@ -26,7 +28,7 @@ class TenancyPaymentsController extends Controller
         $count = 0;
 
         if (Gate::allows('admin')) {
-            $payments = $user->tenant_payments->where('duration_status', 'active');
+            $payments = $user->tenant_payments;
             $properties = $user->properties;
 
             return view('admin.payments.index')->with([
@@ -55,15 +57,9 @@ class TenancyPaymentsController extends Controller
             // save to storage/app/photos as the new $filename
             $storefile = $file->storeAs('public/payments/', $filename);
 
-            $tenantrec = PaymentRecord::where('tenant_id', $request->tenant)->where('duration_status', 'active')->first();
+            $tenantrec = Tenant::where('tenant_id', $request->tenant)->first();
 
             if ($storefile) {
-
-                if ($tenantrec != '') {
-                    $tenantrec->update([
-                        'duration_status' => '1',
-                    ]);
-                }
 
                 $payment = PaymentRecord::create([
                     'property_id' => $request->propname,
@@ -79,6 +75,10 @@ class TenancyPaymentsController extends Controller
                     'duration_status' => 'active',
                     'paymethod' => $request->paymethod,
                     'evidence_image' => $filename,
+                ]);
+
+                $tenantrec->update([
+                    'payid' => $payment->id,
                 ]);
 
                 if ($payment) {

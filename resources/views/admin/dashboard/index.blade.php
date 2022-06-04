@@ -326,7 +326,7 @@
                                     <tbody>
                                     @forelse ($tenants as $tenant)
                                         @php
-                                            $paydates = $tenant->payments->where('duration_status', 'active')->first();
+                                            $paydates = $tenant->payments->where('duration_status', '3')->first();
                                             $duedate = explode(' ', $paydates->duedate);
                                             $startdate = explode(' ', $paydates->startdate);
                                         @endphp
