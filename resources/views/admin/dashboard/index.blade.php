@@ -324,8 +324,8 @@
                                             @php
                                                 $payment = $tenant->current_payment;
                                                 if (!empty($payment)) {
-                                                    $duedate = explode(' ', $paydates->duedate);
-                                                    $startdate = explode(' ', $paydates->startdate);
+                                                    $duedate = explode(' ', $payment->duedate);
+                                                    $startdate = explode(' ', $payment->startdate);
                                                 }
                                                 
                                             @endphp
