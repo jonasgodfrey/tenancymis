@@ -23,6 +23,26 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('/', [DashboardController::class, 'index']);
     Route::get('/dashboard', [App\Http\Controllers\DashboardController::class, 'index'])->name('dashboard');
 
+    //Property Page Get Routes
+    Route::get('/property', [App\Http\Controllers\PropertyController::class, 'index'])->name('property.index');
+    //Property Page Post Routes
+    Route::post('/property/add', [App\Http\Controllers\PropertyController::class, 'store'])->name('property.store');
+    Route::put('/property/update', [App\Http\Controllers\PropertyController::class, 'update'])->name('property.update');
+    Route::post('/property/delete', [App\Http\Controllers\PropertyController::class, 'delete'])->name('property.delete');
+
+
+    Route::get('/subscription', [App\Http\Controllers\SubscriptionController::class, 'subscription'])->name('subscription');
+});
+
+// Subcription middleware2 wrapper
+
+//uncomment this and comment the other to enable expired subscription
+//comment and uncomment to enable active subscription
+
+#--> Route::group(['middleware' => ['auth', 'subscribed']], function () {
+    
+Route::group(['middleware' => ['auth']], function () {
+
     // In App Section
     Route::get('/artisans', [App\Http\Controllers\ArtisansController::class, 'index'])->name('artisans.index');
 
@@ -36,21 +56,6 @@ Route::group(['middleware' => ['auth']], function () {
     Route::post('/settings/addpropertycat', [App\Http\Controllers\SettingsController::class, 'addpropertycat'])->name('settings.addpropertycat');
     Route::post('/settings/addpropertytype', [App\Http\Controllers\SettingsController::class, 'addpropertytype'])->name('settings.addpropertytype');
     Route::post('/settings/addunitname', [App\Http\Controllers\SettingsController::class, 'addunitname'])->name('settings.addunitname');
-
-    //Property Page Get Routes
-    Route::get('/property', [App\Http\Controllers\PropertyController::class, 'index'])->name('property.index');
-    //Property Page Post Routes
-    Route::post('/property/add', [App\Http\Controllers\PropertyController::class, 'store'])->name('property.store');
-    Route::put('/property/update', [App\Http\Controllers\PropertyController::class, 'update'])->name('property.update');
-    Route::post('/property/delete', [App\Http\Controllers\PropertyController::class, 'delete'])->name('property.delete');
-
-    
-    Route::get('/subscription', [App\Http\Controllers\SubscriptionController::class, 'subscription'])->name('subscription');
-
-});
-
-// Subcription middleware wrapper
-Route::group(['middleware' => ['auth']], function () {
 
     //Units Page Get Routes
     Route::get('/units', [App\Http\Controllers\PropertyUnitsController::class, 'index'])->name('units.index');
@@ -79,7 +84,6 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('/fetch-free-units', [App\Http\Controllers\AjaxRequestsController::class, 'fetch_free_units'])->name('fetch_free_units');
     Route::get('/fetch-unit', [App\Http\Controllers\AjaxRequestsController::class, 'fetch_unit'])->name('fetch_unit');
     Route::get('/fetch-tenant', [App\Http\Controllers\AjaxRequestsController::class, 'fetch_tenant'])->name('fetch_tenant');
-    
 });
 
 
