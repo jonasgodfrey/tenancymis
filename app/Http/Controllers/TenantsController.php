@@ -66,6 +66,8 @@ class TenantsController extends Controller
                 'usercode' => $regCode,
                 'owner_id' => $user->id,
                 'password' => Hash::make($request->mobile),
+                'status_id' => '1',
+
             ]);
 
             // attach roles to the new user
