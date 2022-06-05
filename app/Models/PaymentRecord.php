@@ -40,8 +40,8 @@ class PaymentRecord extends Model
         return $this->belongsTo(Unit::class);
     }
 
-    public function duration_status(): \Illuminate\Database\Eloquent\Relations\BelongsTo
+    public function payment_status(): \Illuminate\Database\Eloquent\Relations\BelongsTo
     {
-        return $this->belongsTo(PaymentStatus::class, 'duration_status')->orderBy('created_at', 'desc');
+        return $this->belongsTo(PaymentStatus::class, 'duration_status');
     }
 }

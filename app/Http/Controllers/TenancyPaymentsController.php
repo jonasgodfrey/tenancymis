@@ -19,7 +19,8 @@ class TenancyPaymentsController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('auth');
+        $this->middleware(['auth']);
+
     }
 
     public function index()
@@ -57,10 +58,13 @@ class TenancyPaymentsController extends Controller
             // save to storage/app/photos as the new $filename
             $storefile = $file->storeAs('public/payments/', $filename);
 
-            $tenantrec = Tenant::where('tenant_id', $request->tenant)->first();
+            $tenantrec = Tenant::where('id', $request->tenant)->first();
 
             if ($storefile) {
+                $startdate = Carbon::parse($request->startdate);
+                $duedate = Carbon::parse($request->duedate);
 
+                
                 $payment = PaymentRecord::create([
                     'property_id' => $request->propname,
                     'unit_id' => $request->unit,
@@ -68,17 +72,17 @@ class TenancyPaymentsController extends Controller
                     'tenant_id' => $request->tenant,
                     'paystatus_id' => $request->paystatus,
                     'amount' => $request->payamount,
-                    'paydate' => Carbon::parse($request->paydate),
-                    'startdate' => Carbon::parse($request->startdate),
-                    'duedate' => Carbon::parse($request->duedate),
+                    'paydate' => Carbon::now(),
+                    'startdate' => $startdate,
+                    'duedate' => $duedate,
                     'duration' => $request->duration,
-                    'duration_status' => 'active',
+                    'duration_status' => '3',
                     'paymethod' => $request->paymethod,
                     'evidence_image' => $filename,
                 ]);
 
                 $tenantrec->update([
-                    'payid' => $payment->id,
+                    'payId' => $payment->id,
                 ]);
 
                 if ($payment) {

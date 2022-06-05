@@ -21,9 +21,9 @@ return new class extends Migration
             $table->bigInteger('paycat_id')->unsigned();
             $table->bigInteger('paystatus_id')->unsigned();
             $table->string('amount');
-            $table->string('paydate');
-            $table->string('startdate');
-            $table->string('duedate');
+            $table->timestamp('paydate')->useCurrent();
+            $table->timestamp('startdate')->useCurrent();
+            $table->timestamp('duedate')->useCurrent();
             $table->string('duration');
             $table->string('duration_status');
             $table->string('paymethod');

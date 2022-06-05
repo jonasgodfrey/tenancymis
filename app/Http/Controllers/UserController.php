@@ -36,10 +36,13 @@ class UserController extends Controller
 
             $roles = Role::whereNot('name', 'admin')->whereNot('name', 'tenant')->get();
             $properties = $user->properties;
+            $user = Auth()->user();
+            $users = User::where('owner_id', $user->id)->get();
 
             return view('admin.users.index')->with([
                 'roles' => $roles,
                 'properties' => $properties,
+                'users' => $users
             ]);
         }
     }

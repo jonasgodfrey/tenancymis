@@ -14,24 +14,21 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-// New and Existing User Section
-Route::get('/', [DashboardController::class, 'index']);
 
-// In App Section
-
-Route::get('/artisans', [App\Http\Controllers\ArtisansController::class, 'index'])->name('artisans.index');
-
-Route::get('/chatbox', [App\Http\Controllers\ChatBoxController::class, 'index'])->name('chats.index');
-
-Route::get('/invoice', [App\Http\Controllers\TenancyPaymentsController::class, 'invoicegenerate'])->name('payments.invoice');
 
 
 Route::group(['middleware' => ['auth']], function () {
 
     //Dashboard Route
+    Route::get('/', [DashboardController::class, 'index']);
     Route::get('/dashboard', [App\Http\Controllers\DashboardController::class, 'index'])->name('dashboard');
 
-    Route::get('/subscription', [App\Http\Controllers\SubscriptionController::class, 'subscription'])->name('index');
+    // In App Section
+    Route::get('/artisans', [App\Http\Controllers\ArtisansController::class, 'index'])->name('artisans.index');
+
+    Route::get('/chatbox', [App\Http\Controllers\ChatBoxController::class, 'index'])->name('chats.index');
+
+    Route::get('/invoice', [App\Http\Controllers\TenancyPaymentsController::class, 'invoicegenerate'])->name('payments.invoice');
 
     //Settings Page Get Routes
     Route::get('/settings', [App\Http\Controllers\SettingsController::class, 'index'])->name('settings.index');
@@ -46,6 +43,14 @@ Route::group(['middleware' => ['auth']], function () {
     Route::post('/property/add', [App\Http\Controllers\PropertyController::class, 'store'])->name('property.store');
     Route::put('/property/update', [App\Http\Controllers\PropertyController::class, 'update'])->name('property.update');
     Route::post('/property/delete', [App\Http\Controllers\PropertyController::class, 'delete'])->name('property.delete');
+
+    
+    Route::get('/subscription', [App\Http\Controllers\SubscriptionController::class, 'subscription'])->name('subscription');
+
+});
+
+// Subcription middleware wrapper
+Route::group(['middleware' => ['auth']], function () {
 
     //Units Page Get Routes
     Route::get('/units', [App\Http\Controllers\PropertyUnitsController::class, 'index'])->name('units.index');
@@ -74,6 +79,7 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('/fetch-free-units', [App\Http\Controllers\AjaxRequestsController::class, 'fetch_free_units'])->name('fetch_free_units');
     Route::get('/fetch-unit', [App\Http\Controllers\AjaxRequestsController::class, 'fetch_unit'])->name('fetch_unit');
     Route::get('/fetch-tenant', [App\Http\Controllers\AjaxRequestsController::class, 'fetch_tenant'])->name('fetch_tenant');
+    
 });
 
 

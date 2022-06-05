@@ -24,6 +24,11 @@ class Tenant extends Model
         return $this->hasMany(PaymentRecord::class);
     }
 
+    public function current_payment()
+    {
+        return $this->hasOne(PaymentRecord::class, 'id', 'payId');
+    }
+
     public function property()
     {
         return $this->belongsTo(Property::class, 'propId');

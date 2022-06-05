@@ -20,7 +20,7 @@ return new class extends Migration
             $table->bigInteger('ownerId')->unsigned();
             $table->string('propname');
             $table->string('propaddress');
-            $table->string('propdesc');
+            $table->string('propdesc', '1000');
             $table->string('email');
             $table->string('phone');
             $table->string('countryId');

@@ -29,7 +29,7 @@
                         <div class="card-body">
                             <div class="dropdown float-end">
                                 <a href="#" class="dropdown-toggle arrow-none card-drop" data-bs-toggle="dropdown"
-                                   aria-expanded="false">
+                                    aria-expanded="false">
                                     <i class="mdi mdi-dots-vertical"></i>
                                 </a>
 
@@ -40,14 +40,13 @@
                             <div class="widget-chart-1">
                                 <div class="widget-chart-box-1 float-start" dir="ltr">
                                     <input data-plugin="knob" data-width="70" data-height="70" data-fgColor="#f05050 "
-                                           data-bgColor="#F9B9B9" value="{{$properties}}"
-                                           data-skin="tron" data-angleOffset="180" data-readOnly=true
-                                           data-thickness=".15"/>
+                                        data-bgColor="#F9B9B9" value="{{ $properties }}" data-skin="tron"
+                                        data-angleOffset="180" data-readOnly=true data-thickness=".15" />
                                 </div>
 
 
                                 <div class="widget-detail-1 text-end">
-                                    <h2 class="fw-normal pt-2 mb-1"> {{$properties}} </h2>
+                                    <h2 class="fw-normal pt-2 mb-1"> {{ $properties }} </h2>
                                 </div>
                             </div>
                         </div>
@@ -59,7 +58,7 @@
                         <div class="card-body">
                             <div class="dropdown float-end">
                                 <a href="#" class="dropdown-toggle arrow-none card-drop" data-bs-toggle="dropdown"
-                                   aria-expanded="false">
+                                    aria-expanded="false">
                                     <i class="mdi mdi-dots-vertical"></i>
                                 </a>
 
@@ -70,14 +69,13 @@
                             <div class="widget-chart-1">
                                 <div class="widget-chart-box-1 float-start" dir="ltr">
                                     <input data-plugin="knob" data-width="70" data-height="70" data-fgColor="#f05050 "
-                                           data-bgColor="#FF00CC" value=" {{$units}}"
-                                           data-skin="tron" data-angleOffset="180" data-readOnly=true
-                                           data-thickness=".15"/>
+                                        data-bgColor="#FF00CC" value=" {{ $units }}" data-skin="tron"
+                                        data-angleOffset="180" data-readOnly=true data-thickness=".15" />
                                 </div>
 
 
                                 <div class="widget-detail-1 text-end">
-                                    <h2 class="fw-normal pt-2 mb-1"> {{$units}} </h2>
+                                    <h2 class="fw-normal pt-2 mb-1"> {{ $units }} </h2>
                                 </div>
                             </div>
                         </div>
@@ -88,7 +86,7 @@
                         <div class="card-body">
                             <div class="dropdown float-end">
                                 <a href="#" class="dropdown-toggle arrow-none card-drop" data-bs-toggle="dropdown"
-                                   aria-expanded="false">
+                                    aria-expanded="false">
                                     <i class="mdi mdi-dots-vertical"></i>
                                 </a>
 
@@ -99,14 +97,13 @@
                             <div class="widget-chart-1">
                                 <div class="widget-chart-box-1 float-start" dir="ltr">
                                     <input data-plugin="knob" data-width="70" data-height="70" data-fgColor="#f05050 "
-                                           data-bgColor="#4300A3" value=" {{$tenants_num}}"
-                                           data-skin="tron" data-angleOffset="180" data-readOnly=true
-                                           data-thickness=".15"/>
+                                        data-bgColor="#4300A3" value=" {{ $tenants_num }}" data-skin="tron"
+                                        data-angleOffset="180" data-readOnly=true data-thickness=".15" />
                                 </div>
 
 
                                 <div class="widget-detail-1 text-end">
-                                    <h2 class="fw-normal pt-2 mb-1"> {{$tenants_num}} </h2>
+                                    <h2 class="fw-normal pt-2 mb-1"> {{ $tenants_num }} </h2>
                                 </div>
                             </div>
                         </div>
@@ -117,7 +114,7 @@
                         <div class="card-body">
                             <div class="dropdown float-end">
                                 <a href="#" class="dropdown-toggle arrow-none card-drop" data-bs-toggle="dropdown"
-                                   aria-expanded="false">
+                                    aria-expanded="false">
                                     <i class="mdi mdi-dots-vertical"></i>
                                 </a>
 
@@ -128,14 +125,13 @@
                             <div class="widget-chart-1">
                                 <div class="widget-chart-box-1 float-start" dir="ltr">
                                     <input data-plugin="knob" data-width="70" data-height="70" data-fgColor="#f05050 "
-                                           data-bgColor="#00FF12" value="{{$properties}}"
-                                           data-skin="tron" data-angleOffset="180" data-readOnly=true
-                                           data-thickness=".15"/>
+                                        data-bgColor="#00FF12" value="{{ $properties }}" data-skin="tron"
+                                        data-angleOffset="180" data-readOnly=true data-thickness=".15" />
                                 </div>
 
 
                                 <div class="widget-detail-1 text-end">
-                                    <h2 class="fw-normal pt-2 mb-1"> {{$properties}} </h2>
+                                    <h2 class="fw-normal pt-2 mb-1"> {{ $properties }} </h2>
                                 </div>
                             </div>
                         </div>
@@ -204,7 +200,7 @@
                         <div class="card-body">
                             <div class="dropdown float-end">
                                 <a href="#" class="dropdown-toggle arrow-none card-drop" data-bs-toggle="dropdown"
-                                   aria-expanded="false">
+                                    aria-expanded="false">
                                     <i class="mdi mdi-dots-vertical"></i>
                                 </a>
 
@@ -213,8 +209,8 @@
                             <h4 class="header-title mt-0">Tenants Rents</h4>
 
                             <div class="widget-chart text-center">
-                                <div id="morris-donut-example" dir="ltr" style="height: 245px;"
-                                     class="morris-chart"></div>
+                                <div id="morris-donut-example" dir="ltr" style="height: 245px;" class="morris-chart">
+                                </div>
                                 <ul class="list-inline chart-detail-list mb-0">
                                     <li class="list-inline-item">
                                         <h5 style="color: #ff8acc;"><i class="fa fa-circle me-1"></i>Paid</h5>
@@ -236,7 +232,7 @@
                         <div class="card-body">
                             <div class="dropdown float-end">
                                 <a href="#" class="dropdown-toggle arrow-none card-drop" data-bs-toggle="dropdown"
-                                   aria-expanded="false">
+                                    aria-expanded="false">
                                     <i class="mdi mdi-dots-vertical"></i>
                                 </a>
                                 <div class="dropdown-menu dropdown-menu-end">
@@ -261,7 +257,7 @@
                         <div class="card-body">
                             <div class="dropdown float-end">
                                 <a href="#" class="dropdown-toggle arrow-none card-drop" data-bs-toggle="dropdown"
-                                   aria-expanded="false">
+                                    aria-expanded="false">
                                     <i class="mdi mdi-dots-vertical"></i>
                                 </a>
                                 <div class="dropdown-menu dropdown-menu-end">
@@ -291,7 +287,7 @@
                         <div class="card-body">
                             <div class="dropdown float-end">
                                 <a href="#" class="dropdown-toggle arrow-none card-drop" data-bs-toggle="dropdown"
-                                   aria-expanded="false">
+                                    aria-expanded="false">
                                     <i class="mdi mdi-dots-vertical"></i>
                                 </a>
                                 <div class="dropdown-menu dropdown-menu-end">
@@ -311,40 +307,48 @@
                             <div class="table-responsive">
                                 <table class="table table-hover mb-0">
                                     <thead>
-                                    <tr>
-                                        <th>#</th>
-                                        <th>Property</th>
-                                        <th>Unit</th>
-                                        <th>Tenant</th>
-                                        <th>Tenant Tel</th>
-                                        <th>Start Date</th>
-                                        <th>Due Date</th>
-                                        <th>Status</th>
-
-                                    </tr>
-                                    </thead>
-                                    <tbody>
-                                    @forelse ($tenants as $tenant)
-                                        @php
-                                            $paydates = $tenant->payments->where('duration_status', '3')->first();
-                                            $duedate = explode(' ', $paydates->duedate);
-                                            $startdate = explode(' ', $paydates->startdate);
-                                        @endphp
                                         <tr>
-                                            <td>{{$tenant->id}}</td>
-                                            <td>{{$tenant->property->propname}}</td>
-                                            <td>{{$tenant->unit->name}}</td>
-                                            <td>{{$tenant->name}}</td>
-                                            <td>{{$tenant->phone}}</td>
-
-                                            <td>{{$startdate[0]}}</td>
-                                            <td> {{$duedate[0]}}</td>
-                                            <td><span class="badge bg-success">paid</span></td>
+                                            <th>#</th>
+                                            <th>Property</th>
+                                            <th>Unit</th>
+                                            <th>Tenant</th>
+                                            <th>Tenant Tel</th>
+                                            <th>Start Date</th>
+                                            <th>Due Date</th>
+                                            <th>Status</th>
 
                                         </tr>
-                                    @empty
-                                        <h6 class="text-center">no tenants yet</h6>
-                                    @endforelse
+                                    </thead>
+                                    <tbody>
+                                        @forelse ($tenants as $tenant)
+                                            @php
+                                                $payment = $tenant->current_payment;
+                                                if (!empty($payment)) {
+                                                    $duedate = explode(' ', $paydates->duedate);
+                                                    $startdate = explode(' ', $paydates->startdate);
+                                                }
+                                                
+                                            @endphp
+                                            <tr>
+                                                <td>{{ $tenant->id }}</td>
+                                                <td>{{ $tenant->property->propname }}</td>
+                                                <td>{{ $tenant->unit->name }}</td>
+                                                <td>{{ $tenant->name }}</td>
+                                                <td>{{ $tenant->phone }}</td>
+                                                @if (!empty($payment))
+                                                    <td>{{ $startdate[0] }}</td>
+                                                    <td> {{ $duedate[0] }}</td>
+                                                    <td><span class="badge bg-success">paid</span></td>
+                                                @else
+                                                    <td>null</td>
+                                                    <td>null</td>
+                                                    <td><span class="badge bg-danger">not paid</span></td>
+                                                @endif
+
+                                            </tr>
+                                        @empty
+                                            
+                                        @endforelse
 
                                     </tbody>
                                 </table>
