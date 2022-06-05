@@ -184,37 +184,46 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-
-                                    @php
-                                        $count = 0;
-                                    @endphp
-                                    @forelse ($payments as $payment)
+                                    @forelse ($tenants as $tenant)
                                         @php
                                             $count++;
-                                            $date = explode(' ', $payment->duedate);
+                                            $payments = $tenant->payments->first();
+                                            if (!empty($payments)) {
+                                                $date = explode(' ', $payments->duedate);
+                                            }
+                                            
                                         @endphp
 
                                         <tr>
                                             <td>{{ $count }}</td>
-                                            <td>{{ $payment->property->propname }}</td>
-                                            <td>{{ $payment->tenant->name }}</td>
-                                            <td>{{ $payment->tenant->phone }}</td>
-                                            <td>{{ $payment->amount }}</td>
-                                            <td>{{ $payment->unit->name }}</td>
-                                            <td>{{ $date[0] }}</td>
+                                            <td>{{ $tenant->property->propname }}</td>
+                                            <td>{{ $tenant->name }}</td>
+                                            <td>{{ $tenant->phone }}</td>
 
-                                            @if ($payment->duration_status == 3)
-                                                <td><span class="badge bg-success">active</span>
-                                                </td>
+                                            @if (!empty($payments))
+                                                <td>{{ $payments->amount }}</td>
+                                                <td>{{ $payments->unit->name }}</td>
+                                                <td>{{ $date[0] }}</td>
+
+                                                @if ($payments->duration_status == 3)
+                                                    <td><span class="badge bg-success">active</span>
+                                                    </td>
+                                                @endif
+                                                @if ($payments->duration_status == 2)
+                                                    <td><span class="badge bg-warning text-black">expiring soon</span>
+                                                    </td>
+                                                @endif
+                                                @if ($payments->duration_status == 1)
+                                                    <td><span class="badge bg-danger">expired</span>
+                                                    </td>
+                                                @endif
+                                            @else
+                                                <td></td>
+                                                <td></td>
+                                                <td></td>
+                                                <td><span"></span></td>
                                             @endif
-                                            @if ($payment->duration_status == 2)
-                                                <td><span class="badge bg-warning text-black">expiring soon</span>
-                                                </td>
-                                            @endif
-                                            @if ($payment->duration_status == 1)
-                                                <td><span class="badge bg-danger">expired</span>
-                                                </td>
-                                            @endif
+
                                             <td>
                                                 <span><a href="#"><i class="fas fa-eye"></i></a></span>
                                                 <span><a href="#"><i class="fas fa-pen"></i></a></span>
@@ -224,7 +233,7 @@
                                         </tr>
                                     @empty
                                     @endforelse
-                                    <tr>
+                                    
 
                                 </tbody>
                             </table>

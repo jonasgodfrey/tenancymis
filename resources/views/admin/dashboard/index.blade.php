@@ -305,7 +305,7 @@
                             <h4 class="header-title mt-0 mb-3">Tenants</h4>
 
                             <div class="table-responsive">
-                                <table class="table table-hover mb-0">
+                                <table id="datatable-buttons" class="table table-hover mb-0 dt-responsive nowrap">
                                     <thead>
                                         <tr>
                                             <th>#</th>

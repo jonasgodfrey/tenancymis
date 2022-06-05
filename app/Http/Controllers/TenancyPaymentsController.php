@@ -29,12 +29,12 @@ class TenancyPaymentsController extends Controller
         $count = 0;
 
         if (Gate::allows('admin')) {
-            $payments = $user->tenant_payments;
+            $payments = $user->tenants;
             $properties = $user->properties;
 
             return view('admin.payments.index')->with([
                 'properties' => $properties,
-                'payments' => $payments,
+                'tenants' => $payments,
                 'count' => $count
             ]);
         }
