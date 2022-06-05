@@ -177,7 +177,7 @@
                                         <th>Tenants</th>
                                         <th>Phone</th>
                                         <th>Amount</th>
-                                        <th>Shop</th>
+                                        <th>Units</th>
                                         <th>End date</th>
                                         <th>Status</th>
                                         <th>Action</th>
