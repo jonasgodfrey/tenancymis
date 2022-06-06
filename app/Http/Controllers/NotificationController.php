@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Tenant;
 use Illuminate\Http\Request;
 
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\ReminderEmail;
 use App\Models\PaymentRecord;
@@ -20,6 +22,7 @@ class NotificationController extends Controller
     public function sendreminderemail()
     {
 
+        $default = PaymentRecord::all();
         $schedules1 = PaymentRecord::whereBetween('duedate', [now()->addDays(1), now()->addDays(2)])->get();
         $schedules3 = PaymentRecord::whereBetween('duedate', [now()->addDays(3), now()->addDays(4)])->get();
         $schedules7 = PaymentRecord::whereBetween('duedate', [now()->addDays(7), now()->addDays(8)])->get();
@@ -27,7 +30,7 @@ class NotificationController extends Controller
         $schedules30 = PaymentRecord::whereBetween('duedate', [now()->addDays(30), now()->addDays(31)])->get();
 
         // One Day Due
-        $schedules = [$schedules1, $schedules3, $schedules7, $schedules14, $schedules30];
+        $schedules = [$schedules1, $schedules3, $schedules7, $schedules14, $schedules30, $default];
 
         foreach ($schedules as $schedule) {
             # code...
