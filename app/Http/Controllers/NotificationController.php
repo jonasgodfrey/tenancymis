@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\Mail;
 use App\Mail\ReminderEmail;
 use App\Models\PaymentRecord;
 use Carbon\Carbon;
+use GuzzleHttp\Client;
 
 class NotificationController extends Controller
 {
@@ -48,14 +49,56 @@ class NotificationController extends Controller
             try {
                 $payment_date = Carbon::parse($row->paydate);
                 $due_date = Carbon::parse($row->duedate);
+
+
                 $datax = [
                     'name' => $row->tenant->name,
+                    'phone' => $row->tenant->phone,
                     'total_amount' => $row->amount,
                     'payment_date' => $payment_date->format('M d Y'),
                     'due_date' =>  $due_date->diffForHumans() . ' (' .$due_date->format('M d Y').')'
                 ];
 
                 Mail::to($row->tenant->email)->send(new ReminderEmail($datax));
+
+                $client = new Client();
+
+                $payload = [
+                    
+                    "SMS" => [
+                        "auth" => [
+                            "username" => "ngotrack2018@gmail.com",
+                            "apikey" => "56d55c9d36560666d2dcf02459a3ca86203591ce",
+                        ],
+                        "message" => [
+                            "sender" => "Tenancy+",
+                            "messagetext" => "Hello, ". $data['name'] ."Your rent is expiring ". $data['due_date'] ."kindly ensure to make payments before the due date to avoid any issues. If you have any complaints please contact our support.",
+                            "flash" => "0"
+                        ],
+                        "recipients" =>
+                        [
+                            "gsm" => [
+                                [
+                                    "msidn" => $data['phone'],
+                                    "msgid" => $data['phone'],
+                                ],
+                               
+                            ]
+                        ]
+                    ]
+                
+                ];
+        
+                $response = $client->post('http://api.ebulksms.com:8080/sendsms.json', [
+                    'debug' => TRUE,
+                    'forms_params' => $payload,
+                    'headers' => [
+                        'Content-Type' => 'application/json',
+                       
+                    ]
+                  ]);
+
+                
             } catch (\Throwable $th) {
                 return $th;
             }

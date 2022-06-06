@@ -39,7 +39,7 @@ Route::group(['middleware' => ['auth']], function () {
 //uncomment this and comment the other to enable expired subscription
 //comment and uncomment to enable active subscription
 
-#--> Route::group(['middleware' => ['auth', 'subscribed']], function () {
+// Route::group(['middleware' => ['auth', 'subscribed']], function () {
     
 Route::group(['middleware' => ['auth']], function () {
 
