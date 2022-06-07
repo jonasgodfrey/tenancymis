@@ -138,7 +138,7 @@ class NotificationController extends Controller
                
             ]
             ])
-            ->post('http://api.ebulksms.com:8080/sendsms.json');
+            ->post('https://api.ebulksms.com:8080/sendsms.json');
 
 
             return $res;
