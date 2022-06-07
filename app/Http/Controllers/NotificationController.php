@@ -101,4 +101,45 @@ class NotificationController extends Controller
             }
         }
     }
+
+    public function sendsms()
+    {
+        $client = new \GuzzleHttp\Client();
+
+        $payload = [
+            
+            "SMS" => [
+                "auth" => [
+                    "username" => "ngotrack2018@gmail.com",
+                    "apikey" => "56d55c9d36560666d2dcf02459a3ca86203591ce",
+                ],
+                "message" => [
+                    "sender" => "Tenancy+",
+                    "messagetext" => "Hello, kindly ensure to make payments before the due date to avoid any issues. If you have any complaints please contact our support.",
+                    "flash" => "0"
+                ],
+                "recipients" =>
+                [
+                    "gsm" => [
+                        [
+                            "msidn" => '08162445607',
+                            "msgid" => 'test',
+                        ],
+                       
+                    ]
+                ]
+            ]
+        
+        ];
+
+        $response = $client->post('http://api.ebulksms.com:8080/sendsms.json', [
+            'debug' => fopen('php://stderr', 'w'),
+            'forms_params' => $payload,
+            'headers' => [
+                'Content-Type' => 'application/json',
+               
+            ]
+          ]);
+        
+    }
 }
