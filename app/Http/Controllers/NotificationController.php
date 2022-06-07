@@ -11,6 +11,7 @@ use App\Mail\ReminderEmail;
 use App\Models\PaymentRecord;
 use Carbon\Carbon;
 use GuzzleHttp\Client;
+use Illuminate\Support\Facades\Http;
 
 class NotificationController extends Controller
 {
@@ -61,7 +62,7 @@ class NotificationController extends Controller
 
                 Mail::to($row->tenant->email)->send(new ReminderEmail($datax));
 
-                $client = new Client();
+                // $client = new Client();
 
                 $payload = [
                     
@@ -89,19 +90,81 @@ class NotificationController extends Controller
                 
                 ];
         
-                $response = $client->post('http://api.ebulksms.com:8080/sendsms.json', [
-                    'debug' => TRUE,
-                    'forms_params' => $payload,
-                    'headers' => [
-                        'Content-Type' => 'application/json',
-                       
-                    ]
-                  ]);
+                $res =  Http::withBody(json_encode($payload), 'application/json')
+                ->withOptions([
+                'headers' => [
+                    'Content-Type' => 'application/json',
+                   
+                ]
+                ])
+                ->post('http://api.ebulksms.com:8080/sendsms.json');
 
                 
             } catch (\Throwable $th) {
                 return $th;
             }
         }
+    }
+
+    public function sendsms(Request $request)
+    {
+
+        $payload = [
+            
+            "SMS" => [
+                "auth" => [
+                    "username" => "ngotrack2018@gmail.com",
+                    "apikey" => "56d55c9d36560666d2dcf02459a3ca86203591ce",
+                ],
+                "message" => [
+                    "sender" => "Tenancy+",
+                    "messagetext" => "Hello, kindly ensure to make payments before the due date to avoid any issues. If you have any complaints please contact our support.",
+                    "flash" => "0"
+                ],
+                "recipients" =>
+                [
+                    "gsm" => [
+                        [
+                            "msidn" => $request->phone,
+                            "msgid" => 'test',
+                        ],
+                       
+                    ]
+                ]
+            ]
+        
+        ];
+       $res =  Http::withBody(json_encode($payload), 'application/json')
+            ->withOptions([
+            'headers' => [
+                'Content-Type' => 'application/json',
+               
+            ]
+            ])
+            ->post('http://api.ebulksms.com:8080/sendsms.json');
+
+
+            return $res;
+
+        // $client = new \GuzzleHttp\Client();
+
+
+        // // return $request->phone;
+
+
+        
+
+        // $response = $client->post('http://api.ebulksms.com:8080/sendsms.json', [
+        //     'debug' => fopen('php://stderr', 'w'),
+        //     'forms_params' => $payload,
+        //     'headers' => [
+        //         'Content-Type' => 'application/json',
+               
+        //     ]
+        //   ]);
+
+
+        //   return $response;
+        
     }
 }

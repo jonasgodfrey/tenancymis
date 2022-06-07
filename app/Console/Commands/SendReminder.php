@@ -42,6 +42,6 @@ class SendReminder extends Command
 
         $response = Http::post(config('app.url').'api/send_reminder_email');
 
-        return dd($response);
+        // return $response;
     }
 }
