@@ -118,7 +118,7 @@ class NotificationController extends Controller
                 ],
                 "message" => [
                     "sender" => "Tenancy+",
-                    "messagetext" => "Hello, kindly ensure to make payments before the due date to avoid any issues. If you have any complaints please contact our support.",
+                    "messagetext" => "111Hello, kindly ensure to make payments before the due date to avoid any issues. If you have any complaints please contact our support.",
                     "flash" => "0"
                 ],
                 "recipients" =>
@@ -141,7 +141,7 @@ class NotificationController extends Controller
                
             ]
             ])
-            ->post('https://api.ebulksms.com:8080/sendsms.json');
+            ->post('https://api.ebulksms.com/sendsms.json');
 
 
             return $res;
