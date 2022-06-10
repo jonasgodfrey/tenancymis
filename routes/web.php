@@ -34,13 +34,13 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('/subscription', [App\Http\Controllers\SubscriptionController::class, 'subscription'])->name('subscription');
 });
 
-// Subcription middleware2 wrapper
+/**
+ *  Subscription middleware2 wrapper
+ * uncomment this and comment the other to enable expired subscription
+ * comment and uncomment to enable active subscription
+ */
 
-//uncomment this and comment the other to enable expired subscription
-//comment and uncomment to enable active subscription
-
-// Route::group(['middleware' => ['auth', 'subscribed']], function () {
-    
+//Route::group(['middleware' => ['auth', 'subscribed']], function () {
 Route::group(['middleware' => ['auth']], function () {
 
     // In App Section
@@ -48,7 +48,7 @@ Route::group(['middleware' => ['auth']], function () {
 
     Route::get('/chatbox', [App\Http\Controllers\ChatBoxController::class, 'index'])->name('chats.index');
 
-    Route::get('/invoice', [App\Http\Controllers\TenancyPaymentsController::class, 'invoicegenerate'])->name('payments.invoice');
+    Route::get('/invoice', [App\Http\Controllers\TenancyPaymentsController::class, 'invoice-generate'])->name('payments.invoice');
 
     //Settings Page Get Routes
     Route::get('/settings', [App\Http\Controllers\SettingsController::class, 'index'])->name('settings.index');
@@ -75,7 +75,7 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('/users', [App\Http\Controllers\UserController::class, 'index'])->name('users.index');
     //Users Page Post Routes
     Route::post('/users/add', [App\Http\Controllers\UserController::class, 'store'])->name('users.store');
-
+    
     //Payments Page get Routes
     Route::get('/tenancy-payments', [App\Http\Controllers\TenancyPaymentsController::class, 'index'])->name('payments.index');
     //Payments Page Post Routes
