@@ -31,13 +31,19 @@ class NotificationController extends Controller
         $schedules14 = PaymentRecord::whereBetween('duedate', [now()->addDays(14), now()->addDays(15)])->get();
         $schedules30 = PaymentRecord::whereBetween('duedate', [now()->addDays(30), now()->addDays(31)])->get();
 
-        // One Day Due
+        //array of data
         $schedules = [$schedules1, $schedules3, $schedules7, $schedules14, $schedules30, $default];
 
         foreach ($schedules as $schedule) {
             # code...
             $this->sendSchedule($schedule);
         }
+
+        /**
+         *  Change user payment status based on days left
+         */
+        $this->checkAndUpdatePaymentStatus($schedules30, 30);
+        $this->checkAndUpdatePaymentStatus($default, 'none');
 
     }
 
@@ -55,116 +61,74 @@ class NotificationController extends Controller
                 $datax = [
                     'name' => $row->tenant->name,
                     'phone' => $row->tenant->phone,
+                    'prop_name' => $row->property->propname,
                     'total_amount' => $row->amount,
                     'payment_date' => $payment_date->format('M d Y'),
-                    'due_date' =>  $due_date->diffForHumans() . ' (' .$due_date->format('M d Y').')'
+                    'due_date' => $due_date->diffForHumans() . ' (' . $due_date->format('M d Y') . ')'
                 ];
 
                 Mail::to($row->tenant->email)->send(new ReminderEmail($datax));
 
-                // $client = new Client();
-
                 $payload = [
-                    
+
                     "SMS" => [
                         "auth" => [
                             "username" => "ngotrack2018@gmail.com",
                             "apikey" => "56d55c9d36560666d2dcf02459a3ca86203591ce",
                         ],
                         "message" => [
-                            "sender" => "Tenancy+",
-                            "messagetext" => "Hello, ". $data['name'] ."Your rent is expiring ". $data['due_date'] ."kindly ensure to make payments before the due date to avoid any issues. If you have any complaints please contact our support.",
+                            "sender" => "TenancyPlus",
+                            "messagetext" => "Hello " . $datax['name'] . ", Your rent at " . $datax['prop_name'] . "\n is expiring " . $datax['due_date'] . ". kindly ensure to make payments before the due date to avoid any issues. If you have any complaints please contact our support [support@mytenancyplus.com].\n best regards,\n mytenancyplus.com",
                             "flash" => "0"
                         ],
-                        "recipients" =>
-                        [
+                        "recipients" => [
                             "gsm" => [
                                 [
-                                    "msidn" => $data['phone'],
-                                    "msgid" => $data['phone'],
+                                    "msidn" => $datax['phone'],
+                                    "msgid" => 'test',
                                 ],
-                               
+
                             ]
                         ]
                     ]
-                
                 ];
-        
-                $res =  Http::withBody(json_encode($payload), 'application/json')
-                ->withOptions([
-                'headers' => [
-                    'Content-Type' => 'application/json',
-                   
-                ]
-                ])
-                ->post('http://api.ebulksms.com:8080/sendsms.json');
 
-                
+                Http::withBody(json_encode($payload), 'application/json')->withOptions([
+                    'headers' => [
+                        'Content-Type' => 'application/json',
+                    ]
+                ])->post('https://api.ebulksms.com/sendsms.json');
+
             } catch (\Throwable $th) {
                 return $th;
             }
         }
     }
 
-    public function sendsms(Request $request)
+    public function checkAndUpdatePaymentStatus($tenantData, $daysLeft)
     {
+        foreach ($tenantData as $row) {
 
-        $payload = [
-            
-            "SMS" => [
-                "auth" => [
-                    "username" => "ngotrack2018@gmail.com",
-                    "apikey" => "56d55c9d36560666d2dcf02459a3ca86203591ce",
-                ],
-                "message" => [
-                    "sender" => "Tenancy+",
-                    "messagetext" => "111Hello, kindly ensure to make payments before the due date to avoid any issues. If you have any complaints please contact our support.",
-                    "flash" => "0"
-                ],
-                "recipients" =>
-                [
-                    "gsm" => [
-                        [
-                            "msidn" => $request->phone,
-                            "msgid" => 'test',
-                        ],
-                       
-                    ]
-                ]
-            ]
-        
-        ];
-       $res =  Http::withBody(json_encode($payload), 'application/json')
-            ->withOptions([
-            'headers' => [
-                'Content-Type' => 'application/json',
-               
-            ]
-            ])
-            ->post('https://api.ebulksms.com/sendsms.json');
+            try {
+                $due_date = Carbon::parse($row->duedate);
+                $status = $row->duration_status;
 
+                if (($status == '3') && ($daysLeft == 30)) {
 
-            return $res;
+                    $update_status = $row->update([
+                        'duration_status' => '2'
+                    ]);
+                } elseif (($status == '2') && (Carbon::today()->gt($due_date))) {
 
-        // $client = new \GuzzleHttp\Client();
+                    $update_status = $row->update([
+                        'duration_status' => '1'
+                    ]);
+                }
 
-
-        // // return $request->phone;
-
-
-        
-
-        // $response = $client->post('http://api.ebulksms.com:8080/sendsms.json', [
-        //     'debug' => fopen('php://stderr', 'w'),
-        //     'forms_params' => $payload,
-        //     'headers' => [
-        //         'Content-Type' => 'application/json',
-               
-        //     ]
-        //   ]);
-
-
-        //   return $response;
-        
+            } catch (\Throwable $th) {
+                return $th;
+            }
+        }
     }
+
 }
