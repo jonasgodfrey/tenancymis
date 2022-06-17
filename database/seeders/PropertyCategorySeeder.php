@@ -5,6 +5,7 @@ namespace Database\Seeders;
 use App\Models\PropertyCategory;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\DB;
 
 class PropertyCategorySeeder extends Seeder
 {
@@ -15,11 +16,13 @@ class PropertyCategorySeeder extends Seeder
      */
     public function run()
     {
-        PropertyCategory::create([
-            "category_name" => "Commercial Property",
-        ]);
-        PropertyCategory::create([
-            "category_name" => "Residential Property",
+        DB::table('property_categories')->insertOrIgnore([
+            [
+                "category_name" => "Commercial Property",
+            ],
+            [
+                "category_name" => "Residential Property",
+            ],
         ]);
     }
 }

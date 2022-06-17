@@ -2,12 +2,11 @@
 
 namespace Database\Seeders;
 
-use App\Models\PaymentStatus;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 
-class PaymentStatusSeeder extends Seeder
+class SubscriptionPackageSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -16,15 +15,14 @@ class PaymentStatusSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('payment_statuses')->insertOrIgnore([
+        DB::table('subscription_packages')->insertOrIgnore([
             [
-                "name" => "expired",
+                "title" => "Basic Package",
+                'duration' => '1',
             ],
             [
-                "name" => "expiring soon",
-            ],
-            [
-                "name" => "active",
+                "name" => "Premium Package",
+                'duration' => '2',
             ],
         ]);
     }

@@ -15,7 +15,7 @@ class StatusSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('status')->insert([
+        DB::table('status')->insertOrIgnore([
             [
                 "name" => "active", 'description' => 'active account',
             ],

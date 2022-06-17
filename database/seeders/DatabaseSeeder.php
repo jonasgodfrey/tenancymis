@@ -24,7 +24,8 @@ class DatabaseSeeder extends Seeder
             PropertyTypeSeeder::class,
             StatusSeeder::class,
             UnitTypeSeeder::class,
-            PaymentStatusSeeder::class
+            PaymentStatusSeeder::class,
+            SubscriptionPackageSeeder::class
         ]);
     }
 }

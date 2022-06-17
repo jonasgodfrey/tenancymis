@@ -5,6 +5,7 @@ namespace Database\Seeders;
 use App\Models\PropertyType;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\DB;
 
 class PropertyTypeSeeder extends Seeder
 {
@@ -15,17 +16,19 @@ class PropertyTypeSeeder extends Seeder
      */
     public function run()
     {
-        PropertyType::create([
-            'propcatId' => '1',
-            'typename' => 'Mall',
+        DB::table('property_types')->insertOrIgnore([
+            [
+                'propcatId' => '1',
+                'typename' => 'Mall',
+            ],
+            [
+                'propcatId' => '1',
+                'typename' => 'Shopping Complex',
+            ],
+            [
+                'propcatId' => '1',
+                'typename' => 'Plaza',
+            ],
         ]);
-        PropertyType::create([
-            'propcatId' => '1',
-            'typename' => 'Shopping Complex',
-        ]);
-        PropertyType::create([
-            'propcatId' => '1',
-            'typename' => 'Plaza',
-        ]);
-}
+    }
 }

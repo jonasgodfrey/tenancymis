@@ -48,9 +48,11 @@
                                     </ul>
 
                                     <div class="text-center">
-                                        <a href="https://paystack.com"
-                                           class="btn btn-bordered-success btn-success rounded-pill waves-effect waves-light">Pay
-                                            Now</a>
+                                        <button
+                                            class="btn btn-bordered-success btn-success rounded-pill waves-effect waves-light"
+                                            data-bs-toggle="modal" data-bs-target="#basicPlanModal">
+                                            Pay Now
+                                        </button>
                                     </div>
                                 </div>
                             </div>
@@ -78,9 +80,11 @@
                                     </ul>
 
                                     <div class="text-center">
-                                        <a href="https://paystack.com"
-                                           class="btn btn-success btn-bordered-success rounded-pill waves-effect waves-light">Pay
-                                            Now</a>
+                                        <button
+                                            class="btn btn-bordered-success btn-success rounded-pill waves-effect waves-light"
+                                            data-bs-toggle="modal" data-bs-target="#premiumPlanModal">
+                                            Pay Now
+                                        </button>
                                     </div>
                                 </div>
                             </div>
@@ -122,11 +126,153 @@
             </div>
             <!-- end row -->
 
+            <!-- Modal -->
+            <div class="modal text-center  fade" id="basicPlanModal" tabindex="-1" aria-labelledby="basicPlanModalLabel"
+                 aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header bg-secondary text-center">
+                            <h5 class="modal-title text-white " id="basicPlanModalLabel">Basic Package Subscription</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <form method="POST" action="{{ route('pay') }}" accept-charset="UTF-8" class="form-horizontal"
+                              role="form">
+                            <div class="modal-body">
+
+                                <div class="row" style="margin-bottom:40px;">
+                                    <div class="mb-3">
+                                        <label for="amount" class="form-label">Total Cost (N): </label>
+                                        <h3 id="amount-text">0</h3>
+                                    </div>
+
+                                    <input type="hidden" name="amount" class="form-control" id="amount" value="30000">
+
+                                    <div class="mb-3">
+                                        <label for="units" class="form-label">Number Of Units: </label>
+                                        <input type="number" name="units" class="form-control"
+                                               placeholder="Enter Number of Units" id="units" value="" required>
+                                    </div>
+
+                                    <div class="col-md-8 col-md-offset-2">
+                                        <input type="hidden" name="email"
+                                               value="{{Auth::user()->email}}"> {{-- required --}}
+                                        <input type="hidden" name="orderID" value="345">
+                                        <input type="hidden" name="currency" value="NGN">
+                                        <input type="hidden" name="metadata[]"
+                                               value=""
+                                               id="metadata"> {{-- For other necessary things you want to add to your payload. it is optional though --}}
+                                        <input type="hidden" name="reference"
+                                               value="{{ Paystack::genTranxRef() }}"> {{-- required --}}
+                                        <input type="hidden" name="callback_url" class="form-control"
+                                               value="{{route('register_subscription')}}">
+                                        <input type="hidden" name="_token"
+                                               value="{{ csrf_token() }}"> {{-- employ this in place of csrf_field only in laravel 5.0 --}}
+
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                <button class="btn btn-success" onmousedown="fetchMetaValues()" type="submit">
+                                    Subscribe
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Modal -->
+            <div class="modal text-center fade" id="premiumPlanModal" tabindex="-1"
+                 aria-labelledby="premiumPlanModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header bg-secondary">
+                            <h5 class="modal-title text-white " id="premiumPlanModalLabel">Premium Package
+                                Subscription</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <form method="POST" action="{{ route('pay') }}" accept-charset="UTF-8" class="form-horizontal"
+                              role="form">
+                            <div class="modal-body">
+
+                                <div class="row" style="margin-bottom:40px;">
+                                    <div class="mb-3">
+                                        <label for="amount" class="form-label">Total Cost (N): </label>
+                                        <h3 id="amount-text2">0</h3>
+                                    </div>
+
+                                    <input type="hidden" name="amount" class="form-control" id="amount" value="348000">
+
+                                    <div class="mb-3">
+                                        <label for="units" class="form-label">Number Of Units: </label>
+                                        <input type="number" name="units" class="form-control"
+                                               placeholder="Enter Number of Units" id="units2" value="" required>
+                                    </div>
+
+                                    <div class="col-md-8 col-md-offset-2">
+                                        <input type="hidden" name="email"
+                                               value="{{Auth::user()->email}}"> {{-- required --}}
+                                        <input type="hidden" name="orderID" value="345">
+                                        <input type="hidden" name="currency" value="NGN">
+                                        <input type="hidden" name="metadata[]"
+                                               value=""
+                                               id="metadata2"> {{-- For other necessary things you want to add to your payload. it is optional though --}}
+                                        <input type="hidden" name="reference"
+                                               value="{{ Paystack::genTranxRef() }}"> {{-- required --}}
+                                        <input type="hidden" name="callback_url" class="form-control"
+                                               value="{{route('register_subscription')}}">
+                                        <input type="hidden" name="_token"
+                                               value="{{ csrf_token() }}"> {{-- employ this in place of csrf_field only in laravel 5.0 --}}
+
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                <button class="btn btn-success" onmousedown="fetchMetaValues()" type="submit">
+                                    Subscribe
+                                </button>
+                            </div>
+                        </form>
+
+                    </div>
+                </div>
+            </div>
 
         </div> <!-- container-fluid -->
+
 
     </div> <!-- content -->
 @endsection
 @section('js')
-    <script src="dist/js/selectField.js"></script>
+    <script>
+        function fetchMetaValues() {
+            let metadata = document.getElementById('metadata');
+            let units = document.getElementById('units').value;
+            let fid = {'unit': units, 'plan_type': '1'};
+            metadata.value = JSON.stringify(fid);
+        }
+        function fetchMetaValues2() {
+            let metadata = document.getElementById('metadata2');
+            let units = document.getElementById('units2').value;
+            let fid = {'unit': units, 'plan_type': '2'};
+            metadata.value = JSON.stringify(fid);
+        }
+        $('#units').on('input', function () {
+            let data = $('#units').val();
+            let cost = data * 300;
+
+            $('#amount-text').html(`₦ ${cost}`);
+            $('#amount').val(`${cost}00`);
+        });
+
+        $('#units2').on('input', function () {
+            let data = $('#units2').val();
+            let cost = data * 3480;
+
+            $('#amount-text2').html(`₦ ${cost}`);
+            $('#amount').val(`${cost}00`);
+        });
+    </script>
 @endsection

@@ -61,7 +61,7 @@ class User extends Authenticatable
 
     public function subscription(): \Illuminate\Database\Eloquent\Relations\BelongsTo
     {
-        return $this->belongsTo(Subscription::class, 'owner_id');
+        return $this->belongsTo(UserSubscription::class);
     }
 
     public function properties(): \Illuminate\Database\Eloquent\Relations\HasMany

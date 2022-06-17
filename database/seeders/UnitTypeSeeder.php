@@ -5,6 +5,7 @@ namespace Database\Seeders;
 use App\Models\UnitType;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\DB;
 
 class UnitTypeSeeder extends Seeder
 {
@@ -15,17 +16,20 @@ class UnitTypeSeeder extends Seeder
      */
     public function run()
     {
-        UnitType::create([
-            'propcatId' => '1',
-            'name' => 'Shop',
+        DB::table('unit_types')->insertOrIgnore([
+            [
+                'propcatId' => '1',
+                'name' => 'Shop',
+            ],
+            [
+                'propcatId' => '2',
+                'name' => 'Duplex',
+            ],
+            [
+                'propcatId' => '2',
+                'name' => 'Bungalow',
+            ],
         ]);
-        UnitType::create([
-            'propcatId' => '2',
-            'name' => 'Duplex',
-        ]);
-        UnitType::create([
-            'propcatId' => '2',
-            'name' => 'Bungalow',
-        ]);
+
     }
 }

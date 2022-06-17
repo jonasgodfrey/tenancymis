@@ -32,6 +32,11 @@ Route::group(['middleware' => ['auth']], function () {
 
 
     Route::get('/subscription', [App\Http\Controllers\SubscriptionController::class, 'subscription'])->name('subscription');
+
+    Route::post('/pay', [App\Http\Controllers\PaymentController::class, 'redirectToGateway'])->name('pay');
+    Route::get('/payment/callback', [App\Http\Controllers\PaymentController::class, 'handleGatewayCallback']);
+    Route::get('/register_subscription', [App\Http\Controllers\PaymentController::class, 'register_subscription'])->name('register_subscription');
+
 });
 
 /**
@@ -75,7 +80,7 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('/users', [App\Http\Controllers\UserController::class, 'index'])->name('users.index');
     //Users Page Post Routes
     Route::post('/users/add', [App\Http\Controllers\UserController::class, 'store'])->name('users.store');
-    
+
     //Payments Page get Routes
     Route::get('/tenancy-payments', [App\Http\Controllers\TenancyPaymentsController::class, 'index'])->name('payments.index');
     //Payments Page Post Routes

@@ -14,7 +14,7 @@ class StateTableSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('states')->insert([
+        DB::table('states')->insertOrIgnore([
             [
                 "name" => "Abia",
                 "countryId" => "1",
