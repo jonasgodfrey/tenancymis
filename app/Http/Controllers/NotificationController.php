@@ -118,7 +118,7 @@ class NotificationController extends Controller
                     $update_status = $row->update([
                         'duration_status' => '2'
                     ]);
-                } elseif (($status == '2') && (Carbon::today()->gt($due_date))) {
+                } if (($status == '2') && (Carbon::today()->gt($due_date))) {
 
                     $update_status = $row->update([
                         'duration_status' => '1'
