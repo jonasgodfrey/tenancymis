@@ -164,7 +164,7 @@
                                         <input type="hidden" name="reference"
                                                value="{{ Paystack::genTranxRef() }}"> {{-- required --}}
                                         <input type="hidden" name="callback_url" class="form-control"
-                                               value="{{route('register_subscription')}}">
+                                               value="{{route('handleGatewayCallback')}}">
                                         <input type="hidden" name="_token"
                                                value="{{ csrf_token() }}"> {{-- employ this in place of csrf_field only in laravel 5.0 --}}
 
@@ -202,7 +202,7 @@
                                         <h3 id="amount-text2">0</h3>
                                     </div>
 
-                                    <input type="hidden" name="amount" class="form-control" id="amount" value="348000">
+                                    <input type="hidden" name="amount" class="form-control" id="amount2" value="">
 
                                     <div class="mb-3">
                                         <label for="units" class="form-label">Number Of Units: </label>
@@ -221,7 +221,7 @@
                                         <input type="hidden" name="reference"
                                                value="{{ Paystack::genTranxRef() }}"> {{-- required --}}
                                         <input type="hidden" name="callback_url" class="form-control"
-                                               value="{{route('register_subscription')}}">
+                                               value="{{route('handleGatewayCallback')}}">
                                         <input type="hidden" name="_token"
                                                value="{{ csrf_token() }}"> {{-- employ this in place of csrf_field only in laravel 5.0 --}}
 
@@ -230,7 +230,7 @@
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                <button class="btn btn-success" onmousedown="fetchMetaValues()" type="submit">
+                                <button class="btn btn-success" onmousedown="fetchMetaValues2()" type="submit">
                                     Subscribe
                                 </button>
                             </div>
@@ -244,7 +244,7 @@
 
 
     </div> <!-- content -->
-@endsection
+@endsection 
 @section('js')
     <script>
         function fetchMetaValues() {
@@ -268,11 +268,11 @@
         });
 
         $('#units2').on('input', function () {
-            let data = $('#units2').val();
-            let cost = data * 3480;
+            let data2 = $('#units2').val();
+            let cost2 = data2 * 3480;
 
-            $('#amount-text2').html(`₦ ${cost}`);
-            $('#amount').val(`${cost}00`);
+            $('#amount-text2').html(`₦ ${cost2}`);
+            $('#amount2').val(`${cost2}00`);
         });
     </script>
 @endsection

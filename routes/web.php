@@ -31,11 +31,11 @@ Route::group(['middleware' => ['auth']], function () {
     Route::post('/property/delete', [App\Http\Controllers\PropertyController::class, 'delete'])->name('property.delete');
 
 
-    Route::get('/subscription', [App\Http\Controllers\SubscriptionController::class, 'subscription'])->name('subscription');
+    Route::get('/subscription', [App\Http\Controllers\SubscriptionController::class, 'index'])->name('subscription');
+    Route::get('/subscription/users', [App\Http\Controllers\SubscriptionController::class, 'users'])->name('subscription.users');
 
     Route::post('/pay', [App\Http\Controllers\PaymentController::class, 'redirectToGateway'])->name('pay');
-    Route::get('/payment/callback', [App\Http\Controllers\PaymentController::class, 'handleGatewayCallback']);
-    Route::get('/register_subscription', [App\Http\Controllers\PaymentController::class, 'register_subscription'])->name('register_subscription');
+    Route::get('/payment/callback', [App\Http\Controllers\PaymentController::class, 'handleGatewayCallback'])->name('handleGatewayCallback');
 
 });
 
@@ -45,8 +45,8 @@ Route::group(['middleware' => ['auth']], function () {
  * comment and uncomment to enable active subscription
  */
 
-//Route::group(['middleware' => ['auth', 'subscribed']], function () {
-Route::group(['middleware' => ['auth']], function () {
+Route::group(['middleware' => ['auth', 'subscribed']], function () {
+// Route::group(['middleware' => ['auth']], function () {
 
     // In App Section
     Route::get('/artisans', [App\Http\Controllers\ArtisansController::class, 'index'])->name('artisans.index');

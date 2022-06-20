@@ -2,6 +2,7 @@
 
 namespace App\Http\Middleware;
 
+use App\Models\User;
 use Closure;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -17,9 +18,20 @@ class SubscriptionChecker
      */
     public function handle(Request $request, Closure $next)
     {
-        if(Auth::user()->subscriptionStatus('active')){
+        $auth_user = Auth::user();
+        $owner_id = $auth_user->owner_id;
+        $owner = User::where('id', $owner_id)->first();
+        $user = null;
+
+        if ($auth_user->role == "admin") {
+            $user = $auth_user;
+        }else{
+            $user = $owner;
+        }
+
+        if ($user->subscriptionStatus('active')) {
             return $next($request);
-        }else {
+        } else {
             return redirect('subscription');
         }
     }

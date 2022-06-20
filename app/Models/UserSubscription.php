@@ -19,4 +19,8 @@ class UserSubscription extends Model
         'amount'
     ];
 
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
 }
