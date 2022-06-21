@@ -58,7 +58,7 @@ class LoginRequest extends FormRequest
         $user = Auth::user();
         $date = new Carbon();
         $current_date = $date->now();
-        $due_date = $user->subscription->end_date;
+        $due_date = $user->subscription->end_date ?? 0;
 
         if($current_date->gt($due_date)){
             $user->subscription->update([
