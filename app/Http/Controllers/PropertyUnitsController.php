@@ -25,7 +25,6 @@ class PropertyUnitsController extends Controller
     public function index()
     {
         $user = Auth::user();
-
         if (Gate::allows('admin')) {
 
             $unitstype = UnitType::all();
@@ -49,6 +48,14 @@ class PropertyUnitsController extends Controller
             $request->validate([
                 'unitpics' => 'required|mimes:jpeg,jpg,png,mime|max:3008',
             ]);
+
+            $units_num = $user->units->count();
+            $sub_unit_num = $user->subscription->total_units_num;
+
+            if ($units_num == $sub_unit_num) {
+                Session::flash('flash_message', 'Maximum Number of units for your plan reached please upgrade plan !');
+                return redirect()->back();
+            }
 
             $file = $request->file('unitpics');
 
@@ -76,7 +83,6 @@ class PropertyUnitsController extends Controller
                 return redirect()->back();
             }
         }
-
     }
 
     public function update(Request $request)
