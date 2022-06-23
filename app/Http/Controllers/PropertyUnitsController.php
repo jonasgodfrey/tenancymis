@@ -50,10 +50,13 @@ class PropertyUnitsController extends Controller
             ]);
 
             $units_num = $user->units->count();
-            $sub_unit_num = $user->subscription->total_units_num;
 
-            if ($units_num == $sub_unit_num) {
-                Session::flash('flash_message', 'Maximum Number of units for your plan reached please upgrade plan !');
+            $sub = $user->subscription->where('status', 'active')->first();
+            $sub_unit_num = (int)$sub->total_units_no;
+
+
+            if ($units_num === $sub_unit_num) {
+                Session::flash('flash_message', 'Maximum Number of units for your plan reached please upgrade plan to add more units!');
                 return redirect()->back();
             }
 

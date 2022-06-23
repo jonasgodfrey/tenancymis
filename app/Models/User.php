@@ -59,7 +59,8 @@ class User extends Authenticatable
         return $this->belongsTo('App\Models\Status');
     }
 
-    public function subscription(){
+    public function subscription()
+    {
         return $this->hasOne(UserSubscription::class, 'user_id');
     }
 
@@ -98,8 +99,8 @@ class User extends Authenticatable
     {
         if (
             $this->roles()
-                ->where('name', $role)
-                ->first()
+            ->where('name', $role)
+            ->first()
         ) {
             return true;
         }
@@ -110,8 +111,8 @@ class User extends Authenticatable
     {
         if (
             $this->status()
-                ->where('name', $status)
-                ->first()
+            ->where('name', $status)
+            ->first()
         ) {
             return true;
         }
