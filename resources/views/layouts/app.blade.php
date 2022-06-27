@@ -83,13 +83,13 @@
                         <h6 class="fw-medium font-14 mt-4 mb-2 pb-1">Color Scheme</h6>
                         <div class="form-check form-switch mb-1">
                             <input type="checkbox" class="form-check-input" name="color-scheme-mode" value="light"
-                                id="light-mode-check" checked />
+                                id="light-mode-check"/>
                             <label class="form-check-label" for="light-mode-check">Light Mode</label>
                         </div>
 
                         <div class="form-check form-switch mb-1">
                             <input type="checkbox" class="form-check-input" name="color-scheme-mode" value="dark"
-                                id="dark-mode-check" />
+                                id="dark-mode-check" checked/>
                             <label class="form-check-label" for="dark-mode-check">Dark Mode</label>
                         </div>
 
