@@ -111,7 +111,7 @@ class NotificationController extends Controller
             "SMS" => [
                 "auth" => [
                     "username" => "ngotrack2018@gmail.com",
-                    "apikey" => "56d55c9d36560666d2dcf02459a3ca86203591ce",
+                    "apikey" => env(EBULK_API_KEY),
                 ],
                 "message" => [
                     "sender" => "Tenancy+",
