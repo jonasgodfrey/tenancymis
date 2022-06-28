@@ -30,6 +30,7 @@ class PropertyUnitsController extends Controller
             $unitstype = UnitType::all();
             $properties = $user->properties;
             $units = $user->units;
+            $sub = $user->subscription->where('status', 'active')->first();
 
             return view('admin.units.index')->with([
                 'unitstype' => $unitstype,
