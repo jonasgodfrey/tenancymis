@@ -74,10 +74,10 @@ class NotificationController extends Controller
                     "SMS" => [
                         "auth" => [
                             "username" => "ngotrack2018@gmail.com",
-                            "apikey" => "56d55c9d36560666d2dcf02459a3ca86203591ce",
+                            "apikey" => "0d4a9306a7c07a06f546d4a529d597847c4f4ba4",
                         ],
                         "message" => [
-                            "sender" => "TenancyPlus",
+                            "sender" => "MyTenancyPlus",
                             "messagetext" => "Hello " . $datax['name'] . ", Your rent at " . $datax['prop_name'] . "\n is expiring " . $datax['due_date'] . ". kindly ensure to make payments before the due date thank you. If you have any complaints please contact our support [support@mytenancyplus.com].\n best regards,\n mytenancyplus.com",
                             "flash" => "0"
                         ],
