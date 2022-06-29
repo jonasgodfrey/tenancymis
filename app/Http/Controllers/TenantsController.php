@@ -46,6 +46,12 @@ class TenantsController extends Controller
 
     public function store(Request $request)
     {
+        $request->validate([
+            'name' => ['required', 'string', 'max:255'],
+            'mobile' => ['required', 'string', 'min:10'],
+            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
+        ]);
+
         $user = Auth::user();
 
         if (Gate::allows('admin')) {

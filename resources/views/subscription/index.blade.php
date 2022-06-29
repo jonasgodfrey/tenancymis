@@ -6,126 +6,134 @@
         <div class="container-fluid">
             <div class="row">
                 <div class="col-12">
-                    <div class="page-title-box ">
-                        <h4 class="page-title text-center">User {{Auth::user()->name}} welcome to our platform !</h4>
-                        <h5 class="text-center justify-center">Note: please select a subscription plan you are
-                            comfortable with to proceed to our application</h5>
-                    </div>
+
+
                 </div>
             </div>
 
             <!-- start page title -->
-            <div class="row">
-                <div class="col-12">
-                    <div class="page-title-box page-title-box-alt">
-                        <h4 class="page-title text-center">Our Subscription Plans</h4>
-                    </div>
-                </div>
-            </div>
+
             <!-- end page title -->
+            <br>
+            <br>
+            <div class="card">
+                <div class="card-header">
+                </div>
+                <div class="card-body">
+                    <blockquote class="blockquote mb-0 text-center">
+                        <h3> <b style="text-transform: capitalize">Welcome Onboard {{ Auth::user()->name }}</b> !</h3>
+
+                        <footer class="blockquote-footer">
+                            <h4 class="text-center justify-center text-red-600">
+                                please select a subscription plan you are
+                                comfortable with to proceed to our application
+                            </h4>
+                        </footer>
+                    </blockquote>
+                    <br>
+                    <div class="row mt-2 justify-content-center">
+                        <div class="col-lg-10">
+                            <div class="row">
 
 
-            <div class="row mt-2 justify-content-center">
-                <div class="col-lg-10">
-                    <div class="row">
+                                <!--Pricing Column-->
+                                <article class="pricing-column col-xl-4 col-md-6">
+                                    <div class="card">
+                                        <div class="inner-box card-body">
+                                            <div class="plan-header p-3 text-center">
+                                                <h3 class="plan-title">Basic</h3>
+                                                <h2 class="plan-price fw-normal">₦300.00 Per Unit</h2>
+                                                <div class="plan-duration">Per Month</div>
+                                            </div>
+                                            <ul class="plan-stats list-unstyled text-center p-3 mb-0">
+                                                <li>Unlimited Properties</li>
+                                                <li>Unlimited Managers</li>
+                                                <li>Unlimited Tenants</li>
+                                                <li>Unlimited Artisans</li>
+                                                <li>Unlimited Notification/Reminders</li>
+                                                <li>24x7 Support</li>
+                                            </ul>
 
-                        <!--Pricing Column-->
-                        <article class="pricing-column col-xl-4 col-md-6">
-                            <div class="card">
-                                <div class="inner-box card-body">
-                                    <div class="plan-header p-3 text-center">
-                                        <h3 class="plan-title">Basic</h3>
-                                        <h2 class="plan-price fw-normal">₦300.00 Per Unit</h2>
-                                        <div class="plan-duration">Per Month</div>
+                                            <div class="text-center">
+                                                <button
+                                                    class="btn btn-bordered-success btn-success rounded-pill waves-effect waves-light"
+                                                    data-bs-toggle="modal" data-bs-target="#basicPlanModal">
+                                                    Pay Now
+                                                </button>
+                                            </div>
+                                        </div>
                                     </div>
-                                    <ul class="plan-stats list-unstyled text-center p-3 mb-0">
-                                        <li>Unlimited Properties</li>
-                                        <li>Unlimited Managers</li>
-                                        <li>Unlimited Tenants</li>
-                                        <li>Unlimited Artisans</li>
-                                        <li>Unlimited Notification/Reminders</li>
-                                        <li>24x7 Support</li>
-                                    </ul>
+                                </article>
 
-                                    <div class="text-center">
-                                        <button
-                                            class="btn btn-bordered-success btn-success rounded-pill waves-effect waves-light"
-                                            data-bs-toggle="modal" data-bs-target="#basicPlanModal">
-                                            Pay Now
-                                        </button>
+
+                                <!--Pricing Column-->
+                                <article class="pricing-column col-xl-4 col-md-6">
+                                    <div class="ribbon"><span>POPULAR</span></div>
+                                    <div class="card">
+                                        <div class="inner-box card-body">
+                                            <div class="plan-header p-3 text-center">
+                                                <h3 class="plan-title">Premium</h3>
+                                                <h2 class="plan-price fw-normal">₦3,480 Per Unit</h2>
+                                                <div class="plan-duration">Per Year</div>
+                                            </div>
+                                            <ul class="plan-stats list-unstyled text-center p-3 mb-0">
+                                                <li>Unlimited Properties</li>
+                                                <li>Unlimited Managers</li>
+                                                <li>Unlimited Tenants</li>
+                                                <li>Unlimited Artisans</li>
+                                                <li>Unlimited Notification/Reminders</li>
+                                                <li>Market Place Listing</li>
+                                                <li>24x7 Support</li>
+                                            </ul>
+
+                                            <div class="text-center">
+                                                <button
+                                                    class="btn btn-bordered-success btn-success rounded-pill waves-effect waves-light"
+                                                    data-bs-toggle="modal" data-bs-target="#premiumPlanModal">
+                                                    Pay Now
+                                                </button>
+                                            </div>
+                                        </div>
                                     </div>
-                                </div>
-                            </div>
-                        </article>
+                                </article>
 
+                                <!--Pricing Column-->
+                                <article class="pricing-column col-xl-4 col-md-6">
+                                    <div class="ribbon"><span>One Off</span></div>
+                                    <div class="card">
+                                        <div class="inner-box card-body">
+                                            <div class="plan-header p-3 text-center">
+                                                <h3 class="plan-title">Executive</h3>
+                                                <h2 class="plan-price fw-normal">₦5,500,000</h2>
+                                                <div class="plan-duration">One off Sale</div>
+                                            </div>
+                                            <br>
+                                            <br>
+                                            <ul class="plan-stats list-unstyled text-center p-3 mb-0">
+                                                <li>Unlimited Properties</li>
+                                                <li>Unlimited Managers</li>
+                                                <li>Unlimited Tenants</li>
+                                                <li>Unlimited Artisans</li>
+                                                <li>Unlimited Notification/Reminders</li>
+                                                <li>Training of Stakeholders</li>
+                                            </ul>
 
-                        <!--Pricing Column-->
-                        <article class="pricing-column col-xl-4 col-md-6">
-                            <div class="ribbon"><span>POPULAR</span></div>
-                            <div class="card">
-                                <div class="inner-box card-body">
-                                    <div class="plan-header p-3 text-center">
-                                        <h3 class="plan-title">Premium</h3>
-                                        <h2 class="plan-price fw-normal">₦3,480 Per Unit</h2>
-                                        <div class="plan-duration">Per Year</div>
+                                            <div class="text-center">
+                                                <a href="https://paystack.com"
+                                                   class="btn btn-success btn-bordered-success rounded-pill waves-effect waves-light">Pay
+                                                    Now</a>
+                                            </div>
+                                        </div>
                                     </div>
-                                    <ul class="plan-stats list-unstyled text-center p-3 mb-0">
-                                        <li>Unlimited Properties</li>
-                                        <li>Unlimited Managers</li>
-                                        <li>Unlimited Tenants</li>
-                                        <li>Unlimited Artisans</li>
-                                        <li>Unlimited Notification/Reminders</li>
-                                        <li>Market Place Listing</li>
-                                        <li>24x7 Support</li>
-                                    </ul>
-
-                                    <div class="text-center">
-                                        <button
-                                            class="btn btn-bordered-success btn-success rounded-pill waves-effect waves-light"
-                                            data-bs-toggle="modal" data-bs-target="#premiumPlanModal">
-                                            Pay Now
-                                        </button>
-                                    </div>
-                                </div>
-                            </div>
-                        </article>
-
-                        <!--Pricing Column-->
-                        <article class="pricing-column col-xl-4 col-md-6">
-                            <div class="ribbon"><span>One Off</span></div>
-                            <div class="card">
-                                <div class="inner-box card-body">
-                                    <div class="plan-header p-3 text-center">
-                                        <h3 class="plan-title">Executive</h3>
-                                        <h2 class="plan-price fw-normal">₦5,500,000</h2>
-                                        <div class="plan-duration">One off Sale</div>
-                                    </div>
-                                    <br>
-                                    <br>
-                                    <ul class="plan-stats list-unstyled text-center p-3 mb-0">
-                                        <li>Unlimited Properties</li>
-                                        <li>Unlimited Managers</li>
-                                        <li>Unlimited Tenants</li>
-                                        <li>Unlimited Artisans</li>
-                                        <li>Unlimited Notification/Reminders</li>
-                                        <li>Training of Stakeholders</li>
-                                    </ul>
-
-                                    <div class="text-center">
-                                        <a href="https://paystack.com"
-                                           class="btn btn-success btn-bordered-success rounded-pill waves-effect waves-light">Pay
-                                            Now</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </article>
+                                </article>
 
 
-                    </div><!-- end row -->
+                            </div><!-- end row -->
+                        </div>
+                    </div>
+                    <!-- end row -->
                 </div>
             </div>
-            <!-- end row -->
-
             <!-- Modal -->
             <div class="modal text-center  fade" id="basicPlanModal" tabindex="-1" aria-labelledby="basicPlanModalLabel"
                  aria-hidden="true">
@@ -244,35 +252,37 @@
 
 
     </div> <!-- content -->
-@endsection 
+@endsection
 @section('js')
     <script>
         function fetchMetaValues() {
-            let metadata = document.getElementById('metadata');
-            let units = document.getElementById('units').value;
-            let fid = {'unit': units, 'plan_type': '1'};
-            metadata.value = JSON.stringify(fid);
+            let metadata = document.getElementById( 'metadata' )
+            let units = document.getElementById( 'units' ).value
+            let fid = { 'unit': units, 'plan_type': '1' }
+            metadata.value = JSON.stringify( fid )
         }
+
         function fetchMetaValues2() {
-            let metadata = document.getElementById('metadata2');
-            let units = document.getElementById('units2').value;
-            let fid = {'unit': units, 'plan_type': '2'};
-            metadata.value = JSON.stringify(fid);
+            let metadata = document.getElementById( 'metadata2' )
+            let units = document.getElementById( 'units2' ).value
+            let fid = { 'unit': units, 'plan_type': '2' }
+            metadata.value = JSON.stringify( fid )
         }
-        $('#units').on('input', function () {
-            let data = $('#units').val();
-            let cost = data * 300;
 
-            $('#amount-text').html(`₦ ${cost}`);
-            $('#amount').val(`${cost}00`);
-        });
+        $( '#units' ).on( 'input', function() {
+            let data = $( '#units' ).val()
+            let cost = data * 300
 
-        $('#units2').on('input', function () {
-            let data2 = $('#units2').val();
-            let cost2 = data2 * 3480;
+            $( '#amount-text' ).html( `₦ ${ cost }` )
+            $( '#amount' ).val( `${ cost }00` )
+        } )
 
-            $('#amount-text2').html(`₦ ${cost2}`);
-            $('#amount2').val(`${cost2}00`);
-        });
+        $( '#units2' ).on( 'input', function() {
+            let data2 = $( '#units2' ).val()
+            let cost2 = data2 * 3480
+
+            $( '#amount-text2' ).html( `₦ ${ cost2 }` )
+            $( '#amount2' ).val( `${ cost2 }00` )
+        } )
     </script>
 @endsection

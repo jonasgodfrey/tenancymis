@@ -71,7 +71,7 @@
 
                     </li>
 
-                    <li class="nav-item dropdown clockdiv ">
+                    <li class="nav-item dropdown  " id="clockdiv">
                         <a class="nav-link arrow-none" href="#" id="topnav-dashboard" role="button"
                            aria-haspopup="true" aria-expanded="false">
                             SUBSCRIPTION:
