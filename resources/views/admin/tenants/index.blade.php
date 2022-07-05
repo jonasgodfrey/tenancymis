@@ -34,7 +34,7 @@
                                         @csrf
                                         <div class="mb-3">
                                             <label for="simpleinput" class="form-label">Tenant's Name</label>
-                                            <input type="text" name="tenantname" id="simpleinput" class="form-control"
+                                            <input type="text" name="tenant_name" id="simpleinput" class="form-control"
                                                 placeholder="" required>
                                         </div>
 
@@ -68,9 +68,9 @@
                                     <div class="mb-3">
                                         <label for="example-select" class="form-label">Occupancy Category</label>
                                         <select class="form-select" id="example-select" name="bizcat" required>
-                                            <option>Residential</option>    
-                                            <option>Business</option>                                           
-                                            
+                                            <option>Residential</option>
+                                            <option>Business</option>
+
                                         </select>
                                     </div>
                                     <div class="mb-3">
@@ -87,10 +87,10 @@
                                         <select class="form-select units" name="unit" id="example-select units"
                                             name="units" disabled required>
                                             <option style="display: none">loading..</option>
-                                               
+
                                         </select>
                                     </div>
-                                  
+
                                 </div> <!-- end col -->
 
                                 <div class="col-12">
@@ -119,19 +119,19 @@
                                     <tr>
                                         <th>Tenant</th>
                                         <th>Email</th>
-                                        <th>Phone</th>    
+                                        <th>Phone</th>
                                         <th>Unit Assigned</th>
-                                        <th>Property</th>                                        
+                                        <th>Property</th>
                                         <th>Action</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     @forelse ($tenants as $tenant)
                                     <tr>
-                                        
+
                                         <td>{{$tenant->name}}</td>
                                         <td>{{$tenant->email}}</td>
-                                        <td>{{$tenant->phone}}</td>                                        
+                                        <td>{{$tenant->phone}}</td>
                                         <td>{{$tenant->unit->name}}</td>
                                         <td>{{$tenant->property->propname}}</td>
                                         <td>
@@ -144,13 +144,13 @@
                                                     </div>
                                                 </div>
                                             </td>
-                                       
+
                                     </tr>
                                     @empty
                                     <h6 class="text-center">no tenants yet</h6>
                                     @endforelse
 
-                                   
+
 
                                 </tbody>
                             </table>

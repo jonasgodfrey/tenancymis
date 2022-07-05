@@ -41,13 +41,15 @@ class TenantsController extends Controller
                 'tenants' => $tenants,
             ]);
         }
+
+        return null;
     }
 
 
     public function store(Request $request)
     {
         $request->validate([
-            'name' => ['required', 'string', 'max:255'],
+            'tenant_name' => ['required', 'string', 'max:255'],
             'mobile' => ['required', 'string', 'min:10'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
         ]);
@@ -65,7 +67,7 @@ class TenantsController extends Controller
 
             // store details of a new user
             $user = User::create([
-                'name' => $request->tenantname,
+                'name' => $request->tenant_name,
                 'email' => $request->email,
                 'phone' => $request->mobile,
                 'role' => $role->name,
@@ -80,7 +82,7 @@ class TenantsController extends Controller
             $user->roles()->attach($role);
 
             $tenant = Tenant::create([
-                'name' => $request->tenantname,
+                'name' => $request->tenant_name,
                 'email' => $request->email,
                 'phone' => $request->mobile,
                 'bizname' => $request->bizname,
