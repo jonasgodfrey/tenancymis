@@ -45,8 +45,8 @@ Route::group(['middleware' => ['auth']], function () {
  * comment and uncomment to enable active subscription
  */
 
-// Route::group(['middleware' => ['auth', 'subscribed']], function () {
-Route::group(['middleware' => ['auth']], function () {
+Route::group(['middleware' => ['auth', 'subscribed']], function () {
+// Route::group(['middleware' => ['auth']], function () {
 
     // In App Section
     Route::get('/artisans', [App\Http\Controllers\ArtisansController::class, 'index'])->name('artisans.index');
