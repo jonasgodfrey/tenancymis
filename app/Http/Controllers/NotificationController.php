@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Notification;
 use App\Models\Tenant;
 use Illuminate\Http\Request;
 
@@ -129,6 +130,16 @@ class NotificationController extends Controller
                 return $th;
             }
         }
+    }
+
+    final public function clear_all( Request $request ) {
+        $notifications = Notification::where( 'status', 'unseen' )->get();
+
+        foreach($notifications as $notification){
+            $notification->update(['status' => 'seen']);
+        }
+
+        return redirect()->back();
     }
 
 }

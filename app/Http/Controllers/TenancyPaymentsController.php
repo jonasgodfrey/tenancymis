@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Notification;
 use App\Models\PaymentRecord;
 use App\Models\Tenant;
 use Carbon\Carbon;
@@ -38,6 +39,8 @@ class TenancyPaymentsController extends Controller
                 'count' => $count
             ]);
         }
+
+        return null;
     }
 
     public function store(Request $request)
@@ -46,6 +49,7 @@ class TenancyPaymentsController extends Controller
             'file' => 'required|mimes:jpeg,jpg,png,mime|max:3008',
         ]);
 
+        $user = Auth::user();
 
         if (Gate::allows('admin')) {
 
@@ -64,7 +68,6 @@ class TenancyPaymentsController extends Controller
                 $startdate = Carbon::parse($request->startdate);
                 $duedate = Carbon::parse($request->duedate);
 
-                
                 $payment = PaymentRecord::create([
                     'property_id' => $request->propname,
                     'unit_id' => $request->unit,
@@ -83,6 +86,14 @@ class TenancyPaymentsController extends Controller
 
                 $tenantrec->update([
                     'payId' => $payment->id,
+                ]);
+
+                // publish a notification for the user create action
+                $notification = Notification::create([
+                    'user_id' => $user->id,
+                    'owner_id' => $user->id,
+                    'title' => "New Payment Record Added",
+                    'message' => $user->name.' added a new payment record, for (tenant: '. $tenantrec->name .') on TenancyPlus'
                 ]);
 
                 if ($payment) {

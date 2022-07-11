@@ -61,87 +61,89 @@ class UserController extends Controller
         $prop_id = $request->propid;
         $property = Property::where('id', $prop_id)->first();
         $regCode = "PLA" . rand(11100, 999999);
+        $owner = $user->owner_id;
 
         if (Gate::allows('admin')) {
 
             // checks for user role and adds user
-            if ($role == 'manager') {
+            if ($role === 'manager') {
+
                 if ($property->hasManager($prop_id)) {
 
                     Session::flash('error_message', 'Property already has a manager !');
                     return redirect()->back();
-                } else {
-
-                    // store details of a new user
-                    $user = User::create([
-                        'name' => $request->name,
-                        'email' => $request->email,
-                        'phone' => $request->phone,
-                        'role' => $request->role,
-                        'usercode' => $regCode,
-                        'owner_id' => $user->id,
-                        'password' => Hash::make($request->phone),
-                        'status_id' => '1',
-                    ]);
-
-                    // attach roles to the new user
-                    $user->roles()->attach($role_id);
-
-                    Manager::create([
-                        'name' => $request->name,
-                        'email' => $request->email,
-                        'phone' => $request->phone,
-                        'propId' => $prop_id,
-                        'salary' => 'null',
-                    ]);
-
-                    // publish a notification for the user create action
-                    $notification = Notification::create([
-                        'user_id' => $user->id,
-                        'title' => "New User Created",
-                        'message' => 'You just added a new manager to TenancyPlus'
-                    ]);
                 }
+
+                // store details of a new user
+                $user = User::create([
+                    'name' => $request->name,
+                    'email' => $request->email,
+                    'phone' => $request->phone,
+                    'role' => $request->role,
+                    'usercode' => $regCode,
+                    'owner_id' => $user->id,
+                    'password' => Hash::make($request->phone),
+                    'status_id' => '1',
+                ]);
+
+                // attach roles to the new user
+                $user->roles()->attach($role_id);
+
+                Manager::create([
+                    'name' => $request->name,
+                    'email' => $request->email,
+                    'phone' => $request->phone,
+                    'propId' => $prop_id,
+                    'salary' => 'null',
+                ]);
+
+                // publish a notification for the user create action
+                $notification = Notification::create([
+                    'user_id' => $user->id,
+                    'owner_id' => $owner,
+                    'title' => "New User Created",
+                    'message' => $user->name.' added a new manager to TenancyPlus'
+                ]);
             }
 
             // checks for user role and adds user
-            if ($role == 'accountant') {
+            if ($role === 'accountant') {
 
                 if ($property->hasAccountant($prop_id)) {
 
                     Session::flash('error_message', 'Property already has an accountant !');
                     return redirect()->back();
-                } else {
-
-                    // store details of a new user
-                    $user = User::create([
-                        'name' => $request->name,
-                        'email' => $request->email,
-                        'phone' => $request->phone,
-                        'role' => $request->role,
-                        'usercode' => $regCode,
-                        'owner_id' => $user->id,
-                        'password' => Hash::make($request->phone),
-                        'status_id' => '1',
-                    ]);
-
-                    // attach roles to the new user
-                    $user->roles()->attach($role_id);
-
-                    Accountant::create([
-                        'name' => $request->name,
-                        'email' => $request->email,
-                        'propId' => $prop_id,
-                        'salary' => 'null',
-                    ]);
-
-                    // publish a notification for the user create action
-                    $notification = Notification::create([
-                        'user_id' => $user->id,
-                        'title' => "New User Created",
-                        'message' => 'You just added a new accountant to TenancyPlus'
-                    ]);
                 }
+
+                // store details of a new user
+                $user = User::create([
+                    'name' => $request->name,
+                    'email' => $request->email,
+                    'phone' => $request->phone,
+                    'role' => $request->role,
+                    'usercode' => $regCode,
+                    'owner_id' => $user->id,
+                    'password' => Hash::make($request->phone),
+                    'status_id' => '1',
+                ]);
+
+                // attach roles to the new user
+                $user->roles()->attach($role_id);
+
+                Accountant::create([
+                    'name' => $request->name,
+                    'email' => $request->email,
+                    'propId' => $prop_id,
+                    'salary' => 'null',
+                ]);
+
+                // publish a notification for the user create action
+                $notification = Notification::create([
+                    'user_id' => $user->id,
+                    'owner_id' => $owner,
+                    'title' => "New User Created",
+                    'message' => $user->name.' added a new accountant to TenancyPlus'
+                ]);
             }
 
             // checks for user role and adds user
@@ -174,8 +176,9 @@ class UserController extends Controller
                 // publish a notification for the user create action
                 $notification = Notification::create([
                     'user_id' => $user->id,
+                    'owner_id' => $owner,
                     'title' => "New User Created",
-                    'message' => 'You just added a new user to TenancyPlus'
+                    'message' => $user->name.' added an artisan to TenancyPlus'
                 ]);
             }
 

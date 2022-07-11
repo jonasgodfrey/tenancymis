@@ -23,6 +23,8 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('/', [DashboardController::class, 'index']);
     Route::get('/dashboard', [App\Http\Controllers\DashboardController::class, 'index'])->name('dashboard');
 
+    Route::get('/notifications/change-status', [App\Http\Controllers\NotificationController::class, 'clear_all'])->name('clear_all_unseen_notifications');
+
     //Property Page Get Routes
     Route::get('/property', [App\Http\Controllers\PropertyController::class, 'index'])->name('property.index');
     //Property Page Post Routes

@@ -28,7 +28,7 @@ class UserTableSeeder extends Seeder
             'phone' => '11111111111',
             'password' => Hash::make('secret'),
             'email_verified_at' => now(),
-            'owner_id' => null,
+            'owner_id' => 1,
             'remember_token' => null,
             'role' => 'admin',
             'otp' => rand(111111, 999999),

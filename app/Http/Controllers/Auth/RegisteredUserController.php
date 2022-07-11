@@ -53,7 +53,7 @@ class RegisteredUserController extends Controller
             'email' => $request->email,
             'phone' => $request->phone,
             'role' => 'admin',
-            'owner_id' => null,
+            'owner_id' => 0,
             // 'username' => $validatedData['username'],
             'usercode' => $regCode,
             // 'sponsors_id' => $validatedData['referrer_code'],
@@ -63,11 +63,13 @@ class RegisteredUserController extends Controller
         $user->roles()->attach($admin_role);
 
         $user->update([
-            'otp' => rand(111111, 999999)
+            'otp' => rand(111111, 999999),
+            'owner_id' => $user->id,
         ]);
 
         $notification = Notification::create([
             'user_id' => $user->id,
+            'owner_id' => $user->id,
             'title' => "New Signup",
             'message' => 'You just signed up welcome to PLA'
         ]);
@@ -78,11 +80,8 @@ class RegisteredUserController extends Controller
             'otp' => $user->otp
         ];
 
-
-
         try {
             //code...
-
 
             Mail::to($user->email)
                 ->send(new Welcome($datax));
@@ -92,10 +91,7 @@ class RegisteredUserController extends Controller
         } catch (\Throwable $th) {
             //throw $th;
 
-
         }
-
-
 
         $token = $user->createToken('auth_token')->plainTextToken;
 

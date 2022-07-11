@@ -67,11 +67,13 @@ class PaymentController extends Controller
                 'amount'=> $amount,
             ]);
 
+
+
             if ($subscription) {
                 Session::flash('flash_message', 'Subcription Successful !');
                 return redirect('dashboard');
             }
         }
-       
+
     }
 }

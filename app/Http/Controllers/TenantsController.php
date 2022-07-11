@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Notification;
 use App\Models\Role;
 use App\Models\Property;
 use App\Models\Tenant;
@@ -94,6 +95,16 @@ class TenantsController extends Controller
 
             Unit::where('id', $request->unit)->update([
                 'status' => 'occupied'
+            ]);
+
+            $owner = $user->owner_id;
+
+            // publish a notification for the user create action
+            $notification = Notification::create([
+                'user_id' => $user->id,
+                'owner_id' => $owner,
+                'title' => "New Tenant Created",
+                'message' => $user->name.' added a new tenant to TenancyPlus'
             ]);
 
             if ($user && $tenant) {

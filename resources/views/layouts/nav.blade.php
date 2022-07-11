@@ -16,7 +16,8 @@
             </li>
 
             <li class="dropdown d-inline-block d-lg-none">
-                <a class="nav-link dropdown-toggle arrow-none waves-effect waves-light" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="false" aria-expanded="false">
+                <a class="nav-link dropdown-toggle arrow-none waves-effect waves-light" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="false"
+                   aria-expanded="false">
                     <i class="fe-search noti-icon"></i>
                 </a>
                 <div class="dropdown-menu dropdown-lg dropdown-menu-end p-0">
@@ -27,11 +28,25 @@
             </li>
 
             <li class="dropdown notification-list topbar-dropdown">
-                <a class="nav-link dropdown-toggle waves-effect waves-light" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="false" aria-expanded="false">
+                <a class="nav-link dropdown-toggle waves-effect waves-light" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="false"
+                   aria-expanded="false">
                     <i class="fe-bell noti-icon"></i>
                     <span class="badge bg-danger rounded-circle noti-icon-badge">
                         @php
-                            $notifications = \App\Models\Notification::where('user_id', Auth::user()->id)->latest()->get();
+                            $user = Auth::user();
+							$notifications = null;
+							if($user->role === 'admin'){
+								$notifications = \App\Models\Notification::where([
+									'owner_id' => $user->id,
+									'status' => 'unseen'
+									])->latest()->get();
+							}else{
+								$notifications = \App\Models\Notification::where([
+									'user_id' => $user->id,
+									'status' => 'unseen'
+									])->latest()->get();
+							}
+
                         @endphp
 
                         {{$notifications->count()}}
@@ -43,7 +58,7 @@
                     <div class="dropdown-item noti-title">
                         <h5 class="m-0">
                             <span class="float-end">
-                                <a href="" class="text-dark">
+                                <a href="/notifications/change-status" class="text-dark">
                                     <small>Clear All</small>
                                 </a>
                             </span>Notification
@@ -54,19 +69,17 @@
                         @forelse ($notifications->take(10) as $notification)
                             <a href="javascript:void(0);" class="dropdown-item notify-item active">
                                 <div class="notify-icon">
-                                    <img src="/assets/images/user.png" class="img-fluid rounded-circle" alt="" /> </div>
-                                <p class="notify-details">Cristina Pride</p>
+                                    <img src="/assets/images/user.png" class="img-fluid rounded-circle" alt=""/></div>
+                                <p class="notify-details">{{$notification->title}}</p>
                                 <p class="text-muted mb-0 user-msg">
-                                    <small>Hi, How are you? What about our next meeting</small>
+                                    <small>{{$notification->message}}</small>
                                 </p>
                             </a>
                         @empty
                             <h6 class="text-center">no notifications yet</h6>
-                    @endforelse
+                        @endforelse
 
-                    <!-- item-->
-
-
+                        <!-- item-->
 
 
                     </div>
@@ -81,7 +94,8 @@
             </li>
 
             <li class="dropdown notification-list topbar-dropdown">
-                <a class="nav-link dropdown-toggle nav-user me-0 waves-effect waves-light" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="false" aria-expanded="false">
+                <a class="nav-link dropdown-toggle nav-user me-0 waves-effect waves-light" data-bs-toggle="dropdown" href="#" role="button"
+                   aria-haspopup="false" aria-expanded="false">
                     <img src="/assets/images/user.png" alt="user-image" class="rounded-circle">
                     <span class="pro-user-name ms-1">
                         {{-- {{$username['username']}}  --}}
@@ -113,7 +127,7 @@
                     <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
                         @csrf
                     </form>
-                    <a href="" onclick="event.preventDefault(); document.getElementById('logout-form').submit();" class="dropdown-item notify-item" >
+                    <a href="" onclick="event.preventDefault(); document.getElementById('logout-form').submit();" class="dropdown-item notify-item">
                         <i class="fe-log-out"></i>
                         <span>Logout</span>
                     </a>

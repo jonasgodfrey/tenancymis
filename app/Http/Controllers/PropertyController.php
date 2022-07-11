@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Notification;
 use Illuminate\Support\Facades\Session;
 use App\Models\Country;
 use App\Models\Property;
@@ -51,6 +52,7 @@ class PropertyController extends Controller
 
         $file = $request->file('logo');
         $user = Auth::user();
+        $owner = $user->owner_id;
         // generate a new filename. getClientOriginalExtension() for the file extension
         $rand = rand(111, 9999);
 
@@ -74,6 +76,14 @@ class PropertyController extends Controller
                 'uploadsDir' => $filename,
             ]);
 
+            // publish a notification for the user create action
+            $notification = Notification::create([
+                'user_id' => $user->id,
+                'owner_id' => $owner,
+                'title' => "New Property Created",
+                'message' => $user->name.' added a new property to TenancyPlus'
+            ]);
+
             if ($property) {
                 Session::flash('flash_message', 'Property Created Successfully !');
                 return redirect()->back();
@@ -85,7 +95,7 @@ class PropertyController extends Controller
     {
         # code...
     }
-    
+
     public function delete(Request $request)
     {
         # code...

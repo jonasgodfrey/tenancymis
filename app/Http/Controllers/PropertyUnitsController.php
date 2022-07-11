@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Notification;
 use Illuminate\Http\Request;
 use App\Models\UnitType;
 use App\Models\Property;
@@ -43,6 +44,7 @@ class PropertyUnitsController extends Controller
     public function store(Request $request)
     {
         $user = Auth::user();
+        $owner = $user->owner_id;
         # code...
         if (Gate::allows('admin')) {
 
@@ -80,6 +82,14 @@ class PropertyUnitsController extends Controller
                 'status' => 'empty',
                 'image' => $filename,
                 'owner_id' => $user->id
+            ]);
+
+            // publish a notification for the user create action
+            $notification = Notification::create([
+                'user_id' => $user->id,
+                'owner_id' => $owner,
+                'title' => "New Unit Created",
+                'message' => $user->name.' added a new unit to TenancyPlus'
             ]);
 
             if ($unit) {
