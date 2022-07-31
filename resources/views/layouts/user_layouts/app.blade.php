@@ -4,7 +4,7 @@
         <head>
 
                 <meta charset="utf-8" />
-                <title>MyTenancyPlus</title>
+                <title>{{Auth::user()->role}} | MyTenancyPlus</title>
                 <meta name="viewport" content="width=device-width, initial-scale=1.0">
                 <meta content="A fully featured admin theme which can be used to build CRM, CMS, etc." name="description" />
                 <meta content="Coderthemes" name="author" />
@@ -24,7 +24,9 @@
 
         </head>
 
-    <body class="loading" data-layout='{"mode": "light", "width": "fluid", "menuPosition": "fixed", "sidebar": { "color": "light", "size": "default", "showuser": true}, "topbar": {"color": "light"}, "showRightSidebarOnPageLoad": true}'>
+    <body class="loading" data-layout='{"mode": "dark", "width": "fluid", "menuPosition": "fixed", "sidebar": 
+        { "color": "dark", "size": "default", "showuser": true}, "topbar": 
+        {"color": "dark"}, "showRightSidebarOnPageLoad": true}'>
         <!-- Begin page -->
         <div id="wrapper">
 
@@ -42,7 +44,7 @@
     <!-- END wrapper -->
 
       <!-- Right Sidebar -->
-<div class="right-bar">
+<!-- <div class="right-bar">
 
     <div data-simplebar class="h-100">
 
@@ -53,7 +55,7 @@
             <h4 class="font-16 m-0 text-white">Theme Customizer</h4>
         </div>
 
-        <!-- Tab panes -->
+        
         <div class="tab-content pt-0">
 
             <div class="tab-pane active" id="settings-tab" role="tabpanel">
@@ -76,7 +78,7 @@
                         <label class="form-check-label" for="dark-mode-check">Dark Mode</label>
                     </div>
 
-                    <!-- Width -->
+                    
                     <h6 class="fw-medium font-14 mt-4 mb-2 pb-1">Width</h6>
                     <div class="form-check form-switch mb-1">
                         <input type="checkbox" class="form-check-input" name="width" value="fluid" id="fluid-check" checked />
@@ -87,7 +89,7 @@
                         <label class="form-check-label" for="boxed-check">Boxed</label>
                     </div>
 
-                    <!-- Menu positions -->
+                   
                     <h6 class="fw-medium font-14 mt-4 mb-2 pb-1">Menus (Leftsidebar and Topbar) Positon</h6>
 
                     <div class="form-check form-switch mb-1">
@@ -102,7 +104,7 @@
                         <label class="form-check-label" for="scrollable-check">Scrollable</label>
                     </div>
 
-                    <!-- Topbar -->
+                 
                     <h6 class="fw-medium font-14 mt-4 mb-2 pb-1">Topbar</h6>
 
                     <div class="form-check form-switch mb-1">
@@ -122,8 +124,8 @@
             </div>
         </div>
 
-    </div> <!-- end slimscroll-menu-->
-</div>
+    </div>
+</div> -->
 <!-- /Right-bar -->
 
 <!-- Right bar overlay-->

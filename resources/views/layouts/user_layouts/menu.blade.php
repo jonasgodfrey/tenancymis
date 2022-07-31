@@ -90,15 +90,49 @@
                 <li class="menu-title mt-2">Activities</li>
 
                 <li>
-                    <a href="apps-chat.html">
+                    <a href="#">
                         <i class="mdi mdi-forum"></i>
-                        <span> Chat </span>
+                        <span> Assign Artisan </span>
+                    </a>
+                </li>
+
+                <li>
+                    <a href="#">
+                        <i class="mdi mdi-forum"></i>
+                        <span> Tenants Requests </span>
+                    </a>
+                </li>
+
+                <li>
+                    <a href="#">
+                        <i class="mdi mdi-forum"></i>
+                        <span> Tenancy Agreement </span>
+                    </a>
+                </li>
+
+                <li>
+                    <a href="#">
+                        <i class="mdi mdi-forum"></i>
+                        <span>Repairs & Maintenance</span>
+                    </a>
+                </li>
+
+                <li>
+                    <a href="#">
+                        <i class="mdi mdi-forum"></i>
+                        <span> Lodge Complaint </span>
+                    </a>
+                </li>
+
+                <li>
+                    <a href="#">
+                        <i class="mdi mdi-forum"></i>
+                        <span> Trigger Alarm </span>
                     </a>
                 </li>
 
 
-
-                <li>
+                <!-- <li>
                     <a href="#email" data-bs-toggle="collapse">
                         <i class="mdi mdi-email"></i>
                         <span> Email </span>
@@ -114,9 +148,9 @@
                             </li>
                         </ul>
                     </div>
-                </li>
+                </li> -->
 
-                <li>
+                <!-- <li>
                     <a href="#sidebarTasks" data-bs-toggle="collapse">
                         <i class="mdi mdi-clipboard"></i>
                         <span> Tasks </span>
@@ -132,14 +166,14 @@
                             </li>
                         </ul>
                     </div>
-                </li>
+                </li> -->
 
-                <li>
+                <!-- <li>
                     <a href="#">
                         <i class="mdi mdi-login"></i>
                         <span>Profile</span>
                     </a>
-                </li>
+                </li> -->
 
                 <li>
                     <a href="/login">

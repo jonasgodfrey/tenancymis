@@ -29,7 +29,7 @@
                             </div>
                         </div>
 
-                        <h4 class="header-title mt-0 mb-4">Properties</h4>
+                        <h4 class="header-title mt-0 mb-4">Properties Managed</h4>
 
                         <div class="widget-chart-1">
                             <div class="widget-chart-box-1 float-start" dir="ltr">
@@ -67,13 +67,13 @@
                             </div>
                         </div>
 
-                        <h4 class="header-title mt-0 mb-3">Units</h4>
+                        <h4 class="header-title mt-0 mb-3">Units Onboarded</h4>
 
                         <div class="widget-box-2">
                             <div class="widget-detail-2 text-end">
                                 <span class="badge bg-success rounded-pill float-start mt-3">0 <i class="mdi mdi-trending-up"></i> </span>
                                 <h2 class="fw-normal mb-1"> 0 </h2>
-                                <p class="text-muted mb-3">Units</p>
+                                <p class="text-muted mb-3">Units </p>
                             </div>
                             <div class="progress progress-bar-alt-success progress-sm">
                                 <div class="progress-bar bg-success" role="progressbar"
@@ -199,64 +199,60 @@
                                 <thead>
                                 <tr>
                                     <th>#</th>
-                                    <th>Project Name</th>
+                                    <th>Property</th>
+                                    <th>Tenant</th>
+                                    <th>Tel</th>
+                                    <th>Email</th>
                                     <th>Start Date</th>
                                     <th>Due Date</th>
                                     <th>Status</th>
-                                    <th>Assign</th>
+                                    <th>Action</th>
+                                    
                                 </tr>
                                 </thead>
                                 <tbody>
                                     <tr>
                                         <td>1</td>
-                                        <td>Adminto Admin v1</td>
+                                        <td>EFAB Properties Apo</td>
+                                        <td>James Paul</td>
+                                        <td>08162445607</td>
+                                        <td>jamespaul@gmail.com</td>
                                         <td>01/01/2017</td>
-                                        <td>26/04/2017</td>
-                                        <td><span class="badge bg-danger">Released</span></td>
-                                        <td>Coderthemes</td>
-                                    </tr>
-                                    <tr>
-                                        <td>2</td>
-                                        <td>Adminto Frontend v1</td>
-                                        <td>01/01/2017</td>
-                                        <td>26/04/2017</td>
-                                        <td><span class="badge bg-success">Released</span></td>
-                                        <td>Adminto admin</td>
-                                    </tr>
-                                    <tr>
-                                        <td>3</td>
-                                        <td>Adminto Admin v1.1</td>
-                                        <td>01/05/2017</td>
-                                        <td>10/05/2017</td>
-                                        <td><span class="badge bg-pink">Pending</span></td>
-                                        <td>Coderthemes</td>
-                                    </tr>
-                                    <tr>
-                                        <td>4</td>
-                                        <td>Adminto Frontend v1.1</td>
-                                        <td>01/01/2017</td>
-                                        <td>31/05/2017</td>
-                                        <td><span class="badge bg-purple">Work in Progress</span>
+                                        <td>01/01/2018</td>
+                                        <td><span class="badge bg-danger">inactive</span></td>
+                                        <td>
+                                        <div class="row">
+                                                    <div class="col-6">
+                                                        <a href="#"><i class="fas fa-eye"></i></a>
+                                                    </div>
+                                                    <!-- <div class="col-6">
+                                                        <span><a href="#"><i class="fas fa-pen"></i></a></span>
+                                                    </div> -->
+                                                </div>
                                         </td>
-                                        <td>Adminto admin</td>
-                                    </tr>
-                                    <tr>
-                                        <td>5</td>
-                                        <td>Adminto Admin v1.3</td>
-                                        <td>01/01/2017</td>
-                                        <td>31/05/2017</td>
-                                        <td><span class="badge bg-warning">Coming soon</span></td>
-                                        <td>Coderthemes</td>
                                     </tr>
 
                                     <tr>
-                                        <td>6</td>
-                                        <td>Adminto Admin v1.3</td>
-                                        <td>01/01/2017</td>
-                                        <td>31/05/2017</td>
-                                        <td><span class="badge bg-primary">Coming soon</span></td>
-                                        <td>Adminto admin</td>
+                                        <td>2</td>
+                                        <td>EFAB Properties Apo</td>
+                                        <td>Nandom Paul</td>
+                                        <td>08162445607</td>
+                                        <td>nan4paul@gmail.com</td>
+                                        <td>01/01/2022</td>
+                                        <td>01/01/2023</td>
+                                        <td><span class="badge bg-success">active</span></td>
+                                        <td>
+                                        <div class="row">
+                                                    <div class="col-6">
+                                                        <a href="#"><i class="fas fa-eye"></i></a>
+                                                    </div>
+                                                    <!-- <div class="col-6">
+                                                        <span><a href="#"><i class="fas fa-pen"></i></a></span>
+                                                    </div> -->
+                                                </div>
+                                        </td>
                                     </tr>
+                                   
 
                                 </tbody>
                             </table>

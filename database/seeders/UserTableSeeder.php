@@ -24,7 +24,7 @@ class UserTableSeeder extends Seeder
 
         $admin = User::create([
             'name' => 'admin',
-            'email' => 'admin@tenancymis.com',
+            'email' => 'admin@mytenancyplus.com',
             'phone' => '11111111111',
             'password' => Hash::make('secret'),
             'email_verified_at' => now(),

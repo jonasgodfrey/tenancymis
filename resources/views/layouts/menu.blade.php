@@ -36,7 +36,7 @@
                     <li class="nav-item dropdown">
                         <a class="nav-link arrow-none" href="/tenancy-payments" id="topnav-dashboard" role="button"
                            aria-haspopup="true" aria-expanded="false">
-                            <i class="mdi mdi-cash-multiple me-1"></i> PAYMENT RECORD
+                            <i class="mdi mdi-cash-multiple me-1"></i> PAYMENTS
                         </a>
 
                     </li>
@@ -48,13 +48,13 @@
                         </a>
 
                     </li>
-                    <li class="nav-item dropdown">
+                    <!-- <li class="nav-item dropdown">
                         <a class="nav-link arrow-none" href="/artisans" id="topnav-dashboard" role="button"
                            aria-haspopup="true" aria-expanded="false">
                             <i class="mdi mdi-account-cog me-1"></i> ARTISANS
                         </a>
 
-                    </li>
+                    </li> -->
                     <!-- <li class="nav-item dropdown">
                         <a class="nav-link arrow-none" href="/chatbox" id="topnav-dashboard" role="button"
                            aria-haspopup="true" aria-expanded="false">
@@ -63,13 +63,13 @@
 
                     </li> -->
 
-                    <li class="nav-item dropdown">
+                    <!-- <li class="nav-item dropdown">
                         <a class="nav-link arrow-none" href="/settings" id="topnav-dashboard" role="button"
                            aria-haspopup="true" aria-expanded="false">
                             <i class="mdi mdi-cogs me-1"></i> SETTINGS
                         </a>
 
-                    </li>
+                    </li> -->
 
                     <li class="nav-item dropdown  " id="clockdiv">
                         <a class="nav-link arrow-none" href="#" id="topnav-dashboard" role="button"

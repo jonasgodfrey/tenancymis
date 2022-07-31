@@ -22,12 +22,32 @@ class UnitTypeSeeder extends Seeder
                 'name' => 'Shop',
             ],
             [
+                'propcatId' => '1',
+                'name' => 'Store',
+            ],
+            [
+                'propcatId' => '2',
+                'name' => 'Single Room',
+            ],
+            [
+                'propcatId' => '2',
+                'name' => 'Self Contain',
+            ],
+            [
+                'propcatId' => '2',
+                'name' => 'Flat',
+            ],
+            [
+                'propcatId' => '2',
+                'name' => 'Bungalow',
+            ],
+            [
                 'propcatId' => '2',
                 'name' => 'Duplex',
             ],
             [
                 'propcatId' => '2',
-                'name' => 'Bungalow',
+                'name' => 'Terrace'
             ],
         ]);
 

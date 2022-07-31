@@ -42,7 +42,7 @@
                                         <div class="inner-box card-body">
                                             <div class="plan-header p-3 text-center">
                                                 <h3 class="plan-title">Basic</h3>
-                                                <h2 class="plan-price fw-normal">₦300.00 Per Unit</h2>
+                                                <h3 class="plan-price fw-normal" style="color:white">₦300.00 Per Unit</h3>
                                                 <div class="plan-duration">Per Month</div>
                                             </div>
                                             <ul class="plan-stats list-unstyled text-center p-3 mb-0">
@@ -73,7 +73,7 @@
                                         <div class="inner-box card-body">
                                             <div class="plan-header p-3 text-center">
                                                 <h3 class="plan-title">Premium</h3>
-                                                <h2 class="plan-price fw-normal">₦3,480 Per Unit</h2>
+                                                <h2 class="plan-price fw-normal" style="color:white">₦3,480 Per Unit</h2>
                                                 <div class="plan-duration">Per Year</div>
                                             </div>
                                             <ul class="plan-stats list-unstyled text-center p-3 mb-0">
@@ -104,7 +104,7 @@
                                         <div class="inner-box card-body">
                                             <div class="plan-header p-3 text-center">
                                                 <h3 class="plan-title">Executive</h3>
-                                                <h2 class="plan-price fw-normal">₦5,500,000</h2>
+                                                <h2 class="plan-price fw-normal" style="color:white">₦10,500,000</h2>
                                                 <div class="plan-duration">One off Sale</div>
                                             </div>
                                             <br>
@@ -140,7 +140,7 @@
                 <div class="modal-dialog">
                     <div class="modal-content">
                         <div class="modal-header bg-secondary text-center">
-                            <h5 class="modal-title text-white " id="basicPlanModalLabel">Basic Package Subscription</h5>
+                            <h5 class="modal-title text-white " id="basicPlanModalLabel">Monthly Basic Package Subscription</h5>
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
                         <form method="POST" action="{{ route('pay') }}" accept-charset="UTF-8" class="form-horizontal"
@@ -196,7 +196,7 @@
                 <div class="modal-dialog">
                     <div class="modal-content">
                         <div class="modal-header bg-secondary">
-                            <h5 class="modal-title text-white " id="premiumPlanModalLabel">Premium Package
+                            <h5 class="modal-title text-white " id="premiumPlanModalLabel">Yearly Premium Package
                                 Subscription</h5>
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>

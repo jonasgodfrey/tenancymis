@@ -29,6 +29,34 @@ class PropertyTypeSeeder extends Seeder
                 'propcatId' => '1',
                 'typename' => 'Plaza',
             ],
+            [
+                'propcatId' => '1',
+                'typename' => 'Market Square',
+            ],
+            [
+                'propcatId' => '1',
+                'typename' => 'Stores',
+            ],
+            [
+                'propcatId' => '1',
+                'typename' => 'Centres',
+            ],
+            [
+                'propcatId' => '2',
+                'typename' => 'Estate',
+            ],
+            [
+                'propcatId' => '2',
+                'typename' => 'Apartments',
+            ],
+            [
+                'propcatId' => '2',
+                'typename' => 'Self Contain',
+            ],
+            [
+                'propcatId' => '2',
+                'typename' => 'Single Rooms',
+            ],
         ]);
     }
 }

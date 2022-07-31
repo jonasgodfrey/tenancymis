@@ -29,7 +29,7 @@
                             </div>
                         </div>
 
-                        <h4 class="header-title mt-0 mb-4">Total YeaR</h4>
+                        <h4 class="header-title mt-0 mb-4">Year Spent</h4>
 
                         <div class="widget-chart-1">
                             <div class="widget-chart-box-1 float-start" dir="ltr">
@@ -67,19 +67,19 @@
                             </div>
                         </div>
 
-                        <h4 class="header-title mt-0 mb-3">Complaint Resolved</h4>
+                        <h4 class="header-title mt-0 mb-3">Complaint</h4>
 
                         <div class="widget-box-2">
                             <div class="widget-detail-2 text-end">
-                                <span class="badge bg-success rounded-pill float-start mt-3">32% <i class="mdi mdi-trending-up"></i> </span>
+                                <span class="badge bg-success rounded-pill float-start mt-3">0% <i class="mdi mdi-trending-up"></i> </span>
                                 <h2 class="fw-normal mb-1"> 0 </h2>
-                                <p class="text-muted mb-3">Complaint Resolved</p>
+                                <p class="text-muted mb-3"> Resolved</p>
                             </div>
                             <div class="progress progress-bar-alt-success progress-sm">
                                 <div class="progress-bar bg-success" role="progressbar"
-                                        aria-valuenow="77" aria-valuemin="0" aria-valuemax="100"
-                                        style="width: 77%;">
-                                    <span class="visually-hidden">77% Complete</span>
+                                        aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"
+                                        style="width: 0%;">
+                                    <span class="visually-hidden">0% Complete</span>
                                 </div>
                             </div>
                         </div>
@@ -106,7 +106,7 @@
                             </div>
                         </div>
 
-                        <h4 class="header-title mt-0 mb-4">Complaints Pending</h4>
+                        <h4 class="header-title mt-0 mb-4">Complaints</h4>
 
                         <div class="widget-chart-1">
                             <div class="widget-chart-box-1 float-start" dir="ltr">
@@ -117,7 +117,7 @@
                             </div>
                             <div class="widget-detail-1 text-end">
                                 <h2 class="fw-normal pt-2 mb-1"> 0 </h2>
-                                <p class="text-muted mb-1">Complaints Pending</p>
+                                <p class="text-muted mb-1">Pending</p>
                             </div>
                         </div>
                     </div>
@@ -147,15 +147,15 @@
 
                         <div class="widget-box-2">
                             <div class="widget-detail-2 text-end">
-                                <span class="badge bg-pink rounded-pill float-start mt-3">32% <i class="mdi mdi-trending-up"></i> </span>
-                                <h2 class="fw-normal mb-1"> 158 </h2>
+                                <span class="badge bg-pink rounded-pill float-start mt-3">0% <i class="mdi mdi-trending-up"></i> </span>
+                                <h2 class="fw-normal mb-1"> 0 </h2>
                                 <p class="text-muted mb-3">Leased</p>
                             </div>
                             <div class="progress progress-bar-alt-pink progress-sm">
                                 <div class="progress-bar bg-pink" role="progressbar"
-                                        aria-valuenow="77" aria-valuemin="0" aria-valuemax="100"
-                                        style="width: 77%;">
-                                    <span class="visually-hidden">77% Complete</span>
+                                        aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"
+                                        style="width: 0%;">
+                                    <span class="visually-hidden">0% Complete</span>
                                 </div>
                             </div>
                         </div>
@@ -191,70 +191,80 @@
                             </div>
                         </div>
 
-                        <h4 class="header-title mt-0 mb-3">Tenancy History</h4>
+                        <h4 class="header-title mt-0 mb-3">Occupancy</h4>
 
                         <div class="table-responsive">
                             <table class="table table-hover mb-0">
                                 <thead>
                                 <tr>
                                     <th>#</th>
-                                    <th>Project Name</th>
-                                    <th>Start Date</th>
-                                    <th>Due Date</th>
-                                    <th>Status</th>
-                                    <th>Assign</th>
+                                    <th>Property Name</th>
+                                    <th>Unit Occupied</th>
+                                    <th>Amount</th>
+                                    <th>Rent Start Date</th>
+                                    <th>Rent Due Date</th>
+                                    <th>Rent Status</th>    
+                                    <th>Action</th>                                
                                 </tr>
                                 </thead>
                                 <tbody>
                                     <tr>
                                         <td>1</td>
-                                        <td>Adminto Admin v1</td>
-                                        <td>01/01/2017</td>
-                                        <td>26/04/2017</td>
-                                        <td><span class="badge bg-danger">Released</span></td>
-                                        <td>Coderthemes</td>
+                                        <td>EFAB Sunshine Estate Apo</td>
+                                        <td>House 09</td>
+                                        <td>N350,000</td>
+                                        <td>26/04/2022</td>
+                                        <td>26/04/2023</td>
+                                        <td><span class="badge bg-success">active</span></td>  
+                                        <td>
+                                            <div class="row">
+                                                    <div class="col-6">
+                                                        <a href="#"><i class="fas fa-eye"></i></a>
+                                                    </div>
+                                                    <!-- <div class="col-6">
+                                                        <span><a href="#"><i class="fas fa-pen"></i></a></span>
+                                                    </div>
+                                                </div> -->
+                                        </td>                                      
                                     </tr>
                                     <tr>
                                         <td>2</td>
-                                        <td>Adminto Frontend v1</td>
-                                        <td>01/01/2017</td>
-                                        <td>26/04/2017</td>
-                                        <td><span class="badge bg-success">Released</span></td>
-                                        <td>Adminto admin</td>
+                                        <td>EFAB Sunshine Estate Apo</td>
+                                        <td>House 10</td>
+                                        <td>N350,000</td>
+                                        <td>26/04/2021</td>
+                                        <td>26/04/2022</td>
+                                        <td><span class="badge bg-danger">expired</span></td>  
+                                        <td>
+                                            <div class="row">
+                                                    <div class="col-6">
+                                                        <a href="#"><i class="fas fa-eye"></i></a>
+                                                    </div>
+                                                    <!-- <div class="col-6">
+                                                        <span><a href="#"><i class="fas fa-pen"></i></a></span>
+                                                    </div>
+                                                </div> -->
+                                        </td>                                                                 
                                     </tr>
                                     <tr>
                                         <td>3</td>
-                                        <td>Adminto Admin v1.1</td>
-                                        <td>01/05/2017</td>
-                                        <td>10/05/2017</td>
-                                        <td><span class="badge bg-pink">Pending</span></td>
-                                        <td>Coderthemes</td>
-                                    </tr>
-                                    <tr>
-                                        <td>4</td>
-                                        <td>Adminto Frontend v1.1</td>
-                                        <td>01/01/2017</td>
-                                        <td>31/05/2017</td>
-                                        <td><span class="badge bg-purple">Work in Progress</span>
-                                        </td>
-                                        <td>Adminto admin</td>
-                                    </tr>
-                                    <tr>
-                                        <td>5</td>
-                                        <td>Adminto Admin v1.3</td>
-                                        <td>01/01/2017</td>
-                                        <td>31/05/2017</td>
-                                        <td><span class="badge bg-warning">Coming soon</span></td>
-                                        <td>Coderthemes</td>
-                                    </tr>
-
-                                    <tr>
-                                        <td>6</td>
-                                        <td>Adminto Admin v1.3</td>
-                                        <td>01/01/2017</td>
-                                        <td>31/05/2017</td>
-                                        <td><span class="badge bg-primary">Coming soon</span></td>
-                                        <td>Adminto admin</td>
+                                        <td>EFAB Sunshine Estate Apo</td>
+                                        <td>House 6</td>
+                                        <td>N350,000</td>
+                                        <td>26/04/2021</td>
+                                        <td>26/03/2022</td>
+                                        <td><span class="badge bg-warning">about to expire</span></td>
+                                        <td>
+                                            <div class="row">
+                                                    <div class="col-6">
+                                                        <a href="#"><i class="fas fa-eye"></i></a>
+                                                    </div>
+                                                    <!-- <div class="col-6">
+                                                        <span><a href="#"><i class="fas fa-pen"></i></a></span>
+                                                    </div>
+                                                </div> -->
+                                        </td>                  
+                                                                                
                                     </tr>
 
                                 </tbody>
