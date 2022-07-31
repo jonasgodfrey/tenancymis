@@ -19,6 +19,11 @@ class RolesTableSeeder extends Seeder
     {
         DB::table('roles')->insertOrIgnore([
             [
+                'name' => 'super_admin',
+                'description' =>
+                    'A user who has access to all the mytenancyplus features on this platform.',
+            ],
+            [
                 'name' => 'admin',
                 'description' =>
                     'A user who has access to all the administration features on this platform.',

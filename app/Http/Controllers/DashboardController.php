@@ -41,6 +41,34 @@ class DashboardController extends Controller
             ]);
         }
 
+        if (Gate::allows('super_admin')) {
+            $properties_all = Property::count();
+            $units_all = Unit::count();
+            $tenants_all = Tenant::count();
+            $subscriptions = UserSubscription::sum('amount');
+            $subscribers = UserSubscription::count();
+            $residential = Property::where('propcatId', 2)->count();
+            $commercial = Property::where('propcatId', 1)->count();
+
+            // For Subscribed Users
+            $subscribedUsers = UserSubscription::where('status', 'active')->get();
+            
+            // dd($subscribedUsers);
+
+            return view('admin.dashboard.superadmin')->with([
+                'properties_all' => $properties_all,
+                'units_all' => $units_all,
+                'tenants_all' => $tenants_all,
+                'subscriptions' => $subscriptions,
+                'subscribers' => $subscribers,
+                'residential' => $residential,
+                'commercial' => $commercial,
+                'subscribedUsers'=>$subscribedUsers,         
+            ]);
+        }
+
+        
+
         if (Gate::allows('manager')) {
             return view('users.manager.index')->with([]);
         }
@@ -58,35 +86,5 @@ class DashboardController extends Controller
         }
     }
 
-    public function superdash()
-    {
-        // $user = Auth::user('admin@mytenancyplus.com');
-
-      
-        $properties_all = Property::count();
-        $units_all = Unit::count();
-        $tenants_all = Tenant::count();
-        $subscriptions = UserSubscription::sum('amount');
-        $subscribers = UserSubscription::count();
-        $residential = Property::where('propcatId', 2)->count();
-        $commercial = Property::where('propcatId', 1)->count();
-
-        // $kobollin = Cei::where('llin_recipient','Yes')->count();
-
-        // dd($residential);
-      
-
-        if (Gate::allows('admin')) {
-            return view('admin.dashboard.superadmin')->with([
-                'properties_all' => $properties_all,
-                'units_all' => $units_all,
-                'tenants_all' => $tenants_all,
-                'subscriptions' => $subscriptions,
-                'subscribers' => $subscribers,
-                'residential' => $residential,
-                'commercial' => $commercial,
-                
-            ]);
-        }
-    }
+   
 }

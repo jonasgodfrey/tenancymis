@@ -27,6 +27,11 @@ class AuthServiceProvider extends ServiceProvider
         $this->registerPolicies();
 
         //full access rules
+        Gate::define('super_admin', function ($user) {
+            return $user->hasRole('super_admin');
+        });
+
+        //Company access rules
         Gate::define('admin', function ($user) {
             return $user->hasRole('admin');
         });
@@ -46,6 +51,16 @@ class AuthServiceProvider extends ServiceProvider
             return $user->hasAnyRoles([
                 'admin',
                 'manager'
+            ]);
+        });
+
+        Gate::define('manage_property', function ($user) {
+            return $user->hasAnyRoles([
+                'admin',
+                'manager',
+                'tenant',
+                'artisan',
+                'accountant'
             ]);
         });
 

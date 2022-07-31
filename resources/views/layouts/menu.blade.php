@@ -11,7 +11,7 @@
                         </a>
 
                     </li>
-
+                    @can('manage_property')
                     <li class="nav-item dropdown">
                         <a class="nav-link arrow-none" href="/property" id="topnav-dashboard" role="button"
                            aria-haspopup="true" aria-expanded="false">
@@ -48,6 +48,7 @@
                         </a>
 
                     </li>
+                    
                     <!-- <li class="nav-item dropdown">
                         <a class="nav-link arrow-none" href="/artisans" id="topnav-dashboard" role="button"
                            aria-haspopup="true" aria-expanded="false">
@@ -63,13 +64,7 @@
 
                     </li> -->
 
-                    <!-- <li class="nav-item dropdown">
-                        <a class="nav-link arrow-none" href="/settings" id="topnav-dashboard" role="button"
-                           aria-haspopup="true" aria-expanded="false">
-                            <i class="mdi mdi-cogs me-1"></i> SETTINGS
-                        </a>
-
-                    </li> -->
+                   
 
                     <li class="nav-item dropdown  " id="clockdiv">
                         <a class="nav-link arrow-none" href="#" id="topnav-dashboard" role="button"
@@ -80,7 +75,17 @@
                             </b>
                         </a>
                     </li>
+                    @endcan
 
+                    @can('super_admin')
+                     <li class="nav-item dropdown">
+                        <a class="nav-link arrow-none" href="/settings" id="topnav-dashboard" role="button"
+                           aria-haspopup="true" aria-expanded="false">
+                            <i class="mdi mdi-cogs me-1"></i> SETTINGS
+                        </a>
+
+                    </li>
+                    @endcan
 
                 </ul>  <!-- end navbar-->
             </div> <!-- end .collapsed-->

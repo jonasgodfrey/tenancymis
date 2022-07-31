@@ -20,17 +20,17 @@ class UserTableSeeder extends Seeder
     {
         DB::table('role_user')->truncate();
 
-        $adminRole = Role::where('name', 'admin')->first();
+        $adminRole = Role::where('name', 'super_admin')->first();
 
         $admin = User::create([
-            'name' => 'admin',
+            'name' => 'super_admin',
             'email' => 'admin@mytenancyplus.com',
             'phone' => '11111111111',
             'password' => Hash::make('secret'),
             'email_verified_at' => now(),
             'owner_id' => 1,
             'remember_token' => null,
-            'role' => 'admin',
+            'role' => 'super_admin',
             'otp' => rand(111111, 999999),
             'usercode' =>  "PLA" . rand(11100, 999999),
             'created_at' => now(),

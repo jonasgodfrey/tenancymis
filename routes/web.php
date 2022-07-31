@@ -22,7 +22,7 @@ Route::group(['middleware' => ['auth']], function () {
     //Dashboard Route
     Route::get('/', [DashboardController::class, 'index']);
     Route::get('/dashboard', [App\Http\Controllers\DashboardController::class, 'index'])->name('dashboard');
-    Route::get('/superadmindashboard', [App\Http\Controllers\DashboardController::class, 'superdash'])->name('dashboard.superadmin');
+    Route::get('/superadmindashboard', [App\Http\Controllers\DashboardController::class, 'index'])->name('dashboard');
 
 
     Route::get('/notifications/change-status', [App\Http\Controllers\NotificationController::class, 'clear_all'])->name('clear_all_unseen_notifications');

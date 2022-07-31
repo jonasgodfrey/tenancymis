@@ -183,17 +183,46 @@
                                     <thead>
                                         <tr>
                                             <th>#</th>
-                                            <th>Property Name</th>
-                                            <th>Category</th>
+                                            <th>Name</th>
+                                            <!-- <th>Category</th> -->
                                             <th>Email</th>
-                                            <th>Tel</th>                                            
-                                            <th>Adress/State</th>
-                                            <th>Date</th>
-                                            <th>Status</th>
+                                            <th>Tel</th>                                          
+                                            <th>End Date</th>
+                                            <th>Amount</th>
+                                            
 
                                         </tr>
                                     </thead>
                                     <tbody>
+                                    @php
+                                            $count = 0;                                         
+                                            
+                                        @endphp
+
+                                    @forelse ($subscribedUsers as $subscribedUser)
+                                    
+                                    @php
+                                            $count++;                                         
+                                            
+                                        @endphp
+
+                                        <tr>
+                                            <td>{{ $count }}</td>
+                                            <td>{{ $subscribedUser->user->name}}</td>
+                                            <td>{{ $subscribedUser->user->email }}</td>
+                                            <td>{{ $subscribedUser->user->phone }}</td>
+                                            <td>{{ $subscribedUser->end_date }}</td>
+                                            <td>{{ $subscribedUser->amount }}</td>
+
+                                          
+
+                                        </tr>
+                                    @empty
+                                    @endforelse
+                                    
+
+                                </tbody>
+                                    <!-- <tbody>
                                        <tr>
                                         <td>1</td>
                                         <td>EFAB Properties</td>
@@ -204,7 +233,7 @@
                                         <td>11/07/2022</td>
                                         <td>Active</td>
                                        </tr>
-                                    </tbody>
+                                    </tbody> -->
                                 </table>
                             </div>
                         </div>
