@@ -40,7 +40,7 @@
                             <div class="widget-chart-1">
                                 <div class="widget-chart-box-1 float-start" dir="ltr">
                                     <input data-plugin="knob" data-width="70" data-height="70" data-fgColor="#f05050 "
-                                        data-bgColor="#F9B9B9" value="{{ $properties_all }}" data-skin="tron"
+                                        data-bgColor="#F9B9B9" value="{{ $registeredUsers }}" data-skin="tron"
                                         data-angleOffset="180" data-readOnly=true data-thickness=".15" />
                                 </div>
 
@@ -100,20 +100,20 @@
 
                             </div>
 
-                            <h4 class="header-title mt-0 mb-4">Tenants Onboarded</h4>
+                            <h4 class="header-title mt-0 mb-4">Properties Onboarded</h4>
 
                             <div class="widget-chart-1">
                                 <div class="widget-chart-box-1 float-start" dir="ltr">
                                     <input data-plugin="knob" data-width="70" data-height="70" data-fgColor="#f05050 "
-                                        data-bgColor="#4300A3" value=" {{ $tenants_all }}" data-skin="tron"
+                                        data-bgColor="#4300A3" value=" {{ $properties_all }}" data-skin="tron"
                                         data-angleOffset="180" data-readOnly=true data-thickness=".15" />
                                 </div>
 
 
                                 <div class="widget-detail-1 text-end">
-                                <a href="/tenants">
+                                <a href="/property">
                                 <button type="submit" class="btn btn-success btn-xs text-white modal-btn capital-w" data-toggle="modal"
-                                                    data-target="=#exampleModal">Tenants <i class="mdi mdi-account-group me-1"></i>
+                                                    data-target="=#exampleModal">Properties <i class="mdi mdi-account-group me-1"></i>
                                 </button>
                                 </a>
                                 </div>
@@ -248,8 +248,19 @@
                     <div class="card">
                         <div class="card-body widget-user">
                             <div class="text-center">
-                                <h2 class="fw-normal text-primary" data-plugin="counterup">{{ $units_all ?? '0' }}</h2>
+                                <h2 class="fw-normal text-pink" data-plugin="counterup">{{ $units_all ?? '0' }}</h2>
                                 <h5>Total Units Onboarded</h5>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-xl-3 col-md-6">
+                    <div class="card">
+                        <div class="card-body widget-user">
+                            <div class="text-center">
+                                <h2 class="fw-normal text-info" data-plugin="counterup">{{ $tenants_all ?? '0' }}</h2>
+                                <h5>Tenanats Onboarded</h5>
                             </div>
                         </div>
                     </div>
@@ -280,17 +291,7 @@
 
                 </div>
 
-                <div class="col-xl-3 col-md-6">
-                    <div class="card">
-                        <div class="card-body widget-user">
-                            <div class="text-center">
-                                <h2 class="fw-normal text-info" data-plugin="counterup">N0</h2>
-                                <h5>Other</h5>
-                            </div>
-                        </div>
-                    </div>
-
-                </div>
+                
             </div>
             <!-- end row -->
 

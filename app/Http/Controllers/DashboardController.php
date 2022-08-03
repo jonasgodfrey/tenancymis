@@ -9,6 +9,7 @@ use App\Models\Unit;
 use App\Models\Property;
 use App\Models\Tenant;
 use App\Models\UserSubscription;
+use App\Models\User;
 
 
 class DashboardController extends Controller
@@ -42,6 +43,7 @@ class DashboardController extends Controller
         }
 
         if (Gate::allows('super_admin')) {
+            $registeredUsers = User::where('role', 'admin')->count();
             $properties_all = Property::count();
             $units_all = Unit::count();
             $tenants_all = Tenant::count();
@@ -53,7 +55,7 @@ class DashboardController extends Controller
             // For Subscribed Users
             $subscribedUsers = UserSubscription::where('status', 'active')->get();
             
-            // dd($subscribedUsers);
+            // dd($registeredUsers);
 
             return view('admin.dashboard.superadmin')->with([
                 'properties_all' => $properties_all,
@@ -63,7 +65,8 @@ class DashboardController extends Controller
                 'subscribers' => $subscribers,
                 'residential' => $residential,
                 'commercial' => $commercial,
-                'subscribedUsers'=>$subscribedUsers,         
+                'subscribedUsers'=>$subscribedUsers, 
+                'registeredUsers'=>$registeredUsers        
             ]);
         }
 
