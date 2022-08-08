@@ -15,6 +15,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 
+Route::get('/send-message-with-send-champ', [App\Http\Controllers\NotificationController::class, 'sendSMSWithSendChamp']);
 
 
 Route::group(['middleware' => ['auth']], function () {
