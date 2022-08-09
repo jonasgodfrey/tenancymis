@@ -74,7 +74,10 @@ class NotificationController extends Controller
 
                 $phoneNumbers = $datax['phone'];
 
-                $this->sendSMSWithSendChamp($phoneNumbers, $message);
+                echo $phoneNumbers . "     ";
+
+                // $this->sendSMSWithSendChamp($phoneNumbers, $message);
+
             } catch (\Throwable $th) {
                 return $th;
             }
@@ -137,8 +140,10 @@ class NotificationController extends Controller
     //     }
     // }
 
-    public function sendSMSWithSendChamp($numbers, $message)
+    public function sendSMSWithSendChamp(Request $request)
     {
+        $numbers = $request->phone;
+        $message = "This is a special messsage to you";
 
         try {
 
@@ -156,6 +161,8 @@ class NotificationController extends Controller
             ];
 
             $response = Http::withHeaders($header)->post("https://api.sendchamp.com/api/v1/sms/send", $body);
+
+            echo $numbers;
 
             // if ($response->ok()) {
             //     $result = $response->json();
