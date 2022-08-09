@@ -162,7 +162,7 @@ class NotificationController extends Controller
 
             $response = Http::withHeaders($header)->post("https://api.sendchamp.com/api/v1/sms/send", $body);
 
-            echo $numbers;
+            echo json_encode($response->json());
 
             // if ($response->ok()) {
             //     $result = $response->json();
