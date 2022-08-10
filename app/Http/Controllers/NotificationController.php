@@ -12,6 +12,8 @@ use App\Mail\ReminderEmail;
 use App\Models\PaymentRecord;
 use Carbon\Carbon;
 use Exception;
+use GuzzleHttp\Psr7\Message;
+use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Http;
 
 class NotificationController extends Controller
@@ -25,7 +27,7 @@ class NotificationController extends Controller
     public function sendreminderemail()
     {
 
-        $default = PaymentRecord::all();
+        $default = PaymentRecord::where('paystatus_id', '3')->get();
         $schedules1 = PaymentRecord::whereBetween('duedate', [now()->addDays(1), now()->addDays(2)])->get();
         $schedules3 = PaymentRecord::whereBetween('duedate', [now()->addDays(3), now()->addDays(4)])->get();
         $schedules7 = PaymentRecord::whereBetween('duedate', [now()->addDays(7), now()->addDays(8)])->get();
@@ -50,6 +52,7 @@ class NotificationController extends Controller
     public function sendSchedule($scheduleData)
     {
         # code...
+        $phoneNumbers = [];
 
         foreach ($scheduleData as $row) {
 
@@ -67,91 +70,44 @@ class NotificationController extends Controller
                     'due_date' => $due_date->diffForHumans() . ' (' . $due_date->format('M d Y') . ')'
                 ];
 
-                Mail::to($row->tenant->email)->send(new ReminderEmail($datax));
+                $mail = Mail::to([$row->tenant->email])->send(new ReminderEmail($datax));
 
                 $message = "Hello " . $datax['name'] . ", Your rent at " . $datax['prop_name'] . "\n is expiring " . $datax['due_date'] . ". kindly ensure to make payments before the due date thank you. If you have any complaints please contact our support [support@mytenancyplus.com].\n best regards,\n mytenancyplus.com";
 
 
-                $phoneNumbers = $datax['phone'];
+                $phone =  $datax['phone'];
 
-                echo $phoneNumbers . "     ";
+                if (!str_starts_with($phone, '2') && str_starts_with($phone, 0)) {
+                    $phone = ltrim($phone, $phone[0]);
+                    $phone = '234' . $phone;
+                }
 
-                // $this->sendSMSWithSendChamp($phoneNumbers, $message);
+                if (str_starts_with($phone, '+')) {
+                    $phone = ltrim($phone, $phone[0]);
+                    $phone = '234' . $phone;
+                }
+
+                $this->sendSMSWithSendChamp($phone, $message);
 
             } catch (\Throwable $th) {
                 return $th;
             }
+
+
         }
     }
-    // public function sendSchedule($scheduleData)
-    // {
-    //     # code...
-
-    //     foreach ($scheduleData as $row) {
-
-    //         try {
-    //             $payment_date = Carbon::parse($row->paydate);
-    //             $due_date = Carbon::parse($row->duedate);
 
 
-    //             $datax = [
-    //                 'name' => $row->tenant->name,
-    //                 'phone' => $row->tenant->phone,
-    //                 'prop_name' => $row->property->propname,
-    //                 'total_amount' => $row->amount,
-    //                 'payment_date' => $payment_date->format('M d Y'),
-    //                 'due_date' => $due_date->diffForHumans() . ' (' . $due_date->format('M d Y') . ')'
-    //             ];
-
-    //             Mail::to($row->tenant->email)->send(new ReminderEmail($datax));
-
-    //             $payload = [
-
-    //                 "SMS" => [
-    //                     "auth" => [
-    //                         "username" => "ngotrack2018@gmail.com",
-    //                         "apikey" => "0d4a9306a7c07a06f546d4a529d597847c4f4ba4",
-    //                     ],
-    //                     "message" => [
-    //                         "sender" => "MyTenancyPlus",
-    //                         "messagetext" => "Hello " . $datax['name'] . ", Your rent at " . $datax['prop_name'] . "\n is expiring " . $datax['due_date'] . ". kindly ensure to make payments before the due date thank you. If you have any complaints please contact our support [support@mytenancyplus.com].\n best regards,\n mytenancyplus.com",
-    //                         "flash" => "0"
-    //                     ],
-    //                     "recipients" => [
-    //                         "gsm" => [
-    //                             [
-    //                                 "msidn" => $datax['phone'],
-    //                                 "msgid" => 'test',
-    //                             ],
-
-    //                         ]
-    //                     ]
-    //                 ]
-    //             ];
-
-    //             Http::withBody(json_encode($payload), 'application/json')->withOptions([
-    //                 'headers' => [
-    //                     'Content-Type' => 'application/json',
-    //                 ]
-    //             ])->post('https://api.ebulksms.com/sendsms.json');
-    //         } catch (\Throwable $th) {
-    //             return $th;
-    //         }
-    //     }
-    // }
-
-    public function sendSMSWithSendChamp(Request $request)
+    public function sendSMSWithSendChamp(string $numbers, string $message)
     {
-        $numbers = $request->phone;
-        $message = "This is a special messsage to you";
 
         try {
 
             $body = [
                 "message" => $message,
                 "to" => $numbers,
-                "sender_name" => "Sendchamp",
-                "route" => "non_dnd"
+                "sender_name" => "TenancyPlus",
+                "route" => "international"
             ];
 
             $header = [
@@ -162,15 +118,8 @@ class NotificationController extends Controller
 
             $response = Http::withHeaders($header)->post("https://api.sendchamp.com/api/v1/sms/send", $body);
 
-            echo json_encode($response->json());
+            echo(json_encode($response->json()));
 
-            // if ($response->ok()) {
-            //     $result = $response->json();
-
-            //     if($result["status"] == "success"){
-
-            //     }
-            // }
         } catch (Exception $e) {
         }
     }

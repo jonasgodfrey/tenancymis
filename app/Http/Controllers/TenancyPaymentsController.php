@@ -73,7 +73,7 @@ class TenancyPaymentsController extends Controller
                     'unit_id' => $request->unit,
                     'paycat_id' => $request->paycat,
                     'tenant_id' => $request->tenant,
-                    'paystatus_id' => $request->paystatus,
+                    'paystatus_id' => 3,
                     'amount' => $request->payamount,
                     'paydate' => Carbon::now(),
                     'startdate' => $startdate,
