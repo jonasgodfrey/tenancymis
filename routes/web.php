@@ -94,6 +94,8 @@ Route::group(['middleware' => ['auth', 'subscribed']], function () {
     Route::get('/fetch-free-units', [App\Http\Controllers\AjaxRequestsController::class, 'fetch_free_units'])->name('fetch_free_units');
     Route::get('/fetch-unit', [App\Http\Controllers\AjaxRequestsController::class, 'fetch_unit'])->name('fetch_unit');
     Route::get('/fetch-tenant', [App\Http\Controllers\AjaxRequestsController::class, 'fetch_tenant'])->name('fetch_tenant');
+
+    Route::get('/bsdashboard', [App\Http\Controllers\BuildSellController::class, 'index'])->name('index');
 });
 
 
