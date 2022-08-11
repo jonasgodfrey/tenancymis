@@ -10,7 +10,7 @@
 Kindly ensure to make payments before the due date thank you.</p>
 
 <p>
-If you have any complaints please contact our support [support@mytenancyplus.com]
+If you have any complaints please contact our support support@mytenancyplus.com
 </p>
 
 <p>
