@@ -21,9 +21,14 @@ Route::get('/send-message-with-send-champ', [App\Http\Controllers\NotificationCo
 Route::group(['middleware' => ['auth']], function () {
 
     //Dashboard Route
-    Route::get('/', [DashboardController::class, 'index']);
+    Route::get('/index', [DashboardController::class, 'index']);
     Route::get('/dashboard', [App\Http\Controllers\DashboardController::class, 'index'])->name('dashboard');
     Route::get('/superadmindashboard', [App\Http\Controllers\DashboardController::class, 'index'])->name('dashboard');
+
+    // Build to Sell Dashboard
+    Route::get('/', [App\Http\Controllers\BuildSellController::class, 'index'])->name('index');
+    Route::get('/subscriberdash', [App\Http\Controllers\BuildSellController::class, 'subscribdash'])->name('subscribdash');
+
 
 
     Route::get('/notifications/change-status', [App\Http\Controllers\NotificationController::class, 'clear_all'])->name('clear_all_unseen_notifications');
@@ -95,7 +100,6 @@ Route::group(['middleware' => ['auth', 'subscribed']], function () {
     Route::get('/fetch-unit', [App\Http\Controllers\AjaxRequestsController::class, 'fetch_unit'])->name('fetch_unit');
     Route::get('/fetch-tenant', [App\Http\Controllers\AjaxRequestsController::class, 'fetch_tenant'])->name('fetch_tenant');
 
-    Route::get('/bsdashboard', [App\Http\Controllers\BuildSellController::class, 'index'])->name('index');
 });
 
 

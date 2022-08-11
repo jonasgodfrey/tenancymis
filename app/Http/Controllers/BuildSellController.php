@@ -11,4 +11,9 @@ class BuildSellController extends Controller
     {
         return view('bs.index')->with([]);
     }
+
+    public function subscribdash()
+    {
+        return view('bs.subscribersdash')->with([]);
+    }
 }
