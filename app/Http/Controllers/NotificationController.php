@@ -12,8 +12,6 @@ use App\Mail\ReminderEmail;
 use App\Models\PaymentRecord;
 use Carbon\Carbon;
 use Exception;
-use GuzzleHttp\Psr7\Message;
-use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Http;
 
 class NotificationController extends Controller
@@ -47,6 +45,9 @@ class NotificationController extends Controller
          */
         $this->checkAndUpdatePaymentStatus($schedules30, 30);
         $this->checkAndUpdatePaymentStatus($default, 'none');
+
+        echo('success');
+
     }
 
     public function sendSchedule($scheduleData)
@@ -93,8 +94,8 @@ class NotificationController extends Controller
                 return $th;
             }
 
-
         }
+
     }
 
 
@@ -117,8 +118,6 @@ class NotificationController extends Controller
             ];
 
             $response = Http::withHeaders($header)->post("https://api.sendchamp.com/api/v1/sms/send", $body);
-
-            echo(json_encode($response->json()));
 
         } catch (Exception $e) {
         }
