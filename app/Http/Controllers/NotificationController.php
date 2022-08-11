@@ -73,7 +73,7 @@ class NotificationController extends Controller
 
                 $mail = Mail::to([$row->tenant->email])->send(new ReminderEmail($datax));
 
-                $message = "Hello " . $datax['name'] . ", Your rent at " . $datax['prop_name'] . "\n is expiring " . $datax['due_date'] . ". kindly ensure to make payments before the due date thank you. If you have any complaints please contact our support [support@mytenancyplus.com].\n best regards,\n mytenancyplus.com";
+                $message = "Hello " . $datax['name'] . ", Your rent at " . $datax['prop_name'] . "\n is expiring " . $datax['due_date'] . ". kindly ensure to make payments before the due date thank you.\n mytenancyplus.com";
 
 
                 $phone =  $datax['phone'];
