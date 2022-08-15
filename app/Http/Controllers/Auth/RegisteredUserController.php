@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Http\Controllers\NotificationController;
 use App\Models\Notification;
 use App\Models\User;
 use App\Providers\RouteServiceProvider;
@@ -79,6 +80,12 @@ class RegisteredUserController extends Controller
             'email' => $user->email,
             'otp' => $user->otp
         ];
+
+        $notificationController = new NotificationController();
+
+        $message = "Hi $request->name, Welcome to MyTenancyPlus. Thank you for Signing up with the No. 1 property management solution in Africa.\nKindly click the link below to sign in to your portal";
+
+        $notificationController->sendSMSWithSendChamp($request->phone, $message);
 
         try {
             //code...

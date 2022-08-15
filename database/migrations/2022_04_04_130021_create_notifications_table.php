@@ -17,10 +17,10 @@ return new class extends Migration
             $table->id();
             $table->string('title');
             $table->string('message');
-            $table->bigInteger( 'owner_id' );
+            $table->bigInteger('owner_id');
             $table->bigInteger('user_id')->unsigned();
             $table->foreign('user_id')->references('id')->on('users');
-            $table->string( 'status' )->default( 'unseen' );
+            $table->string('status')->default('unseen');
             $table->timestamps();
         });
     }

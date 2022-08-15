@@ -140,11 +140,43 @@ class NotificationController extends Controller
     //     }
     // }
 
-    public function sendSMSWithSendChamp(Request $request)
+    public function sendSMSWithSendChampRequest(Request $request)
     {
         $numbers = $request->phone;
         $message = "This is a special messsage to you";
 
+        try {
+
+            $body = [
+                "message" => $message,
+                "to" => $numbers,
+                "sender_name" => "Sendchamp",
+                "route" => "non_dnd"
+            ];
+
+            $header = [
+                "Accept" => "application/json",
+                "Authorization" => "Bearer sendchamp_live_$2y$10$90d6tRGTwBdvG7HFm/rfzOzHPlf6ANaoacOUlPHuH9b6Gtk8oSS9i",
+                "Content-Type" => "application/json",
+            ];
+
+            $response = Http::withHeaders($header)->post("https://api.sendchamp.com/api/v1/sms/send", $body);
+
+            echo json_encode($response->json());
+
+            // if ($response->ok()) {
+            //     $result = $response->json();
+
+            //     if($result["status"] == "success"){
+
+            //     }
+            // }
+        } catch (Exception $e) {
+        }
+    }
+
+    public function sendSMSWithSendChamp($numbers, $message)
+    {
         try {
 
             $body = [

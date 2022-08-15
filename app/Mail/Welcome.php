@@ -28,6 +28,10 @@ class Welcome extends Mailable
      */
     public function build()
     {
-        return $this->view('view.name');
+        // return $this->view('view.name');
+        // return $this->from('info@groundupmediainc.com')
+        //     ->subject('Finco Request for Funding')
+        //     ->view('emails.fund_request_email', ["fundingRequest" => $this->fundingRequest]);
+        return $this->from("paul4nank@gmail.com")->subject('This is new')->view('mails.welcome-message', ["fundingRequest" => ["newhouse" => "lsdkfjlskdjflsjd"]]);;
     }
 }

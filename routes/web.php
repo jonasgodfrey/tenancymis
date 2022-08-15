@@ -18,7 +18,7 @@ use Illuminate\Support\Facades\Route;
 Route::get('/send-message-with-send-champ', [App\Http\Controllers\NotificationController::class, 'sendSMSWithSendChamp']);
 
 
-Route::group(['middleware' => ['auth']], function () {
+Route::group(['middleware' => ['auth', 'verified']], function () {
 
     //Dashboard Route
     Route::get('/', [DashboardController::class, 'index']);
@@ -41,7 +41,6 @@ Route::group(['middleware' => ['auth']], function () {
 
     Route::post('/pay', [App\Http\Controllers\PaymentController::class, 'redirectToGateway'])->name('pay');
     Route::get('/payment/callback', [App\Http\Controllers\PaymentController::class, 'handleGatewayCallback'])->name('handleGatewayCallback');
-
 });
 
 /**
@@ -51,7 +50,7 @@ Route::group(['middleware' => ['auth']], function () {
  */
 
 Route::group(['middleware' => ['auth', 'subscribed']], function () {
-// Route::group(['middleware' => ['auth']], function () {
+    // Route::group(['middleware' => ['auth']], function () {
 
     // In App Section
     Route::get('/artisans', [App\Http\Controllers\ArtisansController::class, 'index'])->name('artisans.index');
