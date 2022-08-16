@@ -43,6 +43,7 @@ class RegisteredUserController extends Controller
             'name' => ['required', 'string', 'max:255'],
             'phone' => ['required', 'string', 'min:10'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
+            'purpose' => ['required', 'string', 'max:255'],
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
         ]);
 
@@ -53,6 +54,7 @@ class RegisteredUserController extends Controller
             'name' => $request->name,
             'email' => $request->email,
             'phone' => $request->phone,
+            'purpose'=> $request->purpose,
             'role' => 'admin',
             'owner_id' => 0,
             // 'username' => $validatedData['username'],
