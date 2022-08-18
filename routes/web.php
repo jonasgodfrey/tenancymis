@@ -21,13 +21,13 @@ Route::get('/send-message-with-send-champ', [App\Http\Controllers\NotificationCo
 Route::group(['middleware' => ['auth', 'verified']], function () {
 
     //Dashboard Route
-    Route::get('/index', [DashboardController::class, 'index']);
+    Route::get('/', [DashboardController::class, 'index']);
     Route::get('/dashboard', [App\Http\Controllers\DashboardController::class, 'index'])->name('dashboard');
     Route::get('/superadmindashboard', [App\Http\Controllers\DashboardController::class, 'index'])->name('dashboard');
 
     // Build to Sell Dashboard
-    Route::get('/', [App\Http\Controllers\BuildSellController::class, 'index'])->name('index');
-    Route::get('/subscriberdash', [App\Http\Controllers\BuildSellController::class, 'subscribdash'])->name('subscribdash');
+    Route::get('/bsdash', [App\Http\Controllers\BuildSellController::class, 'index'])->name('index');
+    Route::get('/bsuserdash', [App\Http\Controllers\BuildSellController::class, 'subscribdash'])->name('subscribdash');
 
 
 
