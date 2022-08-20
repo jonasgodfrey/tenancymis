@@ -35,9 +35,11 @@ Route::group(['middleware' => ['auth', 'verified']], function () {
 
     //Property Page Get Routes
     Route::get('/property', [App\Http\Controllers\PropertyController::class, 'index'])->name('property.index');
+    Route::get('/property/edit/{id}', [App\Http\Controllers\PropertyController::class, 'edit'])->name('property.edit');
+
     //Property Page Post Routes
     Route::post('/property/add', [App\Http\Controllers\PropertyController::class, 'store'])->name('property.store');
-    Route::put('/property/update', [App\Http\Controllers\PropertyController::class, 'update'])->name('property.update');
+    Route::post('/property/update/{id}', [App\Http\Controllers\PropertyController::class, 'update'])->name('property.update');
     Route::post('/property/delete', [App\Http\Controllers\PropertyController::class, 'delete'])->name('property.delete');
 
 
