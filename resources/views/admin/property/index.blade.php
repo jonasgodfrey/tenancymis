@@ -165,9 +165,9 @@
                                                         <a href="#"><i class="fas fa-eye"></i></a>
                                                     </div>
                                                     <div class="col-6">
-                                                        <span><a href="#"><i class="fas fa-pen"></i></a></span>
+                                                        <span><a href="/property/edit/{{$property->id}}"><i class="fas fa-pen"></i></a></span>
                                                     </div>
-                                                </div>                                              
+                                                </div>
                                             </td>
                                         </tr>
                                     @empty

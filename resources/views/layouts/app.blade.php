@@ -40,7 +40,7 @@
 <!-- body start -->
 
 <body class="loading" data-layout-mode="horizontal"
-    data-layout='{"mode": "dark", "width": "fluid", "menuPosition": "fixed", 
+    data-layout='{"mode": "dark", "width": "fluid", "menuPosition": "fixed",
         "topbar": {"color": "dark"}, "showRightSidebarOnPageLoad": true}'>
     <!-- Begin page -->
     <div id="wrapper">
@@ -193,18 +193,21 @@
     <script>
 
         // Set the date we're counting down to
-        if( '{{$date_time_string}}' !== ''){
+        if( "{{$date_time_string}}" !== ''){
 
-            let countDownDate = new Date( '{{$date_time_string}}').getTime()
+            let countDownDate = new Date( "{{$date_time_string}}").getTime()
+            console.log("{{$date_time_string}}");
 
             // Update the count-down every 1 second
             const x = setInterval( function() {
 
                 // Get today's date and time
                 let now = new Date().getTime()
+                console.log(now);
 
                 // Find the distance between now and the count down date
                 let distance = countDownDate - now
+                console.log(distance);
 
                 // Time calculations for days, hours, minutes and seconds
                 let days = Math.floor( distance / ( 1000 * 60 * 60 * 24 ) )

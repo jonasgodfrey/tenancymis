@@ -21,13 +21,13 @@ Route::get('/send-message-with-send-champ', [App\Http\Controllers\NotificationCo
 Route::group(['middleware' => ['auth', 'verified']], function () {
 
     //Dashboard Route
-    Route::get('/index', [DashboardController::class, 'index']);
+    Route::get('/', [DashboardController::class, 'index']);
     Route::get('/dashboard', [App\Http\Controllers\DashboardController::class, 'index'])->name('dashboard');
     Route::get('/superadmindashboard', [App\Http\Controllers\DashboardController::class, 'index'])->name('dashboard');
 
     // Build to Sell Dashboard
-    Route::get('/', [App\Http\Controllers\BuildSellController::class, 'index'])->name('index');
-    Route::get('/subscriberdash', [App\Http\Controllers\BuildSellController::class, 'subscribdash'])->name('subscribdash');
+    Route::get('/bsdash', [App\Http\Controllers\BuildSellController::class, 'index'])->name('index');
+    Route::get('/bsuserdash', [App\Http\Controllers\BuildSellController::class, 'subscribdash'])->name('subscribdash');
 
 
 
@@ -35,9 +35,11 @@ Route::group(['middleware' => ['auth', 'verified']], function () {
 
     //Property Page Get Routes
     Route::get('/property', [App\Http\Controllers\PropertyController::class, 'index'])->name('property.index');
+    Route::get('/property/edit/{id}', [App\Http\Controllers\PropertyController::class, 'edit'])->name('property.edit');
+
     //Property Page Post Routes
     Route::post('/property/add', [App\Http\Controllers\PropertyController::class, 'store'])->name('property.store');
-    Route::put('/property/update', [App\Http\Controllers\PropertyController::class, 'update'])->name('property.update');
+    Route::post('/property/update/{id}', [App\Http\Controllers\PropertyController::class, 'update'])->name('property.update');
     Route::post('/property/delete', [App\Http\Controllers\PropertyController::class, 'delete'])->name('property.delete');
 
 
