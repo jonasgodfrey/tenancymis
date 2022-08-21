@@ -11,7 +11,7 @@
                         </a>
 
                     </li>
-                    @can('manage_property')
+                    @can('manage_properties')
                     <li class="nav-item dropdown">
                         <a class="nav-link arrow-none" href="/property" id="topnav-dashboard" role="button"
                            aria-haspopup="true" aria-expanded="false">
