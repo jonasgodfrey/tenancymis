@@ -56,7 +56,7 @@ Route::group(['middleware' => ['auth', 'verified']], function () {
  * comment and uncomment to enable active subscription
  */
 
-Route::group(['middleware' => ['auth', 'subscribed']], function () {
+       Route::group(['middleware' => ['auth', 'subscribed']], function () {
     // Route::group(['middleware' => ['auth']], function () {
 
     // In App Section
