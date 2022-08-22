@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Property extends Model
 {
-    use HasFactory;g
+    use HasFactory;
 
     protected $fillable = [
         'propcatId',
@@ -26,7 +26,7 @@ class Property extends Model
     public function units(){
         return $this->hasMany(Unit::class, 'propId');
     }
-    
+
     public function country(){
         return $this->hasOne(Country::class,  'id');
     }
