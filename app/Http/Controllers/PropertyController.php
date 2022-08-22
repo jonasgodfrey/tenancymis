@@ -129,10 +129,10 @@ class PropertyController extends Controller
 
         $file = $request->file('logo');
 
-        if ($file !== "") {
+        if (!empty($file)) {
 
             $request->validate([
-                'logo' => 'required|mimes:jpeg,jpg,png,mime|max:3008',
+                'logo' => 'mimes:jpeg,jpg,png,mime|max:3008',
             ]);
 
             $filename = 'attached-file-' . $rand . time() . '.' . $file->getClientOriginalExtension();

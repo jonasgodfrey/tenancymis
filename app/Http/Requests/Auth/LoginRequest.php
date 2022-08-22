@@ -58,10 +58,12 @@ class LoginRequest extends FormRequest
         $user = Auth::user();
         $date = new Carbon();
         $current_date = $date->now();
-        $due_date = $user->subscription->end_date ?? 0;
+        $subscription = $user->subscription->where('status', 'active')->first();
+        $due_date = $subscription->end_date ?? 0;
 
-        if($current_date->gt($due_date)){
-            $user->subscription->update([
+
+        if ($current_date->gt($due_date)) {
+            $subscription->update([
                 'status' => 'expired'
             ]);
         }

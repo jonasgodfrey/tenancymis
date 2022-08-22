@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Property extends Model
 {
-    use HasFactory;
+    use HasFactory;g
 
     protected $fillable = [
         'propcatId',
