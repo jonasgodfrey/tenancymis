@@ -24,9 +24,8 @@ return new class extends Migration
             $table->string('leaseAmount');
             $table->string('status');
             $table->string('image');
-
-            $table->foreign('propId')->references('id')->on('properties');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

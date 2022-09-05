@@ -26,9 +26,8 @@ return new class extends Migration
             $table->string('countryId');
             $table->string('stateId');
             $table->string('uploadsDir');
-
-            $table->foreign('ownerId')->references('id')->on('users');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

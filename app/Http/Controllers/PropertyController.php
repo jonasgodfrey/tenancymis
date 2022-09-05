@@ -9,6 +9,9 @@ use App\Models\Property;
 use App\Models\PropertyCategory;
 use App\Models\PropertyType;
 use App\Models\State;
+use App\Models\Tenant;
+use App\Models\Unit;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Gate;
@@ -138,8 +141,8 @@ class PropertyController extends Controller
             $filename = 'attached-file-' . $rand . time() . '.' . $file->getClientOriginalExtension();
             $file->storeAs('public/property/', $filename);
             $property->fill($input)->save();
-            $property->update(['uploadsDir' => $filename ]);
-        }else{
+            $property->update(['uploadsDir' => $filename]);
+        } else {
             $property->fill($input)->save();
         }
 
@@ -160,6 +163,28 @@ class PropertyController extends Controller
 
     public function delete(Request $request)
     {
-        # code...
+        $user = Auth::user();
+        $property =  Property::findOrFail($request->id);
+
+        $tenants = Tenant::where('propId', $request->id)->select('email')->get();
+
+        if ($property) {
+
+            Unit::whereIn('propId', [$request->id])->select('id')->delete();
+            User::whereIn('email', $tenants->pluck('email'))->delete();
+            Tenant::whereIn('email', $tenants->pluck('email'))->delete();
+
+            $property->delete();
+
+            // publish a notification for the user create action
+            $notification = Notification::create([
+                'user_id' => $user->id,
+                'owner_id' => $user->owner_id,
+                'title' => "New Tenant Created",
+                'message' => "$user->name deleted $property->propname from TenancyPlus"
+            ]);
+        }
+
+        exit("Property Deleted successfully.");
     }
 }

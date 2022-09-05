@@ -36,10 +36,7 @@
     <link href="/assets/libs/datatables.net-select-bs5/css//select.bootstrap5.min.css" rel="stylesheet"
         type="text/css" />
     <!-- third party css end -->
-    <link rel="stylesheet"
-        href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/6-beta8/css/tempus-dominus.css"
-        integrity="sha512-6yAyDTW6ClcAFzf3StRuE1JOBLSOW6nIkrOqeEwHQjxwYz2ZLx4yt+ibzEzXXONvU0ENq4xQDnlnc8B4oqZpJg=="
-        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/6-beta8/css/tempus-dominus.css"  />
 
 </head>
 
@@ -183,12 +180,8 @@
     <script src="/assets/libs/pdfmake/build/pdfmake.min.js"></script>
     <script src="/assets/libs/pdfmake/build/vfs_fonts.js"></script>
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.3/moment.min.js"
-        integrity="sha512-x/vqovXY/Q4b+rNjgiheBsA/vbWA3IVvsS8lkQSX1gQ4ggSJx38oI2vREZXpTzhAv6tNUaX81E7QBBzkpDQayA=="
-        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/6-beta8/js/tempus-dominus.js"
-        integrity="sha512-MPMzIx+Gq1BNJqltvB19yXU9BAWr+YHL/NcgAcNhPM7gqQvWJQE00cZOC5n3KSpdH5q/imNmC2gvB3LeoMAajw=="
-        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.3/moment.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/6-beta8/js/tempus-dominus.js" ></script>
     <!-- third party js ends -->
     <!-- Datatables init -->
     <script src="/assets/js/pages/datatables.init.js"></script>
@@ -209,18 +202,15 @@
             if ("{{ $date_time_string }}" !== '') {
 
                 let countDownDate = new Date("{{ $date_time_string }}").getTime()
-                console.log("{{ $date_time_string }}");
 
                 // Update the count-down every 1 second
                 const x = setInterval(function() {
 
                     // Get today's date and time
                     let now = new Date().getTime()
-                    console.log(now);
 
                     // Find the distance between now and the count down date
                     let distance = countDownDate - now
-                    console.log(distance);
 
                     // Time calculations for days, hours, minutes and seconds
                     let days = Math.floor(distance / (1000 * 60 * 60 * 24))
@@ -249,6 +239,7 @@
             $("#alert").fadeTo(2000, 500).slideUp(500, function() {
                 $("#alert").slideUp("500");
             });
+
         });
     </script>
     <!-- App js -->

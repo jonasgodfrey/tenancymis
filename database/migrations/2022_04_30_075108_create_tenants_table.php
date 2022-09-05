@@ -24,6 +24,7 @@ return new class extends Migration
             $table->string('unitId');
             $table->string('payId')->nullable();
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 
