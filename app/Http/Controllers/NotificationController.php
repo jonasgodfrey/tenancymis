@@ -25,7 +25,7 @@ class NotificationController extends Controller
     public function sendreminderemail()
     {
 
-        $default = PaymentRecord::all();
+        $default = PaymentRecord::where('paystatus_id', '3')->get();
         $schedules1 = PaymentRecord::whereBetween('duedate', [now()->addDays(1), now()->addDays(2)])->get();
         $schedules3 = PaymentRecord::whereBetween('duedate', [now()->addDays(3), now()->addDays(4)])->get();
         $schedules7 = PaymentRecord::whereBetween('duedate', [now()->addDays(7), now()->addDays(8)])->get();
@@ -45,11 +45,15 @@ class NotificationController extends Controller
          */
         $this->checkAndUpdatePaymentStatus($schedules30, 30);
         $this->checkAndUpdatePaymentStatus($default, 'none');
+
+        echo('success');
+
     }
 
     public function sendSchedule($scheduleData)
     {
         # code...
+        $phoneNumbers = [];
 
         foreach ($scheduleData as $row) {
 
@@ -67,27 +71,33 @@ class NotificationController extends Controller
                     'due_date' => $due_date->diffForHumans() . ' (' . $due_date->format('M d Y') . ')'
                 ];
 
-                Mail::to($row->tenant->email)->send(new ReminderEmail($datax));
+                $mail = Mail::to([$row->tenant->email])->send(new ReminderEmail($datax));
 
-                $message = "Hello " . $datax['name'] . ", Your rent at " . $datax['prop_name'] . "\n is expiring " . $datax['due_date'] . ". kindly ensure to make payments before the due date thank you. If you have any complaints please contact our support [support@mytenancyplus.com].\n best regards,\n mytenancyplus.com";
+                $message = "Hello " . $datax['name'] . ", Your rent at " . $datax['prop_name'] . "\n is expiring " . $datax['due_date'] . ". kindly ensure to make payments before the due date thank you.\n mytenancyplus.com";
 
 
-                $phoneNumbers = $datax['phone'];
+                $phone =  $datax['phone'];
 
-                echo $phoneNumbers . "     ";
+                if (!str_starts_with($phone, '2') && str_starts_with($phone, 0)) {
+                    $phone = ltrim($phone, $phone[0]);
+                    $phone = '234' . $phone;
+                }
 
-                // $this->sendSMSWithSendChamp($phoneNumbers, $message);
+                if (str_starts_with($phone, '+')) {
+                    $phone = ltrim($phone, $phone[0]);
+                    $phone = '234' . $phone;
+                }
+
+                $this->sendSMSWithSendChamp($phone, $message);
 
             } catch (\Throwable $th) {
                 return $th;
             }
-        }
-    }
-    // public function sendSchedule($scheduleData)
-    // {
-    //     # code...
 
-    //     foreach ($scheduleData as $row) {
+        }
+
+    }
+
 
     //         try {
     //             $payment_date = Carbon::parse($row->paydate);
@@ -139,41 +149,6 @@ class NotificationController extends Controller
     //         }
     //     }
     // }
-
-    public function sendSMSWithSendChampRequest(Request $request)
-    {
-        $numbers = $request->phone;
-        $message = "This is a special messsage to you";
-
-        try {
-
-            $body = [
-                "message" => $message,
-                "to" => $numbers,
-                "sender_name" => "Sendchamp",
-                "route" => "non_dnd"
-            ];
-
-            $header = [
-                "Accept" => "application/json",
-                "Authorization" => "Bearer sendchamp_live_$2y$10$90d6tRGTwBdvG7HFm/rfzOzHPlf6ANaoacOUlPHuH9b6Gtk8oSS9i",
-                "Content-Type" => "application/json",
-            ];
-
-            $response = Http::withHeaders($header)->post("https://api.sendchamp.com/api/v1/sms/send", $body);
-
-            echo json_encode($response->json());
-
-            // if ($response->ok()) {
-            //     $result = $response->json();
-
-            //     if($result["status"] == "success"){
-
-            //     }
-            // }
-        } catch (Exception $e) {
-        }
-    }
 
     public function sendSMSWithSendChamp($numbers, $message)
     {
