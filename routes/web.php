@@ -94,8 +94,11 @@ Route::group(['middleware' => ['auth', 'verified']], function () {
 
     //Payments Page get Routes
     Route::get('/tenancy-payments', [App\Http\Controllers\TenancyPaymentsController::class, 'index'])->name('payments.index');
+    Route::get('/tenancy-payments/edit/{id}', [App\Http\Controllers\TenancyPaymentsController::class, 'edit'])->name('payments.edit');
     //Payments Page Post Routes
     Route::post('/tenancy-payments/add', [App\Http\Controllers\TenancyPaymentsController::class, 'store'])->name('payments.store');
+    Route::post('/tenancy-payments/update/{id}', [App\Http\Controllers\TenancyPaymentsController::class, 'update'])->name('payments.update');
+    Route::post('/tenancy-payments/delete', [App\Http\Controllers\TenancyPaymentsController::class, 'delete'])->name('payments.delete');
 
     Route::get('/fetch-free-units', [App\Http\Controllers\AjaxRequestsController::class, 'fetch_free_units'])->name('fetch_free_units');
     Route::get('/fetch-unit', [App\Http\Controllers\AjaxRequestsController::class, 'fetch_unit'])->name('fetch_unit');
