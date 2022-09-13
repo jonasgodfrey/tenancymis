@@ -18,21 +18,28 @@ use Illuminate\Support\Facades\Route;
 Route::get('/send-message-with-send-champ', [App\Http\Controllers\NotificationController::class, 'sendSMSWithSendChamp']);
 
 
-Route::group(['middleware' => ['auth']], function () {
+Route::group(['middleware' => ['auth', 'verified']], function () {
 
     //Dashboard Route
     Route::get('/', [DashboardController::class, 'index']);
     Route::get('/dashboard', [App\Http\Controllers\DashboardController::class, 'index'])->name('dashboard');
     Route::get('/superadmindashboard', [App\Http\Controllers\DashboardController::class, 'index'])->name('dashboard');
 
+    // Build to Sell Dashboard
+    Route::get('/bsdash', [App\Http\Controllers\BuildSellController::class, 'index'])->name('index');
+    Route::get('/bsuserdash', [App\Http\Controllers\BuildSellController::class, 'subscribdash'])->name('subscribdash');
+
+
 
     Route::get('/notifications/change-status', [App\Http\Controllers\NotificationController::class, 'clear_all'])->name('clear_all_unseen_notifications');
 
     //Property Page Get Routes
     Route::get('/property', [App\Http\Controllers\PropertyController::class, 'index'])->name('property.index');
+    Route::get('/property/edit/{id}', [App\Http\Controllers\PropertyController::class, 'edit'])->name('property.edit');
+
     //Property Page Post Routes
     Route::post('/property/add', [App\Http\Controllers\PropertyController::class, 'store'])->name('property.store');
-    Route::put('/property/update', [App\Http\Controllers\PropertyController::class, 'update'])->name('property.update');
+    Route::post('/property/update/{id}', [App\Http\Controllers\PropertyController::class, 'update'])->name('property.update');
     Route::post('/property/delete', [App\Http\Controllers\PropertyController::class, 'delete'])->name('property.delete');
 
 
@@ -41,7 +48,6 @@ Route::group(['middleware' => ['auth']], function () {
 
     Route::post('/pay', [App\Http\Controllers\PaymentController::class, 'redirectToGateway'])->name('pay');
     Route::get('/payment/callback', [App\Http\Controllers\PaymentController::class, 'handleGatewayCallback'])->name('handleGatewayCallback');
-
 });
 
 /**
@@ -50,8 +56,8 @@ Route::group(['middleware' => ['auth']], function () {
  * comment and uncomment to enable active subscription
  */
 
-Route::group(['middleware' => ['auth', 'subscribed']], function () {
-// Route::group(['middleware' => ['auth']], function () {
+       Route::group(['middleware' => ['auth', 'subscribed']], function () {
+    // Route::group(['middleware' => ['auth']], function () {
 
     // In App Section
     Route::get('/artisans', [App\Http\Controllers\ArtisansController::class, 'index'])->name('artisans.index');
@@ -88,12 +94,16 @@ Route::group(['middleware' => ['auth', 'subscribed']], function () {
 
     //Payments Page get Routes
     Route::get('/tenancy-payments', [App\Http\Controllers\TenancyPaymentsController::class, 'index'])->name('payments.index');
+    Route::get('/tenancy-payments/edit/{id}', [App\Http\Controllers\TenancyPaymentsController::class, 'edit'])->name('payments.edit');
     //Payments Page Post Routes
     Route::post('/tenancy-payments/add', [App\Http\Controllers\TenancyPaymentsController::class, 'store'])->name('payments.store');
+    Route::post('/tenancy-payments/update/{id}', [App\Http\Controllers\TenancyPaymentsController::class, 'update'])->name('payments.update');
+    Route::post('/tenancy-payments/delete', [App\Http\Controllers\TenancyPaymentsController::class, 'delete'])->name('payments.delete');
 
     Route::get('/fetch-free-units', [App\Http\Controllers\AjaxRequestsController::class, 'fetch_free_units'])->name('fetch_free_units');
     Route::get('/fetch-unit', [App\Http\Controllers\AjaxRequestsController::class, 'fetch_unit'])->name('fetch_unit');
     Route::get('/fetch-tenant', [App\Http\Controllers\AjaxRequestsController::class, 'fetch_tenant'])->name('fetch_tenant');
+
 });
 
 

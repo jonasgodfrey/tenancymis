@@ -30,8 +30,8 @@
                             </div>
                             <div class="row">
                                 <div class="col-lg-6">
-                                    <form role="form" action="{{ route('payments.store') }}" enctype="multipart/form-data"
-                                        method="POST">
+                                    <form role="form" action="{{ route('payments.store') }}"
+                                        enctype="multipart/form-data" method="POST">
                                         @csrf
                                         <div class="mb-3">
                                             <label for="example-select" class="form-label">Property Name</label>
@@ -105,8 +105,8 @@
 
                                         <div class="mb-3">
                                             <label for="example-password" class="form-label">Start Date</label>
-                                            <input type="date" id="example-password" name="startdate" class="form-control"
-                                                value="">
+                                            <input type="date" id="example-password" name="startdate"
+                                                class="form-control" value="">
                                         </div>
 
                                         <div class="mb-3">
@@ -118,13 +118,13 @@
                                         <div class="mb-3">
                                             <label for="example-select" class="form-label">Duration</label>
                                             <select class="form-select" name="duration" id="example-select">
-                                                <option>6 Months</option>
-                                                <option>1 Year</option>
-                                                <option>2 Years</option>
-                                                <option>3 Years</option>
-                                                <option>4 Years</option>
-                                                <option>5 Years</option>
-                                                <option>10 Years</option>
+                                                <option value="6 Months">6 Months</option>
+                                                <option value="1 Year">1 Year</option>
+                                                <option value="2 Years">2 Years</option>
+                                                <option value="3 Years">3 Years</option>
+                                                <option value="4 Years">4 Years</option>
+                                                <option value="5 Years">5 Years</option>
+                                                <option value="10 Years">10 Years</option>
                                             </select>
                                         </div>
 
@@ -142,7 +142,8 @@
 
                                         <div class="mb-3">
                                             <label for="example-fileinput" class="form-label">Upload Evidence</label>
-                                            <input name="file" type="file" id="example-fileinput" class="form-control">
+                                            <input name="file" type="file" id="example-fileinput"
+                                                class="form-control">
                                         </div>
 
 
@@ -191,16 +192,16 @@
                                             if (!empty($payments)) {
                                                 $date = explode(' ', $payments->duedate);
                                             }
-                                            
+
                                         @endphp
 
                                         <tr>
-                                            <td>{{ $count }}</td>
-                                            <td>{{ $tenant->property->propname }}</td>
-                                            <td>{{ $tenant->name }}</td>
-                                            <td>{{ $tenant->phone }}</td>
 
                                             @if (!empty($payments))
+                                                <td>{{ $count }}</td>
+                                                <td>{{ $tenant->property->propname }}</td>
+                                                <td>{{ $tenant->name }}</td>
+                                                <td>{{ $tenant->phone }}</td>
                                                 <td>{{ $payments->amount }}</td>
                                                 <td>{{ $payments->unit->name }}</td>
                                                 <td>{{ $date[0] }}</td>
@@ -217,23 +218,44 @@
                                                     <td><span class="badge bg-danger">expired</span>
                                                     </td>
                                                 @endif
+                                                <td>
+                                                    <div class="row">
+
+                                                        <div class="col-md-3">
+                                                            <a href="#"><i class="fas fa-eye"></i></a>
+                                                        </div>
+
+                                                        <div class="col-md-3">
+                                                            <a href="/tenancy-payments/edit/{{ $payments->id }}"><i
+                                                                    class="fas fa-pen"></i></a>
+                                                        </div>
+                                                        <!--modal begin-->
+
+                                                        <div class="col-md-3">
+                                                            <a href="#"><i class="fas fa-file"></i></a>
+                                                        </div>
+
+                                                        <div class="col-md-3">
+                                                            <i class="fa fa-trash delete" id="{{ $payments->id }}"
+                                                                style="color: red"></i>
+                                                        </div>
+                                                    </div>
+                                                </td>
                                             @else
                                                 <td></td>
                                                 <td></td>
                                                 <td></td>
-                                                <td><span"></span></td>
+                                                <td></td>
+                                                <td></td>
+                                                <td></td>
+                                                <td></td>
+                                                <td></td>
+                                                <td></td>
                                             @endif
-
-                                            <td>
-                                                <span><a href="#"><i class="fas fa-eye"></i></a></span>
-                                                <span><a href="#"><i class="fas fa-pen"></i></a></span>
-                                                <span><a href="#"><i class="fas fa-file"></i></a></span>
-                                            </td>
-
                                         </tr>
                                     @empty
                                     @endforelse
-                                    
+
 
                                 </tbody>
                             </table>
@@ -251,4 +273,50 @@
 @endsection
 @section('js')
     <script src="/assets/js/payments.js"></script>
+    <script>
+        $(document).ready(function() {
+            $('.delete').click(function() {
+                $(document).on('click', '.delete', function() {
+                    var id = $(this).attr('id');
+                    console.log(id);
+                    swal.fire({
+                        title: 'Are you sure?',
+                        text: "This payment record would be deleted !!",
+                        icon: 'warning',
+                        showCancelButton: true,
+                        confirmButtonColor: '#3085d6',
+                        cancelButtonColor: '#d33',
+                        confirmButtonText: 'Yes, delete it!',
+                    }).then((result) => {
+                        if (result.value) {
+                            $.ajaxSetup({
+                                headers: {
+                                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]')
+                                        .attr('content')
+                                }
+                            });
+                            $.ajax({
+                                    url: "{{ route('payments.delete')}}",
+                                    type: 'POST',
+                                    data: {
+                                        id: id
+                                    },
+                                })
+                                .done(function(response) {
+                                    console.log(response);
+                                    swal.fire('Deleted!', response, response
+                                        .status);
+                                })
+                                .fail(function(error) {
+                                    console.log(error);
+                                    swal.fire('Oops...',
+                                        'Something went wrong when deleting !',
+                                        'error');
+                                });
+                        }
+                    })
+                });
+            });
+        });
+    </script>
 @endsection

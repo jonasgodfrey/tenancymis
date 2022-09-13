@@ -53,14 +53,13 @@ class AuthServiceProvider extends ServiceProvider
                 'manager'
             ]);
         });
-
-        Gate::define('manage_property', function ($user) {
+        // 'tenant',
+        // 'artisan',
+        // 'accountant'
+        Gate::define('manage_properties', function ($user) {
             return $user->hasAnyRoles([
                 'admin',
                 'manager',
-                'tenant',
-                'artisan',
-                'accountant'
             ]);
         });
 

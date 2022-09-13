@@ -9,8 +9,12 @@ use App\Models\Property;
 use App\Models\PropertyCategory;
 use App\Models\PropertyType;
 use App\Models\State;
+use App\Models\Tenant;
+use App\Models\Unit;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Gate;
 
 class PropertyController extends Controller
 {
@@ -81,7 +85,7 @@ class PropertyController extends Controller
                 'user_id' => $user->id,
                 'owner_id' => $owner,
                 'title' => "New Property Created",
-                'message' => $user->name.' added a new property to TenancyPlus'
+                'message' => $user->name . ' added a new property to TenancyPlus'
             ]);
 
             if ($property) {
@@ -91,13 +95,96 @@ class PropertyController extends Controller
         }
     }
 
-    public function update(Request $request)
+    public function edit($id)
     {
+        if (Gate::denies('admin_manager')) {
+            abort('404');
+        }
+
+        $property = Property::findOrFail($id);
+
         # code...
+        $state = State::all();
+        $prop_cat = PropertyCategory::all();
+        $prop_types = PropertyType::all();
+        $countries = Country::all();
+
+        return view('admin.property.edit')->with([
+            'states' => $state,
+            'prop_cats' => $prop_cat,
+            'prop_types' => $prop_types,
+            'countries' => $countries,
+            'property' => $property
+        ]);
+    }
+
+
+    public function update(Request $request, $id)
+    {
+
+        $user = Auth::user();
+        $owner = $user->owner_id;
+        $rand = rand(111, 9999);
+
+        $property = Property::find($id);
+        $input = $request->all();
+
+
+        $file = $request->file('logo');
+
+        if (!empty($file)) {
+
+            $request->validate([
+                'logo' => 'mimes:jpeg,jpg,png,mime|max:3008',
+            ]);
+
+            $filename = 'attached-file-' . $rand . time() . '.' . $file->getClientOriginalExtension();
+            $file->storeAs('public/property/', $filename);
+            $property->fill($input)->save();
+            $property->update(['uploadsDir' => $filename]);
+        } else {
+            $property->fill($input)->save();
+        }
+
+
+        // publish a notification for the user create action
+        $notification = Notification::create([
+            'user_id' => $user->id,
+            'owner_id' => $owner,
+            'title' => "Property Data Updated",
+            'message' => "$user->name updated property details for $property->propname on TenancyPlus"
+        ]);
+
+        if ($property) {
+            Session::flash('flash_message', 'Property Updated Successfully !');
+            return redirect()->back();
+        }
     }
 
     public function delete(Request $request)
     {
-        # code...
+        $user = Auth::user();
+        $property =  Property::findOrFail($request->id);
+
+        $tenants = Tenant::where('propId', $request->id)->select('email')->get();
+
+        if ($property) {
+
+            Unit::whereIn('propId', [$request->id])->select('id')->delete();
+            User::whereIn('email', $tenants->pluck('email'))->delete();
+            Tenant::whereIn('email', $tenants->pluck('email'))->delete();
+
+            $property->delete();
+
+            // publish a notification for the user create action
+            $notification = Notification::create([
+                'user_id' => $user->id,
+                'owner_id' => $user->owner_id,
+                'title' => "New Tenant Created",
+                'message' => "$user->name deleted $property->propname from TenancyPlus"
+            ]);
+        }
+
+        exit("Property Deleted successfully.");
     }
 }

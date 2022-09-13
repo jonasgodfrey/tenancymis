@@ -39,6 +39,21 @@
                                     placeholder="Enter your tel">
                             </div>
                             <div class="mb-3">
+                                <label for="tel" class="form-label">What do you need MyTenancyPlus for?</label>
+                                <select class="form-control" name="purpose"  id="selectcat"
+                                    placeholder="Enter your tel">
+                                    <option value="">Kindly Select</option>                                    
+                                    <option value="Tenancy Management">Tenancy Management</option>                                   
+                                    <option value="Plaza Management">Plaza Management</option>
+                                    <option value="Artisan Management">Artisans Management</option>
+                                    <option value="Shortlet Services">Shortlets Services</option>
+                                    <option value="Land Banking">Land Banking</option> 
+                                    <option value="Build to Sell">Build to Sell</option>                             
+                                                                       
+                                </select>
+                            </div>
+                            
+                            <div class="mb-3">
                                 <label for="password" class="form-label">Password</label>
                                 <input class="form-control" name="password" type="password" required id="password"
                                     placeholder="Enter your password">

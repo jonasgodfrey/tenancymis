@@ -53,5 +53,5 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
 });
 
 Route::get('/send_reminder_email', [NotificationController::class, 'sendreminderemail']);
-Route::get('/send-sms-with-sendchamp', [NotificationController::class, 'sendSMSWithSendChamp']);
+Route::get('/send-sms-with-sendchamp', [NotificationController::class, 'sendSMSWithSendChampRequest']);
 Route::get('/sendsms', [NotificationController::class, 'sendsms']);

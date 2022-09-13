@@ -99,16 +99,66 @@ class NotificationController extends Controller
     }
 
 
-    public function sendSMSWithSendChamp(string $numbers, string $message)
-    {
+    //         try {
+    //             $payment_date = Carbon::parse($row->paydate);
+    //             $due_date = Carbon::parse($row->duedate);
 
+
+    //             $datax = [
+    //                 'name' => $row->tenant->name,
+    //                 'phone' => $row->tenant->phone,
+    //                 'prop_name' => $row->property->propname,
+    //                 'total_amount' => $row->amount,
+    //                 'payment_date' => $payment_date->format('M d Y'),
+    //                 'due_date' => $due_date->diffForHumans() . ' (' . $due_date->format('M d Y') . ')'
+    //             ];
+
+    //             Mail::to($row->tenant->email)->send(new ReminderEmail($datax));
+
+    //             $payload = [
+
+    //                 "SMS" => [
+    //                     "auth" => [
+    //                         "username" => "ngotrack2018@gmail.com",
+    //                         "apikey" => "0d4a9306a7c07a06f546d4a529d597847c4f4ba4",
+    //                     ],
+    //                     "message" => [
+    //                         "sender" => "MyTenancyPlus",
+    //                         "messagetext" => "Hello " . $datax['name'] . ", Your rent at " . $datax['prop_name'] . "\n is expiring " . $datax['due_date'] . ". kindly ensure to make payments before the due date thank you. If you have any complaints please contact our support [support@mytenancyplus.com].\n best regards,\n mytenancyplus.com",
+    //                         "flash" => "0"
+    //                     ],
+    //                     "recipients" => [
+    //                         "gsm" => [
+    //                             [
+    //                                 "msidn" => $datax['phone'],
+    //                                 "msgid" => 'test',
+    //                             ],
+
+    //                         ]
+    //                     ]
+    //                 ]
+    //             ];
+
+    //             Http::withBody(json_encode($payload), 'application/json')->withOptions([
+    //                 'headers' => [
+    //                     'Content-Type' => 'application/json',
+    //                 ]
+    //             ])->post('https://api.ebulksms.com/sendsms.json');
+    //         } catch (\Throwable $th) {
+    //             return $th;
+    //         }
+    //     }
+    // }
+
+    public function sendSMSWithSendChamp($numbers, $message)
+    {
         try {
 
             $body = [
                 "message" => $message,
                 "to" => $numbers,
-                "sender_name" => "TenancyPlus",
-                "route" => "international"
+                "sender_name" => "Sendchamp",
+                "route" => "non_dnd"
             ];
 
             $header = [
@@ -119,6 +169,15 @@ class NotificationController extends Controller
 
             $response = Http::withHeaders($header)->post("https://api.sendchamp.com/api/v1/sms/send", $body);
 
+            echo json_encode($response->json());
+
+            // if ($response->ok()) {
+            //     $result = $response->json();
+
+            //     if($result["status"] == "success"){
+
+            //     }
+            // }
         } catch (Exception $e) {
         }
     }

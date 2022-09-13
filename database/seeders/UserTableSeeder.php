@@ -26,6 +26,7 @@ class UserTableSeeder extends Seeder
             'name' => 'super_admin',
             'email' => 'admin@mytenancyplus.com',
             'phone' => '11111111111',
+            'purpose'=> 'Can do Everything',
             'password' => Hash::make('secret'),
             'email_verified_at' => now(),
             'owner_id' => 1,

@@ -11,7 +11,7 @@
                         </a>
 
                     </li>
-                    @can('manage_property')
+                    @can('manage_properties')
                     <li class="nav-item dropdown">
                         <a class="nav-link arrow-none" href="/property" id="topnav-dashboard" role="button"
                            aria-haspopup="true" aria-expanded="false">
@@ -48,7 +48,7 @@
                         </a>
 
                     </li>
-                    
+
                     <!-- <li class="nav-item dropdown">
                         <a class="nav-link arrow-none" href="/artisans" id="topnav-dashboard" role="button"
                            aria-haspopup="true" aria-expanded="false">
@@ -64,7 +64,7 @@
 
                     </li> -->
 
-                   
+
 
                     <li class="nav-item dropdown  " id="clockdiv">
                         <a class="nav-link arrow-none" href="#" id="topnav-dashboard" role="button"
@@ -82,6 +82,36 @@
                         <a class="nav-link arrow-none" href="/settings" id="topnav-dashboard" role="button"
                            aria-haspopup="true" aria-expanded="false">
                             <i class="mdi mdi-cogs me-1"></i> SETTINGS
+                        </a>
+
+                    </li>
+
+                    <li class="nav-item dropdown">
+                        <a class="nav-link arrow-none" href="/bsdash" id="topnav-dashboard" role="button"
+                           aria-haspopup="true" aria-expanded="false">
+                            <i class="mdi mdi-cogs me-1"></i> B2S Dash
+                        </a>
+
+                    </li>
+
+                    <li class="nav-item dropdown">
+                        <a class="nav-link arrow-none" href="/bsuserdash" id="topnav-dashboard" role="button"
+                           aria-haspopup="true" aria-expanded="false">
+                            <i class="mdi mdi-cogs me-1"></i> B2S UserDash
+                        </a>
+
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link arrow-none" href="/bsuserdash" id="topnav-dashboard" role="button"
+                           aria-haspopup="true" aria-expanded="false">
+                            <i class="mdi mdi-cogs me-1"></i> Lanbanking Dash
+                        </a>
+
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link arrow-none" href="/bsuserdash" id="topnav-dashboard" role="button"
+                           aria-haspopup="true" aria-expanded="false">
+                            <i class="mdi mdi-cogs me-1"></i> Landbanking UserDash
                         </a>
 
                     </li>

@@ -111,13 +111,15 @@
 
                                         <div class="mb-3">
                                             <label for="example-fileinput" class="form-label">Upload Logo</label>
-                                            <input type="file" name="logo" id="example-fileinput" class="form-control">
+                                            <input type="file" name="logo" id="example-fileinput"
+                                                class="form-control">
                                         </div>
 
                                     </div> <!-- end col -->
 
                                     <div class="col-12">
-                                        <button type="submit" name="submit" class="btn btn-primary btn-md">Create</button>
+                                        <button type="submit" name="submit"
+                                            class="btn btn-primary btn-md">Create</button>
                                     </div>
 
                                 </div>
@@ -161,13 +163,24 @@
                                             <td>{{ $property->phone }}</td>
                                             <td>
                                                 <div class="row">
-                                                    <div class="col-6">
+
+                                                    <div class="col-md-3">
                                                         <a href="#"><i class="fas fa-eye"></i></a>
                                                     </div>
-                                                    <div class="col-6">
-                                                        <span><a href="#"><i class="fas fa-pen"></i></a></span>
+
+                                                    <div class="col-md-3">
+                                                        <a href="/property/edit/{{ $property->id }}"><i
+                                                                class="fas fa-pen"></i></a>
                                                     </div>
-                                                </div>                                              
+                                                    <!--modal begin-->
+
+                                                    <div class="col-md-3">
+                                                        <i class="fa fa-trash delete" id="{{ $property->id }}"
+                                                            style="color: red"></i>
+                                                    </div>
+                                                </div>
+
+
                                             </td>
                                         </tr>
                                     @empty
@@ -191,5 +204,50 @@
     </div>
 @endsection
 @section('js')
-    <script src="dist/js/selectField.js"></script>
+    <script>
+        $(document).ready(function() {
+            $('.delete').click(function() {
+                $(document).on('click', '.delete', function() {
+                    var id = $(this).attr('id');
+                    console.log(id);
+                    swal.fire({
+                        title: 'Are you sure?',
+                        text: "All units and tenants under this property would also be deleted !!",
+                        icon: 'warning',
+                        showCancelButton: true,
+                        confirmButtonColor: '#3085d6',
+                        cancelButtonColor: '#d33',
+                        confirmButtonText: 'Yes, delete it!',
+                    }).then((result) => {
+                        if (result.value) {
+                            $.ajaxSetup({
+                                headers: {
+                                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]')
+                                        .attr('content')
+                                }
+                            });
+                            $.ajax({
+                                    url: "{{ route('property.delete')}}",
+                                    type: 'POST',
+                                    data: {
+                                        id: id
+                                    },
+                                })
+                                .done(function(response) {
+                                    console.log(response);
+                                    swal.fire('Deleted!', response, response
+                                        .status);
+                                })
+                                .fail(function(error) {
+                                    console.log(error);
+                                    swal.fire('Oops...',
+                                        'Something went wrong when deleting !',
+                                        'error');
+                                });
+                        }
+                    })
+                });
+            });
+        });
+    </script>
 @endsection

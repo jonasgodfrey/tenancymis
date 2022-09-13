@@ -7,10 +7,15 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
-class User extends Authenticatable
+
+class User extends Authenticatable implements MustVerifyEmail
 {
     use HasApiTokens, HasFactory, Notifiable;
+    use SoftDeletes;
+
+    protected $dates = ['deleted_at'];
 
     /**
      * The attributes that are mass assignable.
@@ -22,6 +27,7 @@ class User extends Authenticatable
         'email',
         'phone',
         'password',
+        'purpose',
         'role',
         'otp',
         'owner_id',
@@ -61,7 +67,7 @@ class User extends Authenticatable
 
     public function subscription()
     {
-        return $this->hasOne(UserSubscription::class, 'user_id');
+        return $this->hasMany(UserSubscription::class, 'user_id');
     }
 
     public function properties(): \Illuminate\Database\Eloquent\Relations\HasMany
