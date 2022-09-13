@@ -7,15 +7,15 @@
 
 
 <p>Your rent at <b>{{$data['prop_name']}}</b> is expiring {{$data['due_date']}},
-     kindly ensure to make payments before the due date to avoid any issues</p>
+Kindly ensure to make payments before the due date thank you.</p>
 
 <p>
-    If you have any complaints please contact our support.
+If you have any complaints please contact our support support@mytenancyplus.com
 </p>
 
 <p>
     Best Regards,<br>
-    {{ config('app.name') }}
+    {{$data['prop_name']}}
 </p>
 
 @endcomponent
