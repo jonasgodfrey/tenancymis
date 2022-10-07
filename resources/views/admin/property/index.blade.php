@@ -144,8 +144,7 @@
                                         <th>Property</th>
                                         <th>Address</th>
                                         <th>Description</th>                                    
-                                        <!-- <th>Country</th>
-                                        <th>State</th> -->
+                                        
                                         <th>Contact Email</th>
                                         <th>Tel</th>
                                         <th>Action</th>
@@ -159,8 +158,7 @@
                                             <td>{{ $property->propname }}</td>
                                             <td>{{ $property->propaddress }}</td>
                                             <td>{{ $property->propdesc }}</td>                                            
-                                            <!-- <td>{{ $property->country->name }}</td>
-                                            <td>{{ $property->state->name }}</td> -->
+                                           
                                             <td>{{ $property->email }}</td>
                                             <td>{{ $property->phone }}</td>
                                             <td>
