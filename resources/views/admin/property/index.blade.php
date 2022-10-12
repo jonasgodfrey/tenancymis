@@ -95,7 +95,7 @@
                                             <label for="example-select" class="form-label">Country</label>
                                             <select class="form-select" id="example-select" name="country" required>
                                                 @foreach ($countries as $country)
-                                                    <option value="{{ $country->name }}">{{ $country->name }}</option>
+                                                    <option value="{{ $country->id }}">{{ $country->name }}</option>
                                                 @endforeach
                                             </select>
                                         </div>
@@ -104,7 +104,7 @@
                                             <label for="example-select" class="form-label">State</label>
                                             <select class="form-select" id="example-select" name="state" required>
                                                 @foreach ($states as $state)
-                                                    <option value="{{ $state->name }}">{{ $state->name }}</option>
+                                                    <option value="{{ $state->id }}">{{ $state->name }}</option>
                                                 @endforeach
                                             </select>
                                         </div>
@@ -143,8 +143,8 @@
                                     <tr>
                                         <th>Property</th>
                                         <th>Address</th>
-                                        <th>Description</th>                                    
-                                        
+                                        <th>Description</th>
+
                                         <th>Contact Email</th>
                                         <th>Tel</th>
                                         <th>Action</th>
@@ -157,8 +157,8 @@
                                         <tr>
                                             <td>{{ $property->propname }}</td>
                                             <td>{{ $property->propaddress }}</td>
-                                            <td>{{ $property->propdesc }}</td>                                            
-                                           
+                                            <td>{{ $property->propdesc }}</td>
+
                                             <td>{{ $property->email }}</td>
                                             <td>{{ $property->phone }}</td>
                                             <td>
@@ -184,7 +184,6 @@
                                             </td>
                                         </tr>
                                     @empty
-                                        <h6 class="text-center">no property yet</h6>
                                     @endforelse
 
                                 </tbody>
@@ -237,6 +236,7 @@
                                     console.log(response);
                                     swal.fire('Deleted!', response, response
                                         .status);
+                                    location.reload('2000');
                                 })
                                 .fail(function(error) {
                                     console.log(error);

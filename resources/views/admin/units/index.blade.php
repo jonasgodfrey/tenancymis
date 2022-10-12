@@ -139,7 +139,7 @@
                                             <td>{{ $unit->property->propname }}</td>
                                             <td>{{ $unit->name }}</td>
                                             <td>{{ $unit->unitDesc }}</td>
-                                            <td>{{ $unit->leaseAmount }}</td>                                            
+                                            <td>{{ $unit->leaseAmount }}</td>
                                             @if ($unit->status == 'occupied')
                                                 <td><span class="badge bg-secondary">{{ $unit->status }}</span></td>
                                             @endif
@@ -158,7 +158,6 @@
                                             </td>
                                         </tr>
                                     @empty
-                                        <h6 class="text-center">no property yet</h6>
                                     @endforelse
 
                                 </tbody>

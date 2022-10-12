@@ -30,11 +30,11 @@ class Property extends Model
     }
 
     public function country(){
-        return $this->hasOne(Country::class,  'id');
+        return $this->hasOne(Country::class,'id',  'countryId');
     }
 
     public function state(){
-        return $this->hasOne(State::class, 'id');
+        return $this->hasOne(State::class, 'id', 'stateId');
     }
 
     public function manager()
