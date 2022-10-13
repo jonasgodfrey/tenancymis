@@ -141,10 +141,10 @@
                             <table id="datatable-buttons" class="table table-striped table-bordered dt-responsive nowrap">
                                 <thead>
                                     <tr>
-                                        <th>Property</th>
-                                        <th>Address</th>
+                                        <th>Property</th>                                        
+                                        <th>Category</th>
                                         <th>Description</th>
-
+                                        <th>State</th>
                                         <th>Contact Email</th>
                                         <th>Tel</th>
                                         <th>Action</th>
@@ -156,9 +156,9 @@
                                     @forelse ($properties as $property)
                                         <tr>
                                             <td>{{ $property->propname }}</td>
-                                            <td>{{ $property->propaddress }}</td>
+                                            <td>{{ $property->category->category_name }}</td>                                            
                                             <td>{{ $property->propdesc }}</td>
-
+                                            <td>{{ $property->state->name }}</td>                                            
                                             <td>{{ $property->email }}</td>
                                             <td>{{ $property->phone }}</td>
                                             <td>

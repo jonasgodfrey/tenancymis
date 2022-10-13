@@ -33,6 +33,10 @@ class Property extends Model
         return $this->hasOne(Country::class,'id',  'countryId');
     }
 
+    public function category(){
+        return $this->hasOne(PropertyCategory::class,'id',  'propcatId');
+    }
+
     public function state(){
         return $this->hasOne(State::class, 'id', 'stateId');
     }
