@@ -16,6 +16,8 @@ use Illuminate\Support\Facades\Mail;
 use App\Mail\Welcome;
 use App\Mail\EmailVerification;
 use App\Models\Role;
+use App\Models\UserSubscription;
+use Carbon\Carbon;
 
 class RegisteredUserController extends Controller
 {
@@ -75,6 +77,16 @@ class RegisteredUserController extends Controller
             'owner_id' => $user->id,
             'title' => "New Signup",
             'message' => 'You just signed up welcome to PLA'
+        ]);
+
+        UserSubscription::create([
+            "user_id" => $user->id,
+            "start_date" => Carbon::now(),
+            "end_date" => Carbon::now()->addMonth(),
+            "status" => 'active',
+            "plan_type" => 2,
+            "amount" => 0,
+            "total_units_no" => 5,
         ]);
 
         $datax = [
