@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Http\Controllers\InbrandedController;
 use App\Http\Controllers\NotificationController;
 use App\Models\Notification;
 use App\Models\User;
@@ -56,7 +57,7 @@ class RegisteredUserController extends Controller
             'name' => $request->name,
             'email' => $request->email,
             'phone' => $request->phone,
-            'purpose'=> $request->purpose,
+            'purpose' => $request->purpose,
             'role' => 'admin',
             'owner_id' => 0,
             // 'username' => $validatedData['username'],
@@ -94,6 +95,14 @@ class RegisteredUserController extends Controller
             'email' => $user->email,
             'otp' => $user->otp
         ];
+
+        $inbrandedController = new InbrandedController();
+
+        $registerInbranded = $inbrandedController->register($user->name, $user->email);
+
+        if(!$registerInbranded['status']){
+            return response()->json(['status' => '01', 'message' => 'Failed to Register webhook']);
+        }
 
         $notificationController = new NotificationController();
 
