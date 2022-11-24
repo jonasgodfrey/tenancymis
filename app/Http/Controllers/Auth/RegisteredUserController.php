@@ -90,11 +90,11 @@ class RegisteredUserController extends Controller
             "total_units_no" => 5,
         ]);
 
-        // $datax = [
-        //     'name' => $user->name,
-        //     'email' => $user->email,
-        //     'otp' => $user->otp
-        // ];
+        $datax = [
+            'name' => $user->name,
+            'email' => $user->email,
+            'otp' => $user->otp
+        ];
 
         // $inbrandedController = new InbrandedController();
 
