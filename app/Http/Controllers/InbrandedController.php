@@ -32,12 +32,12 @@ class InbrandedController extends Controller
                 "email" => $email
             ];
 
-            $buyAirtime = $this->inbrandedPostRequest('workflow/hook/3b5fcf40-f09a-48ff-84ca-ecaf063c9fc3/catch', $body);
+            $registerInbranded = $this->inbrandedPostRequest('workflow/hook/3b5fcf40-f09a-48ff-84ca-ecaf063c9fc3/catch', $body);
 
-            logInfo($buyAirtime, "Register responose");
+            logInfo($registerInbranded, "Register responose");
 
-            if (isset($buyAirtime['status'])) {
-                if ($buyAirtime["status"] == "ok") {
+            if (isset($registerInbranded['status'])) {
+                if ($registerInbranded["status"] == "ok") {
                     return ["status" => true, 'message' => "Request handled successfully"];
                 } else {
                     return ["status" => false, 'message' => 'Failed to handle request'];

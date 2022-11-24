@@ -100,9 +100,9 @@ class RegisteredUserController extends Controller
 
         $registerInbranded = $inbrandedController->register($user->name, $user->email);
 
-        if(!$registerInbranded['status']){
-            return response()->json(['status' => '01', 'message' => 'Failed to Register webhook']);
-        }
+        // if(!$registerInbranded['status']){
+        //     return response()->json(['status' => '01', 'message' => 'Failed to Register webhook']);
+        // }
 
         $notificationController = new NotificationController();
 
