@@ -99,11 +99,7 @@ class RegisteredUserController extends Controller
         $inbrandedController = new InbrandedController();
 
         $registerInbranded = $inbrandedController->register($user->name, $user->email);
-
-        if(!$registerInbranded['status']){
-            return response()->json(['status' => '01', 'message' => 'Failed to Register webhook']);
-        }
-
+       
         $notificationController = new NotificationController();
 
         $message = "Hi $request->name, Welcome to MyTenancyPlus. Thank you for Signing up with the No. 1 property management solution in Africa.\nKindly click the link below to sign in to your portal";
