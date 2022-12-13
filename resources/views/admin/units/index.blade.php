@@ -17,12 +17,35 @@
             </div>
             <!-- end page title -->
 
-
             <div class="row">
-                <div class="col-12">
+                <div class="col-sm-6">
                     <div class="card">
                         <div class="card-body">
-                            <h4 class="header-title">Add Units</h4>
+                            <h5 class="card-title">Add a single unit</h5>
+                            <p class="card-text">Add the data for a single individual unit to your portal.</p>
+                            <br>
+                            <br>
+                            <a href="#" class="btn btn-primary single-unit-btn">Add Unit</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title">Add multiple units <b class="text-danger">(new)</b></h5>
+                            <p class="card-text">Add units in multiple groups through our unique feature of auto generation,
+                                we generate the units for you based on your requirements saving you a little hassle, just
+                                tell us the number of units you need for each group and we would auto generate</p>
+                            <a href="#" class="btn btn-primary multi-unit-btn">Generate Units</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12">
+                    <div class="card single-unit-card">
+                        <div class="card-body">
+                            <h4 class="header-title">Add Single Unit</h4>
                             <br>
                             <div id="alert">
                                 @include('partials.flash')
@@ -38,8 +61,10 @@
 
                                         <div class="mb-3">
                                             <label for="example-select" class="form-label">Select Property</label>
-                                            <select class="form-select" name="propname" id="example-select required>
-                                            <option style=" display: none">Select Property</option>
+                                            <select class="form-select" name="propname"
+                                                id="example-select required>
+                                            <option style="
+                                                display: none">Select Property</option>
                                                 @foreach ($properties as $property)
                                                     <option value="{{ $property->id }}">{{ $property->propname }}
                                                     </option>
@@ -78,8 +103,8 @@
 
                                         <div class="mb-3">
                                             <label for="example-password" class="form-label">Unit Description</label>
-                                            <input type="tel" name="unitdesc" id="" class="form-control" value=""
-                                                required>
+                                            <input type="tel" name="unitdesc" id="" class="form-control"
+                                                value="" required>
                                         </div>
 
                                         <div class="mb-3">
@@ -110,6 +135,87 @@
                         </div> <!-- end card-body -->
                     </div> <!-- end card -->
                 </div><!-- end col -->
+                <div class="col-12">
+                    <div class="card multi-unit-card">
+                        <div class="card-body">
+                            <h4 class="header-title">Add Multiple Units</h4>
+                            <br>
+                            <div id="alert">
+                                @include('partials.flash')
+                                @include('partials.modal')
+                            </div>
+
+                            <form role="form" action="{{ route('units.store') }}" enctype="multipart/form-data"
+                                method="POST">
+                                @csrf
+                                <div class="row">
+                                    <div class="col-lg-6">
+
+
+                                        <div class="mb-3">
+                                            <label for="example-select" class="form-label">Select Property</label>
+                                            <select class="form-select" name="propname"
+                                                id="example-select required>
+                                            <option style="
+                                                display: none">Select Property</option>
+                                                @foreach ($properties as $property)
+                                                    <option value="{{ $property->id }}">{{ $property->propname }}
+                                                    </option>
+                                                @endforeach
+                                            </select>
+                                        </div>
+
+                                        <div class="mb-3">
+                                            <label for="example-select" class="form-label">Unit Type</label>
+                                            <select class="form-select" name="unittype" id="example-select" required>
+                                                <option style="display: none">Select Unit Type</option>
+                                                @foreach ($unitstype as $unit)
+                                                    <option value="{{ $unit->id }}">{{ $unit->name }}</option>
+                                                @endforeach
+
+                                            </select>
+                                        </div>
+
+                                        <div class="mb-3">
+                                            <label for="example-password" class="form-label">Number of units</label>
+                                            <input type="text" name="unitno" id=" multi-unitno" class="form-control"
+                                                value="" required>
+                                        </div>
+
+                                    </div> <!-- end col -->
+
+                                    <div class="col-lg-6">
+
+
+                                        <div class="mb-3">
+                                            <label for="example-password" class="form-label">Unit Description</label>
+                                            <input type="tel" name="unitdesc" id="" class="form-control"
+                                                value="" required>
+                                        </div>
+
+                                        <div class="mb-3">
+                                            <label for="example-password" class="form-label">Rent/Lease Amount</label>
+                                            <input type="text" name="rentamount" id="example-password"
+                                                class="form-control" placeholder="₦100,000/Year" required>
+                                        </div>
+
+
+                                        <div class="mb-3">
+                                            <label for="example-fileinput" class="form-label">Unit Picture</label>
+                                            <input type="file" name="unitpics" id="example-fileinput"
+                                                class="form-control" </div>
+                                        </div> <!-- end col -->
+                                        <div class="mb-3">
+                                            <button type="submit" id="gen_btn" name="submit"
+                                                class="btn btn-success btn-md">Generate Units</button>
+                                        </div>
+                                    </div>
+                                    <!-- end row-->
+                            </form>
+
+                        </div> <!-- end card-body -->
+                    </div> <!-- end card -->
+                </div>
             </div>
             <!-- end row -->
 
@@ -178,4 +284,27 @@
 @endsection
 @section('js')
     <script src="dist/js/selectField.js"></script>
+    <script>
+        $(".single-unit-card").hide();
+        $(".multi-unit-card").hide();
+
+
+        $(".single-unit-btn").click(function() {
+            $(".single-unit-card").toggle();
+            $(".multi-unit-card").hide();
+        });
+
+        $(".multi-unit-btn").click(function() {
+            $(".single-unit-card").hide();
+            $(".multi-unit-card").toggle();
+        });
+
+
+
+        $('#multi_unitno').keyup(function() {
+            // Update the button text with the current value of the input field
+            $('#gen-btn').html($(this).val());
+        });
+
+    </script>
 @endsection

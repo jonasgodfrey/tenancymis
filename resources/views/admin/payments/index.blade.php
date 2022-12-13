@@ -205,7 +205,6 @@
                                                 <td>{{ $payments->amount }}</td>
                                                 <td>{{ $payments->unit->name }}</td>
                                                 <td>{{ $date[0] }}</td>
-
                                                 @if ($payments->duration_status == 3)
                                                     <td><span class="badge bg-success">active</span>
                                                     </td>
@@ -296,7 +295,7 @@
                                 }
                             });
                             $.ajax({
-                                    url: "{{ route('payments.delete')}}",
+                                    url: "{{ route('payments.delete') }}",
                                     type: 'POST',
                                     data: {
                                         id: id

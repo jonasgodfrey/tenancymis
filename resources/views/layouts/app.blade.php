@@ -43,8 +43,8 @@
 <!-- body start -->
 
 <body class="loading" data-layout-mode="horizontal"
-    data-layout='{"mode": "dark", "width": "fluid", "menuPosition": "fixed",
-        "topbar": {"color": "dark"}, "showRightSidebarOnPageLoad": true}'>
+    data-layout='{"mode": "light", "width": "fluid", "menuPosition": "fixed",
+        "topbar": {"color": "dark"}, "showRightSidebarOnPageLoad": false}'>
     <!-- Begin page -->
     <div id="wrapper">
         @include('layouts.nav')
