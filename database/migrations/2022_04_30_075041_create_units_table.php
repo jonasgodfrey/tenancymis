@@ -19,7 +19,7 @@ return new class extends Migration
             $table->bigInteger('propId')->unsigned();
             $table->bigInteger('typeId')->unsigned();
             $table->string('name');
-            $table->string('unitNum');
+            $table->string('unit_ref_id');
             $table->string('unitDesc');
             $table->string('leaseAmount');
             $table->string('status');

@@ -77,6 +77,8 @@ Route::group(['middleware' => ['auth', 'verified']], function () {
     Route::get('/units', [App\Http\Controllers\PropertyUnitsController::class, 'index'])->name('units.index');
     //Units Page post Routes
     Route::post('/units/add', [App\Http\Controllers\PropertyUnitsController::class, 'store'])->name('units.store');
+    Route::post('/units/add_multiple', [App\Http\Controllers\PropertyUnitsController::class, 'store_multiple'])->name('units.store_multiple');
+
     Route::post('/units/update', [App\Http\Controllers\PropertyUnitsController::class, 'update'])->name('units.update');
     Route::post('/units/delete', [App\Http\Controllers\PropertyUnitsController::class, 'delete'])->name('units.delete');
 

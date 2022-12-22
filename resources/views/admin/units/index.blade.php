@@ -83,11 +83,6 @@
                                             </select>
                                         </div>
 
-                                        <div class="mb-3">
-                                            <label for="example-password" class="form-label">Unit No</label>
-                                            <input type="number" name="unitno" id="example-password" class="form-control"
-                                                value="" required>
-                                        </div>
 
                                         <div class="mb-3">
                                             <label for="example-password" class="form-label">Unit Name</label>
@@ -145,7 +140,7 @@
                                 @include('partials.modal')
                             </div>
 
-                            <form role="form" action="{{ route('units.store') }}" enctype="multipart/form-data"
+                            <form role="form" action="{{ route('units.store_multiple') }}" enctype="multipart/form-data"
                                 method="POST">
                                 @csrf
                                 <div class="row">
@@ -156,8 +151,8 @@
                                             <label for="example-select" class="form-label">Select Property</label>
                                             <select class="form-select" name="propname"
                                                 id="example-select required>
-                                            <option style="
-                                                display: none">Select Property</option>
+                                            <option style="display:none">Select
+                                                Property</option>
                                                 @foreach ($properties as $property)
                                                     <option value="{{ $property->id }}">{{ $property->propname }}
                                                     </option>
@@ -176,9 +171,17 @@
                                             </select>
                                         </div>
 
+
+                                        <div class="mb-3">
+                                            <label for="example-password" class="form-label">Unit Name <span class="text-danger">(would be used for all units in this group)</span></label>
+                                            <input type="text" name="unitname" id="example-password" class="form-control"
+                                                value="" placeholder="" required>
+                                        </div>
+
+
                                         <div class="mb-3">
                                             <label for="example-password" class="form-label">Number of units</label>
-                                            <input type="text" name="unitno" id=" multi-unitno" class="form-control"
+                                            <input type="text" name="multiple_unit_count" id=" multi-unitno" class="form-control"
                                                 value="" required>
                                         </div>
 
@@ -205,12 +208,13 @@
                                             <input type="file" name="unitpics" id="example-fileinput"
                                                 class="form-control" </div>
                                         </div> <!-- end col -->
-                                        <div class="mb-3">
-                                            <button type="submit" id="gen_btn" name="submit"
-                                                class="btn btn-success btn-md">Generate Units</button>
-                                        </div>
+
                                     </div>
                                     <!-- end row-->
+                                    <div class="mb-3">
+                                        <button type="submit" id="gen_btn" name="submit"
+                                            class="btn btn-success btn-md">Generate Units</button>
+                                    </div>
                             </form>
 
                         </div> <!-- end card-body -->
@@ -305,6 +309,5 @@
             // Update the button text with the current value of the input field
             $('#gen-btn').html($(this).val());
         });
-
     </script>
 @endsection
