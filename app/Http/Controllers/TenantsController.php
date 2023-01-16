@@ -57,7 +57,7 @@ class TenantsController extends Controller
 
         if ($request->assign_type == "new") {
             $request->validate([
-                'new_email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
+                'new_email' => ['required', 'string', 'email', 'max:255'],
                 'new_tenant_name' => ['required', 'string', 'max:255'],
                 'new_mobile' => ['required', 'string',],
                 'new_bizname' => ['required', 'string', 'max:255'],
@@ -88,6 +88,13 @@ class TenantsController extends Controller
             $regCode = "PLA" . rand(11100, 999999);
 
             if ($request->assign_type == "new") {
+
+                $newuser = User::where('email', $request->new_email)->first();
+
+                if ($newuser) {
+                    Session::flash('error_message', 'Email already exists');
+                    return redirect()->back();
+                }
 
                 // store details of a new user
                 $user = User::create([
