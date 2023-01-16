@@ -25,7 +25,8 @@ class DatabaseSeeder extends Seeder
             StatusSeeder::class,
             UnitTypeSeeder::class,
             PaymentStatusSeeder::class,
-            SubscriptionPackageSeeder::class
+            SubscriptionPackageSeeder::class,
+            PaymentCategorySeeder::class
         ]);
     }
 }

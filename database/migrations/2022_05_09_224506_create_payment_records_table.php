@@ -25,6 +25,7 @@ return new class extends Migration
             $table->unsignedBigInteger("payment_status_id");
             $table->foreign('payment_status_id')->references('id')->on('payment_statuses');
             $table->double('amount', 14, 2);
+            $table->double('amount_paid', 14, 2);
             $table->double('discount', 14, 2)->default(0);
             $table->date('payment_date')->useCurrent();
             $table->date('startdate');
