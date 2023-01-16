@@ -65,7 +65,7 @@
                                 </div>
                                 <div class="col-md-6">
                                     <h4 class="price">Rent Period:</h4>
-                                    <p class="product-description">{{\Carbon\Carbon::createFromTimestamp(strtotime($unit->tenant->start_date))->format('d M Y')}} - {{\Carbon\Carbon::createFromTimestamp(strtotime($unit->tenant->due_date))->format('d M Y')}}</p>
+                                    <p class="product-description">{{ $unit->tenant->start_date != null ? \Carbon\Carbon::createFromTimestamp(strtotime($unit->tenant->start_date))->format('d M Y')}} - {{\Carbon\Carbon::createFromTimestamp(strtotime($unit->tenant->due_date))->format('d M Y') : 'Not Assigned'}}</p>
                                 </div>
                             </div>
                             @endif
@@ -99,7 +99,7 @@
                         </div>
                     </div>
                     <div class="col-md-6">
-                    @if($unit->status == 'occupied')
+                        @if($unit->status == 'occupied')
 
                         <div class="page-title-box page-title-box-alt">
                             <div style="flex-direction:row; justify-content: flex-end;">
