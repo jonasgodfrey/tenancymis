@@ -11,6 +11,7 @@ use App\Models\PropertyType;
 use App\Models\State;
 use App\Models\Tenant;
 use App\Models\Unit;
+use App\Models\UnitType;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -62,15 +63,17 @@ class PropertyController extends Controller
         $units = Unit::where('propId', $property_id)->get();
         $users = User::where('owner_id', $user->id)->get();
 
+        $unitstype = UnitType::all();
+
         return view('admin.property.units')->with([
             'states' => $state,
             'prop_cats' => $prop_cat,
             'prop_types' => $prop_types,
             'countries' => $countries,
-            'properties' => $properties,
             'property' => $property,
             'users' => $users,
-            'units' => $units
+            'units' => $units,
+            'unitstype' => $unitstype
         ]);
     }
 

@@ -32,6 +32,8 @@ class TenantsController extends Controller
     {
         $user = Auth::user();
         $tenants = $user->tenants;
+        $users = User::where('owner_id', $user->id)->get();
+
 
         logInfo($tenants);
 
@@ -42,6 +44,8 @@ class TenantsController extends Controller
             return view('admin.tenants.index')->with([
                 'properties' => $properties,
                 'tenants' => $tenants,
+                'users' => $users
+
             ]);
         }
 

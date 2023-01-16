@@ -33,7 +33,7 @@
 
                             <br>
                             <h4 class="price">Rent/Lease Amount:</h4>
-                            <p class="vote">{{$unit->leaseAmount}}</p>
+                            <p class="vote">@money($unit->leaseAmount)</p>
                             <h4 class="price">Description</h4>
                             <p class="product-description">{{$unit->unitDesc}}</p>
                             <br>

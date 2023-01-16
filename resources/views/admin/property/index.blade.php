@@ -10,8 +10,7 @@
         <div class="row">
             <div class="col-md-6">
                 <div class="page-title-box page-title-box-alt">
-
-                    <h4 class="page-title"> Property</h4>
+                    <h4 class="page-title">Property</h4>
                 </div>
             </div>
             <div class="col-md-6">
@@ -30,8 +29,7 @@
         </div>
         <!-- end page title -->
 
-
-        <div class="row" id="add-property-div">
+        <div class="row" id="add-property-div" style="display: none;">
             <div class="col-12">
                 <div class="card">
                     <div class="card-body">
@@ -207,56 +205,10 @@
 @endsection
 @section('js')
 <script>
-    $('#add-property-div').hide();
 
-    $('#show-add-tenant').on('click', function(e) {
-        $('#add-property-div').toggle();
+$('#show-add-tenant').on('click', function() {
+    $('#add-property-div').toggle();
+})
 
-    });
-    $(document).ready(function() {
-        $('.delete').click(function() {
-            $(document).on('click', '.delete', function() {
-                var id = $(this).attr('id');
-                console.log(id);
-                swal.fire({
-                    title: 'Are you sure?',
-                    text: "All units and tenants under this property would also be deleted !!",
-                    icon: 'warning',
-                    showCancelButton: true,
-                    confirmButtonColor: '#3085d6',
-                    cancelButtonColor: '#d33',
-                    confirmButtonText: 'Yes, delete it!',
-                }).then((result) => {
-                    if (result.value) {
-                        $.ajaxSetup({
-                            headers: {
-                                'X-CSRF-TOKEN': $('meta[name="csrf-token"]')
-                                    .attr('content')
-                            }
-                        });
-                        $.ajax({
-                                url: "{{ route('property.delete')}}",
-                                type: 'POST',
-                                data: {
-                                    id: id
-                                },
-                            })
-                            .done(function(response) {
-                                console.log(response);
-                                swal.fire('Deleted!', response, response
-                                    .status);
-                                location.reload('2000');
-                            })
-                            .fail(function(error) {
-                                console.log(error);
-                                swal.fire('Oops...',
-                                    'Something went wrong when deleting !',
-                                    'error');
-                            });
-                    }
-                })
-            });
-        });
-    });
 </script>
 @endsection
