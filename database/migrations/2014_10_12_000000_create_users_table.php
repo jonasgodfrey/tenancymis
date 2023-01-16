@@ -21,7 +21,7 @@ return new class extends Migration
             $table->string('purpose')->nullable();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
-            $table->string('occupation');
+            $table->string('occupation')->nullable();
             $table->string('role');
             $table->string('otp')->nullable();
             $table->string('owner_id')->nullable();
