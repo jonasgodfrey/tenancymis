@@ -65,7 +65,12 @@
                                 </div>
                                 <div class="col-md-6">
                                     <h4 class="price">Rent Period:</h4>
-                                    <p class="product-description">{{ $unit->tenant->start_date != null ? \Carbon\Carbon::createFromTimestamp(strtotime($unit->tenant->start_date))->format('d M Y')}} - {{\Carbon\Carbon::createFromTimestamp(strtotime($unit->tenant->due_date))->format('d M Y') : 'Not Assigned'}}</p>
+                                    @if($unit->tenant->start_date == null)
+                                    <p class="product-description">Not Assigned</p>
+                                    @endif
+                                    @if($unit->tenant->start_date != null)
+                                    <p class="product-description">{{ \Carbon\Carbon::createFromTimestamp(strtotime($unit->tenant->start_date))->format('d M Y')}} - {{\Carbon\Carbon::createFromTimestamp(strtotime($unit->tenant->due_date))->format('d M Y')}}</p>
+                                    @endif
                                 </div>
                             </div>
                             @endif
