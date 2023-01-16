@@ -129,9 +129,9 @@
                                     @forelse ($tenants as $tenant)
                                     <tr>
 
-                                        <td>{{$tenant->name}}</td>
-                                        <td>{{$tenant->email}}</td>
-                                        <td>{{$tenant->phone}}</td>
+                                        <td>{{$tenant->user->name}}</td>
+                                        <td>{{$tenant->user->email}}</td>
+                                        <td>{{$tenant->user->phone}}</td>
                                         <td>{{$tenant->unit->name}}</td>
                                         <td>{{$tenant->property->propname}}</td>
                                         <td>

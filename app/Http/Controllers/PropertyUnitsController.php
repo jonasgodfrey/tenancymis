@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Notification;
+use App\Models\PaymentCategory;
+use App\Models\PaymentRecord;
 use Illuminate\Http\Request;
 use App\Models\UnitType;
 use App\Models\Property;
@@ -132,7 +134,7 @@ class PropertyUnitsController extends Controller
             $file = $request->file('unitpics');
             $filename = '';
             // generate a new filename. getClientOriginalExtension() for the file extension
-            if(!empty($file)){
+            if (!empty($file)) {
                 $rand = rand(111, 9999);
                 $filename = 'attached-file-' . $rand . time() . '.' . $file->getClientOriginalExtension();
 
@@ -187,5 +189,22 @@ class PropertyUnitsController extends Controller
     public function delete(Request $request)
     {
         # code...
+    }
+    public function showUnitInfo($unitId)
+    {
+        $user = Auth::user();
+        if (Gate::allows('admin')) {
+
+            $unit = Unit::find($unitId);
+            $sub = $user->subscription->where('status', 'active')->first();
+            $paymentRecords = PaymentRecord::where('unit_id', $unitId)->get();
+            $paymentCategories = PaymentCategory::all();
+
+            return view('admin.units.show_details')->with([
+                'unit' => $unit,
+                'payment_records' => $paymentRecords,
+                'payment_categories' => $paymentCategories
+            ]);
+        }
     }
 }

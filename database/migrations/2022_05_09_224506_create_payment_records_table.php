@@ -16,18 +16,23 @@ return new class extends Migration
         Schema::create('payment_records', function (Blueprint $table) {
             $table->id();
             $table->bigInteger('property_id')->unsigned();
-            $table->bigInteger('unit_id')->unsigned();
-            $table->bigInteger('tenant_id')->unsigned();
+            $table->string('payment_reference');
+            $table->unsignedBigInteger("unit_id");
+            $table->foreign('unit_id')->references('id')->on('units');
+            $table->unsignedBigInteger("tenant_id");
+            $table->foreign('tenant_id')->references('id')->on('tenants');
             $table->bigInteger('paycat_id')->unsigned();
-            $table->bigInteger('paystatus_id')->unsigned();
-            $table->string('amount');
-            $table->timestamp('paydate')->useCurrent();
-            $table->timestamp('startdate')->useCurrent();
-            $table->timestamp('duedate')->useCurrent();
-            $table->string('duration');
-            $table->string('duration_status');
-            $table->string('paymethod');
-            $table->string('evidence_image');
+            $table->unsignedBigInteger("payment_status_id");
+            $table->foreign('payment_status_id')->references('id')->on('payment_statuses');
+            $table->double('amount', 14, 2);
+            $table->double('discount', 14, 2)->default(0);
+            $table->date('payment_date')->useCurrent();
+            $table->date('startdate');
+            $table->date('duedate');
+            $table->string('duration')->nullable();
+            $table->string('duration_status')->nullable();
+            $table->string('paymethod')->nullable();
+            $table->string('evidence_image')->nullable();
             $table->timestamps();
         });
     }

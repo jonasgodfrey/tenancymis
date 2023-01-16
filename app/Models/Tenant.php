@@ -16,9 +16,12 @@ class Tenant extends Model
 
     protected $fillable = [
         'name',
+        'user_id',
         'email',
         'phone',
         'bizname',
+        'start_date',
+        'due_date',
         'bizcat',
         'propId',
         'unitId',
@@ -38,6 +41,11 @@ class Tenant extends Model
     public function property()
     {
         return $this->belongsTo(Property::class, 'propId');
+    }
+
+    public function user()
+    {
+        return $this->belongsTo(User::class, 'user_id');
     }
 
     public function unit()

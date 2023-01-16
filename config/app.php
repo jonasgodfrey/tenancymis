@@ -192,6 +192,8 @@ return [
 
     'aliases' => Facade::defaultAliases()->merge([
         // 'ExampleClass' => App\Example\ExampleClass::class,
+        'Paystack' => Unicodeveloper\Paystack\Facades\Paystack::class,
+
     ])->toArray(),
 
 ];

@@ -20,6 +20,7 @@ return new class extends Migration
             $table->string('residential_address')->nullable();
             $table->string('phone')->nullable();
             $table->string('gender')->nullable();
+            $table->string('occupation')->nullable();
             
             $table->string('nok_name')->nullable();
             $table->string('nok_email')->nullable();

@@ -23,7 +23,7 @@ Route::group(['middleware' => ['auth', 'verified']], function () {
     //Dashboard Route
     Route::get('/', [DashboardController::class, 'index']);
     Route::get('/dashboard', [App\Http\Controllers\DashboardController::class, 'index'])->name('dashboard');
-    Route::get('/superadmindashboard', [App\Http\Controllers\DashboardController::class, 'index'])->name('dashboard');
+    Route::get('/superadmindashboard', [App\Http\Controllers\DashboardController::class, 'index'])->name('superadmin-dashboard');
 
     // Build to Sell Dashboard
     Route::get('/bsdash', [App\Http\Controllers\BuildSellController::class, 'index'])->name('index');
@@ -34,8 +34,9 @@ Route::group(['middleware' => ['auth', 'verified']], function () {
     Route::get('/notifications/change-status', [App\Http\Controllers\NotificationController::class, 'clear_all'])->name('clear_all_unseen_notifications');
 
     //Property Page Get Routes
-    Route::get('/property', [App\Http\Controllers\PropertyController::class, 'index'])->name('property.index');
-    Route::get('/property/edit/{id}', [App\Http\Controllers\PropertyController::class, 'edit'])->name('property.edit');
+    Route::get('/properties', [App\Http\Controllers\PropertyController::class, 'index'])->name('property.index');
+    Route::get('/properties/{property_id}/units', [App\Http\Controllers\PropertyController::class, 'propertyUnits'])->name('property.units');
+    Route::get('/properties/edit/{id}', [App\Http\Controllers\PropertyController::class, 'edit'])->name('property.edit');
 
     //Property Page Post Routes
     Route::post('/property/add', [App\Http\Controllers\PropertyController::class, 'store'])->name('property.store');
@@ -56,7 +57,7 @@ Route::group(['middleware' => ['auth', 'verified']], function () {
  * comment and uncomment to enable active subscription
  */
 
-       Route::group(['middleware' => ['auth', 'subscribed']], function () {
+Route::group(['middleware' => ['auth', 'subscribed']], function () {
     // Route::group(['middleware' => ['auth']], function () {
 
     // In App Section
@@ -81,16 +82,21 @@ Route::group(['middleware' => ['auth', 'verified']], function () {
 
     Route::post('/units/update', [App\Http\Controllers\PropertyUnitsController::class, 'update'])->name('units.update');
     Route::post('/units/delete', [App\Http\Controllers\PropertyUnitsController::class, 'delete'])->name('units.delete');
+    Route::get('/units/{unitId}', [App\Http\Controllers\PropertyUnitsController::class, 'showUnitInfo'])->name('units.show');
 
     //tenants Page Get Routes
     Route::get('/tenants', [App\Http\Controllers\TenantsController::class, 'index'])->name('tenants.index');
+    Route::get('/tenants-details/{userid}', [App\Http\Controllers\TenantsController::class, 'showTenantsDetails'])->name('tenants.details');
+    Route::get('/property-tenants/{userid}', [App\Http\Controllers\TenantsController::class, 'showTenantsDetails'])->name('tenants.showdetails');
     //tenants Page Post Routes
-    Route::post('/tenants/add', [App\Http\Controllers\TenantsController::class, 'store'])->name('tenants.store');
+    Route::post('/tenants/add', [App\Http\Controllers\TenantsController::class, 'store'])->name('tenants.store')->middleware("log.route");
     Route::post('/tenants/update', [App\Http\Controllers\TenantsController::class, 'update'])->name('tenants.update');
     Route::post('/tenants/delete', [App\Http\Controllers\TenantsController::class, 'delete'])->name('tenants.delete');
 
     //Users Page Get Routes
     Route::get('/users', [App\Http\Controllers\UserController::class, 'index'])->name('users.index');
+
+    Route::get('/users/{id}', [App\Http\Controllers\UserController::class, 'show'])->name('users.getuser');
     //Users Page Post Routes
     Route::post('/users/add', [App\Http\Controllers\UserController::class, 'store'])->name('users.store');
 
@@ -98,6 +104,7 @@ Route::group(['middleware' => ['auth', 'verified']], function () {
     Route::get('/tenancy-payments', [App\Http\Controllers\TenancyPaymentsController::class, 'index'])->name('payments.index');
     Route::get('/tenancy-payments/edit/{id}', [App\Http\Controllers\TenancyPaymentsController::class, 'edit'])->name('payments.edit');
     //Payments Page Post Routes
+    Route::post('/tenancy-payments/add-new', [App\Http\Controllers\TenancyPaymentsController::class, 'addNewPayment'])->name('payments.updatepayment')->middleware('log.route');
     Route::post('/tenancy-payments/add', [App\Http\Controllers\TenancyPaymentsController::class, 'store'])->name('payments.store');
     Route::post('/tenancy-payments/update/{id}', [App\Http\Controllers\TenancyPaymentsController::class, 'update'])->name('payments.update');
     Route::post('/tenancy-payments/delete', [App\Http\Controllers\TenancyPaymentsController::class, 'delete'])->name('payments.delete');
@@ -105,7 +112,6 @@ Route::group(['middleware' => ['auth', 'verified']], function () {
     Route::get('/fetch-free-units', [App\Http\Controllers\AjaxRequestsController::class, 'fetch_free_units'])->name('fetch_free_units');
     Route::get('/fetch-unit', [App\Http\Controllers\AjaxRequestsController::class, 'fetch_unit'])->name('fetch_unit');
     Route::get('/fetch-tenant', [App\Http\Controllers\AjaxRequestsController::class, 'fetch_tenant'])->name('fetch_tenant');
-
 });
 
 

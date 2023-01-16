@@ -48,6 +48,32 @@ class PropertyController extends Controller
         ]);
     }
 
+    public function propertyUnits($property_id)
+    {
+        $user = Auth::user();
+
+        # code...
+        $state = State::all();
+        $prop_cat = PropertyCategory::all();
+        $prop_types = PropertyType::all();
+        $countries = Country::all();
+        $properties = $user->properties;
+        $property = Property::find($property_id);
+        $units = Unit::where('propId', $property_id)->get();
+        $users = User::where('owner_id', $user->id)->get();
+
+        return view('admin.property.units')->with([
+            'states' => $state,
+            'prop_cats' => $prop_cat,
+            'prop_types' => $prop_types,
+            'countries' => $countries,
+            'properties' => $properties,
+            'property' => $property,
+            'users' => $users,
+            'units' => $units
+        ]);
+    }
+
     public function store(Request $request)
     {
         $request->validate([

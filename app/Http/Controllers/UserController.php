@@ -37,7 +37,7 @@ class UserController extends Controller
             $roles = Role::whereNot('name', 'admin')->whereNot('name', 'tenant')->get();
             $properties = $user->properties;
             $user = Auth()->user();
-            $users = User::where('owner_id', $user->id)->get();
+            $users = User::where(['owner_id' => $user->id, 'role' => 'tenant'])->get();
 
             return view('admin.users.index')->with([
                 'roles' => $roles,
@@ -78,7 +78,7 @@ class UserController extends Controller
                 $user = User::create([
                     'name' => $request->name,
                     'email' => $request->email,
-                    'phone' => $request->phone,                    
+                    'phone' => $request->phone,
                     'role' => $request->role,
                     'usercode' => $regCode,
                     'owner_id' => $user->id,
@@ -102,7 +102,7 @@ class UserController extends Controller
                     'user_id' => $user->id,
                     'owner_id' => $owner,
                     'title' => "New User Created",
-                    'message' => $user->name.' added a new manager to TenancyPlus'
+                    'message' => $user->name . ' added a new manager to TenancyPlus'
                 ]);
             }
 
@@ -142,7 +142,7 @@ class UserController extends Controller
                     'user_id' => $user->id,
                     'owner_id' => $owner,
                     'title' => "New User Created",
-                    'message' => $user->name.' added a new accountant to TenancyPlus'
+                    'message' => $user->name . ' added a new accountant to TenancyPlus'
                 ]);
             }
 
@@ -152,7 +152,7 @@ class UserController extends Controller
                 $user = User::create([
                     'name' => $request->name,
                     'email' => $request->email,
-                    'phone' => $request->phone,                    
+                    'phone' => $request->phone,
                     'role' => $request->role,
                     'usercode' => $regCode,
                     'owner_id' => $user->id,
@@ -178,13 +178,23 @@ class UserController extends Controller
                     'user_id' => $user->id,
                     'owner_id' => $owner,
                     'title' => "New User Created",
-                    'message' => $user->name.' added an artisan to TenancyPlus'
+                    'message' => $user->name . ' added an artisan to TenancyPlus'
                 ]);
             }
 
 
             Session::flash('flash_message', 'User Created Successfully !');
             return redirect()->back();
+        }
+    }
+    public function show($id)
+    {
+        $user = User::find($id);
+
+        if ($user) {
+            return response()->json(['status' => "success", 'message' => 'User Details Fetched successfully', 'data' => $user]);
+        }else{
+            return response()->json(['status' => "error", 'message' => 'Failedd to Fetched user details']);
         }
     }
     public function update(Request $request)
