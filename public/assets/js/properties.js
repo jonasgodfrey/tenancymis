@@ -28,6 +28,60 @@ $(".propname").change(function () {
     }
 });
 
+function confirmDelete(id) {
+
+    Swal.fire(
+        'Good job!',
+        'You clicked the button!',
+        'success'
+    )
+
+    Swal.fire({
+        title: 'Confirm Delete',
+        text: "Are you sure you want to delete this property? You won't be able to revert this!",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Yes, delete it!'
+    }).then((result) => {
+        if (result.isConfirmed) {
+            $.ajax({
+                url: "/property/delete",
+                method: "post",
+                data: {
+                    propid: id
+                },
+                success: function (result) {
+                    if (result.status == 0) {
+                        Swal.fire({
+                            title: 'Deleted!',
+                            message: result.message,
+                            icon: 'success',
+                            allowOutsideClick: false
+                        }).then((result) => {
+                            location.reload();
+                          })
+                    } else {
+                        Swal.fire(
+                            'Error',
+                            result.message,
+                            'error'
+                        )
+                    }
+                },
+                error: function (err) {
+                    console.log(err);
+                },
+                headers: {
+                    "X-CSRF-Token": $('meta[name="csrf-token"]').attr("content")
+                }
+            });
+
+        }
+    })
+}
+
 
 $('#show-add-tenant').on('click', function (e) {
     $('#add-tenants-div').toggle();

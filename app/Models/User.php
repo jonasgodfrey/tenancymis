@@ -26,6 +26,7 @@ class User extends Authenticatable implements MustVerifyEmail
         'name',
         'email',
         'phone',
+        'occupation',
         'password',
         'purpose',
         'role',
@@ -73,6 +74,10 @@ class User extends Authenticatable implements MustVerifyEmail
     public function properties(): \Illuminate\Database\Eloquent\Relations\HasMany
     {
         return $this->hasMany(Property::class, 'ownerId');
+    }
+
+    public function profile(){
+        return $this->hasOne(UserProfile::class, 'id', 'user_id');
     }
 
 

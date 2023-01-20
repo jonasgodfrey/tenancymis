@@ -37,6 +37,10 @@ class Property extends Model
         return $this->hasOne(PropertyCategory::class,'id',  'propcatId');
     }
 
+    public function tenants(){
+        return $this->hasMany(Tenant::class, 'propId');
+    }
+
     public function state(){
         return $this->hasOne(State::class, 'id', 'stateId');
     }

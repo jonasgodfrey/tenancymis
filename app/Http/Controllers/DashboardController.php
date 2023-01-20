@@ -33,6 +33,8 @@ class DashboardController extends Controller
         $tenants_num = $user->tenants->count();
         $tenants = $user->tenants;
 
+        logInfo($user->roles, "Roles assign");
+
         if (Gate::allows('admin')) {
             return view('admin.dashboard.index')->with([
                 'properties' => $properties_num,

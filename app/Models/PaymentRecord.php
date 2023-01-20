@@ -10,18 +10,21 @@ class PaymentRecord extends Model
     use HasFactory;
 
     protected $fillable = [
+        'payment_reference',
         'property_id',
         'unit_id',
-        'paycat_id',
-        'paymethod',
         'tenant_id',
-        'paystatus_id',
+        'paycat_id',
+        'payment_status_id',
         'amount',
-        'paydate',
+        'amount_paid',
+        'payment_date',
+        'discount',
         'startdate',
         'duedate',
         'duration',
         'duration_status',
+        'paymethod',
         'evidence_image',
     ];
 

@@ -16,7 +16,7 @@ class Unit extends Model
         'propId',
         'typeId',
         'name',
-        'unitNum',
+        'unit_ref_id',
         'unitDesc',
         'leaseAmount',
         'status',

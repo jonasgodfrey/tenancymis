@@ -1,8 +1,8 @@
-<div class="modal fade" id="modal-sm" style="display: none;" aria-hidden="true">
+<div class="modal fade" id="modal-sm" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered modal-sm">
           <div class="modal-content">
             <div class="modal-header">
-              <h5 class="modal-title">Delete Record(s)</h5>
+              <h5 class="modal-title"></h5>
               <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                 <span aria-hidden="true">×</span>
               </button>

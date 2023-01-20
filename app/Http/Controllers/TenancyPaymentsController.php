@@ -103,6 +103,94 @@ class TenancyPaymentsController extends Controller
         }
     }
 
+    public function addNewPayment(Request $request)
+    {
+        $request->validate([
+            'file' => 'required|mimes:jpeg,jpg,png,mime|max:3008',
+            'amount' => 'required|numeric',
+            'discount' => 'required|numeric',
+            'duration' => 'required|string',
+            'start_date' => 'required|string',
+            'due_date' => 'required|string',
+            'unit_id' => 'required|string',
+            'tenant_id' => 'required|string',
+            'property_id' => 'required|string',
+            'amount_paid' => 'required|numeric',
+            'lease_amount' => 'required|numeric',
+            'payment_category' => 'required|numeric',
+            'payment_method' => 'required|required',
+        ]);
+
+        $user = Auth::user();
+
+        if (Gate::allows('admin')) {
+
+            if ($request->hasFile('file')) {
+                $file = $request->file('file');
+
+                // generate a new filename. getClientOriginalExtension() for the file extension
+                $rand = rand(111, 9999);
+                $filename = 'attached-file-' . $rand . time() . '.' . $file->getClientOriginalExtension();
+
+                // save to storage/app/photos as the new $filename
+                $storefile = $file->storeAs('public/payments/', $filename);
+            } else {
+                $filename = "";
+            }
+
+            $tenantrec = Tenant::where('id', $request->tenant_id)->first();
+
+            if ($storefile) {
+                $startdate = Carbon::parse($request->start_date);
+                $duedate = Carbon::parse($request->due_date);
+
+                $payment = PaymentRecord::create([
+                    'payment_reference' => generateTransactionReference(),
+                    'property_id' => $request->property_id,
+                    'unit_id' => $request->unit_id,
+                    'paycat_id' => $request->payment_category,
+                    'tenant_id' => $request->tenant_id,
+                    'paystatus_id' => 3,
+                    'amount' => $request->amount,
+                    'amount_paid' => $request->amount_paid,
+                    'discount' => $request->discount,
+                    'payment_date' => Carbon::now(),
+                    'startdate' => $startdate,
+                    'duedate' => $duedate,
+                    'duration' => $request->total_months,
+                    'payment_status_id' => 2,
+                    'duration_status' => '3',
+                    'paymethod' => $request->payment_method,
+                    'evidence_image' => $filename,
+                ]);
+
+                if ($request->payment_update_type == 'new') {
+                    $tenantrec->update([
+                        'start_date' => $request->start_date,
+                        'due_date' => $request->due_date,
+                    ]);
+                } else {
+                    $tenantrec->update([
+                        'due_date' => $request->due_date,
+                    ]);
+                }
+
+                // publish a notification for the user create action
+                $notification = Notification::create([
+                    'user_id' => $user->id,
+                    'owner_id' => $user->id,
+                    'title' => "New Payment Record Added",
+                    'message' => $user->name . ' added a new payment record, for (tenant: ' . $tenantrec->name . ') on TenancyPlus'
+                ]);
+
+                if ($payment) {
+                    Session::flash('flash_message', 'New tenant Payment Added Successfully');
+                    return redirect()->back();
+                }
+            }
+        }
+    }
+
     public function invoicegenerate()
     {
         return view('admin.payments.invoice')->with([]);

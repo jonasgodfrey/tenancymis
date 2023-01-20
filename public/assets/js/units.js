@@ -28,16 +28,11 @@ $(".propname").change(function () {
     }
 });
 
-
-$('#show-add-tenant').on('click', function (e) {
-    $('#add-tenants-div').toggle();
-
-});
-
 $('#add-property-div').hide();
 
 $('#show-add-unit').on('click', function (e) {
-    $('#add-property-div').toggle();
+    $('#add-unit-div').toggle();
+    $('#add-tenants-div').hide();
 
 });
 $('#assignment_type').on('change', function (e) {
@@ -85,4 +80,57 @@ $('#selected_user').on('change', function (e) {
                 'Something went wrong when deleting !',
                 'error');
         });
+});
+
+$('#show-add-tenant').on('click', function (e) {
+    $('#add-tenants-div').toggle();
+    $('#add-unit-div').hide();
+
+});
+$(document).ready(function () {
+    $('.alert').alert()
+
+    $('.delete').click(function () {
+        $(document).on('click', '.delete', function () {
+            var id = $(this).attr('id');
+            console.log(id);
+            swal.fire({
+                title: 'Are you sure?',
+                text: "All units and tenants under this property would also be deleted !!",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Yes, delete it!',
+            }).then((result) => {
+                if (result.value) {
+                    $.ajaxSetup({
+                        headers: {
+                            'X-CSRF-TOKEN': $('meta[name="csrf-token"]')
+                                .attr('content')
+                        }
+                    });
+                    $.ajax({
+                        url: "{{ route('property.delete')}}",
+                        type: 'POST',
+                        data: {
+                            id: id
+                        },
+                    })
+                        .done(function (response) {
+                            console.log(response);
+                            swal.fire('Deleted!', response, response
+                                .status);
+                            location.reload('2000');
+                        })
+                        .fail(function (error) {
+                            console.log(error);
+                            swal.fire('Oops...',
+                                'Something went wrong when deleting !',
+                                'error');
+                        });
+                }
+            })
+        });
+    });
 });

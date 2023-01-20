@@ -16,35 +16,30 @@
     <link rel="shortcut icon" href="/assets/images/fav.png">
 
     <!-- App css -->
-    <link href="/assets/css/config/default/bootstrap.min.css" rel="stylesheet" type="text/css"
-        id="bs-default-stylesheet" />
+    <link href="/assets/css/config/default/bootstrap.min.css" rel="stylesheet" type="text/css" id="bs-default-stylesheet" />
     <link href="/assets/css/config/default/app.min.css" rel="stylesheet" type="text/css" id="/app-default-stylesheet" />
 
-    <link href="/assets/css/config/default/bootstrap-dark.min.css" rel="stylesheet" type="text/css"
-        id="bs-dark-stylesheet" disabled="disabled" />
-    <link href="/assets/css/config/default/app-dark.min.css" rel="stylesheet" type="text/css" id="/app-dark-stylesheet"
-        disabled="disabled" />
+    <link href="/assets/css/config/default/bootstrap-dark.min.css" rel="stylesheet" type="text/css" id="bs-dark-stylesheet" disabled="disabled" />
+    <link href="/assets/css/config/default/app-dark.min.css" rel="stylesheet" type="text/css" id="/app-dark-stylesheet" disabled="disabled" />
     <!-- icons -->
     <link href="/assets/css/icons.min.css" rel="stylesheet" type="text/css" />
 
     <!-- third party css -->
     <link href="/assets/libs/datatables.net-bs5/css/dataTables.bootstrap5.min.css" rel="stylesheet" type="text/css" />
-    <link href="/assets/libs/datatables.net-responsive-bs5/css/responsive.bootstrap5.min.css" rel="stylesheet"
-        type="text/css" />
-    <link href="/assets/libs/datatables.net-buttons-bs5/css/buttons.bootstrap5.min.css" rel="stylesheet"
-        type="text/css" />
-    <link href="/assets/libs/datatables.net-select-bs5/css//select.bootstrap5.min.css" rel="stylesheet"
-        type="text/css" />
+    <link href="/assets/libs/datatables.net-responsive-bs5/css/responsive.bootstrap5.min.css" rel="stylesheet" type="text/css" />
+    <link href="/assets/libs/datatables.net-buttons-bs5/css/buttons.bootstrap5.min.css" rel="stylesheet" type="text/css" />
+    <link href="/assets/libs/datatables.net-select-bs5/css//select.bootstrap5.min.css" rel="stylesheet" type="text/css" />
     <!-- third party css end -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/6-beta8/css/tempus-dominus.css"  />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/6-beta8/css/tempus-dominus.css" />
+
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
 
 </head>
 
 <!-- body start -->
 
-<body class="loading" data-layout-mode="horizontal"
-    data-layout='{"mode": "dark", "width": "fluid", "menuPosition": "fixed",
-        "topbar": {"color": "dark"}, "showRightSidebarOnPageLoad": true}'>
+<body class="loading" data-layout-mode="horizontal" data-layout='{"mode": "light", "width": "fluid", "menuPosition": "fixed",
+        "topbar": {"color": "dark"}, "showRightSidebarOnPageLoad": false}'>
     <!-- Begin page -->
     <div id="wrapper">
         @include('layouts.nav')
@@ -86,27 +81,23 @@
 
                             <h6 class="fw-medium font-14 mt-4 mb-2 pb-1">Color Scheme</h6>
                             <div class="form-check form-switch mb-1">
-                                <input type="checkbox" class="form-check-input" name="color-scheme-mode" value="light"
-                                    id="light-mode-check" />
+                                <input type="checkbox" class="form-check-input" name="color-scheme-mode" value="light" id="light-mode-check" />
                                 <label class="form-check-label" for="light-mode-check">Light Mode</label>
                             </div>
 
                             <div class="form-check form-switch mb-1">
-                                <input type="checkbox" class="form-check-input" name="color-scheme-mode" value="dark"
-                                    id="dark-mode-check" checked />
+                                <input type="checkbox" class="form-check-input" name="color-scheme-mode" value="dark" id="dark-mode-check" checked />
                                 <label class="form-check-label" for="dark-mode-check">Dark Mode</label>
                             </div>
 
                             <!-- Width -->
                             <h6 class="fw-medium font-14 mt-4 mb-2 pb-1">Width</h6>
                             <div class="form-check form-switch mb-1">
-                                <input type="checkbox" class="form-check-input" name="width" value="fluid"
-                                    id="fluid-check" checked />
+                                <input type="checkbox" class="form-check-input" name="width" value="fluid" id="fluid-check" checked />
                                 <label class="form-check-label" for="fluid-check">Fluid</label>
                             </div>
                             <div class="form-check form-switch mb-1">
-                                <input type="checkbox" class="form-check-input" name="width" value="boxed"
-                                    id="boxed-check" />
+                                <input type="checkbox" class="form-check-input" name="width" value="boxed" id="boxed-check" />
                                 <label class="form-check-label" for="boxed-check">Boxed</label>
                             </div>
 
@@ -114,14 +105,12 @@
                             <h6 class="fw-medium font-14 mt-4 mb-2 pb-1">Menus (Leftsidebar and Topbar) Positon</h6>
 
                             <div class="form-check form-switch mb-1">
-                                <input type="checkbox" class="form-check-input" name="menus-position" value="fixed"
-                                    id="fixed-check" checked />
+                                <input type="checkbox" class="form-check-input" name="menus-position" value="fixed" id="fixed-check" checked />
                                 <label class="form-check-label" for="fixed-check">Fixed</label>
                             </div>
 
                             <div class="form-check form-switch mb-1">
-                                <input type="checkbox" class="form-check-input" name="menus-position"
-                                    value="scrollable" id="scrollable-check" />
+                                <input type="checkbox" class="form-check-input" name="menus-position" value="scrollable" id="scrollable-check" />
                                 <label class="form-check-label" for="scrollable-check">Scrollable</label>
                             </div>
 
@@ -129,14 +118,12 @@
                             <h6 class="fw-medium font-14 mt-4 mb-2 pb-1">Topbar</h6>
 
                             <div class="form-check form-switch mb-1">
-                                <input type="checkbox" class="form-check-input" name="topbar-color" value="dark"
-                                    id="darktopbar-check" checked />
+                                <input type="checkbox" class="form-check-input" name="topbar-color" value="dark" id="darktopbar-check" checked />
                                 <label class="form-check-label" for="darktopbar-check">Dark</label>
                             </div>
 
                             <div class="form-check form-switch mb-1">
-                                <input type="checkbox" class="form-check-input" name="topbar-color" value="light"
-                                    id="lighttopbar-check" />
+                                <input type="checkbox" class="form-check-input" name="topbar-color" value="light" id="lighttopbar-check" />
                                 <label class="form-check-label" for="lighttopbar-check">Light</label>
                             </div>
 
@@ -165,6 +152,8 @@
 
     <!-- App js-->
     <script src="/assets/js/app.min.js"></script>
+    <script src="/assets/js/custom-script.js"></script>
+
     <!-- third party js -->
     <script src="/assets/libs/datatables.net/js/jquery.dataTables.min.js"></script>
     <script src="/assets/libs/datatables.net-bs5/js/dataTables.bootstrap5.min.js"></script>
@@ -181,19 +170,21 @@
     <script src="/assets/libs/pdfmake/build/vfs_fonts.js"></script>
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.3/moment.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/6-beta8/js/tempus-dominus.js" ></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/6-beta8/js/tempus-dominus.js"></script>
     <!-- third party js ends -->
     <!-- Datatables init -->
     <script src="/assets/js/pages/datatables.init.js"></script>
 
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+
     @php
-        $user = Auth::user();
-        $date_time_string = '';
-        if ($user->subscription) {
-            $sub = $user->subscription->where('status', 'active')->first();
-            $carbon_init = Carbon\Carbon::parse($sub->end_date ?? '');
-            $date_time_string = $carbon_init->toFormattedDateString() . ' ' . $carbon_init->toTimeString();
-        }
+    $user = Auth::user();
+    $date_time_string = '';
+    if ($user->subscription) {
+    $sub = $user->subscription->where('status', 'active')->first();
+    $carbon_init = Carbon\Carbon::parse($sub->end_date ?? '');
+    $date_time_string = $carbon_init->toFormattedDateString() . ' ' . $carbon_init->toTimeString();
+    }
     @endphp
 
     <script>
