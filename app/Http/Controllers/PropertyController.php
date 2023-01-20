@@ -60,7 +60,8 @@ class PropertyController extends Controller
         $countries = Country::all();
         $properties = $user->properties;
         $property = Property::find($property_id);
-        $units = Unit::where('propId', $property_id)->get();
+        $units = Unit::where(['propId' => $property_id])->get();
+        $assignable_units = Unit::where(['propId' => $property_id, 'status' => 'empty'])->get();
         $users = User::where('owner_id', $user->id)->get();
 
         $unitstype = UnitType::all();
@@ -73,6 +74,7 @@ class PropertyController extends Controller
             'property' => $property,
             'users' => $users,
             'units' => $units,
+            'assignable_units' => $assignable_units,
             'unitstype' => $unitstype
         ]);
     }
@@ -81,6 +83,8 @@ class PropertyController extends Controller
     {
         $request->validate([
             'logo' => 'required|mimes:jpeg,jpg,png,mime|max:3008',
+            'propcat' => 'required',
+            'proptype' => 'required',
         ]);
 
         $file = $request->file('logo');
@@ -193,15 +197,19 @@ class PropertyController extends Controller
     public function delete(Request $request)
     {
         $user = Auth::user();
-        $property =  Property::findOrFail($request->id);
-
-        $tenants = Tenant::where('propId', $request->id)->select('email')->get();
+        $property =  Property::findOrFail($request->propid);
 
         if ($property) {
 
-            Unit::whereIn('propId', [$request->id])->select('id')->delete();
-            User::whereIn('email', $tenants->pluck('email'))->delete();
-            Tenant::whereIn('email', $tenants->pluck('email'))->delete();
+            $units = $property->units;
+
+            if (count($units) > 0) {
+                return response()->json(['status' => 1, 'message' => 'This property cannot be deleted because it contains units']);
+            }
+
+            Unit::whereIn('propId', [$request->propid])->select('id')->delete();
+            // User::whereIn('email', $tenants->pluck('email'))->delete();
+            // Tenant::whereIn('email', $tenants->pluck('email'))->delete();
 
             $property->delete();
 
@@ -209,11 +217,12 @@ class PropertyController extends Controller
             $notification = Notification::create([
                 'user_id' => $user->id,
                 'owner_id' => $user->owner_id,
-                'title' => "New Tenant Created",
+                'title' => "Property Delete",
                 'message' => "$user->name deleted $property->propname from TenancyPlus"
             ]);
         }
 
-        exit("Property Deleted successfully.");
+            return response()->json(['status' => 0, 'message' => 'Property Deleted successfully']);
+        
     }
 }

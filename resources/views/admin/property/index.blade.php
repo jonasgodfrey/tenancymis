@@ -29,18 +29,20 @@
         </div>
         <!-- end page title -->
 
+        {{-- Flash message --}}
+        <div id="alert">
+            @include('partials.flash')
+            @include('partials.modal')
+        </div>
+        {{-- Flash message end --}}
+
         <div class="row" id="add-property-div" style="display: none;">
             <div class="col-12">
                 <div class="card">
                     <div class="card-body">
                         <h4 class="header-title">Create Property</h4>
                         <br>
-                        {{-- Flash message --}}
-                        <div id="alert">
-                            @include('partials.flash')
-                            @include('partials.modal')
-                        </div>
-                        {{-- Flash message end --}}
+
                         <form role="form" action="{{ route('property.store') }}" enctype="multipart/form-data" method="POST">
                             @csrf
                             <div class="row">
@@ -55,7 +57,7 @@
                                     <div class="mb-3">
                                         <label for="example-select" class="form-label">Property Category</label>
                                         <select class="form-select" id="example-select" name="propcat" required>
-                                            <option style="display: none">Select Category</option>
+                                            <option style="display: none" value="">Select Category</option>
                                             @foreach ($prop_cats as $cat)
                                             <option value="{{ $cat->id }}">{{ $cat->category_name }}</option>
                                             @endforeach
@@ -176,7 +178,7 @@
                                             </button>
                                             <ul class="dropdown-menu">
                                                 <li><a class="dropdown-item" href="/properties/{{$property->id}}/units">View Units</a></li>
-                                                <li><a class="dropdown-item" href="#">Delete</a></li>
+                                                <li><button class="dropdown-item" onclick="confirmDelete('{{$property->id}}')">Delete</button></li>
                                                 <li><a class="dropdown-item" href="/properties/edit/{{ $property->id }}">Edit</a></li>
                                             </ul>
                                         </div>
@@ -204,11 +206,11 @@
 </div>
 @endsection
 @section('js')
+<script src="/assets/js/properties.js"></script>
+
 <script>
-
-$('#show-add-tenant').on('click', function() {
-    $('#add-property-div').toggle();
-})
-
+    $('#show-add-tenant').on('click', function() {
+        $('#add-property-div').toggle();
+    })
 </script>
 @endsection

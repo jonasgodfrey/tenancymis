@@ -113,8 +113,8 @@
                                         <div class="mb-3 col-lg-6">
                                             <label for="example-select" class="form-label ">Units</label>
                                             <select class="form-select units" name="unit" id="unit" required>
-                                                <option value="">Select Property</option>
-                                                @foreach ($units as $unit)
+                                                <option value="">Select Unit</option>
+                                                @foreach ($assignable_units as $unit)
                                                 <option value="{{ $unit->id }}">{{ $unit->name }}</option>
                                                 @endforeach
                                             </select>
@@ -162,7 +162,7 @@
                                     <div class="mb-3">
                                         <label for="example-select" class="form-label">Unit Type</label>
                                         <select class="form-select" name="unittype" id="example-select" required>
-                                            <option style="display: none">Select Unit Type</option>
+                                            <option value="" style="display: none">Select Unit Type</option>
                                             @foreach ($unitstype as $unit)
                                             <option value="{{ $unit->id }}">{{ $unit->name }}</option>
                                             @endforeach
@@ -194,7 +194,7 @@
 
                                     <div class="mb-3">
                                         <label for="example-password" class="form-label">Rent/Lease Amount</label>
-                                        <input type="text" name="rentamount" id="example-password" class="form-control" placeholder="₦100,000/Year" required>
+                                        <input type="number" name="rentamount" id="example-password" class="form-control" placeholder="₦100,000/Year" required>
                                     </div>
 
                                 </div> <!-- end col -->

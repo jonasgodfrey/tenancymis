@@ -196,6 +196,16 @@ class PropertyUnitsController extends Controller
         if (Gate::allows('admin')) {
 
             $unit = Unit::find($unitId);
+
+            if (!$unit) {
+                Session::flash('error_message', 'Invalid Unit provided');
+                return redirect()->to('/');
+            }
+
+            if ($unit->property->ownerId != $user->id) {
+                Session::flash('error_message', 'Maximum Number of units for your plan reached please upgrade plan to add more units!');
+                return redirect()->back();
+            }
             $sub = $user->subscription->where('status', 'active')->first();
             $paymentRecords = PaymentRecord::where('unit_id', $unitId)->get();
             $paymentCategories = PaymentCategory::all();
