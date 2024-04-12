@@ -33,14 +33,17 @@ class DashboardController extends Controller
         $tenants_num = $user->tenants->count();
         $tenants = $user->tenants;
 
-        logInfo($user->roles, "Roles assign");
+        $myTenants = Tenant::leftJoin('users', 'users.id', '=', 'tenants.user_id')
+            ->select('users.*', 'tenants.*')->get();
+
+        logInfo($tenants, "Roles Tenants");
 
         if (Gate::allows('admin')) {
             return view('admin.dashboard.index')->with([
                 'properties' => $properties_num,
                 'units' => $units_num,
                 'tenants_num' => $tenants_num,
-                'tenants' => $tenants
+                'tenants' => $myTenants
             ]);
         }
 
@@ -56,7 +59,7 @@ class DashboardController extends Controller
 
             // For Subscribed Users
             $subscribedUsers = UserSubscription::where('status', 'active')->get();
-            
+
             // dd($registeredUsers);
 
             return view('admin.dashboard.superadmin')->with([
@@ -67,12 +70,12 @@ class DashboardController extends Controller
                 'subscribers' => $subscribers,
                 'residential' => $residential,
                 'commercial' => $commercial,
-                'subscribedUsers'=>$subscribedUsers, 
-                'registeredUsers'=>$registeredUsers        
+                'subscribedUsers' => $subscribedUsers,
+                'registeredUsers' => $registeredUsers
             ]);
         }
 
-        
+
 
         if (Gate::allows('manager')) {
             return view('users.manager.index')->with([]);
@@ -90,6 +93,4 @@ class DashboardController extends Controller
             return view('users.tenants.index')->with([]);
         }
     }
-
-   
 }

@@ -105,7 +105,7 @@ Route::group(['middleware' => ['auth', 'subscribed']], function () {
     Route::get('/tenancy-payments/edit/{id}', [App\Http\Controllers\TenancyPaymentsController::class, 'edit'])->name('payments.edit');
     //Payments Page Post Routes
     Route::post('/tenancy-payments/add-new', [App\Http\Controllers\TenancyPaymentsController::class, 'addNewPayment'])->name('payments.updatepayment')->middleware('log.route');
-    Route::post('/tenancy-payments/add', [App\Http\Controllers\TenancyPaymentsController::class, 'store'])->name('payments.store');
+    Route::post('/tenancy-payments/add', [App\Http\Controllers\TenancyPaymentsController::class, 'store'])->name('payments.store')->middleware("log.route");
     Route::post('/tenancy-payments/update/{id}', [App\Http\Controllers\TenancyPaymentsController::class, 'update'])->name('payments.update');
     Route::post('/tenancy-payments/delete', [App\Http\Controllers\TenancyPaymentsController::class, 'delete'])->name('payments.delete');
 
