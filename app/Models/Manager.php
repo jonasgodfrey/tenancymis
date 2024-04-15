@@ -13,7 +13,7 @@ class Manager extends Model
         'name',
         'email',
         'phone',
-        'propId',
+        'property_id',
         'salary',
     ];
 }

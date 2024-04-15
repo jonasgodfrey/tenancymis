@@ -17,13 +17,13 @@ class PaymentCategorySeeder extends Seeder
     {
         DB::table('payment_categories')->insertOrIgnore([
             [
-                "payment_category_name" => "Rent",
+                "payment_category" => "Rent",
             ],
             [
-                "payment_category_name" => "Facility Fee",
+                "payment_category" => "Facility Fee",
             ],
             [
-                "payment_category_name" => "Taxes",
+                "payment_category" => "Taxes",
             ],
         ]);
     }

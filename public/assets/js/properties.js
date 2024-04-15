@@ -1,11 +1,11 @@
-$(".propname").change(function () {
-    let propid = $(".propname option:selected").attr("value");
-    if (propid != "") {
+$(".property_name").change(function () {
+    let property_id = $(".property_name option:selected").attr("value");
+    if (property_id != "") {
         $.ajax({
             url: "/fetch-free-units",
             method: "get",
             data: {
-                propid: propid
+                property_id: property_id
             },
             success: function (result) {
                 if (result == "") {
@@ -50,7 +50,7 @@ function confirmDelete(id) {
                 url: "/property/delete",
                 method: "post",
                 data: {
-                    propid: id
+                    property_id: id
                 },
                 success: function (result) {
                     if (result.status == 0) {
@@ -127,7 +127,7 @@ $('#selected_user').on('change', function (e) {
 
             $("#mobile").val(response.data.phone)
             $("#email").val(response.data.email)
-            $("#bizname").val(response.data.occupation)
+            $("#business_name").val(response.data.occupation)
 
 
             // swal.fire('Fetched!', response.message, response.status);

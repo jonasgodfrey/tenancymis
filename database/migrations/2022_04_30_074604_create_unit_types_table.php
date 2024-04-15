@@ -15,8 +15,9 @@ return new class extends Migration
     {
         Schema::create('unit_types', function (Blueprint $table) {
             $table->id();
-            $table->string('propcatId');
-            $table->string('name');
+            $table->string('unit_type');
+            $table->unsignedBigInteger('property_category_id');
+            $table->foreign('property_category_id')->references('id')->on('property_categories');
             $table->timestamps();
         });
     }

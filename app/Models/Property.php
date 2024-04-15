@@ -12,54 +12,54 @@ class Property extends Model
     protected $dates = ['deleted_at'];
 
     protected $fillable = [
-        'propcatId',
-        'proptypeId',
-        'ownerId',
-        'propname',
+        'property_category_id',
+        'proptype_id',
+        'owner_id',
+        'property_name',
         'propaddress',
-        'propdesc',
+        'property_description',
         'phone',
         'email',
-        'countryId',
-        'stateId',
-        'uploadsDir',
+        'country_id',
+        'state_id',
+        'uploads_dir',
     ];
 
     public function units(){
-        return $this->hasMany(Unit::class, 'propId');
+        return $this->hasMany(Unit::class, 'property_id');
     }
 
     public function country(){
-        return $this->hasOne(Country::class,'id',  'countryId');
+        return $this->hasOne(Country::class,'id',  'country_id');
     }
 
     public function category(){
-        return $this->hasOne(PropertyCategory::class,'id',  'propcatId');
+        return $this->hasOne(PropertyCategory::class,'id',  'property_category_id');
     }
 
     public function tenants(){
-        return $this->hasMany(Tenant::class, 'propId');
+        return $this->hasMany(Tenant::class, 'property_id');
     }
 
     public function state(){
-        return $this->hasOne(State::class, 'id', 'stateId');
+        return $this->hasOne(State::class, 'id', 'state_id');
     }
 
     public function manager()
     {
-        return $this->hasOne(Manager::class, 'propId');
+        return $this->hasOne(Manager::class, 'property_id');
     }
 
     public function accountant()
     {
-        return $this->hasOne(Accountant::class, 'propId');
+        return $this->hasOne(Accountant::class, 'property_id');
     }
 
     public function hasManager($id)
     {
         if (
             $this->manager()
-            ->where('propId', $id)
+            ->where('property_id', $id)
             ->first()
         ) {
             return true;
@@ -71,7 +71,7 @@ class Property extends Model
     {
         if (
             $this->accountant()
-            ->where('propId', $id)
+            ->where('property_id', $id)
             ->first()
         ) {
             return true;

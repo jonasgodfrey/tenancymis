@@ -60,8 +60,8 @@ class PropertyController extends Controller
         $countries = Country::all();
         $properties = $user->properties;
         $property = Property::find($property_id);
-        $units = Unit::where(['propId' => $property_id])->get();
-        $assignable_units = Unit::where(['propId' => $property_id, 'status' => 'empty'])->get();
+        $units = Unit::where(['property_id' => $property_id])->get();
+        $assignable_units = Unit::where(['property_id' => $property_id, 'status' => 'empty'])->get();
         $users = User::where('owner_id', $user->id)->get();
 
         $unitstype = UnitType::all();
@@ -100,17 +100,17 @@ class PropertyController extends Controller
 
         if ($storefile) {
             $property = Property::create([
-                'propcatId' => $request->propcat,
-                'proptypeId' => $request->proptype,
-                'ownerId' => $user->id,
-                'propname' => $request->propname,
+                'property_category_id' => $request->propcat,
+                'proptype_id' => $request->proptype,
+                'owner_id' => $user->id,
+                'property_name' => $request->property_name,
                 'propaddress' => $request->address,
-                'propdesc' => $request->propdesc,
+                'property_description' => $request->property_description,
                 'email' => $request->email,
                 'phone' => $request->tel,
-                'countryId' => $request->country,
-                'stateId' => $request->state,
-                'uploadsDir' => $filename,
+                'country_id' => $request->country,
+                'state_id' => $request->state,
+                'uploads_dir' => $filename,
             ]);
 
             // publish a notification for the user create action
@@ -174,7 +174,7 @@ class PropertyController extends Controller
             $filename = 'attached-file-' . $rand . time() . '.' . $file->getClientOriginalExtension();
             $file->storeAs('public/property/', $filename);
             $property->fill($input)->save();
-            $property->update(['uploadsDir' => $filename]);
+            $property->update(['uploads_dir' => $filename]);
         } else {
             $property->fill($input)->save();
         }
@@ -185,7 +185,7 @@ class PropertyController extends Controller
             'user_id' => $user->id,
             'owner_id' => $owner,
             'title' => "Property Data Updated",
-            'message' => "$user->name updated property details for $property->propname on TenancyPlus"
+            'message' => "$user->name updated property details for $property->property_name on TenancyPlus"
         ]);
 
         if ($property) {
@@ -197,7 +197,7 @@ class PropertyController extends Controller
     public function delete(Request $request)
     {
         $user = Auth::user();
-        $property =  Property::findOrFail($request->propid);
+        $property =  Property::findOrFail($request->property_id);
 
         if ($property) {
 
@@ -207,7 +207,7 @@ class PropertyController extends Controller
                 return response()->json(['status' => 1, 'message' => 'This property cannot be deleted because it contains units']);
             }
 
-            Unit::whereIn('propId', [$request->propid])->select('id')->delete();
+            Unit::whereIn('property_id', [$request->property_id])->select('id')->delete();
             // User::whereIn('email', $tenants->pluck('email'))->delete();
             // Tenant::whereIn('email', $tenants->pluck('email'))->delete();
 
@@ -218,7 +218,7 @@ class PropertyController extends Controller
                 'user_id' => $user->id,
                 'owner_id' => $user->owner_id,
                 'title' => "Property Delete",
-                'message' => "$user->name deleted $property->propname from TenancyPlus"
+                'message' => "$user->name deleted $property->property_name from TenancyPlus"
             ]);
         }
 

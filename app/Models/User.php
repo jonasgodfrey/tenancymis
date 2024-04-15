@@ -73,7 +73,7 @@ class User extends Authenticatable implements MustVerifyEmail
 
     public function properties(): \Illuminate\Database\Eloquent\Relations\HasMany
     {
-        return $this->hasMany(Property::class, 'ownerId');
+        return $this->hasMany(Property::class, 'owner_id');
     }
 
     public function profile(){
@@ -88,7 +88,7 @@ class User extends Authenticatable implements MustVerifyEmail
 
     public function tenants(): \Illuminate\Database\Eloquent\Relations\HasManyThrough
     {
-        return $this->hasManyThrough(Tenant::class, Unit::class, 'owner_id', 'unitId');
+        return $this->hasManyThrough(Tenant::class, Unit::class, 'owner_id', 'unit_id');
     }
 
     public function tenant_payments(): \Illuminate\Database\Eloquent\Relations\HasManyThrough

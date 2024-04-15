@@ -60,10 +60,10 @@
 
                                     <div class="mb-3">
                                         <label for="example-select" class="form-label">Select Property</label>
-                                        <select class="form-select" name="propname" id="example-select" required>
+                                        <select class="form-select" name="property_name" id="example-select" required>
                                             <option style="display: none">Select Property</option>
                                             @foreach ($properties as $property)
-                                            <option value="{{ $property->id }}">{{ $property->propname }}
+                                            <option value="{{ $property->id }}">{{ $property->property_name }}
                                             </option>
                                             @endforeach
                                         </select>
@@ -94,7 +94,7 @@
 
                                     <div class="mb-3">
                                         <label for="example-password" class="form-label">Unit Description</label>
-                                        <input type="tel" name="unitdesc" id="" class="form-control" value="" required>
+                                        <input type="tel" name="unit_description" id="" class="form-control" value="" required>
                                     </div>
 
                                     <div class="mb-3">
@@ -141,11 +141,11 @@
 
                                     <div class="mb-3">
                                         <label for="example-select" class="form-label">Select Property</label>
-                                        <select class="form-select" name="propname" id="example-select required>
+                                        <select class="form-select" name="property_name" id="example-select required>
                                             <option style=" display:none">Select
                                             Property</option>
                                             @foreach ($properties as $property)
-                                            <option value="{{ $property->id }}">{{ $property->propname }}
+                                            <option value="{{ $property->id }}">{{ $property->property_name }}
                                             </option>
                                             @endforeach
                                         </select>
@@ -181,7 +181,7 @@
 
                                     <div class="mb-3">
                                         <label for="example-password" class="form-label">Unit Description</label>
-                                        <input type="tel" name="unitdesc" id="" class="form-control" value="" required>
+                                        <input type="tel" name="unit_description" id="" class="form-control" value="" required>
                                     </div>
 
                                     <div class="mb-3">
@@ -231,10 +231,10 @@
                             <tbody>
                                 @forelse ($units as $unit)
                                 <tr>
-                                    <td>{{ $unit->property->propname }}</td>
+                                    <td>{{ $unit->property->property_name }}</td>
                                     <td>{{ $unit->name }}</td>
-                                    <td>{{ $unit->unitDesc }}</td>
-                                    <td>@money($unit->leaseAmount)</td>
+                                    <td>{{ $unit->unit_description }}</td>
+                                    <td>@money($unit->lease_amount)</td>
                                     @if ($unit->status == 'occupied')
                                     <td><span class="badge bg-secondary">{{ $unit->status }}</span></td>
                                     @endif

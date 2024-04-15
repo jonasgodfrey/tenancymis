@@ -18,7 +18,8 @@ return new class extends Migration
             $table->string('name');
             $table->string('email');
             $table->string('phone');
-            $table->bigInteger('propId');
+            $table->unsignedBigInteger('property_id');
+            $table->foreign('property_id')->references('id')->on('properties');
             $table->string('salary');
             $table->timestamps();
         });

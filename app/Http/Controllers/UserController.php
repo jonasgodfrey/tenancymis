@@ -58,8 +58,8 @@ class UserController extends Controller
         $user = Auth::user();
         $role = $request->role;
         $role_id = Role::where('name', $role)->first();
-        $prop_id = $request->propid;
-        $property = Property::where('id', $prop_id)->first();
+        $property_id = $request->property_id;
+        $property = Property::where('id', $property_id)->first();
         $regCode = "PLA" . rand(11100, 999999);
         $owner = $user->owner_id;
 
@@ -68,7 +68,7 @@ class UserController extends Controller
             // checks for user role and adds user
             if ($role === 'manager') {
 
-                if ($property->hasManager($prop_id)) {
+                if ($property->hasManager($property_id)) {
 
                     Session::flash('error_message', 'Property already has a manager !');
                     return redirect()->back();
@@ -93,7 +93,7 @@ class UserController extends Controller
                     'name' => $request->name,
                     'email' => $request->email,
                     'phone' => $request->phone,
-                    'propId' => $prop_id,
+                    'property_id' => $property_id,
                     'salary' => 'null',
                 ]);
 
@@ -109,7 +109,7 @@ class UserController extends Controller
             // checks for user role and adds user
             if ($role === 'accountant') {
 
-                if ($property->hasAccountant($prop_id)) {
+                if ($property->hasAccountant($property_id)) {
 
                     Session::flash('error_message', 'Property already has an accountant !');
                     return redirect()->back();
@@ -133,7 +133,7 @@ class UserController extends Controller
                 Accountant::create([
                     'name' => $request->name,
                     'email' => $request->email,
-                    'propId' => $prop_id,
+                    'property_id' => $property_id,
                     'salary' => 'null',
                 ]);
 
@@ -167,9 +167,9 @@ class UserController extends Controller
                     'name' => $request->name,
                     'email' => $request->email,
                     'phone' => $request->phone,
-                    'bizname' => $request->bizname,
-                    'propId' => $prop_id,
-                    'vendorcatId' => $request->vencat,
+                    'business_name' => $request->business_name,
+                    'property_id' => $property_id,
+                    'vendor_category_id' => $request->vencat,
                     'salary' => 'null',
                 ]);
 

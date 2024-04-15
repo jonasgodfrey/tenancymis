@@ -1,11 +1,11 @@
-$(".propname").change(function() {
-    let propid = $(".propname option:selected").attr("value");
-    if (propid != "") {
+$(".property_name").change(function() {
+    let property_id = $(".property_name option:selected").attr("value");
+    if (property_id != "") {
         $.ajax({
             url: "/fetch-unit",
             method: "get",
             data: {
-                propid: propid
+                property_id: property_id
             },
             success: function(result) {
                 if (result == "") {
@@ -29,13 +29,13 @@ $(".propname").change(function() {
     }
 });
 $(".units").change(function() {
-    let unitid = $(".units option:selected").attr("value");
-    if (unitid != "") {
+    let unit_id = $(".units option:selected").attr("value");
+    if (unit_id != "") {
         $.ajax({
             url: "/fetch-tenant",
             method: "get",
             data: {
-                unitid: unitid
+                unit_id: unit_id
             },
             success: function(result) {
                 if (result == "") {

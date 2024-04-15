@@ -35,11 +35,11 @@
                                         @csrf
                                         <div class="mb-3">
                                             <label for="example-select" class="form-label">Property Name</label>
-                                            <select class="form-select propname" name="propname" id="example-select"
+                                            <select class="form-select property_name" name="property_name" id="example-select"
                                                 required>
                                                 <option style="display: none">Select Property</option>
                                                 @foreach ($properties as $property)
-                                                    <option value="{{ $property->id }}">{{ $property->propname }}
+                                                    <option value="{{ $property->id }}">{{ $property->property_name }}
                                                     </option>
                                                 @endforeach
                                             </select>
@@ -199,7 +199,7 @@
 
                                             @if (!empty($payments))
                                                 <td>{{ $count }}</td>
-                                                <td>{{ $tenant->property->propname }}</td>
+                                                <td>{{ $tenant->property->property_name }}</td>
                                                 <td>{{ $tenant->name }}</td>
                                                 <td>{{ $tenant->phone }}</td>
                                                 <td>{{ $payments->amount }}</td>

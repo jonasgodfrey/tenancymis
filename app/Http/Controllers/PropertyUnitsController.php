@@ -56,7 +56,7 @@ class PropertyUnitsController extends Controller
             ]);
 
             $units_num = $user->units->count();
-            $property_units_num = Unit::where('propId', $request->propname)->count();
+            $property_units_num = Unit::where('property_id', $request->property_name)->count();
 
             $sub = $user->subscription->where('status', 'active')->first();
             $sub_unit_num = (int)$sub->total_units_no;
@@ -77,12 +77,12 @@ class PropertyUnitsController extends Controller
             $storefile = $file->storeAs('public/unit/', $filename);
 
             $unit = Unit::create([
-                'propId' => $request->propname,
-                'typeId' => $request->unittype,
+                'property_id' => $request->property_name,
+                'type_id' => $request->unittype,
                 'unitNum' => $request->unitno,
                 'unit_ref_id' => "unit_" . $property_units_num++,
-                'unitDesc' => $request->unitdesc,
-                'leaseAmount' => $request->rentamount,
+                'unit_description' => $request->unit_description,
+                'lease_amount' => $request->rentamount,
                 'name' => $request->unitname,
                 'status' => 'empty',
                 'image' => $filename ?? "null",
@@ -113,7 +113,7 @@ class PropertyUnitsController extends Controller
         if (Gate::allows('admin')) {
 
             $units_num = $user->units->count();
-            $property_units_num = Unit::where('propId', $request->propname)->count();
+            $property_units_num = Unit::where('property_id', $request->property_name)->count();
 
             $sub = $user->subscription->where('status', 'active')->first();
             $sub_unit_num = (int)$sub->total_units_no;
@@ -153,11 +153,11 @@ class PropertyUnitsController extends Controller
                 }
                 $property_units_num++;
                 $unit = Unit::create([
-                    'propId' => $request->propname,
-                    'typeId' => $request->unittype,
+                    'property_id' => $request->property_name,
+                    'type_id' => $request->unittype,
                     'unit_ref_id' => "unit_" . $property_units_num,
-                    'unitDesc' => $request->unitdesc,
-                    'leaseAmount' => $request->rentamount,
+                    'unit_description' => $request->unit_description,
+                    'lease_amount' => $request->rentamount,
                     'name' => $request->unitname,
                     'status' => 'empty',
                     'image' => $filename,
@@ -190,24 +190,24 @@ class PropertyUnitsController extends Controller
     {
         # code...
     }
-    public function showUnitInfo($unitId)
+    public function showUnitInfo($unit_id)
     {
         $user = Auth::user();
         if (Gate::allows('admin')) {
 
-            $unit = Unit::find($unitId);
+            $unit = Unit::find($unit_id);
 
             if (!$unit) {
                 Session::flash('error_message', 'Invalid Unit provided');
                 return redirect()->to('/');
             }
 
-            if ($unit->property->ownerId != $user->id) {
+            if ($unit->property->owner_id != $user->id) {
                 Session::flash('error_message', 'Maximum Number of units for your plan reached please upgrade plan to add more units!');
                 return redirect()->back();
             }
             $sub = $user->subscription->where('status', 'active')->first();
-            $paymentRecords = PaymentRecord::where('unit_id', $unitId)->get();
+            $paymentRecords = PaymentRecord::where('unit_id', $unit_id)->get();
             $paymentCategories = PaymentCategory::all();
 
             return view('admin.units.show_details')->with([

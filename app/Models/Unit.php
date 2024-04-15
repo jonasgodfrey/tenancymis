@@ -13,12 +13,12 @@ class Unit extends Model
     protected $dates = ['deleted_at'];
 
     protected $fillable = [
-        'propId',
-        'typeId',
+        'property_id',
+        'type_id',
         'name',
         'unit_ref_id',
-        'unitDesc',
-        'leaseAmount',
+        'unit_description',
+        'lease_amount',
         'status',
         'image',
         'owner_id',
@@ -26,11 +26,11 @@ class Unit extends Model
 
     public function tenant()
     {
-        return $this->hasOne(Tenant::class, 'unitId');
+        return $this->hasOne(Tenant::class, 'unit_id');
     }
 
     public function property()
     {
-        return $this->belongsTo(Property::class, 'propId');
+        return $this->belongsTo(Property::class, 'property_id');
     }
 }

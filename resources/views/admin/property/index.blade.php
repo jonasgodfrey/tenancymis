@@ -51,7 +51,7 @@
 
                                     <div class="mb-3">
                                         <label for="simpleinput" class="form-label">Property Name</label>
-                                        <input type="text" name="propname" id="simpleinput" class="form-control" placeholder="" required>
+                                        <input type="text" name="property_name" id="simpleinput" class="form-control" placeholder="" required>
                                     </div>
 
                                     <div class="mb-3">
@@ -78,7 +78,7 @@
 
                                     <div class="mb-3">
                                         <label for="simpleinput" class="form-label">Description</label>
-                                        <textarea maxlength="" name="propdesc" class="form-control" rows="10" placeholder="Kindly describe your property" required></textarea>
+                                        <textarea maxlength="" name="property_description" class="form-control" rows="10" placeholder="Kindly describe your property" required></textarea>
                                     </div>
 
                                 </div> <!-- end col -->
@@ -162,9 +162,9 @@
                             <tbody>
                                 @forelse ($properties as $property)
                                 <tr>
-                                    <td>{{ $property->propname }}</td>
+                                    <td>{{ $property->property_name }}</td>
                                     <td>{{ $property->category->category_name }}</td>
-                                    <td>{{ $property->propdesc }}</td>
+                                    <td>{{ $property->property_description }}</td>
                                     <td>{{ $property->state->name }}</td>
                                     <td>{{count($property->units)}}</td>
                                     <td>{{count($property->tenants)}}</td>

@@ -64,15 +64,15 @@ class TenantsController extends Controller
                 'new_email' => ['required', 'string', 'email', 'max:255'],
                 'new_tenant_name' => ['required', 'string', 'max:255'],
                 'new_mobile' => ['required', 'string',],
-                'new_bizname' => ['required', 'string', 'max:255'],
-                'propname' => ['required', 'numeric', 'max:255'],
+                'new_business_name' => ['required', 'string', 'max:255'],
+                'property_name' => ['required', 'numeric', 'max:255'],
                 'unit' => ['required', 'numeric'],
                 'bizcat' => ['required', 'string', 'max:255'],
             ]);
         } else {
             $request->validate([
                 'selected_user' => ['required', 'numeric', 'max:255'],
-                'propname' => ['required', 'numeric', 'max:255'],
+                'property_name' => ['required', 'numeric', 'max:255'],
                 'unit' => ['required', 'numeric'],
                 'bizcat' => ['required', 'string', 'max:255'],
             ]);
@@ -106,7 +106,7 @@ class TenantsController extends Controller
                     'email' => $request->new_email,
                     'phone' => $request->new_mobile,
                     'role' => $role->name,
-                    'occupation' => $request->new_bizname,
+                    'occupation' => $request->new_business_name,
                     'usercode' => $regCode,
                     'owner_id' => $user->id,
                     'password' => Hash::make($request->new_mobile),
@@ -126,9 +126,9 @@ class TenantsController extends Controller
             $tenant = Tenant::create([
                 'user_id' => $user->id,
                 'bizcat' => $request->bizcat,
-                'propId' => $request->propname,
-                'unitId' => $request->unit,
-                'payId' => 'null',
+                'property_id' => $request->property_name,
+                'unit_id' => $request->unit,
+                'payment_id' => 'null',
             ]);
 
             Unit::where('id', $request->unit)->update([

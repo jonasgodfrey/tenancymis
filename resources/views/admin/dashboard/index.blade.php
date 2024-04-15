@@ -192,7 +192,7 @@
                                     @endphp
                                     <tr>
                                         <td>{{ $tenant->id }}</td>
-                                        <td>{{ $tenant->property->propname }}</td>
+                                        <td>{{ $tenant->property->property_name }}</td>
                                         <td>{{ $tenant->unit->name }}</td>
                                         <td>{{ $tenant->name }}</td>
                                         <td>{{ $tenant->phone }}</td>

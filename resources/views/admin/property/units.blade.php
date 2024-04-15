@@ -10,7 +10,7 @@
         <div class="row">
             <div class="col-md-6">
                 <div class="page-title-box page-title-box-alt">
-                    <h4 class="page-title"> All Units in {{$property->propname}}</h4>
+                    <h4 class="page-title"> All Units in {{$property->property_name}}</h4>
                 </div>
             </div>
             <div class="col-md-6">
@@ -53,7 +53,7 @@
                                             <option value="existing">Existing</option>
                                             <option value="new">New</option>
                                         </select>
-                                        <input type="hidden" name="propname" value="{{$property->id}}" id="propname" required>
+                                        <input type="hidden" name="property_name" value="{{$property->id}}" id="property_name" required>
 
                                     </div>
                                 </div>
@@ -76,7 +76,7 @@
 
                                         <div class="mb-3 col-lg-6">
                                             <label for="simpleinput" class="form-label">Tenant's Occupation</label>
-                                            <input type="text" name="new_bizname" id="new_bizname" class="form-control" placeholder="">
+                                            <input type="text" name="new_business_name" id="new_business_name" class="form-control" placeholder="">
                                         </div>
                                     </div>
 
@@ -104,7 +104,7 @@
 
                                         <div class="mb-3 col-lg-6">
                                             <label for="simpleinput" class="form-label">Tenant's Occupation</label>
-                                            <input type="text" name="bizname" id="bizname" class="form-control" disabled placeholder="">
+                                            <input type="text" name="business_name" id="business_name" class="form-control" disabled placeholder="">
                                         </div>
                                     </div>
 
@@ -174,7 +174,7 @@
                                     <div class="mb-3">
                                         <label for="example-password" class="form-label">Unit Name</label>
                                         <input type="text" name="unitname" id="example-password" class="form-control" value="" placeholder="" required>
-                                        <input type="hidden" name="propname" value="{{$property->id}}" id="propname" required>
+                                        <input type="hidden" name="property_name" value="{{$property->id}}" id="property_name" required>
                                     </div>
 
                                     <div class="mb-3">
@@ -189,7 +189,7 @@
 
                                     <div class="mb-3">
                                         <label for="example-password" class="form-label">Unit Description</label>
-                                        <input type="tel" name="unitdesc" id="" class="form-control" value="" required>
+                                        <input type="tel" name="unit_description" id="" class="form-control" value="" required>
                                     </div>
 
                                     <div class="mb-3">
@@ -235,8 +235,8 @@
                                 <tr>
                                     <td><img src="{{asset('storage/unit/'.$unit->image)}}" alt="img" width="100" class="mx-auto d-block" /></td>
                                     <td>{{ $unit->name }}</td>
-                                    <td>{{ $unit->unitDesc }}</td>
-                                    <td>@money($unit->leaseAmount)</td>
+                                    <td>{{ $unit->unit_description }}</td>
+                                    <td>@money($unit->lease_amount)</td>
                                     <td>{{ $unit->status }}</td>
                                     <td>{{ $unit->created_at }}</td>
                                     <td>

@@ -5268,7 +5268,7 @@ var __WEBPACK_AMD_DEFINE_RESULT__;/**
   /** Used to match property names within property paths. */
   var reIsDeepProp = /\.|\[(?:[^[\]]*|(["'])(?:(?!\1)[^\\]|\\.)*?\1)\]/,
       reIsPlainProp = /^\w*$/,
-      rePropName = /[^.[\]]+|\[(?:(-?\d+(?:\.\d+)?)|(["'])((?:(?!\2)[^\\]|\\.)*?)\2)\]|(?=(?:\.|\[\])(?:\.|\[\]|$))/g;
+      reproperty_name = /[^.[\]]+|\[(?:(-?\d+(?:\.\d+)?)|(["'])((?:(?!\2)[^\\]|\\.)*?)\2)\]|(?=(?:\.|\[\])(?:\.|\[\]|$))/g;
 
   /**
    * Used to match `RegExp`
@@ -11925,7 +11925,7 @@ var __WEBPACK_AMD_DEFINE_RESULT__;/**
       if (string.charCodeAt(0) === 46 /* . */) {
         result.push('');
       }
-      string.replace(rePropName, function(match, number, quote, subString) {
+      string.replace(reproperty_name, function(match, number, quote, subString) {
         result.push(quote ? subString.replace(reEscapeChar, '$1') : (number || match));
       });
       return result;

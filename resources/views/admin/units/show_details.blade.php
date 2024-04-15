@@ -29,13 +29,13 @@
                             </div>
                         </div>
                         <div class="details col-md-6">
-                            <h3 class="product-title">{{$unit->property->propname}}({{$unit->name}})</h3>
+                            <h3 class="product-title">{{$unit->property->property_name}}({{$unit->name}})</h3>
 
                             <br>
                             <h4 class="price">Rent/Lease Amount:</h4>
-                            <p class="vote">@money($unit->leaseAmount)</p>
+                            <p class="vote">@money($unit->lease_amount)</p>
                             <h4 class="price">Description</h4>
-                            <p class="product-description">{{$unit->unitDesc}}</p>
+                            <p class="product-description">{{$unit->unit_description}}</p>
                             <br>
 
                             <h4 style="margin-bottom: 0px;">TENANT DETAILS</h4>
@@ -179,7 +179,7 @@
                                                     <input type="hidden" name="unit_id" value="{{$unit->id}}" />
                                                     <input type="hidden" name="tenant_id" value="{{$unit->tenant->id}}" />
                                                     <input type="hidden" name="property_id" value="{{$unit->property->id}}" />
-                                                    <input type="hidden" name="lease_amount" id="lease_amount" value="{{$unit->leaseAmount}}" />
+                                                    <input type="hidden" name="lease_amount" id="lease_amount" value="{{$unit->lease_amount}}" />
                                                     <input type="hidden" name="payment_update_type" id="payment_update_type" value="{{$unit->tenant->start_date != null ? 'update' : 'new'}}" />
                                                     <input type="hidden" name="total_months" id="total_months" />
                                                     <p id="due_date_error" style="color: red; font-size: 13px; display: none"></p>
@@ -191,7 +191,7 @@
                                                     <select class="form-select payment_category" name="payment_category" id="payment_category">
                                                         <!-- <option style="display: none">Select Payment Category</option> -->
                                                         @foreach ($payment_categories as $payment_category)
-                                                        <option value="{{ $payment_category->id }}">{{ $payment_category->payment_category_name }}</option>
+                                                        <option value="{{ $payment_category->id }}">{{ $payment_category->payment_category }}</option>
                                                         @endforeach
                                                     </select>
                                                     <p id="payment_category_error" style="color: red; font-size: 13px; display: none"></p>
@@ -231,7 +231,7 @@
 
                                                 <div class="mb-3 col-lg-6">
                                                     <label for="simpleinput" class="form-label">Tenant's Occupation</label>
-                                                    <input type="text" name="bizname" id="bizname" class="form-control" disabled placeholder="">
+                                                    <input type="text" name="business_name" id="business_name" class="form-control" disabled placeholder="">
                                                 </div>
                                             </div>
 
@@ -331,15 +331,15 @@
     $('#amount').on('input', function(e) {
 
         console.log(e.target.value);
-        let leaseAmount = $('#lease_amount').val();
+        let lease_amount = $('#lease_amount').val();
 
-        if (leaseAmount / 12 > e.target.value) {
+        if (lease_amount / 12 > e.target.value) {
             $("#amount_error").show();
             $("#duration").val("");
-            $("#amount_error").text("Minimum amount is " + formatMoney(leaseAmount / 12))
+            $("#amount_error").text("Minimum amount is " + formatMoney(lease_amount / 12))
         } else {
             $("#amount_error").hide();
-            var amountPermonth = leaseAmount / 12;
+            var amountPermonth = lease_amount / 12;
             if (parseInt(e.target.value / amountPermonth) < 12) {
                 $("#duration").val(parseInt(e.target.value / amountPermonth) + " months")
             } else {

@@ -180,14 +180,14 @@ var GMaps = (function(global) {
         i,
         events_that_hide_context_menu = [
           'bounds_changed', 'center_changed', 'click', 'dblclick', 'drag',
-          'dragend', 'dragstart', 'idle', 'maptypeid_changed', 'projection_changed',
+          'dragend', 'dragstart', 'idle', 'maptype_id_changed', 'projection_changed',
           'resize', 'tilesloaded', 'zoom_changed'
         ],
         events_that_doesnt_hide_context_menu = ['mousemove', 'mouseout', 'mouseover'],
         options_to_be_deleted = ['el', 'lat', 'lng', 'mapType', 'width', 'height', 'markerClusterer', 'enableNewStyle'],
         identifier = options.el || options.div,
         markerClustererFunction = options.markerClusterer,
-        mapType = google.maps.MapTypeId[options.mapType.toUpperCase()],
+        mapType = google.maps.Maptype_id[options.mapType.toUpperCase()],
         map_center = new google.maps.LatLng(options.lat, options.lng),
         zoomControl = valueOrDefault(options.zoomControl, true),
         zoomControlOpt = options.zoomControlOpt || {
@@ -205,7 +205,7 @@ var GMaps = (function(global) {
         map_base_options = {
           zoom: this.zoom,
           center: map_center,
-          mapTypeId: mapType
+          maptype_id: mapType
         },
         map_controls_options = {
           panControl: panControl,

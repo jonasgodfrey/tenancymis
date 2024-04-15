@@ -71,7 +71,7 @@
 
                                 <div class="mb-3">
                                     <label for="simpleinput" class="form-label">Tenant's Occupation</label>
-                                    <input type="text" name="bizname" id="simpleinput" class="form-control" placeholder="" required>
+                                    <input type="text" name="business_name" id="simpleinput" class="form-control" placeholder="" required>
                                 </div>
 
                                 <div class="mb-3">
@@ -84,10 +84,10 @@
                                 </div>
                                 <div class="mb-3">
                                     <label for="example-select" class="form-label ">Select Property</label>
-                                    <select class="form-select propname" name="propname" id="example-select" required>
+                                    <select class="form-select property_name" name="property_name" id="example-select" required>
                                         <option style="display: none">Select Property</option>
                                         @foreach ($properties as $property)
-                                        <option value="{{ $property->id }}">{{ $property->propname }}</option>
+                                        <option value="{{ $property->id }}">{{ $property->property_name }}</option>
                                         @endforeach
                                     </select>
                                 </div>
@@ -140,7 +140,7 @@
                                     <td>{{$tenant->email}}</td>
                                     <td>{{$tenant->phone}}</td>
                                     <td>{{$tenant->unit->name}}</td>
-                                    <td>{{$tenant->property->propname}}</td>
+                                    <td>{{$tenant->property->property_name}}</td>
                                     <td>
                                         <div class="row">
                                             <div class="col-6">

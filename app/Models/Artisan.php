@@ -13,9 +13,9 @@ class Artisan extends Model
         'name',
         'email',
         'phone',
-        'bizname',
-        'propId',
-        'vendorcatId',
+        'business_name',
+        'property_id',
+        'vendor_category_id',
         'salary',
     ];
 }

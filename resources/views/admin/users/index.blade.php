@@ -146,9 +146,9 @@
                             </div>
                             <div class="mb-3">
                                 <label for="company" class="form-label">Property</label>
-                                <select class="form-select" id="example-select" name="propid" required>
+                                <select class="form-select" id="example-select" name="property_id" required>
                                     @foreach ($properties as $property)
-                                        <option value="{{ $property->id }}">{{ $property->propname }}</option>
+                                        <option value="{{ $property->id }}">{{ $property->property_name }}</option>
                                     @endforeach
                                 </select>
                             </div>
@@ -163,9 +163,9 @@
                                 <input type="tel" name="phone" class="form-control" id="exampleInputEmail1"
                                     placeholder="Phone Number" required>
                             </div>
-                            <div class="mb-3 bizname">
+                            <div class="mb-3 business_name">
                                 <label for="name" class="form-label">Business Name</label>
-                                <input type="text" class="form-control" name="bizname" id="bizname"
+                                <input type="text" class="form-control" name="business_name" id="business_name"
                                     placeholder="Enter name" >
                             </div>
                             <div class="mb-3 vencat">

@@ -11,7 +11,7 @@ use Illuminate\Support\Facades\Auth;
 
 class SettingsController extends Controller
 {
-        /**
+    /**
      * Create a new controller instance.
      *
      * @return void
@@ -39,9 +39,9 @@ class SettingsController extends Controller
         ]);
 
         if ($propcat) {
-            return('New property category created');
-        }else{
-            return('An error occured');
+            return ('New property category created');
+        } else {
+            return ('An error occured');
         }
     }
 
@@ -51,13 +51,13 @@ class SettingsController extends Controller
         $cat = $request->catname;
 
         $proptype = PropertyType::create([
-            'propcatId' => $cat,
-            'typename' => $type,
+            'property_category_id' => $cat,
+            'property_type' => $type,
         ]);
 
         if ($proptype) {
-            return('New property type created');
-        }else{
+            return ('New property type created');
+        } else {
             return response('An error occured');
         }
     }
@@ -68,15 +68,14 @@ class SettingsController extends Controller
         $cat = $request->catname;
 
         $unit = UnitType::create([
-            'propcatId' => $cat,
-            'name' => $name,
+            'property_category_id' => $cat,
+            'unit_type' => $name,
         ]);
 
         if ($unit) {
-            return('New unit type created');
-        }else{
+            return ('New unit type created');
+        } else {
             return response('An error occured');
         }
     }
-
 }

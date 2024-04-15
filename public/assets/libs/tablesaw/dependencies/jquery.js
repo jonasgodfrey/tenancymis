@@ -6240,7 +6240,7 @@ var
 	emptyStyle = document.createElement( "div" ).style;
 
 // Return a css property mapped to a potentially vendor prefixed property
-function vendorPropName( name ) {
+function vendorproperty_name( name ) {
 
 	// Shortcut for names that are not vendor prefixed
 	if ( name in emptyStyle ) {
@@ -6261,10 +6261,10 @@ function vendorPropName( name ) {
 
 // Return a property mapped along what jQuery.cssProps suggests or to
 // a vendor prefixed property.
-function finalPropName( name ) {
+function finalproperty_name( name ) {
 	var ret = jQuery.cssProps[ name ];
 	if ( !ret ) {
-		ret = jQuery.cssProps[ name ] = vendorPropName( name ) || name;
+		ret = jQuery.cssProps[ name ] = vendorproperty_name( name ) || name;
 	}
 	return ret;
 }
@@ -6455,7 +6455,7 @@ jQuery.extend( {
 		// want to query the value if it is a CSS custom property
 		// since they are user-defined.
 		if ( !isCustomProp ) {
-			name = finalPropName( origName );
+			name = finalproperty_name( origName );
 		}
 
 		// Gets hook for the prefixed version, then unprefixed version
@@ -6522,7 +6522,7 @@ jQuery.extend( {
 		// want to modify the value if it is a CSS custom property
 		// since they are user-defined.
 		if ( !isCustomProp ) {
-			name = finalPropName( origName );
+			name = finalproperty_name( origName );
 		}
 
 		// Try prefixed name followed by the unprefixed name

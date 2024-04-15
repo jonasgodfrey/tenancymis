@@ -20,7 +20,7 @@ return new class extends Migration
             $table->unsignedBigInteger("unit_id");
             $table->foreign('unit_id')->references('id')->on('units');
             $table->unsignedBigInteger("tenant_id");
-            $table->foreign('tenant_id')->references('id')->on('tenants');
+            $table->foreign('tenant_id')->references('id')->on('users');
             $table->bigInteger('paycat_id')->unsigned();
             $table->unsignedBigInteger("payment_status_id");
             $table->foreign('payment_status_id')->references('id')->on('payment_statuses');

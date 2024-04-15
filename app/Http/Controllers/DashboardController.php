@@ -54,8 +54,8 @@ class DashboardController extends Controller
             $tenants_all = Tenant::count();
             $subscriptions = UserSubscription::sum('amount');
             $subscribers = UserSubscription::count();
-            $residential = Property::where('propcatId', 2)->count();
-            $commercial = Property::where('propcatId', 1)->count();
+            $residential = Property::where('property_category_id', 2)->count();
+            $commercial = Property::where('property_category_id', 1)->count();
 
             // For Subscribed Users
             $subscribedUsers = UserSubscription::where('status', 'active')->get();

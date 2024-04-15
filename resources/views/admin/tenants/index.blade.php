@@ -75,7 +75,7 @@
 
                                         <div class="mb-3 col-lg-6">
                                             <label for="simpleinput" class="form-label">Tenant's Occupation</label>
-                                            <input type="text" name="new_bizname" id="new_bizname" class="form-control" placeholder="">
+                                            <input type="text" name="new_business_name" id="new_business_name" class="form-control" placeholder="">
                                         </div>
                                     </div>
 
@@ -103,7 +103,7 @@
 
                                         <div class="mb-3 col-lg-6">
                                             <label for="simpleinput" class="form-label">Tenant's Occupation</label>
-                                            <input type="text" name="bizname" id="bizname" class="form-control" disabled placeholder="">
+                                            <input type="text" name="business_name" id="business_name" class="form-control" disabled placeholder="">
                                         </div>
                                     </div>
 
@@ -111,10 +111,10 @@
 
                                         <div class="mb-3 col-lg-6">
                                             <label for="example-select" class="form-label ">Select Property</label>
-                                            <select class="form-select propname" name="propname" id="propname" required>
+                                            <select class="form-select property_name" name="property_name" id="property_name" required>
                                                 <option style="display: none">Select Property</option>
                                                 @foreach ($properties as $property)
-                                                <option value="{{ $property->id }}">{{ $property->propname }}</option>
+                                                <option value="{{ $property->id }}">{{ $property->property_name }}</option>
                                                 @endforeach
                                             </select>
                                         </div>
@@ -176,7 +176,7 @@
                                     <td>{{$tenant->user->email}}</td>
                                     <td>{{$tenant->user->phone}}</td>
                                     <td>{{$tenant->unit->name}}</td>
-                                    <td>{{$tenant->property->propname}}</td>
+                                    <td>{{$tenant->property->property_name}}</td>
                                     <td>
                                         <div class="row">
                                             <div class="col-6">

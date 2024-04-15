@@ -2328,7 +2328,7 @@ jQuery.extend({
 	},
 
 	removeAttr: function( elem, value ) {
-		var propName, attrNames, name, isBool,
+		var property_name, attrNames, name, isBool,
 			i = 0;
 
 		if ( value && elem.nodeType === 1 ) {
@@ -2339,7 +2339,7 @@ jQuery.extend({
 				name = attrNames[ i ];
 
 				if ( name ) {
-					propName = jQuery.propFix[ name ] || name;
+					property_name = jQuery.propFix[ name ] || name;
 					isBool = rboolean.test( name );
 
 					// See #9699 for explanation of this approach (setting first, then removal)
@@ -2347,11 +2347,11 @@ jQuery.extend({
 					if ( !isBool ) {
 						jQuery.attr( elem, name, "" );
 					}
-					elem.removeAttribute( getSetAttribute ? name : propName );
+					elem.removeAttribute( getSetAttribute ? name : property_name );
 
 					// Set corresponding property to false for boolean attributes
-					if ( isBool && propName in elem ) {
-						elem[ propName ] = false;
+					if ( isBool && property_name in elem ) {
+						elem[ property_name ] = false;
 					}
 				}
 			}
@@ -2477,17 +2477,17 @@ boolHook = {
 			undefined;
 	},
 	set: function( elem, value, name ) {
-		var propName;
+		var property_name;
 		if ( value === false ) {
 			// Remove boolean attributes when set to false
 			jQuery.removeAttr( elem, name );
 		} else {
 			// value is true since we know at this point it's type boolean and not false
 			// Set boolean attributes to the same name and set the DOM property
-			propName = jQuery.propFix[ name ] || name;
-			if ( propName in elem ) {
+			property_name = jQuery.propFix[ name ] || name;
+			if ( property_name in elem ) {
 				// Only set the IDL specifically if it already exists on the element
-				elem[ propName ] = true;
+				elem[ property_name ] = true;
 			}
 
 			elem.setAttribute( name, name.toLowerCase() );
@@ -6560,7 +6560,7 @@ var curCSS, iframe, iframeDoc,
 	eventsToggle = jQuery.fn.toggle;
 
 // return a css property mapped to a potentially vendor prefixed property
-function vendorPropName( style, name ) {
+function vendorproperty_name( style, name ) {
 
 	// shortcut for names that are not vendor prefixed
 	if ( name in style ) {
@@ -6714,7 +6714,7 @@ jQuery.extend({
 			origName = jQuery.camelCase( name ),
 			style = elem.style;
 
-		name = jQuery.cssProps[ origName ] || ( jQuery.cssProps[ origName ] = vendorPropName( style, origName ) );
+		name = jQuery.cssProps[ origName ] || ( jQuery.cssProps[ origName ] = vendorproperty_name( style, origName ) );
 
 		// gets hook for the prefixed version
 		// followed by the unprefixed version
@@ -6766,7 +6766,7 @@ jQuery.extend({
 			origName = jQuery.camelCase( name );
 
 		// Make sure that we're working with the right name
-		name = jQuery.cssProps[ origName ] || ( jQuery.cssProps[ origName ] = vendorPropName( elem.style, origName ) );
+		name = jQuery.cssProps[ origName ] || ( jQuery.cssProps[ origName ] = vendorproperty_name( elem.style, origName ) );
 
 		// gets hook for the prefixed version
 		// followed by the unprefixed version

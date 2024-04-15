@@ -15,9 +15,10 @@ return new class extends Migration
     {
         Schema::create('user_subscriptions', function (Blueprint $table) {
             $table->id();
-            $table->string('user_id');
-            $table->string('start_date');
-            $table->string('end_date');
+            $table->unsignedBigInteger('user_id');
+            $table->foreign('user_id')->references('id')->on('users');
+            $table->date('start_date');
+            $table->date('end_date');
             $table->string('status');
             $table->string('plan_type');
             $table->string('total_units_no');

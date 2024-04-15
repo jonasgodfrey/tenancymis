@@ -82,7 +82,7 @@ Route::group(['middleware' => ['auth', 'subscribed']], function () {
 
     Route::post('/units/update', [App\Http\Controllers\PropertyUnitsController::class, 'update'])->name('units.update');
     Route::post('/units/delete', [App\Http\Controllers\PropertyUnitsController::class, 'delete'])->name('units.delete');
-    Route::get('/units/{unitId}', [App\Http\Controllers\PropertyUnitsController::class, 'showUnitInfo'])->name('units.show');
+    Route::get('/units/{unit_id}', [App\Http\Controllers\PropertyUnitsController::class, 'showUnitInfo'])->name('units.show');
 
     //tenants Page Get Routes
     Route::get('/tenants', [App\Http\Controllers\TenantsController::class, 'index'])->name('tenants.index');

@@ -68,7 +68,7 @@ class TenancyPaymentsController extends Controller
                 $duedate = Carbon::parse($request->duedate);
 
                 $payment = PaymentRecord::create([
-                    'property_id' => $request->propname,
+                    'property_id' => $request->property_name,
                     'unit_id' => $request->unit,
                     'paycat_id' => $request->paycat,
                     'tenant_id' => $request->tenant,
@@ -88,7 +88,7 @@ class TenancyPaymentsController extends Controller
                 ]);
 
                 $tenantrec->update([
-                    'payId' => $payment->id,
+                    'payment_id' => $payment->id,
                 ]);
 
                 // publish a notification for the user create action
