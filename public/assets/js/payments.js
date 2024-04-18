@@ -42,7 +42,7 @@ $(".units").change(function() {
                     $(".tenant").html('<option style="display:none" value="">No Tenant Found</option>');
                 } else {
                     $(".tenant").removeAttr('disabled');
-                    $(".tenant").html('<option value="' + result.id + '">' + result.name + '</option>');
+                    $(".tenant").html('<option value="' + result.id + '">' + result.first_name + ' ' + result.last_name + '</option>');
                 }
             },
             error: function(err) {

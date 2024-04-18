@@ -29,7 +29,8 @@ class RegisteredUserController extends Controller
      */
     public function create()
     {
-        return view('admin.auth.register');
+        $title = "Register";
+        return view('admin.auth.register', compact('title'));
     }
 
     /**
@@ -43,7 +44,8 @@ class RegisteredUserController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'name' => ['required', 'string', 'max:255'],
+            'first_name' => ['required', 'string', 'max:255'],
+            'last_name' => ['required', 'string', 'max:255'],
             'phone' => ['required', 'string', 'min:10'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'purpose' => ['required', 'string', 'max:255'],
@@ -54,7 +56,8 @@ class RegisteredUserController extends Controller
         $admin_role = Role::where('name', 'admin')->first();
 
         $user = User::create([
-            'name' => $request->name,
+            'first_name' => $request->first_name,
+            'last_name' => $request->last_name,
             'email' => $request->email,
             'phone' => $request->phone,
             'purpose' => $request->purpose,

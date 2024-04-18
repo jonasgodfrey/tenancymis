@@ -26,7 +26,7 @@ class Unit extends Model
 
     public function tenant()
     {
-        return $this->hasOne(Tenant::class, 'unit_id');
+        return $this->hasOne(User::class, 'id', 'tenant_id');
     }
 
     public function property()

@@ -77,8 +77,9 @@
                                 <div class="mb-3">
                                     <label for="example-select" class="form-label">Occupancy Category</label>
                                     <select class="form-select" id="example-select" name="bizcat" required>
-                                        <option>Residential</option>
-                                        <option>Business</option>
+                                        @foreach ($property_categories as $property_category)
+                                        <option value="{{ $property_category->id }}">{{ $property_category->category_name }}</option>
+                                        @endforeach
 
                                     </select>
                                 </div>
@@ -97,6 +98,11 @@
                                         <option style="display: none">loading..</option>
 
                                     </select>
+                                </div>
+
+                                <div class="mb-3">
+                                    <label for="example-date" class="form-label">Start Date</label>
+                                    <input type="date" id="example-date" name="start_date" class="form-control" placeholder="Select Date" required>
                                 </div>
 
                             </div> <!-- end col -->
@@ -146,7 +152,7 @@
                                             <div class="col-6">
                                                 <a class="btn btn-info" href="{{url('tenants-details/'.$tenant->id)}}"><i class="fas fa-eye">View Details</i></a>
                                             </div>
-                                            
+
                                         </div>
                                     </td>
 

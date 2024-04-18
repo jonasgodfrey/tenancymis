@@ -18,13 +18,13 @@ class PaymentStatusSeeder extends Seeder
     {
         DB::table('payment_statuses')->insertOrIgnore([
             [
-                "name" => "expired",
+                "payment_status" => "expired",
             ],
             [
-                "name" => "expiring soon",
+                "payment_status" => "expiring soon",
             ],
             [
-                "name" => "active",
+                "payment_status" => "active",
             ],
         ]);
     }

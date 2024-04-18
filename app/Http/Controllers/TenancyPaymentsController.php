@@ -5,9 +5,11 @@ namespace App\Http\Controllers;
 use App\Models\Notification;
 use App\Models\PaymentRecord;
 use App\Models\Tenant;
+use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Session;
 
@@ -29,8 +31,12 @@ class TenancyPaymentsController extends Controller
         $count = 0;
 
         if (Gate::allows('admin')) {
-            $payments = $user->tenants;
+            $payments = PaymentRecord::leftJoin('users', 'users.id', 'payment_records.tenant_id')
+                ->leftJoin('properties', 'properties.id', 'payment_records.property_id')
+                ->select('payment_records.*', 'users.*', 'properties.*')->where('users.owner_id', '=', $user->id)->get();
             $properties = $user->properties;
+
+            logInfo($payments, "My payments");
 
             return view('admin.payments.index')->with([
                 'properties' => $properties,
@@ -61,47 +67,57 @@ class TenancyPaymentsController extends Controller
             // save to storage/app/photos as the new $filename
             $storefile = $file->storeAs('public/payments/', $filename);
 
-            $tenantrec = Tenant::where('id', $request->tenant)->first();
+            $tenantrec = User::where('id', $request->tenant)->first();
 
             if ($storefile) {
                 $startdate = Carbon::parse($request->startdate);
                 $duedate = Carbon::parse($request->duedate);
 
-                $payment = PaymentRecord::create([
-                    'property_id' => $request->property_name,
-                    'unit_id' => $request->unit,
-                    'paycat_id' => $request->paycat,
-                    'tenant_id' => $request->tenant,
-                    'paystatus_id' => 3,
-                    'payment_reference' => generateTransactionReference(),
-                    'amount' => $request->payamount,
-                    'paydate' => Carbon::now(),
-                    'payment_status_id' => 2,
-                    'amount_paid' => $request->payamount,
-                    'payment_date' => Carbon::now(),
-                    'startdate' => $startdate,
-                    'duedate' => $duedate,
-                    'duration' => $request->duration,
-                    'duration_status' => '3',
-                    'paymethod' => $request->paymethod,
-                    'evidence_image' => $filename,
-                ]);
+                try {
 
-                $tenantrec->update([
-                    'payment_id' => $payment->id,
-                ]);
+                    DB::beginTransaction();
 
-                // publish a notification for the user create action
-                $notification = Notification::create([
-                    'user_id' => $user->id,
-                    'owner_id' => $user->id,
-                    'title' => "New Payment Record Added",
-                    'message' => $user->name . ' added a new payment record, for (tenant: ' . $tenantrec->name . ') on TenancyPlus'
-                ]);
+                    $payment = PaymentRecord::create([
+                        'property_id' => $request->property_name,
+                        'unit_id' => $request->unit,
+                        'paycat_id' => $request->paycat,
+                        'tenant_id' => $request->tenant,
+                        'paystatus_id' => 3,
+                        'payment_reference' => generateTransactionReference(),
+                        'amount' => $request->payamount,
+                        'paydate' => Carbon::now(),
+                        'payment_status_id' => 2,
+                        'amount_paid' => $request->payamount,
+                        'payment_date' => Carbon::now(),
+                        'startdate' => $startdate,
+                        'duedate' => $duedate,
+                        'duration' => $request->duration,
+                        'duration_status' => '3',
+                        'paymethod' => $request->paymethod,
+                        'evidence_image' => $filename,
+                    ]);
 
-                if ($payment) {
-                    Session::flash('flash_message', 'New tenant Payment Added Successfully');
-                    return redirect()->back();
+                    $tenantrec->update([
+                        'payment_id' => $payment->id,
+                    ]);
+
+                    // publish a notification for the user create action
+                    $notification = Notification::create([
+                        'user_id' => $user->id,
+                        'owner_id' => $user->id,
+                        'title' => "New Payment Record Added",
+                        'message' => $user->name . ' added a new payment record, for (tenant: ' . $tenantrec->name . ') on TenancyPlus'
+                    ]);
+
+                    DB::commit();
+
+                    if ($payment) {
+                        Session::flash('flash_message', 'New tenant Payment Added Successfully');
+                        return redirect()->back();
+                    }
+                } catch (\Exception $e) {
+                    DB::rollBack();
+                    Session::flash('error_message', 'Server Error... Please try again later');
                 }
             }
         }

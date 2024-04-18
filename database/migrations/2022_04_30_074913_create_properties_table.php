@@ -21,7 +21,7 @@ return new class extends Migration
             $table->unsignedBigInteger('owner_id');
             $table->foreign('owner_id')->references('id')->on('users');
             $table->string('property_name');
-            $table->string('');
+            $table->string('property_address');
             $table->string('property_description', '1000');
             $table->string('email');
             $table->string('phone');

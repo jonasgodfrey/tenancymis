@@ -16,7 +16,10 @@
             </div>
         </div>
         <!-- end page title -->
-
+        <div id="alert">
+            @include('partials.flash')
+            @include('partials.modal')
+        </div>
         <div class="row">
             <div class="col-sm-6">
                 <div class="card">
@@ -47,10 +50,7 @@
                     <div class="card-body">
                         <h4 class="header-title">Add Single Unit</h4>
                         <br>
-                        <div id="alert">
-                            @include('partials.flash')
-                            @include('partials.modal')
-                        </div>
+
 
                         <form role="form" action="{{ route('units.store') }}" enctype="multipart/form-data" method="POST">
                             @csrf
@@ -74,7 +74,7 @@
                                         <select class="form-select" name="unittype" id="example-select" required>
                                             <option style="display: none">Select Unit Type</option>
                                             @foreach ($unitstype as $unit)
-                                            <option value="{{ $unit->id }}">{{ $unit->name }}</option>
+                                            <option value="{{ $unit->id }}">{{ $unit->unit_type }}</option>
                                             @endforeach
 
                                         </select>
@@ -128,10 +128,6 @@
                     <div class="card-body">
                         <h4 class="header-title">Add Multiple Units</h4>
                         <br>
-                        <div id="alert">
-                            @include('partials.flash')
-                            @include('partials.modal')
-                        </div>
 
                         <form role="form" action="{{ route('units.store_multiple') }}" enctype="multipart/form-data" method="POST">
                             @csrf
@@ -156,7 +152,7 @@
                                         <select class="form-select" name="unittype" id="example-select" required>
                                             <option style="display: none">Select Unit Type</option>
                                             @foreach ($unitstype as $unit)
-                                            <option value="{{ $unit->id }}">{{ $unit->name }}</option>
+                                            <option value="{{ $unit->id }}">{{ $unit->unit_type }}</option>
                                             @endforeach
 
                                         </select>
@@ -218,9 +214,10 @@
                         <table id="datatable-buttons" class="table table-striped table-bordered dt-responsive nowrap">
                             <thead>
                                 <tr>
-                                    <th>Property</th>
+                                    <th>S/No</th>
                                     <th>Unit</th>
                                     <th>Description</th>
+                                    <th>Property</th>
                                     <th>Amount/Year</th>
                                     <th>Status</th>
                                     <th>Action</th>
@@ -229,11 +226,13 @@
 
 
                             <tbody>
+                                @php $counter = 0; @endphp
                                 @forelse ($units as $unit)
                                 <tr>
-                                    <td>{{ $unit->property->property_name }}</td>
+                                    <td>{{ ++$counter }}</td>
                                     <td>{{ $unit->name }}</td>
                                     <td>{{ $unit->unit_description }}</td>
+                                    <td>{{ $unit->property->property_name }}</td>
                                     <td>@money($unit->lease_amount)</td>
                                     @if ($unit->status == 'occupied')
                                     <td><span class="badge bg-secondary">{{ $unit->status }}</span></td>

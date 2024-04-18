@@ -69,7 +69,7 @@
                                         <select class="form-select" id="example-select" name="proptype" required>
                                             <option style="display: none">Select Type</option>
                                             @foreach ($prop_types as $type)
-                                            <option value="{{ $type->id }}">{{ $type->typename }}</option>
+                                            <option value="{{ $type->id }}">{{ $type->property_type }}</option>
                                             @endforeach
                                             <option value="1">Others</option>
 
@@ -102,7 +102,7 @@
                                         <label for="example-select" class="form-label">Country</label>
                                         <select class="form-select" id="example-select" name="country" required>
                                             @foreach ($countries as $country)
-                                            <option value="{{ $country->id }}">{{ $country->name }}</option>
+                                            <option value="{{ $country->id }}">{{ $country->country }}</option>
                                             @endforeach
                                         </select>
                                     </div>

@@ -30,11 +30,10 @@ class DashboardController extends Controller
 
         $properties_num = $user->properties->count();
         $units_num = $user->units->count();
-        $tenants_num = $user->tenants->count();
-        $tenants = $user->tenants;
+        $tenants_num = $user->mytenants->count();
+        $tenants = $user->mytenants;
 
-        $myTenants = Tenant::leftJoin('users', 'users.id', '=', 'tenants.user_id')
-            ->select('users.*', 'tenants.*')->get();
+        $myTenants = User::where('role', 'tenant')->where('owner_id',$user->id)->get();
 
         logInfo($tenants, "Roles Tenants");
 

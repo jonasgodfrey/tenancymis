@@ -16,7 +16,7 @@ class Property extends Model
         'proptype_id',
         'owner_id',
         'property_name',
-        'propaddress',
+        'property_address',
         'property_description',
         'phone',
         'email',

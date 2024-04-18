@@ -75,7 +75,7 @@
                                         <div class="mb-3">
                                             <label for="simpleinput" class="form-label">Address</label>
                                             <input type="text" name="address" id="simpleinput" class="form-control"
-                                                placeholder="property address" value="{{ $property->propaddress }}"
+                                                placeholder="property address" value="{{ $property->property_address }}"
                                                 required>
                                         </div>
                                         <div class="mb-3">

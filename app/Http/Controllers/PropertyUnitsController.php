@@ -84,7 +84,6 @@ class PropertyUnitsController extends Controller
                 'unit_description' => $request->unit_description,
                 'lease_amount' => $request->rentamount,
                 'name' => $request->unitname,
-                'status' => 'empty',
                 'image' => $filename ?? "null",
                 'owner_id' => $user->id
             ]);
@@ -159,7 +158,6 @@ class PropertyUnitsController extends Controller
                     'unit_description' => $request->unit_description,
                     'lease_amount' => $request->rentamount,
                     'name' => $request->unitname,
-                    'status' => 'empty',
                     'image' => $filename,
                     'owner_id' => $user->id
                 ]);

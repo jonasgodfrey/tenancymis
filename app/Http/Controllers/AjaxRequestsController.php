@@ -12,7 +12,7 @@ class AjaxRequestsController extends Controller
     {
         if (Gate::allows('admin')) {
 
-            $units = Unit::where('property_id', $request->property_id)->whereNot('status', 'occupied')->get();
+            $units = Unit::where('property_id', $request->property_id)->whereNot('status', 1)->get();
 
             return  response()->json($units);
         }
@@ -22,7 +22,7 @@ class AjaxRequestsController extends Controller
     {
         if (Gate::allows('admin')) {
 
-            $units = Unit::where('property_id', $request->property_id)->get();
+            $units = Unit::where('property_id', $request->property_id)->where('status', 1)->get();
 
             return  response()->json($units);
         }

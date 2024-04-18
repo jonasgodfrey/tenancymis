@@ -61,7 +61,7 @@ class PropertyController extends Controller
         $properties = $user->properties;
         $property = Property::find($property_id);
         $units = Unit::where(['property_id' => $property_id])->get();
-        $assignable_units = Unit::where(['property_id' => $property_id, 'status' => 'empty'])->get();
+        $assignable_units = Unit::where(['property_id' => $property_id, 'status' => 0])->get();
         $users = User::where('owner_id', $user->id)->get();
 
         $unitstype = UnitType::all();
@@ -104,7 +104,7 @@ class PropertyController extends Controller
                 'proptype_id' => $request->proptype,
                 'owner_id' => $user->id,
                 'property_name' => $request->property_name,
-                'propaddress' => $request->address,
+                'property_address' => $request->address,
                 'property_description' => $request->property_description,
                 'email' => $request->email,
                 'phone' => $request->tel,

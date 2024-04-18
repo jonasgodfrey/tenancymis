@@ -86,6 +86,7 @@ Route::group(['middleware' => ['auth', 'subscribed']], function () {
 
     //tenants Page Get Routes
     Route::get('/tenants', [App\Http\Controllers\TenantsController::class, 'index'])->name('tenants.index');
+    Route::get('/show-tenant-records/{tenantId}', [App\Http\Controllers\TenantsController::class, 'showTenantRecords'])->name('tenants.records');
     Route::get('/tenants-details/{userid}', [App\Http\Controllers\TenantsController::class, 'showTenantsDetails'])->name('tenants.details');
     Route::get('/property-tenants/{userid}', [App\Http\Controllers\TenantsController::class, 'showTenantsDetails'])->name('tenants.showdetails');
     //tenants Page Post Routes

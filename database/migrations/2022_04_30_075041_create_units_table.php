@@ -17,7 +17,7 @@ return new class extends Migration
             $table->id();
             $table->bigInteger('owner_id')->unsigned();
             $table->foreign('owner_id')->references('id')->on('users');
-            $table->unsignedBigInteger('tenant_id');
+            $table->unsignedBigInteger('tenant_id')->nullable();
             $table->foreign('tenant_id')->references('id')->on('users');
             $table->unsignedBigInteger('property_id');
             $table->foreign('property_id')->references('id')->on('properties');
@@ -26,7 +26,7 @@ return new class extends Migration
             $table->string('unit_ref_id');
             $table->string('unit_description');
             $table->string('lease_amount');
-            $table->string('status');
+            $table->tinyInteger('status')->default(0)->comment('0 - Vacant, 1 - Occupied');
             $table->string('image');
             $table->timestamps();
             $table->softDeletes();

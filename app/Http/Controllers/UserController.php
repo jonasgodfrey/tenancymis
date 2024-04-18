@@ -76,7 +76,8 @@ class UserController extends Controller
 
                 // store details of a new user
                 $user = User::create([
-                    'name' => $request->name,
+                    'first_name' => $request->first_name,
+                    'last_name' => $request->last_name,
                     'email' => $request->email,
                     'phone' => $request->phone,
                     'role' => $request->role,
@@ -90,9 +91,7 @@ class UserController extends Controller
                 $user->roles()->attach($role_id);
 
                 Manager::create([
-                    'name' => $request->name,
-                    'email' => $request->email,
-                    'phone' => $request->phone,
+                    'user_id' => $user->id,
                     'property_id' => $property_id,
                     'salary' => 'null',
                 ]);
@@ -117,7 +116,8 @@ class UserController extends Controller
 
                 // store details of a new user
                 $user = User::create([
-                    'name' => $request->name,
+                    'first_name' => $request->first_name,
+                    'last_name' => $request->last_name,
                     'email' => $request->email,
                     'phone' => $request->phone,
                     'role' => $request->role,
@@ -131,8 +131,7 @@ class UserController extends Controller
                 $user->roles()->attach($role_id);
 
                 Accountant::create([
-                    'name' => $request->name,
-                    'email' => $request->email,
+                    'user_id' => $user->id,
                     'property_id' => $property_id,
                     'salary' => 'null',
                 ]);
@@ -150,7 +149,8 @@ class UserController extends Controller
             if ($role == 'artisan') {
                 // store details of a new user
                 $user = User::create([
-                    'name' => $request->name,
+                    'first_name' => $request->first_name,
+                    'last_name' => $request->last_name,
                     'email' => $request->email,
                     'phone' => $request->phone,
                     'role' => $request->role,
@@ -164,9 +164,7 @@ class UserController extends Controller
                 $user->roles()->attach($role_id);
 
                 Artisan::create([
-                    'name' => $request->name,
-                    'email' => $request->email,
-                    'phone' => $request->phone,
+                    'user_id' => $user->id,
                     'business_name' => $request->business_name,
                     'property_id' => $property_id,
                     'vendor_category_id' => $request->vencat,
@@ -193,7 +191,7 @@ class UserController extends Controller
 
         if ($user) {
             return response()->json(['status' => "success", 'message' => 'User Details Fetched successfully', 'data' => $user]);
-        }else{
+        } else {
             return response()->json(['status' => "error", 'message' => 'Failedd to Fetched user details']);
         }
     }

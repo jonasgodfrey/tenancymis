@@ -19,35 +19,35 @@ class UnitTypeSeeder extends Seeder
         DB::table('unit_types')->insertOrIgnore([
             [
                 'property_category_id' => '1',
-                'name' => 'Shop',
+                'unit_type' => 'Shop',
             ],
             [
                 'property_category_id' => '1',
-                'name' => 'Store',
+                'unit_type' => 'Store',
             ],
             [
                 'property_category_id' => '2',
-                'name' => 'Single Room',
+                'unit_type' => 'Single Room',
             ],
             [
                 'property_category_id' => '2',
-                'name' => 'Self Contain',
+                'unit_type' => 'Self Contain',
             ],
             [
                 'property_category_id' => '2',
-                'name' => 'Flat',
+                'unit_type' => 'Flat',
             ],
             [
                 'property_category_id' => '2',
-                'name' => 'Bungalow',
+                'unit_type' => 'Bungalow',
             ],
             [
                 'property_category_id' => '2',
-                'name' => 'Duplex',
+                'unit_type' => 'Duplex',
             ],
             [
                 'property_category_id' => '2',
-                'name' => 'Terrace'
+                'unit_type' => 'Terrace'
             ],
         ]);
 

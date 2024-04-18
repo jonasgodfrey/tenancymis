@@ -19,43 +19,43 @@ class PropertyTypeSeeder extends Seeder
         DB::table('property_types')->insertOrIgnore([
             [
                 'property_category_id' => '1',
-                'typename' => 'Mall',
+                'property_type' => 'Mall',
             ],
             [
                 'property_category_id' => '1',
-                'typename' => 'Shopping Complex',
+                'property_type' => 'Shopping Complex',
             ],
             [
                 'property_category_id' => '1',
-                'typename' => 'Plaza',
+                'property_type' => 'Plaza',
             ],
             [
                 'property_category_id' => '1',
-                'typename' => 'Market Square',
+                'property_type' => 'Market Square',
             ],
             [
                 'property_category_id' => '1',
-                'typename' => 'Stores',
+                'property_type' => 'Stores',
             ],
             [
                 'property_category_id' => '1',
-                'typename' => 'Centres',
+                'property_type' => 'Centres',
             ],
             [
                 'property_category_id' => '2',
-                'typename' => 'Estate',
+                'property_type' => 'Estate',
             ],
             [
                 'property_category_id' => '2',
-                'typename' => 'Apartments',
+                'property_type' => 'Apartments',
             ],
             [
                 'property_category_id' => '2',
-                'typename' => 'Self Contain',
+                'property_type' => 'Self Contain',
             ],
             [
                 'property_category_id' => '2',
-                'typename' => 'Single Rooms',
+                'property_type' => 'Single Rooms',
             ],
         ]);
     }

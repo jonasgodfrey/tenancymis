@@ -9,6 +9,8 @@ class LoginController extends Controller
 {
     public function index()
     {
-        return view('auth.login')->with([]);
+        $title = "Login";
+
+        return view('auth.login', compact('title'))->with([]);
     }
 }

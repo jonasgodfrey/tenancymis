@@ -23,7 +23,8 @@ class User extends Authenticatable implements MustVerifyEmail
      * @var array<int, string>
      */
     protected $fillable = [
-        'name',
+        'first_name',
+        'last_name',
         'email',
         'phone',
         'occupation',
@@ -76,10 +77,10 @@ class User extends Authenticatable implements MustVerifyEmail
         return $this->hasMany(Property::class, 'owner_id');
     }
 
-    public function profile(){
+    public function profile()
+    {
         return $this->hasOne(UserProfile::class, 'id', 'user_id');
     }
-
 
     public function units(): \Illuminate\Database\Eloquent\Relations\HasMany
     {
@@ -89,6 +90,16 @@ class User extends Authenticatable implements MustVerifyEmail
     public function tenants(): \Illuminate\Database\Eloquent\Relations\HasManyThrough
     {
         return $this->hasManyThrough(Tenant::class, Unit::class, 'owner_id', 'unit_id');
+    }
+
+    public function payments()
+    {
+        return $this->hasMany(PaymentRecord::class, 'tenant_id');
+    }
+
+    public function mytenants(): \Illuminate\Database\Eloquent\Relations\HasMany
+    {
+        return $this->hasMany(User::class, 'owner_id');
     }
 
     public function tenant_payments(): \Illuminate\Database\Eloquent\Relations\HasManyThrough
