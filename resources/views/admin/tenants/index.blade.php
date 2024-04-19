@@ -142,7 +142,7 @@
                                             <label for="example-select" class="form-label">Occupancy Category</label>
                                             <select class="form-select" id="example-select" name="bizcat" required>
                                                 @foreach ($property_categories as $property)
-                                                <option value="{{ $property->id }}">{{ $property->category_name }}</option>
+                                                <option value="{{ $property->id }}">{{ $property->category_name }} Purpose</option>
                                                 @endforeach
                                             </select>
                                         </div>
@@ -197,7 +197,7 @@
                                     <td>{{$tenant->phone}}</td>
                                     <td style="width:20%">
                                     <a href="{{route('tenants.records', ['tenantId' => $tenant->id])}}" class="btn btn-info" style="margin-right: 20px;"><i class="fas fa-eye"></i> Rent Records</a>
-                                        <a href="#" class="btn btn-primary"><i class="fas fa-pen"></i> Edit</a>
+                                        <!-- <a href="#" class="btn btn-primary"><i class="fas fa-pen"></i> Edit</a> -->
                                     </td>
 
                                 </tr>

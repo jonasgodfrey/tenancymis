@@ -15,6 +15,7 @@ use App\Models\UnitType;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Gate;
 
 class PropertyController extends Controller
@@ -38,7 +39,14 @@ class PropertyController extends Controller
         $prop_cat = PropertyCategory::all();
         $prop_types = PropertyType::all();
         $countries = Country::all();
-        $properties = $user->properties;
+        $properties = Property::leftJoin('units', 'units.property_id', '=', 'properties.id')
+            ->leftJoin('tenant_rental_records', 'tenant_rental_records.unit_id', '=', 'units.id')
+            ->leftJoin('property_categories', 'properties.property_category_id', '=', 'property_categories.id')
+            ->select('properties.id', 'properties.property_name','property_categories.category_name', 'properties.property_address', DB::raw('COUNT(units.id) as total_units'), DB::raw('COUNT(tenant_rental_records.id) as total_tenants'))
+            ->groupBy('properties.id', 'properties.property_name', 'properties.property_address', 'property_categories.category_name')
+            ->where('properties.owner_id', $user->id)->get();
+
+        logInfo($properties);
 
         return view('admin.property.index')->with([
             'states' => $state,
@@ -222,7 +230,6 @@ class PropertyController extends Controller
             ]);
         }
 
-            return response()->json(['status' => 0, 'message' => 'Property Deleted successfully']);
-        
+        return response()->json(['status' => 0, 'message' => 'Property Deleted successfully']);
     }
 }

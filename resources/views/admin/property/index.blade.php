@@ -149,27 +149,20 @@
                                     <th>Property</th>
                                     <th>Category</th>
                                     <th>Description</th>
-                                    <th>State</th>
                                     <th>Units</th>
                                     <th>Tenants</th>
-                                    <th>Contact Email</th>
-                                    <th>Tel</th>
                                     <th>Action</th>
                                 </tr>
                             </thead>
-
-
+                            
                             <tbody>
                                 @forelse ($properties as $property)
                                 <tr>
                                     <td>{{ $property->property_name }}</td>
-                                    <td>{{ $property->category->category_name }}</td>
-                                    <td>{{ $property->property_description }}</td>
-                                    <td>{{ $property->state->name }}</td>
-                                    <td>{{count($property->units)}}</td>
-                                    <td>{{count($property->tenants)}}</td>
-                                    <td>{{ $property->email }}</td>
-                                    <td>{{ $property->phone }}</td>
+                                    <td>{{ $property->category_name }}</td>
+                                    <td>{{ $property->property_address }}</td>
+                                    <td>{{$property->total_units}}</td>
+                                    <td>{{$property->total_tenants}}</td>
                                     <td>
 
                                         <div class="dropdown">

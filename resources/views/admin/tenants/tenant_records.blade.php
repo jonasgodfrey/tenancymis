@@ -115,7 +115,7 @@
                                             <label for="example-select" class="form-label">Occupancy Category</label>
                                             <select class="form-select" id="example-select" name="bizcat" required>
                                                 @foreach ($property_categories as $property)
-                                                <option value="{{ $property->id }}">{{ $property->category_name }}</option>
+                                                <option value="{{ $property->id }}">{{ $property->category_name }} Purpose</option>
                                                 @endforeach
                                             </select>
                                         </div>

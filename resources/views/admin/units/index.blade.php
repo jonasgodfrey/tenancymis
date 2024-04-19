@@ -219,7 +219,6 @@
                                     <th>Description</th>
                                     <th>Property</th>
                                     <th>Amount/Year</th>
-                                    <th>Status</th>
                                     <th>Action</th>
                                 </tr>
                             </thead>

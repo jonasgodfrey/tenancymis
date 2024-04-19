@@ -170,42 +170,21 @@
                                 <thead>
                                     <tr>
                                         <th>#</th>
-                                        <th>Property</th>
-                                        <th>Unit</th>
                                         <th>Tenant</th>
-                                        <th>Tenant Tel</th>
-                                        <th>Start Date</th>
-                                        <th>Due Date</th>
-                                        <th>Status</th>
-
+                                        <th>Mobile Number</th>
+                                        <th>Email</th>
+                                        <th>Occupation</th>
                                     </tr>
                                 </thead>
                                 <tbody>
+                                    @php $counter = 0; @endphp
                                     @forelse ($tenants as $tenant)
-                                    @php
-                                    $payment = $tenant->current_payment;
-                                    if (!empty($payment)) {
-                                    $duedate = explode(' ', $payment->duedate);
-                                    $startdate = explode(' ', $payment->startdate);
-                                    }
-
-                                    @endphp
                                     <tr>
-                                        <td>{{ $tenant->id }}</td>
-                                        <td>{{ $tenant->property->property_name }}</td>
-                                        <td>{{ $tenant->unit->name }}</td>
-                                        <td>{{ $tenant->name }}</td>
+                                        <td>{{ ++$counter }}</td>
+                                        <td>{{ $tenant->first_name }} {{ $tenant->last_name }}</td>
                                         <td>{{ $tenant->phone }}</td>
-                                        @if (!empty($payment))
-                                        <td>{{ $startdate[0] }}</td>
-                                        <td> {{ $duedate[0] }}</td>
-                                        <td><span class="badge bg-success">paid</span></td>
-                                        @else
-                                        <td>null</td>
-                                        <td>null</td>
-                                        <td><span class="badge bg-danger">not paid</span></td>
-                                        @endif
-
+                                        <td>{{ $tenant->email }}</td>
+                                        <td>{{ $tenant->occupation }}</td>
                                     </tr>
                                     @empty
 

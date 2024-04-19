@@ -15,7 +15,7 @@
                         </div>
                         <div class="card-body">
                             <blockquote class="blockquote mb-0">
-                                <h4>{{ Auth::user()->name }} welcome to our platform !</h4>
+                                <h4>{{ Auth::user()->first_name }} welcome to our platform !</h4>
                                 <footer class="blockquote-footer"><h5>
                                     Note: please contact your administrator for a plan renewal with to proceed to our application</h5></footer>
                             </blockquote>

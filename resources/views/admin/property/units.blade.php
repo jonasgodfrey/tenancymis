@@ -128,8 +128,8 @@
                                         <div class="mb-3 col-lg-6">
                                             <label for="example-select" class="form-label">Occupancy Category</label>
                                             <select class="form-select" id="example-select" name="bizcat" required>
-                                                <option>Residential</option>
-                                                <option>Business</option>
+                                                <option>Residential Purpose</option>
+                                                <option>Business Purpose</option>
 
                                             </select>
                                         </div>
@@ -253,7 +253,7 @@
                                             <ul class="dropdown-menu">
                                                 <li><a class="dropdown-item" href="/units/{{$unit->id}}">Unit Details</a></li>
                                                 <li><a class="dropdown-item" href="#">Delete</a></li>
-                                                <li><a class="dropdown-item" href="/properties/edit/{{ $unit->id }}">Edit</a></li>
+                                                <!-- <li><a class="dropdown-item" href="/properties/edit/{{ $unit->id }}">Edit</a></li> -->
                                             </ul>
                                         </div>
 

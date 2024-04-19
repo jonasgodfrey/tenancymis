@@ -21,7 +21,7 @@
                 </div>
                 <div class="card-body">
                     <blockquote class="blockquote mb-0 text-center">
-                        <h3> <b style="text-transform: capitalize">Welcome Onboard {{ Auth::user()->name }}</b> !</h3>
+                        <h3> <b style="text-transform: capitalize">Welcome Onboard {{ Auth::user()->first_name }}</b> !</h3>
 
                         <footer class="blockquote-footer">
                             <h4 class="text-center justify-center text-red-600">
