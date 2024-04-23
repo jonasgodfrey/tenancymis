@@ -204,6 +204,8 @@ class TenantsController extends Controller
 
                 DB::rollBack();
 
+                logInfo($e->getMessage(), "Server Error!");
+
                 Session::flash('error_message', 'Server Error. Please try again later!');
                 return redirect()->back();
             }

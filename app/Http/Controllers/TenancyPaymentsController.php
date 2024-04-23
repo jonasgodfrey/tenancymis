@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Notification;
 use App\Models\PaymentRecord;
 use App\Models\Tenant;
+use App\Models\TenantRentalRecord;
 use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
@@ -78,11 +79,11 @@ class TenancyPaymentsController extends Controller
                     DB::beginTransaction();
 
                     $payment = PaymentRecord::create([
-                        'property_id' => $request->property_name,
-                        'unit_id' => $request->unit,
-                        'paycat_id' => $request->paycat,
-                        'tenant_id' => $request->tenant,
-                        'paystatus_id' => 3,
+                        'property_id' => $request->property_id,
+                        'unit_id' => $request->unit_id,
+                        'paycat_id' => $request->payment_category,
+                        'tenant_id' => $request->tenant_id,
+                        'payment_status_id' => 3,
                         'payment_reference' => generateTransactionReference(),
                         'amount' => $request->payamount,
                         'paydate' => Carbon::now(),
@@ -97,9 +98,16 @@ class TenancyPaymentsController extends Controller
                         'evidence_image' => $filename,
                     ]);
 
-                    $tenantrec->update([
-                        'payment_id' => $payment->id,
-                    ]);
+
+                    $tenantRecord = TenantRentalRecord::where('tenant_id', $request->tenant_id)->where('unit_id', $request->unit_id)->first();
+
+                    logInfo($tenantRecord, "********************************");
+
+                    if ($tenantRecord->start_date == null) {
+                        $tenantRecord->start_date = $startdate;
+                    }
+                    $tenantRecord->end_date =  $duedate;
+                    $tenantRecord->save();
 
                     // publish a notification for the user create action
                     $notification = Notification::create([
@@ -116,6 +124,8 @@ class TenancyPaymentsController extends Controller
                         return redirect()->back();
                     }
                 } catch (\Exception $e) {
+
+                    logInfo($e->getMessage(), "Server ERror!! Message");
                     DB::rollBack();
                     Session::flash('error_message', 'Server Error... Please try again later');
                 }
@@ -158,55 +168,68 @@ class TenancyPaymentsController extends Controller
                 $filename = "";
             }
 
-            $tenantrec = Tenant::where('id', $request->tenant_id)->first();
+            try {
 
-            if ($storefile) {
-                $startdate = Carbon::parse($request->start_date);
-                $duedate = Carbon::parse($request->due_date);
+                DB::beginTransaction();
 
-                $payment = PaymentRecord::create([
-                    'payment_reference' => generateTransactionReference(),
-                    'property_id' => $request->property_id,
-                    'unit_id' => $request->unit_id,
-                    'paycat_id' => $request->payment_category,
-                    'tenant_id' => $request->tenant_id,
-                    'paystatus_id' => 3,
-                    'amount' => $request->amount,
-                    'amount_paid' => $request->amount_paid,
-                    'discount' => $request->discount,
-                    'payment_date' => Carbon::now(),
-                    'startdate' => $startdate,
-                    'duedate' => $duedate,
-                    'duration' => $request->total_months,
-                    'payment_status_id' => 2,
-                    'duration_status' => '3',
-                    'paymethod' => $request->payment_method,
-                    'evidence_image' => $filename,
-                ]);
+                $tenantrec = TenantRentalRecord::where('tenant_id', $request->tenant_id)->first();
 
-                if ($request->payment_update_type == 'new') {
-                    $tenantrec->update([
-                        'start_date' => $request->start_date,
-                        'due_date' => $request->due_date,
+                if ($storefile &&  $tenantrec) {
+                    $startdate = Carbon::parse($request->start_date);
+                    $duedate = Carbon::parse($request->due_date);
+
+                    $payment = PaymentRecord::create([
+                        'payment_reference' => generateTransactionReference(),
+                        'property_id' => $request->property_id,
+                        'unit_id' => $request->unit_id,
+                        'paycat_id' => $request->payment_category,
+                        'tenant_id' => $request->tenant_id,
+                        'amount' => $request->amount,
+                        'amount_paid' => $request->amount_paid,
+                        'discount' => $request->discount,
+                        'payment_date' => Carbon::now(),
+                        'startdate' => $startdate,
+                        'duedate' => $duedate,
+                        'duration' => $request->total_months,
+                        'payment_status_id' => 2,
+                        'duration_status' => '3',
+                        'paymethod' => $request->payment_method,
+                        'evidence_image' => $filename,
                     ]);
+
+                    if ($tenantrec->start_date == null) {
+                        $tenantrec->update([
+                            'start_date' => $request->start_date,
+                            'end_date' => $request->due_date,
+                        ]);
+                    } else {
+                        $tenantrec->update([
+                            'end_date' => $request->due_date,
+                        ]);
+                    }
+
+                    // publish a notification for the user create action
+                    $notification = Notification::create([
+                        'user_id' => $user->id,
+                        'owner_id' => $user->id,
+                        'title' => "New Payment Record Added",
+                        'message' => "$user->first_name $user->last_name added a new payment record, for (tenant: $tenantrec->first_name $tenantrec->last_name) on TenancyPlus"
+                    ]);
+
+                    DB::commit();
+
+                    if ($payment) {
+                        Session::flash('flash_message', 'New tenant Payment Added Successfully');
+                        return redirect()->back();
+                    }
                 } else {
-                    $tenantrec->update([
-                        'due_date' => $request->due_date,
-                    ]);
-                }
-
-                // publish a notification for the user create action
-                $notification = Notification::create([
-                    'user_id' => $user->id,
-                    'owner_id' => $user->id,
-                    'title' => "New Payment Record Added",
-                    'message' => $user->name . ' added a new payment record, for (tenant: ' . $tenantrec->name . ') on TenancyPlus'
-                ]);
-
-                if ($payment) {
-                    Session::flash('flash_message', 'New tenant Payment Added Successfully');
+                    Session::flash('flash_message', 'Failed to get tenant record');
                     return redirect()->back();
                 }
+            } catch (Exception $e) {
+                DB::rollBack();
+
+                Session::flash('error_message', 'Server Error! Please try again later');
             }
         }
     }

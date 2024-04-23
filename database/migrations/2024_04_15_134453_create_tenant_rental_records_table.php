@@ -21,7 +21,7 @@ return new class extends Migration
             $table->foreign('unit_id')->references('id')->on('units');
             $table->unsignedBigInteger('property_category_id');
             $table->foreign('property_category_id')->references('id')->on('property_categories');
-            $table->date('start_date');
+            $table->date('start_date')->nullable();
             $table->date('end_date')->nullable();
             $table->timestamps();
         });

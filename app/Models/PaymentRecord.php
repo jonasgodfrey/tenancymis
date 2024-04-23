@@ -10,22 +10,22 @@ class PaymentRecord extends Model
     use HasFactory;
 
     protected $fillable = [
-        'payment_reference',
         'property_id',
+        'payment_reference',
         'unit_id',
         'tenant_id',
         'paycat_id',
         'payment_status_id',
         'amount',
         'amount_paid',
-        'payment_date',
         'discount',
+        'payment_date',
         'startdate',
         'duedate',
         'duration',
         'duration_status',
         'paymethod',
-        'evidence_image',
+        'evidence_image'
     ];
 
     public function tenant(): \Illuminate\Database\Eloquent\Relations\BelongsTo

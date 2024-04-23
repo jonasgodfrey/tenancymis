@@ -22,6 +22,8 @@ return new class extends Migration
             $table->unsignedBigInteger('property_id');
             $table->foreign('property_id')->references('id')->on('properties');
             $table->bigInteger('type_id')->unsigned();
+            $table->unsignedBigInteger("payment_duration_id");
+            $table->foreign('payment_duration_id')->references('id')->on('payment_durations');
             $table->string('name');
             $table->string('unit_ref_id');
             $table->string('unit_description');

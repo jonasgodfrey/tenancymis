@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Notification;
 use App\Models\PaymentCategory;
+use App\Models\PaymentDuration;
 use App\Models\PaymentRecord;
 use Illuminate\Http\Request;
 use App\Models\UnitType;
@@ -33,11 +34,13 @@ class PropertyUnitsController extends Controller
             $unitstype = UnitType::all();
             $properties = $user->properties;
             $units = $user->units;
+            $paymentDuration = PaymentDuration::all();
             $sub = $user->subscription->where('status', 'active')->first();
 
             return view('admin.units.index')->with([
                 'unitstype' => $unitstype,
                 'properties' => $properties,
+                'paymentDuration' => $paymentDuration,
                 'units' => $units
             ]);
         }
@@ -79,7 +82,7 @@ class PropertyUnitsController extends Controller
             $unit = Unit::create([
                 'property_id' => $request->property_name,
                 'type_id' => $request->unittype,
-                'unitNum' => $request->unitno,
+                'payment_duration_id' => $request->payment_duration_id,
                 'unit_ref_id' => "unit_" . $property_units_num++,
                 'unit_description' => $request->unit_description,
                 'lease_amount' => $request->rentamount,
@@ -193,7 +196,13 @@ class PropertyUnitsController extends Controller
         $user = Auth::user();
         if (Gate::allows('admin')) {
 
-            $unit = Unit::find($unit_id);
+            $unit = Unit::leftJoin('tenant_rental_records', 'tenant_rental_records.unit_id', '=', 'units.id')
+                ->leftJoin('property_categories', 'property_categories.id', '=', 'tenant_rental_records.property_category_id')
+                ->leftJoin('payment_durations', 'payment_durations.id', '=', 'units.payment_duration_id')
+                ->select('property_categories.category_name', 'units.*', 'units.id as unitId', 'payment_durations.*', 'tenant_rental_records.start_date', 'tenant_rental_records.end_date')->where('units.id', $unit_id)->first();
+
+
+            logInfo($unit);
 
             if (!$unit) {
                 Session::flash('error_message', 'Invalid Unit provided');
@@ -204,6 +213,7 @@ class PropertyUnitsController extends Controller
                 Session::flash('error_message', 'Maximum Number of units for your plan reached please upgrade plan to add more units!');
                 return redirect()->back();
             }
+
             $sub = $user->subscription->where('status', 'active')->first();
             $paymentRecords = PaymentRecord::where('unit_id', $unit_id)->get();
             $paymentCategories = PaymentCategory::all();

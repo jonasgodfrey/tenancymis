@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Notification;
 use Illuminate\Support\Facades\Session;
 use App\Models\Country;
+use App\Models\PaymentDuration;
 use App\Models\Property;
 use App\Models\PropertyCategory;
 use App\Models\PropertyType;
@@ -67,6 +68,7 @@ class PropertyController extends Controller
         $prop_types = PropertyType::all();
         $countries = Country::all();
         $properties = $user->properties;
+        $paymentDuration = PaymentDuration::all();
         $property = Property::find($property_id);
         $units = Unit::where(['property_id' => $property_id])->get();
         $assignable_units = Unit::where(['property_id' => $property_id, 'status' => 0])->get();
@@ -83,6 +85,7 @@ class PropertyController extends Controller
             'users' => $users,
             'units' => $units,
             'assignable_units' => $assignable_units,
+            'paymentDuration' => $paymentDuration,
             'unitstype' => $unitstype
         ]);
     }

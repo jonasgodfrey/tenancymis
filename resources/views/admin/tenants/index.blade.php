@@ -73,7 +73,7 @@
 
                                         <div class="mb-3 col-lg-6">
                                             <label for="simpleinput" class="form-label">Tenant's Mobile No</label>
-                                            <input type="text" name="new_mobile" id="new_mobile" class="form-control" placeholder="">
+                                            <input type="tel" name="new_mobile" id="new_mobile" class="form-control" placeholder="">
                                         </div>
 
                                         <div class="mb-3 col-lg-6">
@@ -101,7 +101,7 @@
 
                                         <div class="mb-3 col-lg-6">
                                             <label for="simpleinput" class="form-label">Tenant's Mobile No</label>
-                                            <input type="text" name="mobile" id="mobile" class="form-control" placeholder="" disabled>
+                                            <input type="tel" name="mobile" id="mobile" class="form-control" placeholder="" disabled>
                                         </div>
 
                                         <div class="mb-3 col-lg-6">
