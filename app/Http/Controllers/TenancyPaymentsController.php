@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Notification;
+use App\Models\PaymentCategory;
 use App\Models\PaymentRecord;
 use App\Models\Tenant;
 use App\Models\TenantRentalRecord;
@@ -37,12 +38,15 @@ class TenancyPaymentsController extends Controller
                 ->select('payment_records.*', 'users.*', 'properties.*')->where('users.owner_id', '=', $user->id)->get();
             $properties = $user->properties;
 
+            $payment_categories = PaymentCategory::all();
+
             logInfo($payments, "My payments");
 
             return view('admin.payments.index')->with([
                 'properties' => $properties,
                 'tenants' => $payments,
-                'count' => $count
+                'count' => $count,
+                'payment_categories' => $payment_categories
             ]);
         }
 

@@ -30,7 +30,7 @@ class DashboardController extends Controller
 
         $properties_num = $user->properties->count();
         $units_num = $user->units->count();
-        $tenants_num = $user->mytenants->count();
+        $tenants_num = $user->mytenants->count() - 1;
         $tenants = $user->mytenants;
 
         $myTenants = User::where('role', 'tenant')->where('owner_id',$user->id)->get();

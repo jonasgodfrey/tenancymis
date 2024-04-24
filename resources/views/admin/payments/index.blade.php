@@ -29,12 +29,12 @@
                             @include('partials.modal')
                         </div>
                         <div class="row">
-                            <div class="col-lg-6">
-                                <form role="form" action="{{ route('payments.store') }}" enctype="multipart/form-data" method="POST">
-                                    @csrf
-                                    <div class="mb-3">
+                            <form role="form" action="{{ route('payments.updatepayment') }}" enctype="multipart/form-data" method="POST">
+                                @csrf
+                                <div class="row">
+                                    <div class="mb-3 col-lg-4">
                                         <label for="example-select" class="form-label">Property Name</label>
-                                        <select class="form-select property_name" name="property_name" id="example-select" required>
+                                        <select class="form-select property_name" name="property_id" id="example-select" required>
                                             <option style="display: none">Select Property</option>
                                             @foreach ($properties as $property)
                                             <option value="{{ $property->id }}">{{ $property->property_name }}
@@ -43,111 +43,111 @@
                                         </select>
                                     </div>
 
-                                    <div class="mb-3">
+                                    <div class="mb-3 col-lg-4">
                                         <label for="example-select" class="form-label">Unit Name</label>
-                                        <select class="form-select units" name="unit" id="example-select units" name="units" disabled required>
+                                        <select class="form-select units" name="unit_id" id="example-select units" disabled required>
                                             <option style="display: none">loading..</option>
                                         </select>
                                     </div>
 
 
-                                    <div class="mb-3">
+                                    <div class="mb-3 col-lg-4">
                                         <label for="example-select" class="form-label">Occupant/Business
                                             Name</label>
-                                        <select class="form-select tenant" name="tenant" id="example-select tenant" disabled required>
+                                        <select class="form-select tenant" name="tenant_name" id="example-select tenant" disabled required>
                                             <option style="display: none">loading..</option>
                                         </select>
                                     </div>
 
-                                    <div class="mb-3">
-                                        <label for="example-select" class="form-label">Payment Category</label>
-                                        <select class="form-select" name="paycat" id="example-select">
-                                            <option value="1">Rent</option>
-                                            <option value="2">Facility Fee</option>
-                                            <option value="3">Taxes</option>
-                                            <option value="4">Rent Balance</option>
-                                            <option value="5">Others</option>
-                                        </select>
+                                    <div class="row" id="paymentDetailsDiv" style="display: none;">
+                                        <div class="mb-3 col-lg-4">
+                                            <label for="amount" class="form-label">Unit Payment </label>
+                                            <input type="text" name="unit_payment" id="unit_payment" readonly class="form-control" placeholder="Amount">
+                                        </div>
+                                        <div class="mb-3 col-lg-4">
+                                            <label for="amount" class="form-label">Expected Amount</label>
+                                            <input type="number" min="0" name="amount" id="amount" class="form-control" placeholder="Amount">
+                                            <p id="amount_error" style="color: red; font-size: 13px; display: none"></p>
+                                        </div>
+
+                                        <div class="mb-3 col-lg-4">
+                                            <label for="discount" class="form-label">Discount</label>
+                                            <input type="text" min="0" name="discount" id="discount" class="form-control" value="0">
+                                            <p id="discount_error" style="color: red; font-size: 13px; display: none"></p>
+                                        </div>
+
+                                        <div class="mb-3 col-lg-4">
+                                            <label for="amount_paid" class="form-label">Amount Paid</label>
+                                            <input type="number" min="0" readonly name="amount_paid" id="amount_paid" class="form-control" placeholder="Amount Paid">
+                                            <p id="amount_paid_error" style="color: red; font-size: 13px; display: none"></p>
+                                        </div>
+
+                                        <div class="mb-3 col-lg-4">
+                                            <label for="duration" class="form-label">Duration</label>
+                                            <input type="text" name="duration" id="duration" class="form-control" placeholder="" readonly>
+                                            <p id="duration_error" style="color: red; font-size: 13px; display: none"></p>
+
+                                        </div>
+
+                                        <div class="mb-3 col-lg-4">
+                                            <label for="start_date" class="form-label" id="startDateLabel"></label>
+                                            <input type="date" name="start_date" id="start_date" class="form-control" placeholder="" required>
+                                            <p id="start_date_error" style="color: red; font-size: 13px; display: none"></p>
+
+                                        </div>
+
+                                        <div class="mb-3 col-lg-4">
+                                            <label for="due_date" class="form-label" id="dueDateLabel">Due Date</label>
+                                            <input type="date" name="due_date" id="due_date" readonly class="form-control" placeholder="">
+                                            <input type="hidden" name="tenant_id" id="tenant_id" />
+                                            <input type="hidden" id="payment_duration_id" name="payment_duration_id" />
+                                            <input type="hidden" name="lease_amount" id="lease_amount" />
+                                            <input type="hidden" name="payment_update_type" id="payment_update_type" />
+                                            <input type="hidden" name="total_months" id="total_months" />
+                                            <input type="hidden" name="total_days" id="total_months" />
+                                            <p id="due_date_error" style="color: red; font-size: 13px; display: none"></p>
+
+                                        </div>
+
+                                        <div class="mb-3 col-lg-4">
+                                            <label for="example-select" class="form-label ">Payment Category</label>
+                                            <select class="form-select payment_category" name="payment_category" id="payment_category">
+                                                <!-- <option style="display: none">Select Payment Category</option> -->
+                                                @foreach ($payment_categories as $payment_category)
+                                                <option value="{{ $payment_category->id }}">{{ $payment_category->payment_category }}</option>
+                                                @endforeach
+                                            </select>
+                                            <p id="payment_category_error" style="color: red; font-size: 13px; display: none"></p>
+
+                                        </div>
+
+                                        <div class="mb-3 col-lg-4">
+                                            <label for="example-select" class="form-label">Payment Method</label>
+                                            <select class="form-select" name="payment_method" id="example-select">
+                                                <option value="Cash">Cash</option>
+                                                <option value=">Bank Transfer">Bank Transfer</option>
+                                                <option value="Online">Online</option>
+                                                <option value="Cryptos">Cryptos</option>
+                                                <option value="Others">Others</option>
+                                            </select>
+                                            <p id="payment_method_error" style="color: red; font-size: 13px; display: none"></p>
+
+                                        </div>
+
+                                        <div class="mb-3 col-lg-4">
+                                            <label for="example-fileinput" class="form-label">Upload Evidence</label>
+                                            <input name="file" type="file" id="example-fileinput" class="form-control">
+                                        </div>
                                     </div>
 
-                                    <div class="mb-3">
-                                        <label for="example-email" class="form-label">Amount Paid</label>
-                                        <input type="text" id="example-email" name="payamount" class="form-control" placeholder="NGN">
+                                    <div class="col-12">
+                                        <button type="submit" name="submit" class="btn btn-primary btn-md">Add Payment
+                                        </button>
                                     </div>
-
-                                    <div class="mb-3">
-                                        <label for="example-select" class="form-label">Payment Method</label>
-                                        <select class="form-select" name="paymethod" id="example-select">
-                                            <option value="Cash">Cash</option>
-                                            <option value=">Bank Transfer">Bank Transfer</option>
-                                            <option value="Online">Online</option>
-                                            <option value="Cryptos">Cryptos</option>
-                                            <option value="Others">Others</option>
-                                        </select>
-                                    </div>
-
-
-                            </div> <!-- end col -->
-
-                            <div class="col-lg-6">
-                                <form>
-
-                                    <div class="mb-3">
-                                        <label for="example-email" class="form-label">Payment Date</label>
-                                        <input type="date" id="example-email" name="paydate" class="form-control" placeholder="">
-                                    </div>
-
-                                    <div class="mb-3">
-                                        <label for="example-password" class="form-label">Start Date</label>
-                                        <input type="date" id="example-password" name="startdate" class="form-control" value="">
-                                    </div>
-
-                                    <div class="mb-3">
-                                        <label for="example-date" class="form-label">Due Date</label>
-                                        <input type="date" id="example-date" name="duedate" class="form-control" value="">
-                                    </div>
-
-                                    <div class="mb-3">
-                                        <label for="example-select" class="form-label">Duration</label>
-                                        <select class="form-select" name="duration" id="example-select">
-                                            <option value="6 Months">6 Months</option>
-                                            <option value="1 Year">1 Year</option>
-                                            <option value="2 Years">2 Years</option>
-                                            <option value="3 Years">3 Years</option>
-                                            <option value="4 Years">4 Years</option>
-                                            <option value="5 Years">5 Years</option>
-                                            <option value="10 Years">10 Years</option>
-                                        </select>
-                                    </div>
-
-                                    <div class="mb-3">
-                                        <label for="example-select" class="form-label">Payment Status</label>
-                                        <select class="form-select" name="paystatus" id="example-select">
-                                            <option value="1">Fully Paid</option>
-                                            <option value="2">Partly Paid</option>
-                                            <option value="3">Partly Renewed</option>
-                                            <option value="4">Fully Renewed</option>
-                                            <option value="5">Not Paid</option>
-                                        </select>
-                                    </div>
-
-
-                                    <div class="mb-3">
-                                        <label for="example-fileinput" class="form-label">Upload Evidence</label>
-                                        <input name="file" type="file" id="example-fileinput" class="form-control">
-                                    </div>
-
-
-                            </div> <!-- end col -->
-
-                            <div class="col-12">
-                                <button type="submit" name="submit" class="btn btn-primary btn-md">Add Payment
-                                </button>
-                            </div>
-
+                                </div>
+                            </form>
                         </div>
                         <!-- end row-->
-                        </form>
                     </div> <!-- end card-body -->
                 </div> <!-- end card -->
             </div><!-- end col -->

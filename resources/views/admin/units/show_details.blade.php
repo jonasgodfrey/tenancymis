@@ -218,25 +218,7 @@
                                                     <input name="file" type="file" id="example-fileinput" class="form-control">
                                                 </div>
                                             </div>
-
-                                            <div class="row" id="existingTenantDiv" style="display: none;">
-
-                                                <div class="mb-3 col-lg-6">
-                                                    <label for="simpleinput" class="form-label">Tenant's Mobile No</label>
-                                                    <input type="tel" name="mobile" id="mobile" class="form-control" placeholder="" disabled>
-                                                </div>
-
-                                                <div class="mb-3 col-lg-6">
-                                                    <label for="simpleinput" class="form-label">Tenant's Email</label>
-                                                    <input type="text" name="email" id="email" class="form-control" placeholder="" disabled>
-                                                </div>
-
-                                                <div class="mb-3 col-lg-6">
-                                                    <label for="simpleinput" class="form-label">Tenant's Occupation</label>
-                                                    <input type="text" name="business_name" id="business_name" class="form-control" disabled placeholder="">
-                                                </div>
-                                            </div>
-
+                                            
                                             <div class="col-12">
                                                 <button type="submit" name="submit" class="btn btn-primary btn-md">Add Payment</button>
                                             </div>
@@ -269,7 +251,7 @@
                                 @forelse ($payment_records as $unit)
                                 <tr>
                                     <td>{{ $unit->payment_reference }}</td>
-                                    <td>{{ $unit->amount }}</td>
+                                    <td>{{ moneyFormat($unit->amount) }}</td>
                                     <td>{{ $unit->discount }}</td>
                                     <td>{{ $unit->startdate }}</td>
                                     <td>{{ $unit->duedate }}</td>
