@@ -186,14 +186,10 @@ class TenancyPaymentsController extends Controller
 
                 // generate a new filename. getClientOriginalExtension() for the file extension
                 $rand = rand(111, 9999);
-                $filename = 'payment-file-' . $rand . time() . '.' . $file->getClientOriginalExtension();
-
-                $imgFile = Image::make($file->getRealPath());
-
-                $storefile = $imgFile->resize(null, 600, function ($constraint) {
-                    $constraint->aspectRatio();
-                })->save('storage/payments/' . $filename);
-
+                $filename = 'attached-file-' . $rand . time() . '.' . $file->getClientOriginalExtension();
+    
+                // save to storage/app/photos as the new $filename
+                $storefile = $file->storeAs('public/payments/', $filename);    
 
                 // $storefile = $imgFile->resize(240, 240)->save('payments/' . $filename);
 
