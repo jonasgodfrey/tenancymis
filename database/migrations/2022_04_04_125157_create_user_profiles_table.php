@@ -16,10 +16,11 @@ return new class extends Migration
         Schema::create('user_profiles', function (Blueprint $table) {
             $table->id();
             $table->bigInteger('user_id')->unsigned();
-            
+            $table->foreign('user_id')->references('id')->on('users');
             $table->string('residential_address')->nullable();
             $table->string('phone')->nullable();
             $table->string('gender')->nullable();
+            $table->string('occupation')->nullable();
             
             $table->string('nok_name')->nullable();
             $table->string('nok_email')->nullable();
@@ -28,7 +29,6 @@ return new class extends Migration
 
             $table->string('status')->default('active');
 
-            $table->foreign('user_id')->references('id')->on('users');
             $table->timestamps();
         });
     }

@@ -11,7 +11,7 @@ class Accountant extends Model
     protected $fillable = [
         'name',
         'email',
-        'propId',
+        'property_id',
         'phone',
         'salary',
     ];

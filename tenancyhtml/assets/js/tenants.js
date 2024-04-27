@@ -1,11 +1,11 @@
-$(".propname").change(function() {
-    let propid = $(".propname option:selected").attr("value");
-    if (propid != "") {
+$(".property_name").change(function() {
+    let property_id = $(".property_name option:selected").attr("value");
+    if (property_id != "") {
         $.ajax({
             url: "/fetch-free-units",
             method: "get",
             data: {
-                propid: propid
+                property_id: property_id
             },
             success: function(result) {
                 if (result == "") {

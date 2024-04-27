@@ -8,7 +8,7 @@
 
             <img src="../assets/images/user.png" alt="user-img" title="Mat Helme" class="rounded-circle img-thumbnail avatar-md">
                 <div class="dropdown">
-                    <a href="#" class="user-name dropdown-toggle h5 mt-2 mb-1 d-block" data-bs-toggle="dropdown"  aria-expanded="false">{{Auth::user()->name}}</a>
+                    <a href="#" class="user-name dropdown-toggle h5 mt-2 mb-1 d-block" data-bs-toggle="dropdown"  aria-expanded="false">{{Auth::user()->first_name}}</a>
                     <div class="dropdown-menu user-pro-dropdown">
 
                         <!-- item-->

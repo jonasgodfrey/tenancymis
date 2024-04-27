@@ -18,14 +18,16 @@ class DatabaseSeeder extends Seeder
         $this->call([
             RolesTableSeeder::class,
             UserTableSeeder::class,
-            StateTableSeeder::class,
+            PaymentDurationSeeder::class,
             CountrySeeder::class,
+            StateTableSeeder::class,
             PropertyCategorySeeder::class,
             PropertyTypeSeeder::class,
             StatusSeeder::class,
             UnitTypeSeeder::class,
             PaymentStatusSeeder::class,
-            SubscriptionPackageSeeder::class
+            SubscriptionPackageSeeder::class,
+            PaymentCategorySeeder::class
         ]);
     }
 }

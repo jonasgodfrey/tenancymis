@@ -99,7 +99,7 @@
                     <img src="/assets/images/user.png" alt="user-image" class="rounded-circle">
                     <span class="pro-user-name ms-1">
                         {{-- {{$username['username']}}  --}}
-                        {{Auth::user()->name}}
+                        {{Auth::user()->first_name}}
                         <i class="mdi mdi-chevron-down"></i>
                     </span>
                 </a>

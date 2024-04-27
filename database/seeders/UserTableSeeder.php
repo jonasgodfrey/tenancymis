@@ -23,7 +23,8 @@ class UserTableSeeder extends Seeder
         $adminRole = Role::where('name', 'super_admin')->first();
 
         $admin = User::create([
-            'name' => 'super_admin',
+            'first_name' => 'Super',
+            'last_name' => 'Admin',
             'email' => 'admin@mytenancyplus.com',
             'phone' => '11111111111',
             'purpose'=> 'Can do Everything',

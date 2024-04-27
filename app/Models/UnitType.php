@@ -10,6 +10,6 @@ class UnitType extends Model
     use HasFactory;
     protected $fillable = [
         'name',
-        'propcatId',
+        'property_category_id',
     ];
 }

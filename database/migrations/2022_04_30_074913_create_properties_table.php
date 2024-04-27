@@ -15,17 +15,21 @@ return new class extends Migration
     {
         Schema::create('properties', function (Blueprint $table) {
             $table->id();
-            $table->bigInteger('propcatId')->unsigned();
-            $table->bigInteger('proptypeId')->unsigned();
-            $table->bigInteger('ownerId')->unsigned();
-            $table->string('propname');
-            $table->string('propaddress');
-            $table->string('propdesc', '1000');
+            $table->unsignedBigInteger('property_category_id');
+            $table->foreign('property_category_id')->references('id')->on('property_categories');
+            $table->bigInteger('proptype_id')->unsigned();
+            $table->unsignedBigInteger('owner_id');
+            $table->foreign('owner_id')->references('id')->on('users');
+            $table->string('property_name');
+            $table->string('property_address');
+            $table->string('property_description', '1000');
             $table->string('email');
             $table->string('phone');
-            $table->string('countryId');
-            $table->string('stateId');
-            $table->string('uploadsDir');
+            $table->unsignedBigInteger('country_id');
+            $table->foreign('country_id')->references('id')->on('countries');
+            $table->unsignedBigInteger('state_id');
+            $table->foreign('state_id')->references('id')->on('states');
+            $table->string('uploads_dir');
             $table->timestamps();
             $table->softDeletes();
         });

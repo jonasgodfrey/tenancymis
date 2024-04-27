@@ -37,7 +37,7 @@ class UserController extends Controller
             $roles = Role::whereNot('name', 'admin')->whereNot('name', 'tenant')->get();
             $properties = $user->properties;
             $user = Auth()->user();
-            $users = User::where('owner_id', $user->id)->get();
+            $users = User::where(['owner_id' => $user->id, 'role' => 'tenant'])->get();
 
             return view('admin.users.index')->with([
                 'roles' => $roles,
@@ -58,8 +58,8 @@ class UserController extends Controller
         $user = Auth::user();
         $role = $request->role;
         $role_id = Role::where('name', $role)->first();
-        $prop_id = $request->propid;
-        $property = Property::where('id', $prop_id)->first();
+        $property_id = $request->property_id;
+        $property = Property::where('id', $property_id)->first();
         $regCode = "PLA" . rand(11100, 999999);
         $owner = $user->owner_id;
 
@@ -68,7 +68,7 @@ class UserController extends Controller
             // checks for user role and adds user
             if ($role === 'manager') {
 
-                if ($property->hasManager($prop_id)) {
+                if ($property->hasManager($property_id)) {
 
                     Session::flash('error_message', 'Property already has a manager !');
                     return redirect()->back();
@@ -76,9 +76,10 @@ class UserController extends Controller
 
                 // store details of a new user
                 $user = User::create([
-                    'name' => $request->name,
+                    'first_name' => $request->first_name,
+                    'last_name' => $request->last_name,
                     'email' => $request->email,
-                    'phone' => $request->phone,                    
+                    'phone' => $request->phone,
                     'role' => $request->role,
                     'usercode' => $regCode,
                     'owner_id' => $user->id,
@@ -90,10 +91,8 @@ class UserController extends Controller
                 $user->roles()->attach($role_id);
 
                 Manager::create([
-                    'name' => $request->name,
-                    'email' => $request->email,
-                    'phone' => $request->phone,
-                    'propId' => $prop_id,
+                    'user_id' => $user->id,
+                    'property_id' => $property_id,
                     'salary' => 'null',
                 ]);
 
@@ -102,14 +101,14 @@ class UserController extends Controller
                     'user_id' => $user->id,
                     'owner_id' => $owner,
                     'title' => "New User Created",
-                    'message' => $user->name.' added a new manager to TenancyPlus'
+                    'message' => $user->name . ' added a new manager to TenancyPlus'
                 ]);
             }
 
             // checks for user role and adds user
             if ($role === 'accountant') {
 
-                if ($property->hasAccountant($prop_id)) {
+                if ($property->hasAccountant($property_id)) {
 
                     Session::flash('error_message', 'Property already has an accountant !');
                     return redirect()->back();
@@ -117,7 +116,8 @@ class UserController extends Controller
 
                 // store details of a new user
                 $user = User::create([
-                    'name' => $request->name,
+                    'first_name' => $request->first_name,
+                    'last_name' => $request->last_name,
                     'email' => $request->email,
                     'phone' => $request->phone,
                     'role' => $request->role,
@@ -131,9 +131,8 @@ class UserController extends Controller
                 $user->roles()->attach($role_id);
 
                 Accountant::create([
-                    'name' => $request->name,
-                    'email' => $request->email,
-                    'propId' => $prop_id,
+                    'user_id' => $user->id,
+                    'property_id' => $property_id,
                     'salary' => 'null',
                 ]);
 
@@ -142,7 +141,7 @@ class UserController extends Controller
                     'user_id' => $user->id,
                     'owner_id' => $owner,
                     'title' => "New User Created",
-                    'message' => $user->name.' added a new accountant to TenancyPlus'
+                    'message' => $user->name . ' added a new accountant to TenancyPlus'
                 ]);
             }
 
@@ -150,9 +149,10 @@ class UserController extends Controller
             if ($role == 'artisan') {
                 // store details of a new user
                 $user = User::create([
-                    'name' => $request->name,
+                    'first_name' => $request->first_name,
+                    'last_name' => $request->last_name,
                     'email' => $request->email,
-                    'phone' => $request->phone,                    
+                    'phone' => $request->phone,
                     'role' => $request->role,
                     'usercode' => $regCode,
                     'owner_id' => $user->id,
@@ -164,12 +164,10 @@ class UserController extends Controller
                 $user->roles()->attach($role_id);
 
                 Artisan::create([
-                    'name' => $request->name,
-                    'email' => $request->email,
-                    'phone' => $request->phone,
-                    'bizname' => $request->bizname,
-                    'propId' => $prop_id,
-                    'vendorcatId' => $request->vencat,
+                    'user_id' => $user->id,
+                    'business_name' => $request->business_name,
+                    'property_id' => $property_id,
+                    'vendor_category_id' => $request->vencat,
                     'salary' => 'null',
                 ]);
 
@@ -178,13 +176,23 @@ class UserController extends Controller
                     'user_id' => $user->id,
                     'owner_id' => $owner,
                     'title' => "New User Created",
-                    'message' => $user->name.' added an artisan to TenancyPlus'
+                    'message' => $user->name . ' added an artisan to TenancyPlus'
                 ]);
             }
 
 
             Session::flash('flash_message', 'User Created Successfully !');
             return redirect()->back();
+        }
+    }
+    public function show($id)
+    {
+        $user = User::find($id);
+
+        if ($user) {
+            return response()->json(['status' => "success", 'message' => 'User Details Fetched successfully', 'data' => $user]);
+        } else {
+            return response()->json(['status' => "error", 'message' => 'Failedd to Fetched user details']);
         }
     }
     public function update(Request $request)

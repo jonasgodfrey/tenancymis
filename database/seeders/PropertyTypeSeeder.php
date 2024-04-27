@@ -18,44 +18,44 @@ class PropertyTypeSeeder extends Seeder
     {
         DB::table('property_types')->insertOrIgnore([
             [
-                'propcatId' => '1',
-                'typename' => 'Mall',
+                'property_category_id' => '1',
+                'property_type' => 'Mall',
             ],
             [
-                'propcatId' => '1',
-                'typename' => 'Shopping Complex',
+                'property_category_id' => '1',
+                'property_type' => 'Shopping Complex',
             ],
             [
-                'propcatId' => '1',
-                'typename' => 'Plaza',
+                'property_category_id' => '1',
+                'property_type' => 'Plaza',
             ],
             [
-                'propcatId' => '1',
-                'typename' => 'Market Square',
+                'property_category_id' => '1',
+                'property_type' => 'Market Square',
             ],
             [
-                'propcatId' => '1',
-                'typename' => 'Stores',
+                'property_category_id' => '1',
+                'property_type' => 'Stores',
             ],
             [
-                'propcatId' => '1',
-                'typename' => 'Centres',
+                'property_category_id' => '1',
+                'property_type' => 'Centres',
             ],
             [
-                'propcatId' => '2',
-                'typename' => 'Estate',
+                'property_category_id' => '2',
+                'property_type' => 'Estate',
             ],
             [
-                'propcatId' => '2',
-                'typename' => 'Apartments',
+                'property_category_id' => '2',
+                'property_type' => 'Apartments',
             ],
             [
-                'propcatId' => '2',
-                'typename' => 'Self Contain',
+                'property_category_id' => '2',
+                'property_type' => 'Self Contain',
             ],
             [
-                'propcatId' => '2',
-                'typename' => 'Single Rooms',
+                'property_category_id' => '2',
+                'property_type' => 'Single Rooms',
             ],
         ]);
     }

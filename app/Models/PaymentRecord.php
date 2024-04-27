@@ -11,18 +11,21 @@ class PaymentRecord extends Model
 
     protected $fillable = [
         'property_id',
+        'payment_reference',
         'unit_id',
-        'paycat_id',
-        'paymethod',
         'tenant_id',
-        'paystatus_id',
+        'paycat_id',
+        'payment_status_id',
         'amount',
-        'paydate',
+        'amount_paid',
+        'discount',
+        'payment_date',
         'startdate',
         'duedate',
         'duration',
         'duration_status',
-        'evidence_image',
+        'paymethod',
+        'evidence_image'
     ];
 
     public function tenant(): \Illuminate\Database\Eloquent\Relations\BelongsTo

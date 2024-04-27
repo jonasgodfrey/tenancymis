@@ -65,7 +65,7 @@ class NotificationController extends Controller
                 $datax = [
                     'name' => $row->tenant->name,
                     'phone' => $row->tenant->phone,
-                    'prop_name' => $row->property->propname,
+                    'prop_name' => $row->property->property_name,
                     'total_amount' => $row->amount,
                     'payment_date' => $payment_date->format('M d Y'),
                     'due_date' => $due_date->diffForHumans() . ' (' . $due_date->format('M d Y') . ')'
@@ -107,7 +107,7 @@ class NotificationController extends Controller
     //             $datax = [
     //                 'name' => $row->tenant->name,
     //                 'phone' => $row->tenant->phone,
-    //                 'prop_name' => $row->property->propname,
+    //                 'prop_name' => $row->property->property_name,
     //                 'total_amount' => $row->amount,
     //                 'payment_date' => $payment_date->format('M d Y'),
     //                 'due_date' => $due_date->diffForHumans() . ' (' . $due_date->format('M d Y') . ')'

@@ -3,7 +3,7 @@
 @section('content')
     <div class="container">
         <div class="row justify-content-center">
-            <div class="col-md-8 col-lg-6 col-xl-4">
+            <div class="col-md-8 col-lg-6">
                 <div class="text-center">
                     <a href="index.html">
                         <img src="assets/images/mytplus.png" alt="" height="50" class="mx-auto">
@@ -24,9 +24,14 @@
                         <form method="POST" action="/register">
                             @csrf
                             <div class="mb-3">
-                                <label for="fullname" class="form-label">Full Name</label>
-                                <input class="form-control" type="text" name="name" id="fullname"
-                                    placeholder="Enter your name" required>
+                                <label for="first_name" class="form-label">First Name</label>
+                                <input class="form-control" type="text" name="first_name" id="first_name"
+                                    placeholder="Enter your first name" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="last_name" class="form-label">Last Name</label>
+                                <input class="form-control" type="text" name="last_name" id="last_name"
+                                    placeholder="Enter your last name" required>
                             </div>
                             <div class="mb-3">
                                 <label for="emailaddress" class="form-label">Email address</label>

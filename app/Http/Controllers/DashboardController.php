@@ -30,15 +30,19 @@ class DashboardController extends Controller
 
         $properties_num = $user->properties->count();
         $units_num = $user->units->count();
-        $tenants_num = $user->tenants->count();
-        $tenants = $user->tenants;
+        $tenants_num = $user->mytenants->count() - 1;
+        $tenants = $user->mytenants;
+
+        $myTenants = User::where('role', 'tenant')->where('owner_id',$user->id)->get();
+
+        logInfo($tenants, "Roles Tenants");
 
         if (Gate::allows('admin')) {
             return view('admin.dashboard.index')->with([
                 'properties' => $properties_num,
                 'units' => $units_num,
                 'tenants_num' => $tenants_num,
-                'tenants' => $tenants
+                'tenants' => $myTenants
             ]);
         }
 
@@ -49,12 +53,12 @@ class DashboardController extends Controller
             $tenants_all = Tenant::count();
             $subscriptions = UserSubscription::sum('amount');
             $subscribers = UserSubscription::count();
-            $residential = Property::where('propcatId', 2)->count();
-            $commercial = Property::where('propcatId', 1)->count();
+            $residential = Property::where('property_category_id', 2)->count();
+            $commercial = Property::where('property_category_id', 1)->count();
 
             // For Subscribed Users
             $subscribedUsers = UserSubscription::where('status', 'active')->get();
-            
+
             // dd($registeredUsers);
 
             return view('admin.dashboard.superadmin')->with([
@@ -65,12 +69,12 @@ class DashboardController extends Controller
                 'subscribers' => $subscribers,
                 'residential' => $residential,
                 'commercial' => $commercial,
-                'subscribedUsers'=>$subscribedUsers, 
-                'registeredUsers'=>$registeredUsers        
+                'subscribedUsers' => $subscribedUsers,
+                'registeredUsers' => $registeredUsers
             ]);
         }
 
-        
+
 
         if (Gate::allows('manager')) {
             return view('users.manager.index')->with([]);
@@ -88,6 +92,4 @@ class DashboardController extends Controller
             return view('users.tenants.index')->with([]);
         }
     }
-
-   
 }

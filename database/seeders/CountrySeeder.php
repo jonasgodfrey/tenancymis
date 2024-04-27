@@ -19,19 +19,19 @@ class CountrySeeder extends Seeder
     {
         DB::table('countries')->insertOrIgnore([
             [
-                'name' => 'Nigeria',
+                'country' => 'Nigeria',
             ],
             [
-                'name' => 'Kenya',
+                'country' => 'Kenya',
             ],
             [
-                'name' => 'Rwanda',
+                'country' => 'Rwanda',
             ],
             [
-                'name' => 'Ghana',
+                'country' => 'Ghana',
             ],
             [
-                'name' => 'South Africa',
+                'country' => 'South Africa',
             ],
         ]);
     }

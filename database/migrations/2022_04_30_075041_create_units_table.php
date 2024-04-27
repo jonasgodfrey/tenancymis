@@ -16,13 +16,19 @@ return new class extends Migration
         Schema::create('units', function (Blueprint $table) {
             $table->id();
             $table->bigInteger('owner_id')->unsigned();
-            $table->bigInteger('propId')->unsigned();
-            $table->bigInteger('typeId')->unsigned();
+            $table->foreign('owner_id')->references('id')->on('users');
+            $table->unsignedBigInteger('tenant_id')->nullable();
+            $table->foreign('tenant_id')->references('id')->on('users');
+            $table->unsignedBigInteger('property_id');
+            $table->foreign('property_id')->references('id')->on('properties');
+            $table->bigInteger('type_id')->unsigned();
+            $table->unsignedBigInteger("payment_duration_id");
+            $table->foreign('payment_duration_id')->references('id')->on('payment_durations');
             $table->string('name');
-            $table->string('unitNum');
-            $table->string('unitDesc');
-            $table->string('leaseAmount');
-            $table->string('status');
+            $table->string('unit_ref_id');
+            $table->string('unit_description');
+            $table->string('lease_amount');
+            $table->tinyInteger('status')->default(0)->comment('0 - Vacant, 1 - Occupied');
             $table->string('image');
             $table->timestamps();
             $table->softDeletes();

@@ -15,12 +15,12 @@ return new class extends Migration
     {
         Schema::create('artisans', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
-            $table->string('email');
-            $table->string('phone');
-            $table->string('bizname');
-            $table->bigInteger('propId');
-            $table->string('vendorcatId');
+            $table->unsignedBigInteger("user_id");
+            $table->foreign('user_id')->references('id')->on('users');
+            $table->string('business_name');
+            $table->unsignedBigInteger('property_id');
+            $table->foreign('property_id')->references('id')->on('properties');
+            $table->string('vendor_category_id');
             $table->string('salary');
             $table->timestamps();
         });

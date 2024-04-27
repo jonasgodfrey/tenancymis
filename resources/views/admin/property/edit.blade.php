@@ -37,8 +37,8 @@
 
                                         <div class="mb-3">
                                             <label for="simpleinput" class="form-label">Property Name</label>
-                                            <input type="text" name="propname" id="simpleinput" class="form-control"
-                                                placeholder="" value="{{ $property->propname }}" required>
+                                            <input type="text" name="property_name" id="simpleinput" class="form-control"
+                                                placeholder="" value="{{ $property->property_name }}" required>
                                         </div>
 
                                         <div class="mb-3">
@@ -65,8 +65,8 @@
 
                                         <div class="mb-3">
                                             <label for="simpleinput" class="form-label">Description</label>
-                                            <textarea maxlength="" name="propdesc" class="form-control" rows="10" placeholder="Kindly describe your property"
-                                                required>{{ $property->propdesc }}</textarea>
+                                            <textarea maxlength="" name="property_description" class="form-control" rows="10" placeholder="Kindly describe your property"
+                                                required>{{ $property->property_description }}</textarea>
                                         </div>
 
                                     </div> <!-- end col -->
@@ -75,7 +75,7 @@
                                         <div class="mb-3">
                                             <label for="simpleinput" class="form-label">Address</label>
                                             <input type="text" name="address" id="simpleinput" class="form-control"
-                                                placeholder="property address" value="{{ $property->propaddress }}"
+                                                placeholder="property address" value="{{ $property->property_address }}"
                                                 required>
                                         </div>
                                         <div class="mb-3">

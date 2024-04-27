@@ -16,13 +16,16 @@ class Tenant extends Model
 
     protected $fillable = [
         'name',
+        'user_id',
         'email',
         'phone',
-        'bizname',
+        'business_name',
+        'start_date',
+        'due_date',
         'bizcat',
-        'propId',
-        'unitId',
-        'payId',
+        'property_id',
+        'unit_id',
+        'payment_id',
     ];
 
     public function payments()
@@ -32,16 +35,21 @@ class Tenant extends Model
 
     public function current_payment()
     {
-        return $this->hasOne(PaymentRecord::class, 'id', 'payId');
+        return $this->hasOne(PaymentRecord::class, 'id', 'payment_id');
     }
 
     public function property()
     {
-        return $this->belongsTo(Property::class, 'propId');
+        return $this->belongsTo(Property::class, 'property_id');
+    }
+
+    public function user()
+    {
+        return $this->belongsTo(User::class, 'user_id');
     }
 
     public function unit()
     {
-        return $this->belongsTo(Unit::class, 'unitId');
+        return $this->belongsTo(Unit::class, 'unit_id');
     }
 }

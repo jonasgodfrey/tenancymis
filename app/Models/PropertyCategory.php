@@ -15,6 +15,6 @@ class PropertyCategory extends Model
     public function property_types()
     {
         # code...
-        return $this->hasMany(PropertyType::class, 'propcatId');
+        return $this->hasMany(PropertyType::class, 'property_category_id');
     }
 }

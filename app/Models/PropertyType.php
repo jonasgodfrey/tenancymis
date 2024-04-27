@@ -10,7 +10,7 @@ class PropertyType extends Model
     use HasFactory;
 
     protected $fillable = [
-        'propcatId',
+        'property_category_id',
         'typename',
     ];
 }

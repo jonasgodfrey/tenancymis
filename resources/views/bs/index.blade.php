@@ -289,7 +289,7 @@
 
                         <div class="mb-3">
                             <label for="simpleinput" class="form-label">Asset Name</label>
-                            <input type="text" name="propname" id="simpleinput" class="form-control"
+                            <input type="text" name="property_name" id="simpleinput" class="form-control"
                                 placeholder="" required>
                         </div>
 
@@ -304,14 +304,14 @@
 
                         <div class="mb-3">
                             <label for="simpleinput" class="form-label">Asset Description</label>
-                            <textarea maxlength="" name="propdesc" class="form-control" rows="10"
+                            <textarea maxlength="" name="property_description" class="form-control" rows="10"
                             placeholder="Kindly describe your property"
                                 required></textarea>
                         </div>
 
                         <div class="mb-3">
                             <label for="simpleinput" class="form-label">Address:</label>
-                            <input type="text" name="propname" id="simpleinput" class="form-control"
+                            <input type="text" name="property_name" id="simpleinput" class="form-control"
                                 placeholder="Kindly provide Addresss" required>
                         </div>
 
@@ -361,26 +361,26 @@
 
                         <div class="mb-3">
                             <label for="simpleinput" class="form-label">Unit Name:</label>
-                            <input type="text" name="propname" id="simpleinput" class="form-control"
+                            <input type="text" name="property_name" id="simpleinput" class="form-control"
                                 placeholder="No 5 or Plot 108 or House 9" required>
                         </div>
 
                         <div class="mb-3">
                             <label for="simpleinput" class="form-label">Unit Description</label>
-                            <textarea maxlength="" name="propdesc" class="form-control" rows="2"
+                            <textarea maxlength="" name="property_description" class="form-control" rows="2"
                             placeholder="Three bedroom duplex with swimming pool and BQ"
                                 required></textarea>
                         </div>
 
                         <div class="mb-3">
                             <label for="simpleinput" class="form-label">Unit Address:</label>
-                            <input type="text" name="propname" id="simpleinput" class="form-control"
+                            <input type="text" name="property_name" id="simpleinput" class="form-control"
                                 placeholder="First Avenue Street" required>
                         </div>
 
                         <div class="mb-3">
                             <label for="simpleinput" class="form-label">Cost of Unit:</label>
-                            <input type="text" name="propname" id="simpleinput" class="form-control"
+                            <input type="text" name="property_name" id="simpleinput" class="form-control"
                                 placeholder="Enter the cost of this Unit e.g N1,000,000" required>
                         </div>
 
@@ -428,25 +428,25 @@
 
                         <div class="mb-3">
                             <label for="simpleinput" class="form-label">Subscriber Name:</label>
-                            <input type="text" name="propname" id="simpleinput" class="form-control"
+                            <input type="text" name="property_name" id="simpleinput" class="form-control"
                                 placeholder="Name" required>
                         </div>
 
                         <div class="mb-3">
                             <label for="simpleinput" class="form-label">Subscriber Email:</label>
-                            <input type="text" name="propname" id="simpleinput" class="form-control"
+                            <input type="text" name="property_name" id="simpleinput" class="form-control"
                                 placeholder="Email" required>
                         </div>
 
                         <div class="mb-3">
                             <label for="simpleinput" class="form-label">Subscriber Phone:</label>
-                            <input type="text" name="propname" id="simpleinput" class="form-control"
+                            <input type="text" name="property_name" id="simpleinput" class="form-control"
                                 placeholder="0901339322" required>
                         </div>
 
                         <div class="mb-3">
                             <label for="simpleinput" class="form-label">Subscriber Location:</label>
-                            <input type="text" name="propname" id="simpleinput" class="form-control"
+                            <input type="text" name="property_name" id="simpleinput" class="form-control"
                                 placeholder="State/Country of Residence" required>
                         </div>
 
@@ -496,13 +496,13 @@
 
                         <div class="mb-3">
                             <label for="simpleinput" class="form-label">Amount Paid:</label>
-                            <input type="text" name="propname" id="simpleinput" class="form-control"
+                            <input type="text" name="property_name" id="simpleinput" class="form-control"
                                 placeholder="1,000,000" required>
                         </div>
 
                         <div class="mb-3">
                             <label for="simpleinput" class="form-label">Date Paid:</label>
-                            <input type="date" name="propname" id="simpleinput" class="form-control"
+                            <input type="date" name="property_name" id="simpleinput" class="form-control"
                                 placeholder="" required>
                         </div>
 
@@ -519,7 +519,7 @@
 
                         <div class="mb-3">
                             <label for="simpleinput" class="form-label">Upload Evidence:</label>
-                            <input type="file" name="propname" id="simpleinput" class="form-control"
+                            <input type="file" name="property_name" id="simpleinput" class="form-control"
                                 placeholder="" required>
                         </div>
 

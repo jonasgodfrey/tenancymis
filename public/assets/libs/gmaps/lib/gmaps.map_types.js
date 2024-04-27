@@ -1,10 +1,10 @@
-GMaps.prototype.addMapType = function(mapTypeId, options) {
+GMaps.prototype.addMapType = function(maptype_id, options) {
   if (options.hasOwnProperty("getTileUrl") && typeof(options["getTileUrl"]) == "function") {
     options.tileSize = options.tileSize || new google.maps.Size(256, 256);
 
     var mapType = new google.maps.ImageMapType(options);
 
-    this.map.mapTypes.set(mapTypeId, mapType);
+    this.map.mapTypes.set(maptype_id, mapType);
   }
   else {
     throw "'getTileUrl' function required.";
