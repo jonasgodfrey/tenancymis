@@ -146,12 +146,6 @@
                                                 @endforeach
                                             </select>
                                         </div>
-
-
-                                        <div class="mb-3 col-lg-6">
-                                            <label for="example-date" class="form-label">Start Date</label>
-                                            <input type="date" id="example-date" name="start_date" class="form-control" placeholder="Select Date" required>
-                                        </div>
                                     </div>
 
                                     <div class="col-12">

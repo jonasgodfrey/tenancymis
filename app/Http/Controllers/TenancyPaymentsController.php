@@ -14,6 +14,8 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\Validator;
+use Image;
 
 class TenancyPaymentsController extends Controller
 {
@@ -69,8 +71,10 @@ class TenancyPaymentsController extends Controller
             $rand = rand(111, 9999);
             $filename = 'attached-file-' . $rand . time() . '.' . $file->getClientOriginalExtension();
 
+
             // save to storage/app/photos as the new $filename
             $storefile = $file->storeAs('public/payments/', $filename);
+
 
             $tenantrec = User::where('id', $request->tenant)->first();
 
@@ -139,8 +143,16 @@ class TenancyPaymentsController extends Controller
 
     public function addNewPayment(Request $request)
     {
-        $request->validate([
-            'file' => 'required|mimes:jpeg,jpg,png,mime|max:3008',
+
+        // $validator = Validator::make($request->all(), [
+        //     'images' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048'
+        // ]);
+
+        // if ($validator->fails()) {
+        //     return $this->sendError($validator->errors()->all()[0], []);
+        // }
+        $validator = Validator::make($request->all(), [
+            'file' => 'required|mimes:jpeg,jpg,png,mime|max:5128',
             'amount' => 'required|numeric',
             'discount' => 'required|numeric',
             'duration' => 'required|string',
@@ -155,19 +167,39 @@ class TenancyPaymentsController extends Controller
             'payment_method' => 'required|required',
         ]);
 
+        if ($validator->fails()) {
+
+            logInfo($validator->errors()->all()[0], "validation errorssss");
+            Session::flash('error_message', $validator->errors()->all()[0]);
+            return redirect()->back();
+        }
+
         $user = Auth::user();
+        logInfo("We got to this place bt coulld not proceed");
 
         if (Gate::allows('admin')) {
+
+            logInfo("We got to this place bt coulld not proceed");
 
             if ($request->hasFile('file')) {
                 $file = $request->file('file');
 
                 // generate a new filename. getClientOriginalExtension() for the file extension
                 $rand = rand(111, 9999);
-                $filename = 'attached-file-' . $rand . time() . '.' . $file->getClientOriginalExtension();
+                $filename = 'payment-file-' . $rand . time() . '.' . $file->getClientOriginalExtension();
+
+                $imgFile = Image::make($file->getRealPath());
+
+                $storefile = $imgFile->resize(null, 600, function ($constraint) {
+                    $constraint->aspectRatio();
+                })->save('storage/payments/' . $filename);
+
+
+                // $storefile = $imgFile->resize(240, 240)->save('payments/' . $filename);
+
 
                 // save to storage/app/photos as the new $filename
-                $storefile = $file->storeAs('public/payments/', $filename);
+                // $storefile = $imgFile->storeAs('public/payments/', "Newthing");
             } else {
                 $filename = "";
             }
@@ -233,7 +265,10 @@ class TenancyPaymentsController extends Controller
             } catch (Exception $e) {
                 DB::rollBack();
 
+                logInfo($e->getMessage(), "My major error message");
+
                 Session::flash('error_message', 'Server Error! Please try again later');
+                return redirect()->back();
             }
         }
     }
