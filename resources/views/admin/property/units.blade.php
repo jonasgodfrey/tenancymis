@@ -243,7 +243,7 @@
                         <tbody>
                             @forelse ($units as $unit)
                             <tr>
-                                <td><img src="{{asset('storage/unit/'.$unit->image)}}" alt="img" width="100" class="mx-auto d-block" /></td>
+                                <td><img src="{{Storage::url('unit/'.$unit->image)}}" alt="img" width="100" class="mx-auto d-block" /></td>
                                 <td>{{ $unit->name }}</td>
                                 <td>{{ $unit->unit_description }}</td>
                                 <td>@money($unit->lease_amount)</td>
