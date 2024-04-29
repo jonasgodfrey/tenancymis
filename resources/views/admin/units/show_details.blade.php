@@ -25,7 +25,7 @@
                     <div class=" row">
                         <div class="col-md-6">
                             <div style="flex-direction:row; flex: 1; align-items: center; justify-content: center;">
-                                <img style="margin: 0 auto;" width="100%" height="400" src="{{asset('storage/unit/'.$unit->image)}}" />
+                                <img style="margin: 0 auto;" width="100%" height="400" src="{{$unit->image}}" />
                             </div>
                         </div>
                         <div class="details col-md-6">
@@ -218,7 +218,7 @@
                                                     <input name="file" type="file" id="example-fileinput" class="form-control">
                                                 </div>
                                             </div>
-                                            
+
                                             <div class="col-12">
                                                 <button type="submit" name="submit" class="btn btn-primary btn-md">Add Payment</button>
                                             </div>

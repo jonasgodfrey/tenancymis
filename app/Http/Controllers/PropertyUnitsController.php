@@ -77,7 +77,7 @@ class PropertyUnitsController extends Controller
             $rand = rand(111, 9999);
             $filename = 'attached-file-' . $rand . time() . '.' . $file->getClientOriginalExtension();
 
-            Storage::disk('public')->putFileAs('units', $file, $filename);
+            Storage::disk('public')->putFileAs('unit_images', $file, $filename);
 
 
             // save to storage/app/photos as the new $filename
@@ -91,7 +91,7 @@ class PropertyUnitsController extends Controller
                 'unit_description' => $request->unit_description,
                 'lease_amount' => $request->rentamount,
                 'name' => $request->unitname,
-                'image' => asset('storage/units/'. $filename) ?? "null",
+                'image' => asset('storage/unit_images/'. $filename) ?? "null",
                 'owner_id' => $user->id
             ]);
 
@@ -145,7 +145,7 @@ class PropertyUnitsController extends Controller
                 $filename = 'attached-file-' . $rand . time() . '.' . $file->getClientOriginalExtension();
 
                 // save to storage/app/photos as the new $filename
-                $storefile = $file->storeAs('public/unit/', $filename);
+                $storefile = $file->storeAs('public/unit_imags/', $filename);
             }
 
 
