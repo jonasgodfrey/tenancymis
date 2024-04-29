@@ -13,6 +13,7 @@ use App\Models\Unit;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\Storage;
 
 class PropertyUnitsController extends Controller
 {
@@ -76,8 +77,11 @@ class PropertyUnitsController extends Controller
             $rand = rand(111, 9999);
             $filename = 'attached-file-' . $rand . time() . '.' . $file->getClientOriginalExtension();
 
+            Storage::disk('public')->putFileAs('units', $file, $filename);
+
+
             // save to storage/app/photos as the new $filename
-            $storefile = $file->storeAs('public/unit/', $filename);
+            // $storefile = $file->storeAs('public/unit/', $filename);
 
             $unit = Unit::create([
                 'property_id' => $request->property_name,
@@ -87,7 +91,7 @@ class PropertyUnitsController extends Controller
                 'unit_description' => $request->unit_description,
                 'lease_amount' => $request->rentamount,
                 'name' => $request->unitname,
-                'image' => $filename ?? "null",
+                'image' => asset('storage/units/'. $filename) ?? "null",
                 'owner_id' => $user->id
             ]);
 
