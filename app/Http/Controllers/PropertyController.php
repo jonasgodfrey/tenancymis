@@ -18,6 +18,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Gate;
+use Illuminate\Support\Facades\Storage;
 
 class PropertyController extends Controller
 {
@@ -43,11 +44,11 @@ class PropertyController extends Controller
         $properties = Property::leftJoin('units', 'units.property_id', '=', 'properties.id')
             ->leftJoin('tenant_rental_records', 'tenant_rental_records.unit_id', '=', 'units.id')
             ->leftJoin('property_categories', 'properties.property_category_id', '=', 'property_categories.id')
-            ->select('properties.id', 'properties.property_name','property_categories.category_name', 'properties.property_address', DB::raw('COUNT(units.id) as total_units'), DB::raw('COUNT(tenant_rental_records.id) as total_tenants'))
-            ->groupBy('properties.id', 'properties.property_name', 'properties.property_address', 'property_categories.category_name')
+            ->select('properties.id', 'properties.property_name', 'property_categories.category_name', 'properties.property_address', 'properties.property_image_url', DB::raw('COUNT(units.id) as total_units'), DB::raw('COUNT(tenant_rental_records.id) as total_tenants'))
+            ->groupBy('properties.id', 'properties.property_name', 'properties.property_image_url', 'properties.property_address', 'property_categories.category_name')
             ->where('properties.owner_id', $user->id)->get();
 
-        logInfo($properties);
+        logInfo($countries);
 
         return view('admin.property.index')->with([
             'states' => $state,
@@ -106,36 +107,38 @@ class PropertyController extends Controller
 
         $filename = 'attached-file-' . $rand . time() . '.' . $file->getClientOriginalExtension();
 
+        Storage::disk('public')->putFileAs('property_images', $file, $filename);
+
+
         // save to storage/app/photos as the new $filename
-        $storefile = $file->storeAs('public/property/', $filename);
+        // $storefile = $file->storeAs('public/property/', $filename);
 
-        if ($storefile) {
-            $property = Property::create([
-                'property_category_id' => $request->propcat,
-                'proptype_id' => $request->proptype,
-                'owner_id' => $user->id,
-                'property_name' => $request->property_name,
-                'property_address' => $request->address,
-                'property_description' => $request->property_description,
-                'email' => $request->email,
-                'phone' => $request->tel,
-                'country_id' => $request->country,
-                'state_id' => $request->state,
-                'uploads_dir' => $filename,
-            ]);
+        // if ($storefile) {
+        $property = Property::create([
+            'property_category_id' => $request->propcat,
+            'proptype_id' => $request->proptype,
+            'owner_id' => $user->id,
+            'property_name' => $request->property_name,
+            'property_address' => $request->address,
+            'property_description' => $request->property_description,
+            'email' => $request->email,
+            'phone' => $request->tel,
+            'country_id' => $request->country,
+            'state_id' => $request->state,
+            'property_image_url' => asset('storage/property_images/' . $filename),
+        ]);
 
-            // publish a notification for the user create action
-            $notification = Notification::create([
-                'user_id' => $user->id,
-                'owner_id' => $owner,
-                'title' => "New Property Created",
-                'message' => $user->name . ' added a new property to TenancyPlus'
-            ]);
+        // publish a notification for the user create action
+        $notification = Notification::create([
+            'user_id' => $user->id,
+            'owner_id' => $owner,
+            'title' => "New Property Created",
+            'message' => $user->name . ' added a new property to TenancyPlus'
+        ]);
 
-            if ($property) {
-                Session::flash('flash_message', 'Property Created Successfully !');
-                return redirect()->back();
-            }
+        if ($property) {
+            Session::flash('flash_message', 'Property Created Successfully !');
+            return redirect()->back();
         }
     }
 
@@ -152,6 +155,8 @@ class PropertyController extends Controller
         $prop_cat = PropertyCategory::all();
         $prop_types = PropertyType::all();
         $countries = Country::all();
+
+        logInfo($countries, "Mu countries ");
 
         return view('admin.property.edit')->with([
             'states' => $state,
@@ -183,9 +188,11 @@ class PropertyController extends Controller
             ]);
 
             $filename = 'attached-file-' . $rand . time() . '.' . $file->getClientOriginalExtension();
-            $file->storeAs('public/property/', $filename);
+            Storage::disk('public')->putFileAs('property_images', $file, $filename);
+
+            // $file->storeAs('public/property/', $filename);
             $property->fill($input)->save();
-            $property->update(['uploads_dir' => $filename]);
+            $property->update(['property_image_url' => asset('storage/property_images/' . $filename)]);
         } else {
             $property->fill($input)->save();
         }

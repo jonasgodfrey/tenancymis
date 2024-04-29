@@ -22,7 +22,7 @@ class Property extends Model
         'email',
         'country_id',
         'state_id',
-        'uploads_dir',
+        'property_image_url',
     ];
 
     public function units(){

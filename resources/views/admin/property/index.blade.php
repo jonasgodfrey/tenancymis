@@ -146,9 +146,10 @@
                         <table id="datatable-buttons" class="table table-striped table-bordered dt-responsive nowrap">
                             <thead>
                                 <tr>
+                                    <th>Property Image</th>
                                     <th>Property</th>
                                     <th>Category</th>
-                                    <th>Description</th>
+                                    <th>Address</th>
                                     <th>Units</th>
                                     <th>Tenants</th>
                                     <th>Action</th>
@@ -158,6 +159,7 @@
                             <tbody>
                                 @forelse ($properties as $property)
                                 <tr>
+                                    <td><img src="{{ $property->property_image_url }}" alt="img" width="100" class="mx-auto d-block" /></td>
                                     <td>{{ $property->property_name }}</td>
                                     <td>{{ $property->category_name }}</td>
                                     <td>{{ $property->property_address }}</td>

@@ -73,71 +73,72 @@ class TenancyPaymentsController extends Controller
 
 
             // save to storage/app/photos as the new $filename
-            $storefile = $file->storeAs('public/payments/', $filename);
+            // $storefile = $file->storeAs('public/payments/', $filename);
+            Storage::disk('public')->putFileAs('payment_images', $file, $filename);
 
 
             $tenantrec = User::where('id', $request->tenant)->first();
 
-            if ($storefile) {
-                $startdate = Carbon::parse($request->startdate);
-                $duedate = Carbon::parse($request->duedate);
+            // if ($storefile) {
+            $startdate = Carbon::parse($request->startdate);
+            $duedate = Carbon::parse($request->duedate);
 
-                try {
+            try {
 
-                    DB::beginTransaction();
+                DB::beginTransaction();
 
-                    $payment = PaymentRecord::create([
-                        'property_id' => $request->property_id,
-                        'unit_id' => $request->unit_id,
-                        'paycat_id' => $request->payment_category,
-                        'tenant_id' => $request->tenant_id,
-                        'payment_status_id' => 3,
-                        'payment_reference' => generateTransactionReference(),
-                        'amount' => $request->payamount,
-                        'paydate' => Carbon::now(),
-                        'payment_status_id' => 2,
-                        'amount_paid' => $request->payamount,
-                        'payment_date' => Carbon::now(),
-                        'startdate' => $startdate,
-                        'duedate' => $duedate,
-                        'duration' => $request->duration,
-                        'duration_status' => '3',
-                        'paymethod' => $request->paymethod,
-                        'evidence_image' => $filename,
-                    ]);
+                $payment = PaymentRecord::create([
+                    'property_id' => $request->property_id,
+                    'unit_id' => $request->unit_id,
+                    'paycat_id' => $request->payment_category,
+                    'tenant_id' => $request->tenant_id,
+                    'payment_status_id' => 3,
+                    'payment_reference' => generateTransactionReference(),
+                    'amount' => $request->payamount,
+                    'paydate' => Carbon::now(),
+                    'payment_status_id' => 2,
+                    'amount_paid' => $request->payamount,
+                    'payment_date' => Carbon::now(),
+                    'startdate' => $startdate,
+                    'duedate' => $duedate,
+                    'duration' => $request->duration,
+                    'duration_status' => '3',
+                    'paymethod' => $request->paymethod,
+                    'evidence_image' => asset('storage/payment_images/' . $filename),
+                ]);
 
 
-                    $tenantRecord = TenantRentalRecord::where('tenant_id', $request->tenant_id)->where('unit_id', $request->unit_id)->first();
+                $tenantRecord = TenantRentalRecord::where('tenant_id', $request->tenant_id)->where('unit_id', $request->unit_id)->first();
 
-                    logInfo($tenantRecord, "********************************");
+                logInfo($tenantRecord, "********************************");
 
-                    if ($tenantRecord->start_date == null) {
-                        $tenantRecord->start_date = $startdate;
-                    }
-                    $tenantRecord->end_date =  $duedate;
-                    $tenantRecord->save();
-
-                    // publish a notification for the user create action
-                    $notification = Notification::create([
-                        'user_id' => $user->id,
-                        'owner_id' => $user->id,
-                        'title' => "New Payment Record Added",
-                        'message' => $user->name . ' added a new payment record, for (tenant: ' . $tenantrec->name . ') on TenancyPlus'
-                    ]);
-
-                    DB::commit();
-
-                    if ($payment) {
-                        Session::flash('flash_message', 'New tenant Payment Added Successfully');
-                        return redirect()->back();
-                    }
-                } catch (\Exception $e) {
-
-                    logInfo($e->getMessage(), "Server ERror!! Message");
-                    DB::rollBack();
-                    Session::flash('error_message', 'Server Error... Please try again later');
+                if ($tenantRecord->start_date == null) {
+                    $tenantRecord->start_date = $startdate;
                 }
+                $tenantRecord->end_date =  $duedate;
+                $tenantRecord->save();
+
+                // publish a notification for the user create action
+                $notification = Notification::create([
+                    'user_id' => $user->id,
+                    'owner_id' => $user->id,
+                    'title' => "New Payment Record Added",
+                    'message' => $user->name . ' added a new payment record, for (tenant: ' . $tenantrec->name . ') on TenancyPlus'
+                ]);
+
+                DB::commit();
+
+                if ($payment) {
+                    Session::flash('flash_message', 'New tenant Payment Added Successfully');
+                    return redirect()->back();
+                }
+            } catch (\Exception $e) {
+
+                logInfo($e->getMessage(), "Server ERror!! Message");
+                DB::rollBack();
+                Session::flash('error_message', 'Server Error... Please try again later');
             }
+            // }
         }
     }
 
@@ -187,9 +188,10 @@ class TenancyPaymentsController extends Controller
                 // generate a new filename. getClientOriginalExtension() for the file extension
                 $rand = rand(111, 9999);
                 $filename = 'attached-file-' . $rand . time() . '.' . $file->getClientOriginalExtension();
-    
+
                 // save to storage/app/photos as the new $filename
-                $storefile = $file->storeAs('public/payments/', $filename);    
+                // $storefile = $file->storeAs('public/payments/', $filename);    
+                Storage::disk('public')->putFileAs('payment_images', $file, $filename);
 
                 // $storefile = $imgFile->resize(240, 240)->save('payments/' . $filename);
 
@@ -206,7 +208,7 @@ class TenancyPaymentsController extends Controller
 
                 $tenantrec = TenantRentalRecord::where('tenant_id', $request->tenant_id)->first();
 
-                if ($storefile &&  $tenantrec) {
+                if ($tenantrec) {
                     $startdate = Carbon::parse($request->start_date);
                     $duedate = Carbon::parse($request->due_date);
 
@@ -226,7 +228,7 @@ class TenancyPaymentsController extends Controller
                         'payment_status_id' => 2,
                         'duration_status' => '3',
                         'paymethod' => $request->payment_method,
-                        'evidence_image' => $filename,
+                        'evidence_image' => asset('storage/payment_images/' . $filename),
                     ]);
 
                     if ($tenantrec->start_date == null) {
@@ -306,10 +308,12 @@ class TenancyPaymentsController extends Controller
             $filename = 'attached-file-' . $rand . time() . '.' . $file->getClientOriginalExtension();
 
             // save to storage/app/photos as the new $filename
-            $storefile = $file->storeAs('public/payments/', $filename);
+            // $storefile = $file->storeAs('public/payments/', $filename);
+
+            Storage::disk('public')->putFileAs('payment_images', $file, $filename);
 
             $tenant_payment->fill($data)->save();
-            $tenant_payment->update(['evidence_image' => $filename]);
+            $tenant_payment->update(['evidence_image' => asset('storage/payment_images/' . $filename)]);
         } else {
             $tenant_payment->fill($data)->save();
         }
