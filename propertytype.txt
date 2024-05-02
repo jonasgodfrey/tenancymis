@@ -1,0 +1,32 @@
+Commercial:
+Industrial
+Corporate Office
+Retail (Malls or Shopping Centres)
+Warehouse
+Storage
+Hotels
+Hospitality
+
+Residential
+Townhouse
+Apartments
+Condominiums
+Detatched
+Bungalow
+Dormitory
+Penthouse
+Mansion
+Duplex
+Terraces
+Cottage
+Flat
+Farm House
+Tent
+Bungalow
+Terraced House
+Duplex
+Mansion
+Penthouse
+Detatched House
+Apartments or Flats
+Townhouse
