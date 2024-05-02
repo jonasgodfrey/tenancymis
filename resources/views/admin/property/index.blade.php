@@ -117,7 +117,7 @@
                                     </div>
 
                                     <div class="mb-3">
-                                        <label for="example-fileinput" class="form-label">Upload Logo</label>
+                                        <label for="example-fileinput" class="form-label">Property Picture</label>
                                         <input type="file" name="logo" id="example-fileinput" class="form-control">
                                     </div>
 

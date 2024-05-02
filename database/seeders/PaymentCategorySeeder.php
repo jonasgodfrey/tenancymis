@@ -23,7 +23,13 @@ class PaymentCategorySeeder extends Seeder
                 "payment_category" => "Facility Fee",
             ],
             [
-                "payment_category" => "Taxes",
+                "payment_category" => "Maintenance Fee",
+            ],
+            [
+                "payment_category" => "Outstanding Rent",
+            ],
+            [
+                "payment_category" => "Others",
             ],
         ]);
     }
