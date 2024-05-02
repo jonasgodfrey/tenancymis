@@ -93,9 +93,9 @@
                                         <div class="mb-3">
                                             <label for="example-select" class="form-label">Country</label>
                                             <select class="form-select" id="example-select" name="country" required>
-                                                <option style="display: none">{{ $property->country->name }}</option>
+                                                <option style="display: none">{{ $property->country->country }}</option>
                                                 @foreach ($countries as $country)
-                                                    <option value="{{ $country->name }}">{{ $country->name }}</option>
+                                                    <option value="{{ $country->name }}">{{ $country->country }}</option>
                                                 @endforeach
                                             </select>
                                         </div>

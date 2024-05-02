@@ -86,7 +86,7 @@ class RegisteredUserController extends Controller
         UserSubscription::create([
             "user_id" => $user->id,
             "start_date" => Carbon::now(),
-            "end_date" => Carbon::now()->addMonths(3),
+            "end_date" => Carbon::now()->addMonth(),
             "status" => 'active',
             "plan_type" => 2,
             "amount" => 0,

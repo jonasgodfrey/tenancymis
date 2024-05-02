@@ -18,6 +18,7 @@ class Unit extends Model
         'name',
         'unit_ref_id',
         'unit_description',
+        'payment_duration_id',
         'lease_amount',
         'status',
         'image',

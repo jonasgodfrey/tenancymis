@@ -29,7 +29,7 @@ return new class extends Migration
             $table->foreign('country_id')->references('id')->on('countries');
             $table->unsignedBigInteger('state_id');
             $table->foreign('state_id')->references('id')->on('states');
-            $table->string('uploads_dir');
+            $table->string('property_image_url');
             $table->timestamps();
             $table->softDeletes();
         });

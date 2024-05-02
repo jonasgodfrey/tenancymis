@@ -55,63 +55,64 @@
                         <form role="form" action="{{ route('units.store') }}" enctype="multipart/form-data" method="POST">
                             @csrf
                             <div class="row">
-                                <div class="col-lg-6">
+
+                                <div class="mb-3 col-lg-6 col-md-12">
+                                    <label for="example-select" class="form-label">Select Property</label>
+                                    <select class="form-select" name="property_name" id="example-select" required>
+                                        <option style="display: none">Select Property</option>
+                                        @foreach ($properties as $property)
+                                        <option value="{{ $property->id }}">{{ $property->property_name }}
+                                        </option>
+                                        @endforeach
+                                    </select>
+                                </div>
+
+                                <div class="mb-3 col-lg-6 col-md-12">
+                                    <label for="example-select" class="form-label">Unit Type</label>
+                                    <select class="form-select" name="unittype" id="example-select" required>
+                                        <option style="display: none">Select Unit Type</option>
+                                        @foreach ($unitstype as $unit)
+                                        <option value="{{ $unit->id }}">{{ $unit->unit_type }}</option>
+                                        @endforeach
+
+                                    </select>
+                                </div>
 
 
-                                    <div class="mb-3">
-                                        <label for="example-select" class="form-label">Select Property</label>
-                                        <select class="form-select" name="property_name" id="example-select" required>
-                                            <option style="display: none">Select Property</option>
-                                            @foreach ($properties as $property)
-                                            <option value="{{ $property->id }}">{{ $property->property_name }}
-                                            </option>
-                                            @endforeach
-                                        </select>
-                                    </div>
-
-                                    <div class="mb-3">
-                                        <label for="example-select" class="form-label">Unit Type</label>
-                                        <select class="form-select" name="unittype" id="example-select" required>
-                                            <option style="display: none">Select Unit Type</option>
-                                            @foreach ($unitstype as $unit)
-                                            <option value="{{ $unit->id }}">{{ $unit->unit_type }}</option>
-                                            @endforeach
-
-                                        </select>
-                                    </div>
-
-
-                                    <div class="mb-3">
-                                        <label for="example-password" class="form-label">Unit Name</label>
-                                        <input type="text" name="unitname" id="example-password" class="form-control" value="" placeholder="" required>
-                                    </div>
-
-
-                                </div> <!-- end col -->
-
-                                <div class="col-lg-6">
-
-
-                                    <div class="mb-3">
-                                        <label for="example-password" class="form-label">Unit Description</label>
-                                        <input type="tel" name="unit_description" id="" class="form-control" value="" required>
-                                    </div>
-
-                                    <div class="mb-3">
-                                        <label for="example-password" class="form-label">Rent/Lease Amount</label>
-                                        <input type="text" name="rentamount" id="example-password" class="form-control" placeholder="₦100,000/Year" required>
-                                    </div>
-
-
-                                    <div class="mb-3">
-                                        <label for="example-fileinput" class="form-label">Unit Picture</label>
-                                        <input type="file" name="unitpics" id="example-fileinput" class="form-control">
-                                    </div>
+                                <div class="mb-3 col-lg-6 col-md-12">
+                                    <label for="example-password" class="form-label">Unit Name</label>
+                                    <input type="text" name="unitname" id="example-password" class="form-control" value="" placeholder="" required>
+                                </div>
 
 
 
+                                <div class="mb-3 col-lg-6 col-md-6">
+                                    <label for="example-password" class="form-label">Unit Description</label>
+                                    <input type="tel" name="unit_description" id="" class="form-control" value="" required>
+                                </div>
 
-                                </div> <!-- end col -->
+                                <div class="mb-3 col-lg-6 col-md-6">
+                                    <label for="example-password" class="form-label">Rent/Lease Amount</label>
+                                    <input type="text" name="rentamount" id="example-password" class="form-control" placeholder="₦100,000/Year" required>
+                                </div>
+
+                                <div class="mb-3 col-lg-6 col-md-6">
+                                    <label for="example-select" class="form-label">Payment Duration</label>
+                                    <select class="form-select" name="payment_duration_id" id="example-select" required>
+                                        <option value="">Select Payment Duration</option>
+                                        @foreach ($paymentDuration as $duration)
+                                        <option value="{{ $duration->id }}">{{ $duration->payment_duration }}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+
+
+                                <div class="mb-3 col-lg-6 col-md-6">
+                                    <label for="example-fileinput" class="form-label">Unit Picture</label>
+                                    <input type="file" name="unitpics" id="example-fileinput" class="form-control">
+                                </div>
+
+
                                 <div class="col-12">
                                     <button type="submit" name="submit" class="btn btn-success btn-md">Add
                                         Unit</button>

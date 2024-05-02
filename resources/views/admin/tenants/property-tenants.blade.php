@@ -52,7 +52,7 @@
 
                                     <div class="mb-3">
                                         <label for="simpleinput" class="form-label">Tenant's Mobile No</label>
-                                        <input type="text" name="mobile" id="simpleinput" class="form-control" placeholder="" required>
+                                        <input type="tel" name="mobile" id="simpleinput" class="form-control" placeholder="" required>
                                     </div>
 
                                     <div class="mb-3">
