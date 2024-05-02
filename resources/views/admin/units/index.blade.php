@@ -81,14 +81,14 @@
 
                                 <div class="mb-3 col-lg-6 col-md-12">
                                     <label for="example-password" class="form-label">Unit Name</label>
-                                    <input type="text" name="unitname" id="example-password" class="form-control" value="" placeholder="" required>
+                                    <input type="text" name="unitname" id="example-password" class="form-control" placeholder="Example:Store 1, Suite 100, Room 5 or House 12" value="" placeholder="" required>
                                 </div>
 
 
 
                                 <div class="mb-3 col-lg-6 col-md-6">
                                     <label for="example-password" class="form-label">Unit Description</label>
-                                    <input type="tel" name="unit_description" id="" class="form-control" value="" required>
+                                    <input type="tel" name="unit_description" id="" class="form-control" value="" placeholder="Example: 2 Bedroom flat" required>
                                 </div>
 
                                 <div class="mb-3 col-lg-6 col-md-6">

@@ -26,28 +26,48 @@ class UnitTypeSeeder extends Seeder
                 'unit_type' => 'Store',
             ],
             [
-                'property_category_id' => '2',
-                'unit_type' => 'Single Room',
+                'property_category_id' => '1',
+                'unit_type' => 'Suite',
+            ],
+            [
+                'property_category_id' => '1',
+                'unit_type' => 'Storage',
+            ],
+            [
+                'property_category_id' => '1',
+                'unit_type' => 'Office',
             ],
             [
                 'property_category_id' => '2',
-                'unit_type' => 'Self Contain',
+                'unit_type' => 'Unit',
             ],
             [
                 'property_category_id' => '2',
-                'unit_type' => 'Flat',
+                'unit_type' => 'Room',
             ],
             [
                 'property_category_id' => '2',
-                'unit_type' => 'Bungalow',
+                'unit_type' => 'Apartment'
             ],
             [
                 'property_category_id' => '2',
-                'unit_type' => 'Duplex',
+                'unit_type' => 'House'
             ],
             [
                 'property_category_id' => '2',
-                'unit_type' => 'Terrace'
+                'unit_type' => 'Town House'
+            ],
+            [
+                'property_category_id' => '2',
+                'unit_type' => 'Flat'
+            ],
+            [
+                'property_category_id' => '2',
+                'unit_type' => 'No'
+            ],
+            [
+                'property_category_id' => '2',
+                'unit_type' => 'Others'
             ],
         ]);
 
