@@ -1,9 +1,6 @@
-<!-- <p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400"></a></p> -->
-
-## Tenancy MIS
-- Built with laravel
-- Details upcomming
-- backend of the application
-
-
-
+# Installation
+* Clone the repo
+* run composer install
+* Configure environment variables
+* run migrations and seeds
+* Run command: php artisan storage:link to link storage

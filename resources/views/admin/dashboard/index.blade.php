@@ -46,7 +46,7 @@
 
 
                             <div class="widget-detail-1 text-end">
-                                <a href="/property">
+                                <a href="/properties">
                                     <button type="submit" class="btn btn-success btn-xs text-white modal-btn capital-w" data-toggle="modal" data-target="=#exampleModal" style="color:#f05050">Add Property <i class="mdi mdi-domain me-1"></i>
                                     </button>
                                 </a>
